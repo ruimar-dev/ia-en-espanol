@@ -16,7 +16,7 @@ La app arranca en `http://localhost:4321`.
 
 | Variable   | Descripción                          | Ejemplo                      |
 |------------|--------------------------------------|------------------------------|
-| `SITE_URL` | URL pública del sitio (para SEO/OG)  | `https://iaenespanol.com`    |
+| `SITE_URL` | URL pública del sitio (para SEO/OG)  | `https://ia-en-espanol.vercel.app`    |
 
 ## Añadir un artículo nuevo
 
