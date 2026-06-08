@@ -79,7 +79,7 @@ export const ranking: DatosRanking = {
       descripcion: 'Síntesis y clonación de voz realista en más de 30 idiomas.',
       razonTrending: 'Nueva API de voz en tiempo real con latencia inferior a 300ms abre casos de uso en llamadas y asistentes de voz.',
       categoria: 'Audio',
-      url: 'https://elevenlabs.io',
+      url: 'https://try.elevenlabs.io/5pqit62qinao',
       tendencia: 'sube',
       cambio: 3,
       precio: 'Gratis / Starter 5 $/mes',
