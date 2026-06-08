@@ -1,0 +1,27 @@
+---
+import ArticuloLayout from '../../layouts/ArticuloLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articulos = await getCollection('blog', ({ data }) => !data.draft);
+  return articulos.map((articulo) => ({
+    params: { slug: articulo.slug },
+    props: { articulo },
+  }));
+}
+
+const { articulo } = Astro.props;
+const { Content } = await articulo.render();
+---
+
+<ArticuloLayout
+  title={articulo.data.title}
+  description={articulo.data.description}
+  date={articulo.data.date}
+  category={articulo.data.category}
+  herramientas={articulo.data.herramientas}
+  afiliado={articulo.data.afiliado}
+  imagen={articulo.data.imagen}
+>
+  <Content />
+</ArticuloLayout>

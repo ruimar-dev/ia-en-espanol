@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TarjetaHerramienta from '../../components/TarjetaHerramienta.astro';
+import { CATEGORIA_LABELS } from '../../content/config';
+import type { Categoria } from '../../content/config';
+
+interface Herramienta {
+  nombre: string;
+  descripcion: string;
+  categoria: Categoria;
+  rating: number;
+  logo?: string;
+  url?: string;
+}
+
+const herramientas: Herramienta[] = [
+  { nombre: 'ChatGPT', descripcion: 'El chatbot de IA más popular. Ideal para escritura, análisis y programación en lenguaje natural.', categoria: 'generacion-texto', rating: 4.7, logo: '/images/logos/chatgpt.svg', url: 'https://chatgpt.com' },
+  { nombre: 'Claude', descripcion: 'Asistente de Anthropic con excelente razonamiento, contexto largo hasta 200k tokens y seguimiento de instrucciones.', categoria: 'generacion-texto', rating: 4.8, logo: '/images/logos/claude.svg', url: 'https://claude.ai' },
+  { nombre: 'Gemini', descripcion: 'Modelo de IA de Google con integración nativa en Gmail, Docs y el buscador.', categoria: 'generacion-texto', rating: 4.4, logo: '/images/logos/gemini.svg', url: 'https://gemini.google.com' },
+  { nombre: 'Perplexity', descripcion: 'Motor de búsqueda con IA que cita fuentes. Perfecto para investigación y verificación de datos.', categoria: 'generacion-texto', rating: 4.5, logo: '/images/logos/perplexity.svg', url: 'https://perplexity.ai' },
+  { nombre: 'Midjourney', descripcion: 'El mejor generador de imágenes artísticas. Calidad excepcional aunque requiere Discord.', categoria: 'generacion-imagen', rating: 4.9, logo: '/images/logos/midjourney.svg', url: 'https://midjourney.com' },
+  { nombre: 'DALL-E 3', descripcion: 'Generador de imágenes de OpenAI integrado en ChatGPT. Muy bueno siguiendo instrucciones precisas.', categoria: 'generacion-imagen', rating: 4.5, logo: '/images/logos/dalle3.svg', url: 'https://openai.com' },
+  { nombre: 'Stable Diffusion', descripcion: 'Modelo open source para generación de imágenes. Corre localmente, sin costes ni censura.', categoria: 'generacion-imagen', rating: 4.3, logo: '/images/logos/stable-diffusion.svg' },
+  { nombre: 'Ideogram', descripcion: 'Especializado en generar texto dentro de imágenes. Excelente para miniaturas y pósters.', categoria: 'generacion-imagen', rating: 4.4, logo: '/images/logos/ideogram.svg', url: 'https://ideogram.ai' },
+  { nombre: 'GitHub Copilot', descripcion: 'Plugin de programación para VS Code y JetBrains. Sugerencias inline y chat de código.', categoria: 'codigo', rating: 4.6, logo: '/images/logos/copilot.svg', url: 'https://github.com/features/copilot' },
+  { nombre: 'Cursor', descripcion: 'IDE basado en VS Code reconstruido para IA. El mejor para ediciones multi-fichero y refactorizaciones.', categoria: 'codigo', rating: 4.8, logo: '/images/logos/cursor.svg', url: 'https://cursor.sh' },
+  { nombre: 'Codeium', descripcion: 'Alternativa gratuita a Copilot. Buena calidad para completado de código en múltiples lenguajes.', categoria: 'codigo', rating: 4.2, logo: '/images/logos/codeium.svg', url: 'https://codeium.com' },
+  { nombre: 'ElevenLabs', descripcion: 'La mejor IA de síntesis de voz. Clonación realista, múltiples idiomas y voces expresivas.', categoria: 'audio', rating: 4.8, logo: '/images/logos/elevenlabs.svg', url: 'https://elevenlabs.io' },
+  { nombre: 'Suno', descripcion: 'Genera música completa (letra, melodía, producción) a partir de un prompt de texto.', categoria: 'audio', rating: 4.5, logo: '/images/logos/suno.svg', url: 'https://suno.com' },
+  { nombre: 'Udio', descripcion: 'Alternativa a Suno con diferente estilo y calidad de generación musical.', categoria: 'audio', rating: 4.4, logo: '/images/logos/udio.svg', url: 'https://udio.com' },
+  { nombre: 'RunwayML', descripcion: 'Suite de generación y edición de video con IA. Generación texto-a-video e imagen-a-video.', categoria: 'video', rating: 4.6, logo: '/images/logos/runwayml.svg', url: 'https://runwayml.com' },
+  { nombre: 'Kling', descripcion: 'Generador de video chino que compite con Runway en calidad a menor precio.', categoria: 'video', rating: 4.4, logo: '/images/logos/kling.svg', url: 'https://kling.kuaishou.com' },
+  { nombre: 'Notion AI', descripcion: 'IA integrada en Notion para resumir, generar y editar contenido en tus documentos y bases de datos.', categoria: 'productividad', rating: 4.3, logo: '/images/logos/notion.svg', url: 'https://notion.so' },
+  { nombre: 'Otter.ai', descripcion: 'Transcripción automática de reuniones con resúmenes, puntos clave y búsqueda.', categoria: 'productividad', rating: 4.4, logo: '/images/logos/otter.svg', url: 'https://otter.ai' },
+];
+
+const categorias = [
+  { slug: '' as const, label: 'Todas' },
+  ...Object.entries(CATEGORIA_LABELS).map(([slug, label]) => ({ slug: slug as Categoria, label })),
+];
+---
+
+<Layout
+  title="Directorio de herramientas IA"
+  description="Directorio completo de las mejores herramientas de inteligencia artificial con ratings, categorías y enlaces directos."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Herramientas</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      {herramientas.length} herramientas analizadas y clasificadas por categoría.
+    </p>
+
+    <!-- Filtros -->
+    <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filtrar herramientas por categoría">
+      {categorias.map(({ slug, label }, i) => (
+        <button
+          data-cat={slug}
+          class:list={[
+            'filter-btn px-4 py-2 rounded-full text-sm font-semibold transition-colors',
+            i === 0
+              ? 'bg-[#7C3AED] text-white'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#7C3AED] hover:text-white',
+          ]}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="herramientas-grid">
+      {herramientas.map((h) => (
+        <div data-category={h.categoria} class="herramienta-item">
+          <TarjetaHerramienta
+            nombre={h.nombre}
+            descripcion={h.descripcion}
+            categoria={h.categoria}
+            rating={h.rating}
+            url={h.url}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.herramienta-item');
+
+  const activeClasses = ['bg-[#7C3AED]', 'text-white'];
+  const inactiveClasses = ['bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300'];
+
+  function setFilter(cat: string) {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.cat === cat;
+      activeClasses.forEach((c) => btn.classList.toggle(c, isActive));
+      inactiveClasses.forEach((c) => btn.classList.toggle(c, !isActive));
+    });
+    items.forEach((item) => {
+      item.style.display = !cat || item.dataset.category === cat ? '' : 'none';
+    });
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.cat ?? ''));
+  });
+</script>

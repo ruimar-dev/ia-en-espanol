@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticuloCard from '../../components/ArticuloCard.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORIA_LABELS } from '../../content/config';
+
+const articulos = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function readingTime(body: string) {
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 200));
+}
+
+const categorias = Object.entries(CATEGORIA_LABELS);
+---
+
+<Layout title="Blog" description="Todos los artículos sobre herramientas de IA en español. Reviews, comparativas y guías prácticas.">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      {articulos.length} {articulos.length === 1 ? 'artículo publicado' : 'artículos publicados'}
+    </p>
+
+    <!-- Filtros -->
+    <div class="flex flex-wrap gap-2 mb-10" id="filtros" role="group" aria-label="Filtrar por categoría">
+      <button
+        data-cat=""
+        class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-[#7C3AED] text-white transition-colors"
+      >
+        Todos
+      </button>
+      {categorias.map(([slug, label]) => (
+        <button
+          data-cat={slug}
+          class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#7C3AED] hover:text-white transition-colors"
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articulos-grid">
+      {articulos.map((articulo) => (
+        <div data-category={articulo.data.category} class="articulo-item">
+          <ArticuloCard
+            title={articulo.data.title}
+            description={articulo.data.description}
+            date={articulo.data.date}
+            category={articulo.data.category}
+            slug={articulo.slug}
+            imagen={articulo.data.imagen}
+            readingTime={readingTime(articulo.body)}
+          />
+        </div>
+      ))}
+    </div>
+
+    {articulos.length === 0 && (
+      <div class="text-center py-20 text-gray-500 dark:text-gray-400">
+        <p class="text-lg">Próximamente los primeros artículos.</p>
+      </div>
+    )}
+
+    <p id="sin-resultados" class="hidden text-center py-12 text-gray-500 dark:text-gray-400">
+      No hay artículos en esta categoría todavía.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.articulo-item');
+  const sinResultados = document.getElementById('sin-resultados');
+
+  const activeClasses = ['bg-[#7C3AED]', 'text-white'];
+  const inactiveClasses = ['bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300'];
+
+  function setFilter(cat: string) {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.cat === cat;
+      activeClasses.forEach((c) => btn.classList.toggle(c, isActive));
+      inactiveClasses.forEach((c) => btn.classList.toggle(c, !isActive));
+    });
+
+    let visible = 0;
+    items.forEach((item) => {
+      const matches = !cat || item.dataset.category === cat;
+      item.style.display = matches ? '' : 'none';
+      if (matches) visible++;
+    });
+
+    sinResultados?.classList.toggle('hidden', visible > 0);
+
+    const url = new URL(window.location.href);
+    cat ? url.searchParams.set('cat', cat) : url.searchParams.delete('cat');
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  // Apply filter from URL on load
+  const initialCat = new URLSearchParams(window.location.search).get('cat') ?? '';
+  setFilter(initialCat);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.cat ?? ''));
+  });
+</script>

@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ranking } from '../../data/ranking';
+import type { Tendencia } from '../../data/ranking';
+
+const { semana, actualizadoEl, herramientas } = ranking;
+
+const fechaFormateada = new Date(actualizadoEl).toLocaleDateString('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+function tendenciaIcon(t: Tendencia, cambio: number): string {
+  if (t === 'nueva') return '✦ NUEVA';
+  if (t === 'sube') return `↑ ${cambio}`;
+  if (t === 'baja') return `↓ ${cambio}`;
+  return '—';
+}
+
+function tendenciaClases(t: Tendencia): string {
+  if (t === 'nueva') return 'bg-[#7C3AED]/10 text-[#7C3AED]';
+  if (t === 'sube') return 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400';
+  if (t === 'baja') return 'bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400';
+  return 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400';
+}
+
+const top3 = herramientas.slice(0, 3);
+const resto = herramientas.slice(3);
+
+const medallas = ['🥇', '🥈', '🥉'];
+---
+
+<Layout
+  title="Ranking semanal de herramientas IA — Semana del {semana}"
+  description={`Las 10 herramientas de inteligencia artificial más buscadas y lanzadas esta semana. Ranking actualizado el ${fechaFormateada}.`}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-[#7C3AED]/5 to-transparent border-b border-gray-200 dark:border-gray-800 py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C3AED]/10 text-[#7C3AED] text-xs font-semibold uppercase tracking-widest mb-5">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C3AED] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#7C3AED]"></span>
+        </span>
+        Actualizado cada semana
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+        Ranking semanal<br class="hidden sm:block" /> de herramientas IA
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto mb-6">
+        Las herramientas de IA más buscadas, lanzadas y comentadas de la semana, seleccionadas manualmente.
+      </p>
+      <div class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Semana del <strong class="text-gray-700 dark:text-gray-300">{semana}</strong>
+        <span class="text-gray-300 dark:text-gray-700">·</span>
+        Actualizado el {fechaFormateada}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Podio top 3 -->
+    <div class="mb-14">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6">Top 3 de la semana</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {top3.map((h, i) => (
+          <a
+            href={h.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              'group relative flex flex-col rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-1',
+              i === 0
+                ? 'border-[#7C3AED]/40 bg-[#7C3AED]/5 dark:bg-[#7C3AED]/10 ring-1 ring-[#7C3AED]/20 shadow-md shadow-[#7C3AED]/10'
+                : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-[#7C3AED]/30',
+            ]}
+          >
+            <div class="flex items-start justify-between mb-3">
+              <span class="text-2xl" aria-label={`Puesto ${h.posicion}`}>{medallas[i]}</span>
+              <span class:list={['text-xs font-semibold px-2 py-0.5 rounded-full', tendenciaClases(h.tendencia)]}>
+                {tendenciaIcon(h.tendencia, h.cambio)}
+              </span>
+            </div>
+            <p class="text-xs text-gray-400 dark:text-gray-500 mb-0.5">{h.empresa}</p>
+            <h3 class="font-bold text-gray-900 dark:text-white text-base leading-snug mb-2 group-hover:text-[#7C3AED] transition-colors">
+              {h.nombre}
+            </h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed flex-1">{h.descripcion}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[#7C3AED]">
+              Ver herramienta
+              <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Lista posiciones 4–10 -->
+    <div class="mb-14">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Posiciones 4 – 10</h2>
+      <div class="divide-y divide-gray-100 dark:divide-gray-800 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900">
+        {resto.map((h) => (
+          <a
+            href={h.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-4 px-5 py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+          >
+            <!-- Número -->
+            <span class="w-7 text-center text-lg font-bold text-gray-300 dark:text-gray-700 shrink-0">
+              {h.posicion}
+            </span>
+
+            <!-- Info principal -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                <span class="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-[#7C3AED] transition-colors">
+                  {h.nombre}
+                </span>
+                <span class="text-xs text-gray-400 dark:text-gray-500">{h.empresa}</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{h.descripcion}</p>
+            </div>
+
+            <!-- Categoría + tendencia -->
+            <div class="hidden sm:flex items-center gap-2 shrink-0">
+              <span class="text-xs text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">
+                {h.categoria}
+              </span>
+              <span class:list={['text-xs font-semibold px-2 py-0.5 rounded-full min-w-[48px] text-center', tendenciaClases(h.tendencia)]}>
+                {tendenciaIcon(h.tendencia, h.cambio)}
+              </span>
+            </div>
+
+            <svg class="w-4 h-4 text-gray-300 dark:text-gray-700 group-hover:text-[#7C3AED] shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Por qué están en tendencia -->
+    <div>
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Por qué están en tendencia</h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">El contexto detrás de cada entrada en el ranking de esta semana.</p>
+      <div class="space-y-4">
+        {herramientas.map((h) => (
+          <div class="flex gap-4 p-5 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
+            <div class="shrink-0 w-8 h-8 rounded-full bg-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] font-bold text-sm">
+              {h.posicion}
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1 flex-wrap">
+                <span class="font-semibold text-gray-900 dark:text-white text-sm">{h.nombre}</span>
+                <span class:list={['text-xs font-semibold px-2 py-0.5 rounded-full', tendenciaClases(h.tendencia)]}>
+                  {tendenciaIcon(h.tendencia, h.cambio)}
+                </span>
+                <span class="text-xs text-gray-400">{h.precio}</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{h.razonTrending}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Nota metodología -->
+    <div class="mt-12 p-5 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400">
+      <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">¿Cómo se elabora este ranking?</p>
+      <p class="leading-relaxed">
+        Cada lunes reviso tendencias de búsqueda, lanzamientos oficiales, menciones en comunidades de IA en español y novedades en Product Hunt.
+        El ranking refleja mi criterio editorial y no está patrocinado. Si crees que falta alguna herramienta, escríbeme.
+      </p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,77 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-label="Aviso de cookies"
+  class="fixed bottom-0 left-0 right-0 z-50 translate-y-full transition-transform duration-500 ease-out"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6">
+    <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-700 shadow-2xl shadow-black/10 p-5 sm:p-6">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+        <!-- Text -->
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-lg" aria-hidden="true">🍪</span>
+            <p class="font-semibold text-gray-900 dark:text-white text-sm">
+              Este sitio usa cookies
+            </p>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+            Usamos cookies propias esenciales para el funcionamiento del sitio y, con tu consentimiento, cookies analíticas para mejorar el contenido.
+            <a href="/sobre-mi" class="text-[#7C3AED] hover:underline whitespace-nowrap">Más información</a>.
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          >
+            Solo esenciales
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-white bg-[#7C3AED] hover:bg-[#6D28D9] transition-colors"
+          >
+            Aceptar todas
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner')!;
+  const KEY = 'cookie-consent';
+
+  function dismiss() {
+    banner.classList.add('translate-y-full');
+    banner.addEventListener('transitionend', () => banner.remove(), { once: true });
+  }
+
+  // Show banner if no consent stored
+  if (!localStorage.getItem(KEY)) {
+    // Small delay so the page renders first, then banner slides in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        banner.classList.remove('translate-y-full');
+      });
+    });
+  } else {
+    banner.remove();
+  }
+
+  document.getElementById('cookie-accept')?.addEventListener('click', () => {
+    localStorage.setItem(KEY, 'all');
+    dismiss();
+  });
+
+  document.getElementById('cookie-reject')?.addEventListener('click', () => {
+    localStorage.setItem(KEY, 'essential');
+    dismiss();
+  });
+</script>

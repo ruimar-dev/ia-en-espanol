@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TablaComparativa from '../../components/TablaComparativa.astro';
+
+const comparativas = [
+  {
+    id: 'llm',
+    titulo: 'Mejores modelos de lenguaje (LLM) en 2024',
+    descripcion: 'Los asistentes de IA conversacionales más potentes del mercado.',
+    herramientas: [
+      { nombre: 'Claude 3.5 Sonnet', precio: '$20/mes', puntuacion: 4.8, idealPara: 'Escritura, análisis, documentos largos' },
+      { nombre: 'ChatGPT-4o', precio: '$20/mes', puntuacion: 4.7, idealPara: 'Uso general, imágenes, plugins' },
+      { nombre: 'Jasper', precio: '$39/mes', puntuacion: 4.4, idealPara: 'Redacción de marketing y contenido', enlaceAfiliado: 'https://www.jasper.ai' },
+      { nombre: 'Writesonic', precio: '$16/mes', puntuacion: 4.2, idealPara: 'Copywriting y artículos SEO', enlaceAfiliado: 'https://writesonic.com' },
+    ],
+  },
+  {
+    id: 'imagen',
+    titulo: 'Mejores generadores de imagen IA',
+    descripcion: 'Comparativa de las herramientas de generación de imagen más populares.',
+    herramientas: [
+      { nombre: 'Midjourney v6.1', precio: '$10–$60/mes', puntuacion: 4.9, idealPara: 'Arte, calidad máxima' },
+      { nombre: 'Leonardo.ai', precio: 'Freemium', puntuacion: 4.5, idealPara: 'Calidad alta, plan gratuito generoso', enlaceAfiliado: 'https://leonardo.ai' },
+      { nombre: 'Adobe Firefly', precio: 'Con Creative Cloud', puntuacion: 4.3, idealPara: 'Uso comercial 100% seguro', enlaceAfiliado: 'https://www.adobe.com/es/products/firefly.html' },
+      { nombre: 'Stable Diffusion XL', precio: 'Gratis (local)', puntuacion: 4.3, idealPara: 'Control total y privacidad' },
+    ],
+  },
+  {
+    id: 'codigo',
+    titulo: 'Asistentes de programación IA',
+    descripcion: 'Las mejores herramientas para escribir, entender y refactorizar código.',
+    herramientas: [
+      { nombre: 'Cursor', precio: '$20/mes', puntuacion: 4.8, idealPara: 'IDE completo con IA' },
+      { nombre: 'GitHub Copilot', precio: '$10/mes', puntuacion: 4.6, idealPara: 'Plugin en tu IDE actual' },
+      { nombre: 'Codeium', precio: 'Gratis', puntuacion: 4.2, idealPara: 'Alternativa gratuita' },
+      { nombre: 'Tabnine', precio: '$12/mes', puntuacion: 4.0, idealPara: 'Privacidad y ejecución local' },
+    ],
+  },
+  {
+    id: 'audio',
+    titulo: 'Herramientas de voz y audio IA',
+    descripcion: 'Síntesis de voz, clonación y generación de música con inteligencia artificial.',
+    herramientas: [
+      { nombre: 'ElevenLabs', precio: '$5–$99/mes', puntuacion: 4.8, idealPara: 'Voz realista, clonación', enlaceAfiliado: 'https://elevenlabs.io' },
+      { nombre: 'Murf.ai', precio: '$19/mes', puntuacion: 4.5, idealPara: 'Voiceover profesional', enlaceAfiliado: 'https://murf.ai' },
+      { nombre: 'Udio', precio: 'Freemium', puntuacion: 4.4, idealPara: 'Generación de música completa' },
+      { nombre: 'Adobe Podcast', precio: 'Gratis (beta)', puntuacion: 4.2, idealPara: 'Mejora de calidad de audio' },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Comparativas de herramientas IA"
+  description="Tablas comparativas actualizadas de las mejores herramientas de inteligencia artificial por categoría."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Comparativas</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-4">
+      Tablas comparativas actualizadas para ayudarte a elegir la herramienta correcta sin perder tiempo.
+    </p>
+
+    <!-- Jump links -->
+    <div class="flex flex-wrap gap-2 mb-12">
+      {comparativas.map(({ id, titulo }) => (
+        <a
+          href={`#${id}`}
+          class="text-sm px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#7C3AED] hover:text-white transition-colors font-medium"
+        >
+          {titulo.split(' ').slice(0, 3).join(' ')}…
+        </a>
+      ))}
+    </div>
+
+    <div class="space-y-16">
+      {comparativas.map(({ id, titulo, descripcion, herramientas }) => (
+        <section id={id} class="scroll-mt-20">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{titulo}</h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{descripcion}</p>
+          <TablaComparativa herramientas={herramientas} />
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>

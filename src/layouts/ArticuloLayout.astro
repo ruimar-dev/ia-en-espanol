@@ -1,0 +1,97 @@
+---
+import Layout from './Layout.astro';
+import BannerAfiliado from '../components/BannerAfiliado.astro';
+import FeedbackArticulo from '../components/FeedbackArticulo.astro';
+import { CATEGORIA_LABELS } from '../content/config';
+import type { Categoria } from '../content/config';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: Categoria;
+  herramientas: string[];
+  afiliado?: string;
+  imagen?: string;
+}
+
+const { title, description, date, category, herramientas, afiliado, imagen } = Astro.props;
+
+const dateFormatted = date.toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={title} description={description} image={imagen} article publishDate={date}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Migas de pan">
+      <a href="/" class="hover:text-[#7C3AED] transition-colors">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <a href="/blog" class="hover:text-[#7C3AED] transition-colors">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-gray-700 dark:text-gray-300 truncate max-w-[200px]">{title}</span>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="bg-[#7C3AED] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+          {CATEGORIA_LABELS[category]}
+        </span>
+        <time class="text-sm text-gray-500 dark:text-gray-400" datetime={date.toISOString()}>
+          {dateFormatted}
+        </time>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+        {title}
+      </h1>
+
+      <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+        {description}
+      </p>
+
+      {herramientas.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {herramientas.map((h) => (
+            <span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-2.5 py-1 rounded-full font-medium">
+              {h}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {imagen && (
+      <img
+        src={imagen}
+        alt={title}
+        width="1200"
+        height="675"
+        class="w-full rounded-2xl mb-10 aspect-video object-cover"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    )}
+
+    <div class="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[#7C3AED] prose-a:no-underline hover:prose-a:underline prose-code:font-mono prose-code:text-[#7C3AED] prose-pre:bg-gray-900 dark:prose-pre:bg-[#111] prose-img:rounded-xl">
+      <slot />
+    </div>
+
+    <FeedbackArticulo />
+
+    {afiliado && (
+      <div class="mt-6">
+        <BannerAfiliado
+          titulo="Apoya el blog"
+          descripcion="Si el artículo te ha sido útil, considera usar el enlace de afiliado. Sin coste adicional para ti."
+          cta="Probar ahora"
+          url={afiliado}
+          badge="Enlace de afiliado"
+        />
+      </div>
+    )}
+  </div>
+</Layout>

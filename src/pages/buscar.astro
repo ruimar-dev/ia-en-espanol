@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Buscar artículos"
+  description="Busca artículos, herramientas y comparativas en IA en Español."
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Buscar</h1>
+
+    <!-- Input -->
+    <div class="relative mb-6">
+      <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="ChatGPT, generación de imagen, código..."
+        autocomplete="off"
+        spellcheck="false"
+        class="w-full pl-12 pr-4 py-4 text-lg bg-white dark:bg-[#1A1A1A] border-2 border-gray-200 dark:border-gray-700 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#7C3AED] transition-colors"
+      />
+      <kbd id="clear-btn" class="hidden absolute inset-y-0 right-4 my-auto h-7 px-2 text-xs font-medium text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center">
+        ✕
+      </kbd>
+    </div>
+
+    <!-- Status -->
+    <p id="search-status" class="text-sm text-gray-500 dark:text-gray-400 mb-5 hidden"></p>
+
+    <!-- Results list -->
+    <div id="search-results" class="space-y-3"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-16">
+      <p class="text-5xl mb-4">🔍</p>
+      <p class="text-gray-600 dark:text-gray-400 font-medium mb-1">Sin resultados</p>
+      <p class="text-sm text-gray-500 dark:text-gray-500">
+        Prueba con otro término o explora
+        <a href="/blog" class="text-[#7C3AED] hover:underline">todos los artículos</a>.
+      </p>
+    </div>
+
+    <!-- Initial hint -->
+    <div id="initial-state" class="text-center py-16">
+      <p class="text-5xl mb-4">✨</p>
+      <p class="text-gray-500 dark:text-gray-400 mb-4">Escribe para buscar entre todos los artículos.</p>
+      <div class="flex flex-wrap justify-center gap-2">
+        {['ChatGPT', 'Claude', 'imagen', 'código', 'audio', 'comparativa'].map((s) => (
+          <button
+            data-suggestion={s}
+            class="suggestion-btn text-sm px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-[#7C3AED] hover:text-white transition-colors"
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  type Article = {
+    title: string;
+    description: string;
+    category: string;
+    herramientas: string[];
+    slug: string;
+    imagen: string | null;
+    date: string;
+    body: string;
+  };
+
+  const LABELS: Record<string, string> = {
+    'generacion-texto': 'Generación de texto',
+    'generacion-imagen': 'Generación de imagen',
+    codigo: 'Código',
+    audio: 'Audio',
+    video: 'Video',
+    productividad: 'Productividad',
+  };
+
+  let index: Article[] = [];
+  let loaded = false;
+
+  /* ── helpers ─────────────────────────────────────── */
+
+  function norm(s: string) {
+    return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function score(a: Article, words: string[]): number {
+    let n = 0;
+    for (const w of words) {
+      if (norm(a.title).includes(w))                          n += 12;
+      if (a.herramientas.some(h => norm(h).includes(w)))     n += 9;
+      if (norm(a.description).includes(w))                   n += 5;
+      if (norm(LABELS[a.category] ?? a.category).includes(w))n += 4;
+      if (norm(a.body).includes(w))                          n += 1;
+    }
+    return n;
+  }
+
+  function hl(text: string, words: string[]): string {
+    let out = text;
+    for (const w of words) {
+      const re = new RegExp(`(${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      out = out.replace(re, '<mark class="bg-[#7C3AED]/20 text-[#7C3AED] rounded-sm not-italic">$1</mark>');
+    }
+    return out;
+  }
+
+  function escape(s: string) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── render ──────────────────────────────────────── */
+
+  function render(results: (Article & { _score: number })[], query: string) {
+    const words = norm(query).split(/\s+/).filter(Boolean);
+    const el = {
+      results:  document.getElementById('search-results')!,
+      status:   document.getElementById('search-status')!,
+      empty:    document.getElementById('empty-state')!,
+      initial:  document.getElementById('initial-state')!,
+      clear:    document.getElementById('clear-btn')!,
+    };
+
+    el.initial.classList.add('hidden');
+    el.clear.classList.toggle('hidden', !query);
+
+    if (!query.trim()) {
+      el.results.innerHTML = '';
+      el.status.classList.add('hidden');
+      el.empty.classList.add('hidden');
+      el.initial.classList.remove('hidden');
+      return;
+    }
+
+    if (!results.length) {
+      el.results.innerHTML = '';
+      el.status.classList.add('hidden');
+      el.empty.classList.remove('hidden');
+      return;
+    }
+
+    el.empty.classList.add('hidden');
+    el.status.textContent = `${results.length} ${results.length === 1 ? 'resultado' : 'resultados'} para "${query}"`;
+    el.status.classList.remove('hidden');
+
+    el.results.innerHTML = results.map((a) => {
+      const date = new Date(a.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+      const tools = a.herramientas.length
+        ? a.herramientas.map(h => `<span class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full">${escape(h)}</span>`).join('')
+        : '';
+
+      return `
+        <a href="/blog/${a.slug}"
+           class="flex items-start gap-4 group bg-white dark:bg-[#1A1A1A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/50 transition-all duration-200 hover:shadow-md hover:shadow-[#7C3AED]/10">
+          ${a.imagen
+            ? `<img src="${escape(a.imagen)}" alt="" class="w-20 h-14 rounded-xl object-cover flex-shrink-0 hidden sm:block" loading="lazy" onerror="this.style.display='none'" />`
+            : `<div class="w-20 h-14 rounded-xl bg-gradient-to-br from-[#7C3AED]/20 to-[#6D28D9]/30 flex-shrink-0 hidden sm:flex items-center justify-center">
+                 <svg class="w-6 h-6 text-[#7C3AED]/40" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+               </div>`
+          }
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="text-xs font-semibold bg-[#7C3AED] text-white px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                ${escape(LABELS[a.category] ?? a.category)}
+              </span>
+              <span class="text-xs text-gray-500 dark:text-gray-400">${date}</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-[#7C3AED] transition-colors leading-snug mb-1">
+              ${hl(escape(a.title), words)}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+              ${hl(escape(a.description), words)}
+            </p>
+            ${tools ? `<div class="flex flex-wrap gap-1.5 mt-2">${tools}</div>` : ''}
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  /* ── search ──────────────────────────────────────── */
+
+  async function loadIndex() {
+    if (loaded) return;
+    const res = await fetch('/search.json');
+    index = await res.json() as Article[];
+    loaded = true;
+  }
+
+  function doSearch(query: string) {
+    if (!query.trim()) { render([], query); return; }
+    const words = norm(query).split(/\s+/).filter(Boolean);
+    const results = index
+      .map(a => ({ ...a, _score: score(a, words) }))
+      .filter(a => a._score > 0)
+      .sort((a, b) => b._score - a._score);
+    render(results, query);
+  }
+
+  /* ── init ────────────────────────────────────────── */
+
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const clearBtn = document.getElementById('clear-btn')!;
+
+  // Restore query from URL
+  const initialQ = new URLSearchParams(window.location.search).get('q') ?? '';
+  if (initialQ) input.value = initialQ;
+
+  loadIndex().then(() => {
+    if (initialQ) doSearch(initialQ);
+  });
+
+  // Debounced input handler
+  let timer: ReturnType<typeof setTimeout>;
+  input.addEventListener('input', () => {
+    const q = input.value;
+    const url = new URL(window.location.href);
+    q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
+    window.history.replaceState({}, '', url.toString());
+    clearTimeout(timer);
+    timer = setTimeout(async () => { await loadIndex(); doSearch(q); }, 180);
+  });
+
+  // Clear button
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    input.dispatchEvent(new Event('input'));
+    input.focus();
+  });
+
+  // Suggestion chips
+  document.querySelectorAll<HTMLButtonElement>('.suggestion-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const q = btn.dataset.suggestion ?? '';
+      input.value = q;
+      input.dispatchEvent(new Event('input'));
+    });
+  });
+
+  // Autofocus
+  input.focus();
+</script>

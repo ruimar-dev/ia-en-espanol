@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DB2777;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1050" cy="80" r="280" fill="white" fill-opacity="0.05"/>
+  <circle cx="150" cy="580" r="220" fill="white" fill-opacity="0.05"/>
+  <text x="600" y="240" font-family="system-ui,sans-serif" font-size="68" font-weight="bold" fill="white" text-anchor="middle">Las 5 mejores IA para</text>
+  <text x="600" y="330" font-family="system-ui,sans-serif" font-size="68" font-weight="bold" fill="white" text-anchor="middle">generar imágenes</text>
+  <text x="600" y="410" font-family="system-ui,sans-serif" font-size="32" fill="white" fill-opacity="0.75" text-anchor="middle">Midjourney · DALL-E 3 · Stable Diffusion · Ideogram</text>
+  <text x="600" y="480" font-family="system-ui,sans-serif" font-size="26" fill="white" fill-opacity="0.55" text-anchor="middle">iaenespanol.com</text>
+</svg>

@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sobre mí"
+  description="Quién está detrás de IA en Español y por qué escribo sobre inteligencia artificial en castellano."
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <!-- Header -->
+    <div class="flex flex-col items-center text-center mb-12">
+      <div
+        class="w-24 h-24 rounded-full bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] flex items-center justify-center text-white text-3xl font-bold mb-4 shadow-xl shadow-[#7C3AED]/30"
+        aria-hidden="true"
+      >
+        IA
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">Sobre mí</h1>
+      <p class="text-[#7C3AED] font-semibold">Editor de IA en Español</p>
+    </div>
+
+    <div class="space-y-6">
+      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">¿Qué es IA en Español?</h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+          <strong class="text-gray-900 dark:text-white">IA en Español</strong> nació de la frustración de no encontrar análisis honestos y en profundidad sobre herramientas de inteligencia artificial escritos en castellano. La mayoría del contenido está en inglés, y las traducciones suelen ser superficiales o directamente irrelevantes para el contexto hispano.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          Aquí escribo comparativas reales, reviews tras semanas de uso y guías prácticas para sacar el máximo partido a las herramientas de IA. Sin hype, sin marketing, con criterio.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">¿Por qué confiar en mis reviews?</h2>
+        <ul class="space-y-3">
+          {[
+            'Pruebo cada herramienta durante al menos 2 semanas antes de publicar.',
+            'Los enlaces de afiliado están claramente marcados y no afectan a las puntuaciones.',
+            'Actualizo los artículos cuando las herramientas cambian significativamente.',
+            'Incluyo casos de uso reales, no solo especificaciones técnicas de marketing.',
+            'Si una herramienta es mala, lo digo. Aunque tenga programa de afiliados.',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="text-[#7C3AED] font-bold mt-0.5 flex-shrink-0" aria-hidden="true">✓</span>
+              <span class="text-gray-600 dark:text-gray-400 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Política de afiliados</h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          Algunos enlaces de este blog son de afiliado. Esto significa que si compras a través de ellos, puedo recibir una pequeña comisión sin coste adicional para ti. Nunca recomiendo herramientas que no usaría yo mismo, y las puntuaciones son independientes del programa de afiliados.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Contacto</h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          ¿Quieres sugerir una herramienta para analizar? ¿Tienes una colaboración en mente? Escríbeme a{' '}
+          <a href="mailto:hola@iaenespanol.com" class="text-[#7C3AED] hover:underline font-medium">
+            hola@iaenespanol.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

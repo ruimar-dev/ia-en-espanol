@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  publishDate?: Date;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description = 'Reviews y comparativas de herramientas de inteligencia artificial en español.',
+  image = '/og-default.png',
+  article = false,
+  publishDate,
+  canonicalUrl,
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE_URL || Astro.site?.toString() || 'https://iaenespanol.com';
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).toString();
+const fullTitle = title.includes('IA en Español') ? title : `${title} | IA en Español`;
+
+const jsonLd = article && publishDate
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: title,
+      description,
+      image: ogImage,
+      datePublished: publishDate.toISOString(),
+      publisher: {
+        '@type': 'Organization',
+        name: 'IA en Español',
+        url: siteUrl,
+      },
+      url: canonical,
+    })
+  : null;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:site_name" content="IA en Español" />
+<meta property="og:locale" content="es_ES" />
+{article && publishDate && (
+  <meta property="article:published_time" content={publishDate.toISOString()} />
+)}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}

@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticuloCard from '../components/ArticuloCard.astro';
+import { getCollection } from 'astro:content';
+
+const articulos = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+
+function readingTime(body: string) {
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 200));
+}
+
+const categorias = [
+  { slug: 'generacion-texto', label: 'Generación de texto', emoji: '✍️' },
+  { slug: 'generacion-imagen', label: 'Generación de imagen', emoji: '🎨' },
+  { slug: 'codigo', label: 'Código', emoji: '💻' },
+  { slug: 'audio', label: 'Audio', emoji: '🎙️' },
+  { slug: 'video', label: 'Video', emoji: '🎬' },
+  { slug: 'productividad', label: 'Productividad', emoji: '⚡' },
+];
+---
+
+<Layout
+  title="IA en Español — Reviews y comparativas de herramientas de IA"
+  description="Reviews y comparativas de herramientas de inteligencia artificial en español. Sin anglicismos, con criterio."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-20 px-4 bg-gradient-to-b from-[#7C3AED]/5 to-transparent">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="inline-block bg-[#7C3AED]/10 text-[#7C3AED] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+        Reviews de IA en español
+      </span>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
+        Navega el mundo de la<br />
+        <span class="text-[#7C3AED]">Inteligencia Artificial</span>
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+        Comparativas honestas, reviews en profundidad y guías prácticas sobre las mejores herramientas de IA. Todo en español.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/blog"
+          class="inline-flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+        >
+          Ver todos los artículos
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a
+          href="/comparativas"
+          class="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+        >
+          Ver comparativas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz CTA -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <a
+      href="/que-ia-necesito"
+      class="group flex items-center justify-between gap-6 bg-gradient-to-r from-[#7C3AED] to-[#5B21B6] rounded-3xl p-6 sm:p-8 text-white hover:scale-[1.01] transition-transform duration-300 shadow-xl shadow-[#7C3AED]/20"
+    >
+      <div>
+        <span class="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Nuevo ✨</span>
+        <h2 class="text-xl sm:text-2xl font-bold mb-1">¿No sabes qué IA usar?</h2>
+        <p class="text-white/75 text-sm sm:text-base">Responde 5 preguntas y te recomendamos la herramienta perfecta para ti.</p>
+      </div>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <span class="text-4xl hidden sm:block">🤖</span>
+        <span class="inline-flex items-center gap-1.5 bg-white text-[#7C3AED] font-bold text-sm px-4 py-2.5 rounded-xl group-hover:bg-white/95 transition-colors whitespace-nowrap">
+          Hacer el test
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Latest articles -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Últimos artículos</h2>
+      <a href="/blog" class="text-sm text-[#7C3AED] hover:text-[#6D28D9] font-medium transition-colors">
+        Ver todos →
+      </a>
+    </div>
+
+    {articulos.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {articulos.map((articulo) => (
+          <ArticuloCard
+            title={articulo.data.title}
+            description={articulo.data.description}
+            date={articulo.data.date}
+            category={articulo.data.category}
+            slug={articulo.slug}
+            imagen={articulo.data.imagen}
+            readingTime={readingTime(articulo.body)}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-center text-gray-500 dark:text-gray-400 py-12">Próximamente los primeros artículos.</p>
+    )}
+  </section>
+
+  <!-- Categories -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Explora por categoría</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {categorias.map(({ slug, label, emoji }) => (
+        <a
+          href={`/blog?cat=${slug}`}
+          class="flex flex-col items-center gap-3 p-5 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/50 hover:shadow-lg hover:shadow-[#7C3AED]/10 transition-all duration-300 text-center group"
+        >
+          <span class="text-3xl group-hover:scale-110 transition-transform duration-200">{emoji}</span>
+          <span class="text-xs font-medium text-gray-700 dark:text-gray-300 leading-tight">{label}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

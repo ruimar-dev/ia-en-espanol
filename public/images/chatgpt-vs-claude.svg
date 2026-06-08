@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4C1D95;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="950" cy="100" r="300" fill="white" fill-opacity="0.05"/>
+  <circle cx="200" cy="550" r="200" fill="white" fill-opacity="0.05"/>
+  <text x="600" y="260" font-family="system-ui,sans-serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">ChatGPT vs Claude</text>
+  <text x="600" y="340" font-family="system-ui,sans-serif" font-size="36" fill="white" fill-opacity="0.8" text-anchor="middle">Comparativa completa en 2024</text>
+  <text x="600" y="420" font-family="system-ui,sans-serif" font-size="28" fill="white" fill-opacity="0.6" text-anchor="middle">iaenespanol.com</text>
+</svg>
