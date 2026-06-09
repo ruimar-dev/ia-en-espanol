@@ -33,6 +33,7 @@ jobs:
         run: node scripts/generate-draft.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
 
       - name: Comprobar si se generó borrador
         id: check

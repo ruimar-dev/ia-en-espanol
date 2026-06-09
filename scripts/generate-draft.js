@@ -42,6 +42,38 @@ function getCurrentDate() {
   return new Date().toISOString().split('T')[0];
 }
 
+async function searchUnsplashImage(query) {
+  const accessKey = process.env.UNSPLASH_ACCESS_KEY;
+  if (!accessKey) {
+    console.log('⚠️  UNSPLASH_ACCESS_KEY no configurada, se omite imagen');
+    return null;
+  }
+
+  const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape`;
+  let response;
+  try {
+    response = await fetch(url, {
+      headers: { Authorization: `Client-ID ${accessKey}` },
+    });
+  } catch (err) {
+    console.log(`⚠️  No se pudo contactar con Unsplash: ${err.message}`);
+    return null;
+  }
+
+  if (!response.ok) {
+    console.log(`⚠️  Unsplash respondió ${response.status}, se omite imagen`);
+    return null;
+  }
+
+  const data = await response.json();
+  if (!data.results || data.results.length === 0) {
+    console.log('⚠️  Unsplash no devolvió resultados para esta búsqueda');
+    return null;
+  }
+
+  return data.results[0].urls.regular;
+}
+
 async function generateDraft() {
   // Load topics
   if (!fs.existsSync(TOPICS_FILE)) {
@@ -133,16 +165,22 @@ Cuerpo completo del artículo en Markdown. Mínimo 900 palabras. Usa ## para sec
   const herramientasArr = Array.isArray(herramientas) ? herramientas : [];
   const herramientasYaml = herramientasArr.map(h => `"${h}"`).join(', ');
 
+  console.log('🖼️  Buscando imagen en Unsplash...');
+  const imageUrl = await searchUnsplashImage(nextTopic.tema);
+  if (imageUrl) console.log(`✅ Imagen encontrada: ${imageUrl}`);
+
   // Escape double quotes inside title and description for YAML safety
   const safeTitle = title.replace(/"/g, '\\"');
   const safeDescription = description.replace(/"/g, '\\"');
+
+  const imagenLine = imageUrl ? `\nimagen: "${imageUrl}"` : '';
 
   const fileContent = `---
 title: "${safeTitle}"
 description: "${safeDescription}"
 date: ${date}
 category: ${category}
-herramientas: [${herramientasYaml}]
+herramientas: [${herramientasYaml}]${imagenLine}
 draft: true
 ---
 
