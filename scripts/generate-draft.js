@@ -74,19 +74,20 @@ ${existingList}
 
 Genera un artículo sobre "${nextTopic.tema}" que no repita ninguno de los anteriores y aporte valor diferente.
 
-Responde ÚNICAMENTE con un objeto JSON válido (sin bloques de código markdown, sin texto antes ni después):
-{
-  "title": "título del artículo (50-80 caracteres, incluye año si es relevante)",
-  "description": "descripción SEO (130-160 caracteres, natural, orientada a búsqueda)",
-  "category": "una de estas exactamente: generacion-texto | generacion-imagen | codigo | audio | video | productividad",
-  "herramientas": ["Herramienta1", "Herramienta2"],
-  "body": "cuerpo del artículo en Markdown (sin frontmatter). Mínimo 900 palabras. Usa ## para secciones principales, incluye introducción, secciones de análisis con ejemplos concretos, comparaciones cuando aplique, y conclusión con recomendación clara."
-}`;
+Responde EXACTAMENTE en este formato, con los dos delimitadores tal cual (sin cambiarlos):
+
+<<<METADATA>>>
+title: título del artículo (50-80 caracteres, incluye año si es relevante)
+description: descripción SEO (130-160 caracteres, natural, orientada a búsqueda)
+category: una de estas exactamente: generacion-texto | generacion-imagen | codigo | audio | video | productividad
+herramientas: Herramienta1, Herramienta2
+<<<BODY>>>
+Cuerpo completo del artículo en Markdown. Mínimo 900 palabras. Usa ## para secciones principales, incluye introducción, secciones de análisis con ejemplos concretos, comparaciones cuando aplique, y conclusión con recomendación clara.`;
 
   console.log(`\n📝 Generando borrador: "${nextTopic.tema}"...`);
 
   const message = await client.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-6',
     max_tokens: 4096,
     system: systemPrompt,
     messages: [{ role: 'user', content: userPrompt }],
@@ -94,22 +95,29 @@ Responde ÚNICAMENTE con un objeto JSON válido (sin bloques de código markdown
 
   const raw = message.content[0].text.trim();
 
-  let parsed;
-  try {
-    parsed = JSON.parse(raw);
-  } catch (_) {
-    // Fallback: extract JSON block if model added prose around it
-    const jsonMatch = raw.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      throw new Error(`La API no devolvió JSON válido.\nRespuesta recibida:\n${raw.slice(0, 500)}`);
-    }
-    parsed = JSON.parse(jsonMatch[0]);
+  const metaMatch = raw.match(/<<<METADATA>>>\n([\s\S]*?)\n<<<BODY>>>/);
+  const bodyMatch = raw.match(/<<<BODY>>>\n([\s\S]*)/);
+
+  if (!metaMatch || !bodyMatch) {
+    throw new Error(`La API no devolvió el formato esperado.\nRespuesta recibida:\n${raw.slice(0, 500)}`);
   }
 
-  const { title, description, category, herramientas, body } = parsed;
+  const metaBlock = metaMatch[1];
+  const body = bodyMatch[1].trim();
+
+  function parseLine(block, key) {
+    const match = block.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+    return match ? match[1].trim() : '';
+  }
+
+  const title = parseLine(metaBlock, 'title');
+  const description = parseLine(metaBlock, 'description');
+  const category = parseLine(metaBlock, 'category');
+  const herramientasRaw = parseLine(metaBlock, 'herramientas');
+  const herramientas = herramientasRaw ? herramientasRaw.split(',').map(h => h.trim()).filter(Boolean) : [];
 
   if (!title || !description || !category || !body) {
-    throw new Error(`La respuesta JSON está incompleta: ${JSON.stringify(Object.keys(parsed))}`);
+    throw new Error(`Respuesta incompleta. Campos recibidos: title="${title}", description="${description}", category="${category}", body=${body.length} chars`);
   }
 
   const validCategories = ['generacion-texto', 'generacion-imagen', 'codigo', 'audio', 'video', 'productividad'];

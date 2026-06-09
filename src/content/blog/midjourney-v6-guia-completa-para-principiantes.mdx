@@ -1,0 +1,154 @@
+---
+title: "Midjourney v6: guía completa para principiantes en 2026"
+description: "Aprende a usar Midjourney v6 desde cero: prompts, parámetros, estilos y trucos para generar imágenes profesionales sin experiencia previa."
+date: 2026-06-09
+category: generacion-imagen
+herramientas: ["Midjourney"]
+draft: false
+---
+
+# Midjourney v6: guía completa para principiantes en 2026
+
+Si llevas tiempo viendo imágenes generadas por IA que te dejan con la boca abierta y preguntándote "¿cómo hacen eso?", probablemente la respuesta sea Midjourney. Es, a día de hoy, la herramienta de generación de imágenes más potente y con mayor comunidad activa del mundo. Y con la versión 6, el salto de calidad ha sido tan grande que muchas imágenes son prácticamente indistinguibles de una fotografía real o de una ilustración hecha por un artista profesional.
+
+Esta guía no asume que sabes nada. Arrancamos desde cero: qué es Midjourney, cómo acceder, cómo escribir tus primeros prompts y cómo ir mejorando los resultados hasta conseguir exactamente lo que quieres.
+
+---
+
+## ¿Qué es Midjourney y por qué es diferente?
+
+Midjourney es un generador de imágenes por inteligencia artificial creado por el laboratorio independiente del mismo nombre, fundado por David Holz. A diferencia de otras herramientas del sector, Midjourney no nació dentro de un gran corporativo tecnológico, y eso se nota: tiene una identidad visual propia muy marcada, una comunidad muy activa y una filosofía centrada en la calidad artística por encima de todo.
+
+La versión 6, lanzada a finales de 2023 y refinada durante 2024 y 2025, trajo mejoras radicales en varios frentes:
+
+- **Coherencia fotorrealista**: las imágenes tienen una calidad de detalle que antes solo era posible con herramientas muy especializadas.
+- **Comprensión de prompts mucho más precisa**: v6 entiende mejor las instrucciones complejas, incluyendo relaciones espaciales y descripciones más abstractas.
+- **Texto dentro de imágenes**: por fin se puede incluir texto legible en las imágenes generadas, algo que versiones anteriores hacían fatal.
+- **Menos incoherencias**: los resultados son más coherentes y predecibles.
+
+---
+
+## Cómo acceder a Midjourney
+
+Midjourney funciona principalmente a través de **Discord**, aunque cada vez está avanzando más hacia su propia web en [midjourney.com](https://www.midjourney.com). Para empezar:
+
+1. Crea una cuenta en Discord si no tienes una.
+2. Entra al servidor oficial de Midjourney desde su web.
+3. Busca uno de los canales `#newbies` o crea tu propio servidor y añade el bot de Midjourney.
+4. Elige un plan de pago: Midjourney no tiene tier gratuito desde 2023. El plan básico cuesta unos **10 dólares al mes** y te da horas de GPU limitadas. El plan estándar (30 $/mes) es el más recomendado para uso habitual.
+
+Una vez dentro, usas el comando `/imagine` para generar imágenes. Escribes el prompt justo después del comando y en unos 30-60 segundos tienes cuatro opciones para elegir.
+
+---
+
+## Cómo escribir un buen prompt: la base de todo
+
+El prompt es tu instrucción para la IA. Cuanto más claro,concreto y explicativo seas, mejores resultados obtendrás. Pero hay un equilibrio: no necesitas escribir un párrafo entero, sino aprender a combinar los elementos clave.
+
+### Estructura básica de un prompt
+
+Un prompt efectivo suele tener esta estructura:
+
+```
+[sujeto principal] [acción o pose] [entorno o fondo] [estilo artístico] [iluminación] [parámetros técnicos]
+```
+
+**Ejemplo práctico:**
+
+```
+/imagine a young woman reading a book in a cozy coffee shop, warm afternoon light, film photography style, shallow depth of field --ar 3:2 --v 6
+```
+
+Vamos por partes:
+- **Sujeto**: "a young man reading a book"
+- **Entorno**: "in a cozy coffee shop"
+- **Iluminación**: "warm afternoon light"
+- **Estilo**: "film photography style"
+- **Técnica**: "shallow depth of field"
+- **Parámetros**: `--ar 3:2` (proporción) y `--v 6` (versión del modelo)
+
+### Consejos para mejorar tus prompts
+
+- **Escribe en inglés**: Midjourney funciona mejor con prompts en inglés, aunque entiende el español cada vez mejor.
+- **Sé específico con la iluminación**: "dramatic side lighting", "golden hour", "studio lighting with softbox"... la iluminación cambia completamente el resultado esperado.
+- **Indica el estilo artístico**: "oil painting", "watercolor", "cinematic", "anime style", "brutalist architecture"...
+- **Evita la negación directa**: en lugar de decir "no quiero fondo blanco", describe el fondo que sí quieres.
+
+---
+
+## Los parámetros más útiles que debes conocer
+
+Los parámetros van al final del prompt precedidos por `--`. Estos son los que más vas a usar:
+
+| Parámetro | Qué hace | Ejemplo |
+|---|---|---|
+| `--ar` | Proporción de la imagen | `--ar 16:9` (panorámica), `--ar 1:1` (cuadrada), `--ar 9:16` (vertical) |
+| `--v` | Versión del modelo | `--v 6` para la más actual |
+| `--style raw` | Menos "filtro artístico" de Midjourney, más realismo neutral | `--style raw` |
+| `--chaos` | Cuánta variación entre las 4 imágenes (0-100) | `--chaos 30` |
+| `--no` | Excluir elementos específicos | `--no people, text` |
+| `--seed` | Fija una semilla para reproducir resultados similares | `--seed 12345` |
+| `--quality` | Calidad de renderizado (0.25, 0.5 o 1) | `--quality 1` |
+
+**Truco importante**: si generas una imagen que te gusta mucho, haz clic en el icono ℹ️ debajo de ella para ver su seed. Con ese número puedes generar variaciones manteniendo la coherencia visual para que se parezca lo maximo posible.
+
+---
+
+## De las 4 opciones a la imagen final: upscale y variaciones
+
+Midjourney siempre te da 4 opciones (una cuadrícula). Debajo de la imagen verás botones:
+
+- **U1, U2, U3, U4**: hace upscale (amplía y añade detalle) de la imagen número 1, 2, 3 o 4.
+- **V1, V2, V3, V4**: genera variaciones de esa imagen manteniendo el estilo general.
+- **🔄**: regenera las 4 imágenes desde cero con el mismo prompt.
+
+Una vez que haces upscale, tienes opciones adicionales como "Vary (Subtle)" para pequeños cambios o "Vary (Strong)" para cambios más drásticos. También puedes usar **Zoom Out** para ampliar el encuadre de la imagen.
+
+---
+
+## Estilos y referencias visuales: cómo conseguir el look que quieres
+
+Una de las funciones más potentes es poder incluir **imágenes de referencia** en tu prompt. Simplemente pega la URL de una imagen antes del texto del prompt:
+
+```
+/imagine https://url-de-imagen.com [tu prompt aquí] --iw 0.5
+```
+
+El parámetro `--iw` (image weight) controla cuánto peso tiene la imagen de referencia sobre el resultado final. Va de 0 a 2.
+
+### Referencias de estilos fotográficos que funcionan bien
+
+- **Fotografía analógica**: "shot on Kodak Portra 400, 35mm film"
+- **Fotografía comercial**: "professional product photography, white background, studio lighting"
+- **Retrato cinematográfico**: "cinematic portrait, anamorphic lens, color graded"
+- **Documental**: "street photography, candid, natural light, photojournalism"
+
+---
+
+## Errores comunes que cometen los principiantes
+
+**1. Prompts demasiado genéricos**: "a beautiful landscape" te dará algo genérico. "A misty mountain valley at dawn with pine trees and a river, aerial view, moody atmosphere" te dará algo memorable.
+
+**2. No iterar**: Midjourney es un proceso. La primera imagen rara vez es la definitiva. Usa variaciones, ajusta el prompt, experimenta con parámetros.
+
+**3. Ignorar el ratio de aspecto**: para redes sociales, impresión o presentaciones, el formato importa mucho. No siempre el cuadrado es lo mejor.
+
+**4. No guardar los prompts que funcionan**: cuando des con una combinación ganadora, guárdala. Crear un documento con tus prompts favoritos es uno de los mejores hábitos que puedes tener.
+
+**5. Rendirse con el texto en imágenes**: aunque v6 mejoró mucho, el texto dentro de imágenes sigue siendo el punto más débil. Si necesitas texto preciso, genera la imagen sin él y añádelo después en Canva o Photoshop.
+
+---
+
+## Midjourney vs otras herramientas de generación de imágenes
+
+Ya en el blog hemos hablado de las mejores IA para generar imágenes, pero vale la pena contextualizarlo brevemente: Midjourney brilla especialmente en **calidad artística y coherencia estética**. Si lo que necesitas es integración nativa en flujos de trabajo de diseño o generación masiva con API, herramientas como Firefly de Adobe o Stable Diffusion pueden tener ventajas. Pero si el objetivo es conseguir imágenes increibles con una curva de aprendizaje razonable, Midjourney sigue siendo el rey.
+
+---
+
+## Conclusión: ¿merece la pena aprender Midjourney?
+
+Rotundamente sí. Midjourney v6 es la herramienta más capaz para generar imágenes con calidad artística real, y aunque tiene una curva de aprendizaje (sobre todo la parte de Discord y los parámetros), una vez que entiendes la lógica de los prompts, los resultados son inmediatamente satisfactorios.
+
+Mi recomendación: empieza con el plan básico, dedica una tarde a experimentar con prompts sencillos, y ve añadiendo complejidad poco a poco. No intentes dominar todos los parámetros desde el día uno. Juega, itera y observa cómo cada pequeño cambio en el prompt transforma el resultado. Eso es, en esencia, lo que hacen los usuarios avanzados: no tienen fórmulas mágicas, sino muchas horas de experimentación acumulada.
+
+La buena noticia es que esas horas son genuinamente entretenidas.
