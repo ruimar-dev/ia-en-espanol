@@ -1,0 +1,66 @@
+name: Generar borrador diario
+
+on:
+  schedule:
+    # 8:00 AM UTC todos los días
+    - cron: '0 8 * * *'
+  workflow_dispatch:  # Permite ejecución manual desde GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  generate-draft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Generar borrador
+        id: generate
+        run: node scripts/generate-draft.js
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Comprobar si se generó borrador
+        id: check
+        run: |
+          if [ -f "scripts/.draft-topic" ]; then
+            TOPIC=$(cat scripts/.draft-topic)
+            echo "generated=true" >> $GITHUB_OUTPUT
+            echo "TOPIC=$TOPIC" >> $GITHUB_ENV
+            echo "✅ Borrador generado: $TOPIC"
+          else
+            echo "generated=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No se generó borrador (temas agotados o error)"
+          fi
+
+      - name: Commit y push del borrador
+        if: steps.check.outputs.generated == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/ scripts/topics.json
+          git commit -m "draft: ${{ env.TOPIC }}"
+          git push
+
+      - name: Subir aviso de temas agotados
+        if: steps.check.outputs.generated == 'false' && hashFiles('scripts/temas-agotados.txt') != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add scripts/temas-agotados.txt
+          git diff --staged --quiet || git commit -m "chore: temas agotados — añadir nuevos temas a topics.json"
+          git diff HEAD~1 --quiet || git push
