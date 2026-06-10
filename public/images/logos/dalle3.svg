@@ -1,4 +1,8 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#10A37F"/>
-  <text x="32" y="41" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">D3</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <rect width="24" height="24" rx="5.5" fill="#10A37F"/>
+  <path fill="white" d="M0 9h4.8v6H0z" opacity=".2"/>
+  <path fill="white" d="M4.8 9h4.8v6H4.8z" opacity=".4"/>
+  <path fill="white" d="M9.6 9h4.8v6H9.6z" opacity=".6"/>
+  <path fill="white" d="M14.4 9h4.8v6h-4.8z" opacity=".8"/>
+  <path fill="white" d="M19.2 9H24v6h-4.8z" opacity="1"/>
 </svg>

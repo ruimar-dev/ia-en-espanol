@@ -21,14 +21,16 @@ const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(clampedRating))
   <div class="flex items-start gap-3">
     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7C3AED]/20 to-[#6D28D9]/30 flex items-center justify-center flex-shrink-0 overflow-hidden">
       {logo ? (
-        <img
-          src={logo}
-          alt={`Logo de ${nombre}`}
-          class="w-full h-full object-cover rounded-xl"
-          loading="lazy"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-        />
-        <span class="text-[#7C3AED] font-bold text-lg hidden" aria-hidden="true">{nombre[0]}</span>
+        <>
+          <img
+            src={logo}
+            alt={`Logo de ${nombre}`}
+            class="w-full h-full object-cover rounded-xl"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          />
+          <span class="text-[#7C3AED] font-bold text-lg hidden" aria-hidden="true">{nombre[0]}</span>
+        </>
       ) : (
         <span class="text-[#7C3AED] font-bold text-lg" aria-hidden="true">{nombre[0]}</span>
       )}
