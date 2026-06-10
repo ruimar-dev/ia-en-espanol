@@ -97,16 +97,96 @@ async function generateDraft() {
 
   const client = new Anthropic();
 
-  const systemPrompt = `Eres un experto en herramientas de inteligencia artificial que escribe en español para un blog técnico hispanohablante.
-Escribes artículos detallados, prácticos y con opiniones claras. Tu tono es cercano e informativo, sin lenguaje corporativo vacío.
-Tu audiencia usa IA para trabajo, creatividad y productividad personal.`;
+  const systemPrompt = `Eres un redactor experto en herramientas de inteligencia artificial que escribe en español para un blog técnico hispanohablante orientado a profesionales.
 
-  const userPrompt = `Ya existen estos artículos en el blog:
+Tu voz es cercana, directa y honesta. Nunca usas lenguaje corporativo vacío ni frases de relleno. Tienes experiencia real usando las herramientas de las que escribes y lo transmites con ejemplos concretos en primera persona ("Lo probé con...", "En mi flujo de trabajo...").
+
+Conoces el ecosistema de IA a fondo: sabes que en 2026 los modelos principales son Gemini 2.5, Claude Sonnet 4 / Opus 4, GPT-4o / o3 y los modelos open source como Llama y Mistral. Nunca refieras versiones antiguas como actuales.
+
+Escribes con los principios E-E-A-T de Google en mente: demuestras Experiencia, Pericia, Autoridad y Confianza en cada artículo. Eso significa: opiniones claras, comparaciones honestas con competidores por nombre, admitir puntos débiles reales, y no inflar artificialmente las virtudes de ninguna herramienta.
+
+Tu audiencia son profesionales hispanohablantes (España y Latinoamérica) que usan IA para trabajo, creatividad y productividad. Les interesa saber si deben pagar, qué obtienen exactamente y cómo encaja en su flujo de trabajo real.`;
+
+  const userPrompt = `Ya existen estos artículos en el blog (no repitas contenido ni enfoque):
 ${existingList}
 
-Genera un artículo sobre "${nextTopic.tema}" que no repita ninguno de los anteriores y aporte valor diferente.
+Genera un artículo completo y optimizado para SEO sobre "${nextTopic.tema}".
 
-Responde EXACTAMENTE en este formato, con los dos delimitadores tal cual (sin cambiarlos):
+---
+
+ESTRUCTURA OBLIGATORIA (en este orden exacto):
+
+1. **Introducción** (sin encabezado H1 — el framework del blog ya muestra el título de la página; empezar directamente con párrafos)
+   - 2-3 párrafos: gancho, contexto del problema que resuelve la herramienta, y un spoiler honesto de tu veredicto
+   - Tono: como alguien que ha usado la herramienta de verdad, no un vendedor
+
+2. **## Qué es [herramienta] y cuánto cuesta exactamente**
+   - Aclara nombres confusos o versiones (mucha gente busca nombres incorrectos — explícalo)
+   - Planes y precios actuales en euros donde aplique
+   - Lista de lo que incluye cada plan relevante
+
+3. **\`<TablaComparativa>\` — insertar el componente aquí con 4 competidores reales**
+   Usa exactamente este formato JSX:
+   \`\`\`
+   <TablaComparativa
+     titulo="[Herramienta] vs la competencia en 2026"
+     herramientas={[
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+     ]}
+   />
+   \`\`\`
+
+4. **## [Fortaleza principal de la herramienta]** (título descriptivo, no genérico)
+   - Usa ### para subsecciones si hay 3 o más aspectos distintos
+   - Incluye al menos UN ejemplo concreto en primera persona con detalles específicos (números, tiempo, resultado)
+
+5. **## [Segunda fortaleza o caso de uso diferenciador]**
+   - Mismo nivel de detalle y ejemplos concretos
+
+6. **## [Tercera sección de análisis — puede ser limitaciones o comparación profunda]**
+   - Sé honesto: qué hace mal, dónde pierde frente a competidores, qué le falta todavía
+
+7. **## ¿Vale la pena pagar [herramienta]?**
+   - Criterios claros: "Sí vale la pena si..." y "Probablemente no vale la pena si..." en listas
+   - Recomendación directa y sin ambigüedades
+
+8. **\`<BannerAfiliado>\` — insertar el componente aquí**
+   Usa exactamente este formato JSX:
+   \`\`\`
+   <BannerAfiliado
+     titulo="..."
+     descripcion="..."
+     cta="..."
+     url="https://..."
+   />
+   \`\`\`
+
+9. **## Preguntas frecuentes sobre [herramienta]**
+   - Exactamente 5 preguntas con respuestas de 2-4 líneas cada una
+   - Las preguntas deben ser las que alguien buscaría realmente en Google (long-tail: precio, comparación, disponibilidad en España, si vale la pena, diferencia con competidor)
+   - Formato: **¿Pregunta?** seguido de la respuesta en párrafo
+
+10. **## Conclusión**
+    - 2-3 párrafos: resumen del veredicto, para quién es ideal, frase de cierre con perspectiva
+
+---
+
+REQUISITOS DE CALIDAD:
+- Mínimo 2000 palabras en el cuerpo
+- NO escribas un H1 al principio del cuerpo (el framework ya lo muestra)
+- Usa **negrita** para conceptos clave y datos importantes
+- Menciona competidores por nombre con comparaciones honestas
+- Al menos 2 ejemplos en primera persona con detalles concretos (cifras, tiempo, resultado)
+- Precios en euros para España cuando sea posible; dólares si solo existe en USD
+- Los modelos de IA actuales en 2026 son: Gemini 2.5 Pro, Claude Sonnet 4 / Opus 4, GPT-4o / o3 — nunca menciones versiones anteriores como actuales
+- No escribas frases vacías como "en el vertiginoso mundo de la IA" o "revolucionario" o "disruptivo"
+
+---
+
+Responde EXACTAMENTE en este formato, con los dos delimitadores tal cual:
 
 <<<METADATA>>>
 title: título del artículo (50-80 caracteres, incluye año si es relevante)
@@ -114,13 +194,13 @@ description: descripción SEO (130-160 caracteres, natural, orientada a búsqued
 category: una de estas exactamente: generacion-texto | generacion-imagen | codigo | audio | video | productividad
 herramientas: Herramienta1, Herramienta2
 <<<BODY>>>
-Cuerpo completo del artículo en Markdown. Mínimo 900 palabras. Usa ## para secciones principales, incluye introducción, secciones de análisis con ejemplos concretos, comparaciones cuando aplique, y conclusión con recomendación clara.`;
+[Cuerpo completo del artículo siguiendo la estructura obligatoria de arriba. Los componentes TablaComparativa y BannerAfiliado ya están importados en el archivo, úsalos directamente sin añadir imports.]`;
 
   console.log(`\n📝 Generando borrador: "${nextTopic.tema}"...`);
 
   const message = await client.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 4096,
+    max_tokens: 8192,
     system: systemPrompt,
     messages: [{ role: 'user', content: userPrompt }],
   });
@@ -183,6 +263,9 @@ category: ${category}
 herramientas: [${herramientasYaml}]${imagenLine}
 draft: true
 ---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
 ${body.trim()}
 `;
