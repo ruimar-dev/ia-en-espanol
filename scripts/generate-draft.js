@@ -38,6 +38,24 @@ function getExistingTitles() {
   return titles;
 }
 
+function getExistingArticles() {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  const files = fs.readdirSync(BLOG_DIR).filter(f => f.endsWith('.mdx') || f.endsWith('.md'));
+  const articles = [];
+  for (const file of files) {
+    const content = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
+    const titleMatch = content.match(/^---[\s\S]*?^title:\s*["']?(.+?)["']?\s*$/m);
+    const descMatch = content.match(/^---[\s\S]*?^description:\s*["']?(.+?)["']?\s*$/m);
+    const draftMatch = content.match(/^draft:\s*(.+)$/m);
+    const title = titleMatch ? titleMatch[1].trim() : null;
+    const description = descMatch ? descMatch[1].trim() : '';
+    const draft = draftMatch ? draftMatch[1].trim() === 'true' : false;
+    const slug = file.replace(/\.mdx?$/, '');
+    if (title && !draft) articles.push({ title, description, slug });
+  }
+  return articles;
+}
+
 function getCurrentDate() {
   return new Date().toISOString().split('T')[0];
 }
@@ -72,6 +90,25 @@ async function searchUnsplashImage(query) {
   }
 
   return data.results[0].urls.regular;
+}
+
+async function addInternalLinks(client, body, currentSlug, relatedArticles) {
+  if (relatedArticles.length === 0) return body;
+
+  const articlesList = relatedArticles
+    .map(a => `- Título: "${a.title}" | URL: /blog/${a.slug}${a.description ? ` | Sobre: ${a.description}` : ''}`)
+    .join('\n');
+
+  const response = await client.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 8192,
+    messages: [{
+      role: 'user',
+      content: `Tienes el siguiente artículo de blog:\n\n---\n${body}\n---\n\nEstos son otros artículos publicados en el mismo blog:\n${articlesList}\n\nTu tarea: identifica 2-3 artículos de la lista con relación temática real al artículo actual. Para cada uno, inserta UN enlace interno en el punto del texto donde encaje de la forma más natural posible — dentro de una frase existente o como transición orgánica. Nunca como "ver también" ni en listas separadas.\n\nReglas estrictas:\n- Formato Markdown: [texto anchor descriptivo](/blog/slug)\n- El anchor text debe describir el contenido del enlace, no ser genérico ("haz clic aquí", "este artículo")\n- No añadas secciones nuevas ni cambies ningún contenido existente\n- Si ningún artículo tiene relación temática real, devuelve el cuerpo exactamente igual sin cambios\n\nDevuelve únicamente el cuerpo del artículo modificado, sin explicaciones ni comentarios.`,
+    }],
+  });
+
+  return response.content[0].text.trim();
 }
 
 async function generateDraft() {
@@ -215,7 +252,7 @@ herramientas: Herramienta1, Herramienta2
   }
 
   const metaBlock = metaMatch[1];
-  const body = bodyMatch[1].trim();
+  let body = bodyMatch[1].trim();
 
   function parseLine(block, key) {
     const match = block.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
@@ -244,6 +281,13 @@ herramientas: Herramienta1, Herramienta2
 
   const herramientasArr = Array.isArray(herramientas) ? herramientas : [];
   const herramientasYaml = herramientasArr.map(h => `"${h}"`).join(', ');
+
+  const existingArticles = getExistingArticles().filter(a => a.slug !== slug);
+  if (existingArticles.length > 0) {
+    console.log('🔗 Insertando enlaces internos relacionados...');
+    body = await addInternalLinks(client, body, slug, existingArticles);
+    console.log('✅ Enlaces internos añadidos');
+  }
 
   console.log('🖼️  Buscando imagen en Unsplash...');
   const imageUrl = await searchUnsplashImage(nextTopic.tema);
