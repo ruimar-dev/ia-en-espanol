@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ia-en-espanol.vercel.app/sitemap-index.xml
+Sitemap: https://iaenespanol.es/sitemap-index.xml

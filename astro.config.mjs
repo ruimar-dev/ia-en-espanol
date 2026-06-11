@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
-  site: 'https://ia-en-espanol.vercel.app',
+  site: 'https://iaenespanol.es',
   output: 'hybrid',
   adapter: vercel(),
   integrations: [
