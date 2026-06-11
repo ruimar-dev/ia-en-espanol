@@ -59,7 +59,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Enviar email de bienvenida solo si es suscripción nueva y hay dominio configurado
   if (!alreadySubscribed && fromEmail) {
-    await fetch('https://api.resend.com/emails', {
+    const emailRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -128,6 +128,10 @@ export const POST: APIRoute = async ({ request }) => {
 </html>`,
       }),
     });
+    if (!emailRes.ok) {
+      const emailErr = await emailRes.json().catch(() => ({}));
+      console.error('[newsletter] Error enviando email de bienvenida:', emailErr);
+    }
   }
 
   return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
