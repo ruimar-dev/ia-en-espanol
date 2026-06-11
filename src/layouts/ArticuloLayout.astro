@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import BannerAfiliado from '../components/BannerAfiliado.astro';
 import FeedbackArticulo from '../components/FeedbackArticulo.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
 import { CATEGORIA_LABELS } from '../content/config';
 import type { Categoria } from '../content/config';
 
@@ -81,6 +82,10 @@ const dateFormatted = date.toLocaleDateString('es-ES', {
     </div>
 
     <FeedbackArticulo />
+
+    <div class="mt-10">
+      <NewsletterForm />
+    </div>
 
     {afiliado && (
       <div class="mt-6">

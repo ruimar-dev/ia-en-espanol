@@ -1,10 +1,11 @@
 ---
+import NewsletterForm from './NewsletterForm.astro';
 const year = new Date().getFullYear();
 ---
 
 <footer class="mt-20 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1A1A1A]">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div>
         <a href="/" class="flex items-center gap-1.5 font-bold text-xl mb-3">
           <span class="text-[#7C3AED]">IA</span>
@@ -32,6 +33,10 @@ const year = new Date().getFullYear();
             </li>
           ))}
         </ul>
+      </div>
+
+      <div>
+        <NewsletterForm compact={true} />
       </div>
 
       <div>
