@@ -104,7 +104,7 @@ export const POST: APIRoute = async ({ request }) => {
               </tr>
             </table>
 
-            <a href="https://ia-en-espanol.vercel.app/blog"
+            <a href="https://iaenespanol.es/blog"
                style="display:inline-block;background:#7C3AED;color:#ffffff;font-weight:600;font-size:14px;padding:12px 24px;border-radius:10px;text-decoration:none;">
               Ver artículos →
             </a>
@@ -115,7 +115,7 @@ export const POST: APIRoute = async ({ request }) => {
         <tr>
           <td style="padding:20px 40px 32px;border-top:1px solid #f3f4f6;">
             <p style="margin:0;font-size:12px;color:#9ca3af;line-height:1.5;">
-              Recibiste este email porque te suscribiste en <a href="https://ia-en-espanol.vercel.app" style="color:#7C3AED;text-decoration:none;">ia-en-espanol.vercel.app</a>.<br>
+              Recibiste este email porque te suscribiste en <a href="https://iaenespanol.es" style="color:#7C3AED;text-decoration:none;">iaenespanol.es</a>.<br>
               Si no fuiste tú, puedes ignorar este mensaje.
             </p>
           </td>
