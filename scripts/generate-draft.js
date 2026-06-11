@@ -111,6 +111,107 @@ async function addInternalLinks(client, body, currentSlug, relatedArticles) {
   return response.content[0].text.trim();
 }
 
+async function generateImageQuery(client, topic, title) {
+  const response = await client.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 30,
+    messages: [{
+      role: 'user',
+      content: `Give me 3 English keywords for an Unsplash photo search that best represents this AI blog article topic visually. Topic: "${topic}". Article title: "${title}". Return ONLY the keywords separated by spaces, nothing else. Example: "artificial intelligence robot technology"`,
+    }],
+  });
+  return response.content[0].text.trim().replace(/^["']|["']$/g, '');
+}
+
+function parseFaqs(body) {
+  const faqs = [];
+  const sectionMatch = body.match(/## Preguntas frecuentes[^\n]*\n([\s\S]*?)(?=\n## |$)/);
+  if (!sectionMatch) return faqs;
+
+  const section = sectionMatch[1];
+  const regex = /\*\*(¿[^*]+\?)\*\*\n([\s\S]*?)(?=\n\*\*¿|$)/g;
+  let match;
+  while ((match = regex.exec(section)) !== null) {
+    const pregunta = match[1].trim();
+    const respuesta = match[2].trim().replace(/\n+/g, ' ');
+    if (pregunta && respuesta) faqs.push({ pregunta, respuesta });
+  }
+  return faqs;
+}
+
+function serializeFaqsYaml(faqs) {
+  if (!faqs || faqs.length === 0) return '';
+  const lines = ['faqs:'];
+  for (const { pregunta, respuesta } of faqs) {
+    const p = pregunta.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    const r = respuesta.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    lines.push(`  - pregunta: "${p}"`);
+    lines.push(`    respuesta: "${r}"`);
+  }
+  return '\n' + lines.join('\n');
+}
+
+function splitMdxFile(content) {
+  const fmClose = content.indexOf('\n---\n', 4) + 5;
+  let i = fmClose;
+  while (i < content.length) {
+    const lineEnd = content.indexOf('\n', i);
+    const line = lineEnd === -1 ? content.slice(i) : content.slice(i, lineEnd);
+    if (line.trim() === '' || /^import\s/.test(line.trim())) {
+      i = lineEnd === -1 ? content.length : lineEnd + 1;
+    } else {
+      break;
+    }
+  }
+  return { header: content.slice(0, i), body: content.slice(i) };
+}
+
+async function addReverseLinks(client, newSlug, newTitle, newDescription, existingArticles) {
+  if (existingArticles.length === 0) return;
+
+  const articlesList = existingArticles
+    .map(a => `- slug: ${a.slug} | título: "${a.title}"${a.description ? ` | sobre: ${a.description}` : ''}`)
+    .join('\n');
+
+  const selectionRes = await client.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 100,
+    messages: [{
+      role: 'user',
+      content: `Nuevo artículo publicado:\nTítulo: "${newTitle}"\nDescripción: "${newDescription}"\nURL: /blog/${newSlug}\n\nArtículos existentes:\n${articlesList}\n\nIdentifica máximo 2 slugs de artículos que se beneficiarían de enlazar al nuevo artículo por tener relación temática real. Devuelve SOLO los slugs separados por coma. Si ninguno es relevante, devuelve vacío.`,
+    }],
+  });
+
+  const slugsRaw = selectionRes.content[0].text.trim();
+  if (!slugsRaw) return;
+
+  const targetSlugs = slugsRaw.split(',').map(s => s.trim()).filter(Boolean).slice(0, 2);
+
+  for (const targetSlug of targetSlugs) {
+    const article = existingArticles.find(a => a.slug === targetSlug);
+    if (!article) continue;
+
+    const filePath = path.join(BLOG_DIR, `${targetSlug}.mdx`);
+    if (!fs.existsSync(filePath)) continue;
+
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const { header, body: existingBody } = splitMdxFile(content);
+
+    const linkRes = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 8192,
+      messages: [{
+        role: 'user',
+        content: `Tienes el siguiente artículo de blog:\n\n---\n${existingBody}\n---\n\nInserta UN enlace natural hacia este nuevo artículo relacionado:\nTítulo: "${newTitle}"\nURL: /blog/${newSlug}\nDescripción: "${newDescription}"\n\nReglas:\n- Inserta el enlace dentro de una frase existente de forma orgánica\n- El anchor text debe describir el contenido enlazado\n- No añadas secciones nuevas ni cambies otro contenido\n- Si no hay lugar natural, devuelve el texto exactamente igual\n\nDevuelve únicamente el cuerpo modificado, sin explicaciones.`,
+      }],
+    });
+
+    const updatedBody = linkRes.content[0].text.trim();
+    fs.writeFileSync(filePath, header + updatedBody + '\n', 'utf-8');
+    console.log(`🔗 Enlace inverso añadido en: src/content/blog/${targetSlug}.mdx`);
+  }
+}
+
 async function generateDraft() {
   // Load topics
   if (!fs.existsSync(TOPICS_FILE)) {
@@ -214,6 +315,8 @@ ESTRUCTURA OBLIGATORIA (en este orden exacto):
 REQUISITOS DE CALIDAD:
 - Mínimo 2000 palabras en el cuerpo
 - NO escribas un H1 al principio del cuerpo (el framework ya lo muestra)
+- La keyword principal del artículo debe aparecer de forma natural en los primeros 100 palabras de la introducción
+- La sección de preguntas frecuentes debe contener EXACTAMENTE 5 preguntas, no más ni menos
 - Usa **negrita** para conceptos clave y datos importantes
 - Menciona competidores por nombre con comparaciones honestas
 - Al menos 2 ejemplos en primera persona con detalles concretos (cifras, tiempo, resultado)
@@ -289,22 +392,28 @@ herramientas: Herramienta1, Herramienta2
     console.log('✅ Enlaces internos añadidos');
   }
 
-  console.log('🖼️  Buscando imagen en Unsplash...');
-  const imageUrl = await searchUnsplashImage(nextTopic.tema);
+  console.log('🖼️  Generando query de imagen...');
+  const imageQuery = await generateImageQuery(client, nextTopic.tema, title);
+  console.log(`🔍 Query Unsplash: "${imageQuery}"`);
+  const imageUrl = await searchUnsplashImage(imageQuery);
   if (imageUrl) console.log(`✅ Imagen encontrada: ${imageUrl}`);
+
+  const faqs = parseFaqs(body);
+  if (faqs.length > 0) console.log(`✅ FAQs extraídas: ${faqs.length} preguntas`);
 
   // Escape double quotes inside title and description for YAML safety
   const safeTitle = title.replace(/"/g, '\\"');
   const safeDescription = description.replace(/"/g, '\\"');
 
   const imagenLine = imageUrl ? `\nimagen: "${imageUrl}"` : '';
+  const faqsYaml = serializeFaqsYaml(faqs);
 
   const fileContent = `---
 title: "${safeTitle}"
 description: "${safeDescription}"
 date: ${date}
 category: ${category}
-herramientas: [${herramientasYaml}]${imagenLine}
+herramientas: [${herramientasYaml}]${imagenLine}${faqsYaml}
 draft: true
 ---
 
@@ -324,6 +433,11 @@ ${body.trim()}
 
   // Write topic name for GitHub Actions to pick up
   fs.writeFileSync(DRAFT_TOPIC_FILE, nextTopic.tema, 'utf-8');
+
+  if (existingArticles.length > 0) {
+    console.log('↩️  Insertando enlaces inversos en artículos existentes...');
+    await addReverseLinks(client, slug, title, description, existingArticles);
+  }
 }
 
 generateDraft().catch(err => {

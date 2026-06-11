@@ -14,9 +14,10 @@ interface Props {
   herramientas: string[];
   afiliado?: string;
   imagen?: string;
+  faqs?: Array<{ pregunta: string; respuesta: string }>;
 }
 
-const { title, description, date, category, herramientas, afiliado, imagen } = Astro.props;
+const { title, description, date, category, herramientas, afiliado, imagen, faqs } = Astro.props;
 
 const dateFormatted = date.toLocaleDateString('es-ES', {
   year: 'numeric',
@@ -26,6 +27,17 @@ const dateFormatted = date.toLocaleDateString('es-ES', {
 ---
 
 <Layout title={title} description={description} image={imagen} article publishDate={date}>
+  {faqs && faqs.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.pregunta,
+        acceptedAnswer: { "@type": "Answer", text: faq.respuesta },
+      })),
+    })} />
+  )}
   <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
     <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Migas de pan">
       <a href="/" class="hover:text-[#7C3AED] transition-colors">Inicio</a>
