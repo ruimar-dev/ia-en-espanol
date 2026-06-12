@@ -15,8 +15,8 @@ faqs:
   - pregunta: "¿Es seguro usar Cursor con código de empresa?"
     respuesta: "Con el plan Pro, fragmentos de tu código se envían a los servidores de Anysphere y a los proveedores de modelos de IA para procesar las peticiones. Anysphere afirma no usar el código para entrenar modelos, pero antes de usar Cursor con código sujeto a acuerdos de confidencialidad, conviene revisar su política de privacidad con tu equipo legal. El plan Business añade garantías adicionales de no retención de datos, lo que lo hace más adecuado para entornos corporativos exigentes."
   - pregunta: "¿Qué diferencia hay entre Cursor y Windsurf?"
-    respuesta: "Windsurf, desarrollado por Codeium, es el competidor más directo de Cursor en 2026. Ambos son forks de VS Code con IA integrada y modo agente. Las diferencias principales: Cursor tiene un ecosistema más maduro, mejor integración con más modelos y una comunidad más grande; Windsurf es más barato (~13 €/mes) y ha avanzado mucho en funcionalidades durante 2025. Si el precio es un factor importante, Windsurf merece una prueba antes de comprometerte con Cursor. Para proyectos muy grandes o flujos de trabajo complejos, Cursor todavía lleva ventaja en estabilidad y contexto. ---"
-draft: true
+    respuesta: "Windsurf, desarrollado por Codeium, es el competidor más directo de Cursor en 2026. Ambos son forks de VS Code con IA integrada y modo agente. Las diferencias principales: Cursor tiene un ecosistema más maduro, mejor integración con más modelos y una comunidad más grande; Windsurf es más barato (~13 €/mes) y ha avanzado mucho en funcionalidades durante 2025. Si el precio es un factor importante, Windsurf merece una prueba antes de comprometerte con Cursor. Para proyectos muy grandes o flujos de trabajo complejos, Cursor todavía lleva ventaja en estabilidad y contexto."
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
@@ -159,29 +159,8 @@ Cursor envía fragmentos de código a sus servidores para procesar con los model
 
 ---
 
-## Preguntas frecuentes sobre Cursor
-
-**¿Cursor funciona en español o solo en inglés?**
-Cursor funciona perfectamente en español tanto para los prompts como para los comentarios de código. Los modelos subyacentes (Claude Sonnet 4, GPT-4o, Gemini 2.5 Pro) entienden y generan español sin problemas. Dicho esto, para código técnico y documentación, el inglés sigue dando resultados ligeramente más consistentes porque los datos de entrenamiento están sesgados hacia ese idioma.
-
-**¿Cursor vs GitHub Copilot: cuál es mejor en 2026?**
-Depende del caso de uso. Cursor gana claramente en proyectos con contexto amplio, refactorizaciones complejas y flujos de agente. GitHub Copilot gana en precio (~9 € vs ~19 €), en integración con el ecosistema GitHub y en soporte para editores como JetBrains. Si programas en proyectos medianos o grandes y tu editor principal es VS Code, Cursor es la mejor opción. Para uso ocasional o proyectos simples, Copilot es más que suficiente.
-
-**¿Cursor está disponible en España y Latinoamérica?**
-Sí, Cursor está disponible sin restricciones en España y en todos los países de Latinoamérica. El precio oficial es en dólares (~20 USD/mes para Pro), que al pagar con tarjeta se convierte al cambio vigente. No hay versión localizada ni precios regionales, pero el acceso es completo sin VPN ni restricciones geográficas.
-
-**¿Es seguro usar Cursor con código de empresa?**
-Con el plan Pro, fragmentos de tu código se envían a los servidores de Anysphere y a los proveedores de modelos de IA para procesar las peticiones. Anysphere afirma no usar el código para entrenar modelos, pero antes de usar Cursor con código sujeto a acuerdos de confidencialidad, conviene revisar su política de privacidad con tu equipo legal. El plan Business añade garantías adicionales de no retención de datos, lo que lo hace más adecuado para entornos corporativos exigentes.
-
-**¿Qué diferencia hay entre Cursor y Windsurf?**
-Windsurf, desarrollado por Codeium, es el competidor más directo de Cursor en 2026. Ambos son forks de VS Code con IA integrada y modo agente. Las diferencias principales: Cursor tiene un ecosistema más maduro, mejor integración con más modelos y una comunidad más grande; Windsurf es más barato (~13 €/mes) y ha avanzado mucho en funcionalidades durante 2025. Si el precio es un factor importante, Windsurf merece una prueba antes de comprometerte con Cursor. Para proyectos muy grandes o flujos de trabajo complejos, Cursor todavía lleva ventaja en estabilidad y contexto.
-
----
-
 ## Conclusión
 
-Cursor es, en este momento, el editor que más en serio se toma la idea de programar con IA. No como un añadido, sino como la premisa de diseño desde el principio. El modo Agente, el sistema de contexto con `@`, las reglas de proyecto y el acceso a [los mejores modelos disponibles como Claude Opus 4, o3 y Gemini 2.5 Pro](/blog/chatgpt-vs-claude-2024) conforman una experiencia que, cuando funciona, hace que el trabajo avance a una velocidad que resulta difícil de describir sin sonar exagerado.
+Cursor es el editor que más en serio se toma la idea de programar con IA: no como un añadido, sino como premisa de diseño desde el principio. El modo Agente, el sistema de contexto con `@` y las reglas de proyecto conforman una experiencia que, cuando funciona, cambia el ritmo de trabajo de una forma difícil de describir sin sonar exagerado.
 
-El precio es real (~19 €/mes), las limitaciones son reales (consumo de peticiones, privacidad, fallos del Agente en repos muy grandes) y la competencia —especialmente Windsurf— está acortando distancias. No es la herramienta perfecta ni la única opción válida.
-
-Pero si programas de forma profesional, trabajas en proyectos con cierta complejidad y todavía no has probado Cursor, estás tomando decisiones sobre tu flujo de trabajo sin haber visto una parte del panorama. El periodo de prueba gratuito cuesta cero euros y un par de horas de configuración. Es el experimento más fácil de justificar en tecnología este año.
+Si programas de forma profesional en proyectos con cierta complejidad y todavía no lo has probado, el periodo de prueba gratuito es el experimento más fácil de justificar en tecnología este año.
