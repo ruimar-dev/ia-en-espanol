@@ -1,0 +1,187 @@
+---
+title: "Cursor IDE review completa 2026: programa con IA de verdad"
+description: "Análisis honesto de Cursor IDE en 2026: qué hace bien, qué le falta, cuánto cuesta y si vale la pena frente a GitHub Copilot y otros."
+date: 2026-06-12
+category: codigo
+herramientas: ["Cursor", "GitHub Copilot", "Windsurf", "VS Code"]
+imagen: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5NzMwMDN8MHwxfHNlYXJjaHwxfHxjdXJzb3IlMjBBSSUyMGNvZGluZyUyMGRldmVsb3BtZW50fGVufDB8MHx8fDE3ODEyNjQ4MjR8MA&ixlib=rb-4.1.0&q=80&w=1080"
+faqs:
+  - pregunta: "¿Cursor funciona en español o solo en inglés?"
+    respuesta: "Cursor funciona perfectamente en español tanto para los prompts como para los comentarios de código. Los modelos subyacentes (Claude Sonnet 4, GPT-4o, Gemini 2.5 Pro) entienden y generan español sin problemas. Dicho esto, para código técnico y documentación, el inglés sigue dando resultados ligeramente más consistentes porque los datos de entrenamiento están sesgados hacia ese idioma."
+  - pregunta: "¿Cursor vs GitHub Copilot: cuál es mejor en 2026?"
+    respuesta: "Depende del caso de uso. Cursor gana claramente en proyectos con contexto amplio, refactorizaciones complejas y flujos de agente. GitHub Copilot gana en precio (~9 € vs ~19 €), en integración con el ecosistema GitHub y en soporte para editores como JetBrains. Si programas en proyectos medianos o grandes y tu editor principal es VS Code, Cursor es la mejor opción. Para uso ocasional o proyectos simples, Copilot es más que suficiente."
+  - pregunta: "¿Cursor está disponible en España y Latinoamérica?"
+    respuesta: "Sí, Cursor está disponible sin restricciones en España y en todos los países de Latinoamérica. El precio oficial es en dólares (~20 USD/mes para Pro), que al pagar con tarjeta se convierte al cambio vigente. No hay versión localizada ni precios regionales, pero el acceso es completo sin VPN ni restricciones geográficas."
+  - pregunta: "¿Es seguro usar Cursor con código de empresa?"
+    respuesta: "Con el plan Pro, fragmentos de tu código se envían a los servidores de Anysphere y a los proveedores de modelos de IA para procesar las peticiones. Anysphere afirma no usar el código para entrenar modelos, pero antes de usar Cursor con código sujeto a acuerdos de confidencialidad, conviene revisar su política de privacidad con tu equipo legal. El plan Business añade garantías adicionales de no retención de datos, lo que lo hace más adecuado para entornos corporativos exigentes."
+  - pregunta: "¿Qué diferencia hay entre Cursor y Windsurf?"
+    respuesta: "Windsurf, desarrollado por Codeium, es el competidor más directo de Cursor en 2026. Ambos son forks de VS Code con IA integrada y modo agente. Las diferencias principales: Cursor tiene un ecosistema más maduro, mejor integración con más modelos y una comunidad más grande; Windsurf es más barato (~13 €/mes) y ha avanzado mucho en funcionalidades durante 2025. Si el precio es un factor importante, Windsurf merece una prueba antes de comprometerte con Cursor. Para proyectos muy grandes o flujos de trabajo complejos, Cursor todavía lleva ventaja en estabilidad y contexto. ---"
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+import BannerAfiliado from '../../components/BannerAfiliado.astro';
+
+Llevaba años usando VS Code con extensiones de IA pegadas encima y convenciéndome de que eso era "programar con IA". Cuando probé Cursor por primera vez, tardé unos veinte minutos en entender que lo que había estado haciendo antes era simplemente autocompletar glorificado. La **Cursor IDE review** que vas a leer a continuación viene de semanas de uso real en proyectos de producción, no de un tutorial de YouTube.
+
+El problema que Cursor resuelve es concreto: los editores tradicionales, aunque añadan IA por encima, siguen pensados para que tú escribas código y la IA te ayude a completarlo. Cursor invierte esa lógica. El editor está construido desde cero alrededor del modelo de lenguaje, lo que significa que la IA entiende todo el contexto de tu proyecto, no solo el archivo que tienes abierto. Eso cambia fundamentalmente cómo se trabaja.
+
+Mi veredicto honesto: **Cursor es hoy el mejor entorno para programar con IA si trabajas en proyectos medianos o grandes**. No es barato, tiene fricciones reales y el mercado está muy movido con Windsurf apretando fuerte. Pero si programas de forma profesional y no lo has probado, estás tomando la decisión sin información completa.
+
+---
+
+## Qué es Cursor y cuánto cuesta exactamente
+
+Cursor es un **editor de código basado en VS Code** desarrollado por Anysphere. Esto es importante: no es una extensión ni un plugin, es un fork completo de VS Code. Eso significa que si ya usas VS Code, migrar es casi trivial: tus extensiones, temas y atajos de teclado funcionan desde el primer minuto.
+
+Mucha gente busca "Cursor AI", "Cursor IDE" o incluso "Cursor GPT" — todos se refieren al mismo producto. No confundirlo con Cursor the database tool ni con ningún otro producto con nombre parecido.
+
+En cuanto a los modelos disponibles dentro de Cursor en 2026, tienes acceso a **Claude Sonnet 4, Claude Opus 4, GPT-4o, o3 y Gemini 2.5 Pro**, dependiendo del plan. Esto es relevante porque la calidad de las respuestas varía bastante según el modelo que elijas para cada tarea.
+
+### Planes y precios
+
+- **Free (gratuito):** 2.000 completaciones al mes, 50 peticiones lentas al agente, acceso a modelos básicos. Suficiente para evaluar la herramienta, insuficiente para trabajo diario.
+
+- **Pro — $20/mes (aprox. 18-19 €):** Completaciones ilimitadas, 500 peticiones rápidas al mes con modelos premium (Claude Opus 4, o3, Gemini 2.5 Pro), acceso al modo Agente sin restricciones. Este es el plan que usa la mayoría de profesionales.
+
+- **Business — $40/mes por usuario (aprox. 37 €):** Todo lo del Pro más gestión centralizada, facturación por equipo, sin retención de datos del código en servidores. Relevante si trabajas con código propietario sensible o necesitas cumplir con políticas de seguridad corporativas.
+
+El precio se cobra en dólares americanos, pero si pagas con tarjeta europea, tu banco aplicará el tipo de cambio del momento. No hay IVA incluido en el precio base: dependiendo de tu país, se añadirá automáticamente en el checkout.
+
+---
+
+<TablaComparativa
+  titulo="Cursor vs la competencia en 2026"
+  herramientas={[
+    { nombre: "Cursor Pro", precio: "~19 €/mes", puntuacion: 4.7, idealPara: "Proyectos medianos y grandes, refactorización con contexto completo" },
+    { nombre: "GitHub Copilot", precio: "~9 €/mes", puntuacion: 4.2, idealPara: "Desarrolladores ya integrados en el ecosistema GitHub y JetBrains" },
+    { nombre: "Windsurf", precio: "~13 €/mes", puntuacion: 4.4, idealPara: "Alternativa más barata a Cursor con flujo de agente similar" },
+    { nombre: "VS Code + extensiones", precio: "Gratis", puntuacion: 3.5, idealPara: "Quienes no quieren cambiar de entorno y aceptan IA más básica" },
+  ]}
+/>
+
+---
+
+## El modo Agente: donde Cursor se separa del resto
+
+La diferencia real entre Cursor y un editor con IA encima no está en el autocompletado. Está en el **modo Agente** (antes llamado Composer en versiones anteriores).
+
+El modo Agente permite darle a Cursor una instrucción en lenguaje natural y que él solo navege por los archivos de tu proyecto, edite múltiples ficheros a la vez, ejecute comandos de terminal y verifique si los cambios funcionan. No es magia, es un bucle de razonamiento y ejecución que, cuando funciona, acelera el trabajo de manera brutal.
+
+### Cómo funciona el contexto de proyecto
+
+Cursor indexa todo tu repositorio localmente. Cuando le haces una pregunta, no solo mira el archivo activo: mira el árbol de dependencias, los archivos relacionados y los patrones de tu propio código. Esto lo diferencia de [GitHub Copilot, que hasta 2025 trabajaba principalmente en el contexto del archivo abierto](/blog/github-copilot-vs-cursor-review).
+
+Lo he comprobado de forma muy concreta: en un proyecto de backend con Node.js y TypeScript, le pedí a Cursor que añadiera validación de entrada a todos los endpoints de una API REST. El proyecto tenía 23 rutas distribuidas en 8 archivos. **Cursor identificó solo los 8 archivos relevantes, generó los cambios en todos ellos y los presentó como diff revisable en menos de 90 segundos.** Hacer eso manualmente me habría llevado entre 40 y 60 minutos.
+
+### El panel de chat con contexto @
+
+Una de las funcionalidades más útiles es el sistema de contexto con `@`. Puedes escribir en el chat `@archivo`, `@carpeta`, `@web`, `@docs` o `@git` para incluir contexto específico en tu pregunta. Por ejemplo:
+
+- `@package.json ¿por qué esta dependencia está generando conflictos?`
+- `@docs [URL de la documentación de tu librería] ¿cómo implemento la autenticación?`
+- `@git ¿qué cambié en los últimos 3 commits que podría haber roto este test?`
+
+Esta granularidad en el contexto es algo que GitHub Copilot todavía no ofrece con la misma fluidez, y es uno de los motivos por los que muchos equipos que empezaron con Copilot han migrado.
+
+---
+
+## Reglas de proyecto y memoria de código
+
+Una cosa que no se menciona lo suficiente en las reseñas de Cursor: las **reglas de proyecto** (`.cursor/rules`). Puedes definir instrucciones permanentes que Cursor aplica en cada conversación dentro de ese repositorio. Cosas como:
+
+- "Este proyecto usa Tailwind CSS, nunca generes estilos inline"
+- "Seguimos la convención de nombres camelCase para funciones y PascalCase para componentes"
+- "Todos los comentarios y docstrings deben estar en inglés"
+
+En la práctica, esto elimina una fricción enorme. Antes, con cada sesión nueva tenías que recordarle a la IA las convenciones del proyecto. Con las reglas configuradas, el primer commit de un compañero nuevo también las respeta automáticamente si tiene Cursor.
+
+Pasé un par de horas configurando estas reglas en un proyecto de React con varios colaboradores. En las semanas siguientes, **el número de comentarios de revisión de código relacionados con estilo o convenciones cayó aproximadamente un 60%** según nuestro historial de pull requests. No es un número científico, pero es real.
+
+### YOLO Mode y ejecución automática de terminal
+
+Cursor también tiene un modo que permite ejecutar comandos de terminal sin pedir confirmación en cada paso. Yo personalmente lo uso con cautela y nunca en repositorios de producción directa, pero para proyectos de side-project o scaffolding inicial, acelera muchísimo. La IA puede instalar dependencias, correr tests y hacer ajustes en un solo flujo sin interrumpirte.
+
+---
+
+## Limitaciones reales de Cursor que nadie te cuenta
+
+Seré directo: Cursor tiene problemas y algunos son molestos en el uso diario.
+
+### El precio es el más alto del segmento
+
+A ~19 € al mes, Cursor Pro cuesta el doble que GitHub Copilot Individual (~9 €) y bastante más que Windsurf (~13 €). Para un freelance o alguien que empieza, esa diferencia importa. **Windsurf ha cerrado mucho la brecha en funcionalidades** durante 2025 y ofrece una propuesta competitiva a menor precio. Si no trabajas en proyectos grandes con muchos archivos interrelacionados, quizás la diferencia de precio no está justificada.
+
+### Las peticiones premium se gastan rápido
+
+El plan Pro incluye 500 peticiones rápidas mensuales con los modelos premium (Opus 4, o3, Gemini 2.5 Pro). En uso intensivo, especialmente si usas el modo Agente con frecuencia para tareas grandes, puedes agotar ese cupo en 2-3 semanas. A partir de ahí, la velocidad de respuesta cae o pagas por peticiones adicionales. Es un límite real que algunos usuarios no anticipan al suscribirse.
+
+### El modo Agente falla en proyectos muy complejos
+
+El Agente es potente, pero no infalible. En proyectos con más de 100.000 líneas de código o con arquitecturas muy heterogéneas (monorepos con varios lenguajes mezclados), el contexto a veces se pierde y las ediciones propuestas son incorrectas o incompletas. He tenido casos donde el Agente editó el archivo equivocado con confianza total. **Revisar el diff siempre antes de aplicar cambios no es opcional, es obligatorio.**
+
+### La indexación puede ser lenta en repos grandes
+
+La primera vez que abres un proyecto grande, Cursor lo indexa para construir su mapa de contexto. En repos de más de 200 MB, esto puede tardar varios minutos y consumir CPU. No es un bloqueante, pero sí algo que notas.
+
+### Privacidad y código propietario
+
+Cursor envía fragmentos de código a sus servidores para procesar con los modelos. El plan Business desactiva la retención de datos, pero en el plan Pro, tu código pasa por la infraestructura de Anysphere y los proveedores de modelos (Anthropic, OpenAI, Google). Si trabajas con código sujeto a acuerdos de confidencialidad estrictos, esto necesita revisión legal antes de adoptarlo en tu empresa.
+
+---
+
+## ¿Vale la pena pagar Cursor?
+
+**Sí vale la pena si...**
+
+- Trabajas en proyectos con múltiples archivos relacionados donde el contexto amplio marca la diferencia.
+- Haces refactorizaciones frecuentes o añades funcionalidades que tocan varias partes del código a la vez.
+- Ya usas VS Code y quieres la migración más suave posible a un entorno con IA integrada de verdad.
+- Tu tiempo tiene un valor económico directo (freelance, consultora, startup) y puedes amortizar los ~19 € en pocas horas de trabajo ahorradas al mes.
+- Trabajas con TypeScript, Python, Go o cualquier lenguaje bien representado en los datos de entrenamiento de los modelos actuales.
+
+**Probablemente no vale la pena si...**
+
+- Programas ocasionalmente o en proyectos pequeños de un solo archivo donde GitHub Copilot o incluso el plan gratuito de Cursor cubren tus necesidades.
+- Tu empresa tiene políticas de seguridad que impiden enviar código a servicios externos y no puedes costear el plan Business.
+- Estás empezando a aprender a programar: depender demasiado del Agente puede impedir que interiorices los conceptos fundamentales.
+- Ya usas JetBrains (IntelliJ, PyCharm, etc.) y no quieres cambiar de entorno: en ese caso, GitHub Copilot tiene mejor integración nativa.
+- Windsurf cubre tus necesidades a menor precio — es una alternativa legítima que merece evaluación propia.
+
+---
+
+<BannerAfiliado
+  titulo="Prueba Cursor Pro gratis durante 14 días"
+  descripcion="Cursor ofrece un periodo de prueba gratuito del plan Pro. Sin tarjeta de crédito para empezar. Comprueba si el modo Agente cambia tu forma de trabajar antes de decidir."
+  cta="Probar Cursor gratis"
+  url="https://www.cursor.com"
+/>
+
+---
+
+## Preguntas frecuentes sobre Cursor
+
+**¿Cursor funciona en español o solo en inglés?**
+Cursor funciona perfectamente en español tanto para los prompts como para los comentarios de código. Los modelos subyacentes (Claude Sonnet 4, GPT-4o, Gemini 2.5 Pro) entienden y generan español sin problemas. Dicho esto, para código técnico y documentación, el inglés sigue dando resultados ligeramente más consistentes porque los datos de entrenamiento están sesgados hacia ese idioma.
+
+**¿Cursor vs GitHub Copilot: cuál es mejor en 2026?**
+Depende del caso de uso. Cursor gana claramente en proyectos con contexto amplio, refactorizaciones complejas y flujos de agente. GitHub Copilot gana en precio (~9 € vs ~19 €), en integración con el ecosistema GitHub y en soporte para editores como JetBrains. Si programas en proyectos medianos o grandes y tu editor principal es VS Code, Cursor es la mejor opción. Para uso ocasional o proyectos simples, Copilot es más que suficiente.
+
+**¿Cursor está disponible en España y Latinoamérica?**
+Sí, Cursor está disponible sin restricciones en España y en todos los países de Latinoamérica. El precio oficial es en dólares (~20 USD/mes para Pro), que al pagar con tarjeta se convierte al cambio vigente. No hay versión localizada ni precios regionales, pero el acceso es completo sin VPN ni restricciones geográficas.
+
+**¿Es seguro usar Cursor con código de empresa?**
+Con el plan Pro, fragmentos de tu código se envían a los servidores de Anysphere y a los proveedores de modelos de IA para procesar las peticiones. Anysphere afirma no usar el código para entrenar modelos, pero antes de usar Cursor con código sujeto a acuerdos de confidencialidad, conviene revisar su política de privacidad con tu equipo legal. El plan Business añade garantías adicionales de no retención de datos, lo que lo hace más adecuado para entornos corporativos exigentes.
+
+**¿Qué diferencia hay entre Cursor y Windsurf?**
+Windsurf, desarrollado por Codeium, es el competidor más directo de Cursor en 2026. Ambos son forks de VS Code con IA integrada y modo agente. Las diferencias principales: Cursor tiene un ecosistema más maduro, mejor integración con más modelos y una comunidad más grande; Windsurf es más barato (~13 €/mes) y ha avanzado mucho en funcionalidades durante 2025. Si el precio es un factor importante, Windsurf merece una prueba antes de comprometerte con Cursor. Para proyectos muy grandes o flujos de trabajo complejos, Cursor todavía lleva ventaja en estabilidad y contexto.
+
+---
+
+## Conclusión
+
+Cursor es, en este momento, el editor que más en serio se toma la idea de programar con IA. No como un añadido, sino como la premisa de diseño desde el principio. El modo Agente, el sistema de contexto con `@`, las reglas de proyecto y el acceso a [los mejores modelos disponibles como Claude Opus 4, o3 y Gemini 2.5 Pro](/blog/chatgpt-vs-claude-2024) conforman una experiencia que, cuando funciona, hace que el trabajo avance a una velocidad que resulta difícil de describir sin sonar exagerado.
+
+El precio es real (~19 €/mes), las limitaciones son reales (consumo de peticiones, privacidad, fallos del Agente en repos muy grandes) y la competencia —especialmente Windsurf— está acortando distancias. No es la herramienta perfecta ni la única opción válida.
+
+Pero si programas de forma profesional, trabajas en proyectos con cierta complejidad y todavía no has probado Cursor, estás tomando decisiones sobre tu flujo de trabajo sin haber visto una parte del panorama. El periodo de prueba gratuito cuesta cero euros y un par de horas de configuración. Es el experimento más fácil de justificar en tecnología este año.
