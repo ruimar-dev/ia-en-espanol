@@ -13,10 +13,13 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-[#FAFAFA]/80 dark:bg-[#0F0F0F]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 transition-all duration-300"
+>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-1.5 font-bold text-xl">
+      <a href="/" class="flex items-center gap-1.5 font-extrabold text-xl">
         <span class="text-[#7C3AED]">IA</span>
         <span class="text-gray-900 dark:text-white">en Español</span>
       </a>
@@ -38,7 +41,6 @@ const currentPath = Astro.url.pathname;
       </nav>
 
       <div class="flex items-center gap-1">
-        <!-- Search button -->
         <button
           id="search-btn"
           aria-label="Buscar"
@@ -48,7 +50,6 @@ const currentPath = Astro.url.pathname;
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <span class="hidden sm:inline">Buscar</span>
-          <kbd class="hidden sm:inline text-xs bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded px-1.5 py-0.5 font-mono leading-none">⌘K</kbd>
         </button>
 
         <ThemeToggle />
@@ -96,7 +97,32 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
+<style>
+  #site-header {
+    background-color: rgba(250, 250, 250, 0.6);
+  }
+  :global(.dark) #site-header {
+    background-color: rgba(15, 15, 15, 0.6);
+  }
+  #site-header[data-scrolled="true"] {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+  :global(.dark) #site-header[data-scrolled="true"] {
+    background-color: rgba(15, 15, 15, 0.95);
+  }
+</style>
+
 <script>
+  // Scroll blur effect
+  const siteHeader = document.getElementById('site-header');
+  function updateScrollState() {
+    siteHeader?.setAttribute('data-scrolled', String(window.scrollY > 20));
+  }
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
+
   // Mobile menu
   const mobileBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');

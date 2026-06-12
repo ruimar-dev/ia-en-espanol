@@ -8,31 +8,44 @@ import Layout from '../layouts/Layout.astro';
 >
   <!-- INTRO -->
   <section id="intro" class="relative overflow-hidden py-24 px-4 text-center">
-    <div class="absolute inset-0 -z-10">
-      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[700px] bg-[#7C3AED]/8 dark:bg-[#7C3AED]/5 rounded-full blur-3xl"></div>
-    </div>
-    <div class="max-w-2xl mx-auto">
-      <span class="inline-block bg-[#7C3AED]/10 text-[#7C3AED] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-        🤖 Test interactivo
+    <div class="absolute inset-0 bg-gradient-to-b from-[#f0ebff] to-[#fafafa] dark:from-[#0f0f0f] dark:via-[#1a0a2e] dark:to-[#0f0f0f]" aria-hidden="true"></div>
+    <div class="relative max-w-2xl mx-auto">
+      <span class="inline-block bg-[#7C3AED]/10 dark:bg-white/10 text-[#7C3AED] dark:text-white/80 text-sm font-semibold px-4 py-1.5 rounded-full mb-6 border border-[#7C3AED]/20 dark:border-white/10">
+        Test interactivo
       </span>
-      <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight tracking-tight">
+      <h1 class="font-extrabold text-gray-900 dark:text-white mb-4 leading-tight tracking-tight" style="font-size: clamp(2.5rem, 5vw, 4rem);">
         ¿Qué IA<br/>
-        <span class="text-[#7C3AED]">necesitas?</span>
+        <span class="text-[#7C3AED] dark:text-[#A78BFA]">necesitas?</span>
       </h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-lg mx-auto leading-relaxed">
+      <p class="text-lg text-gray-600 dark:text-white/70 mb-10 max-w-lg mx-auto leading-relaxed">
         5 preguntas rápidas y te decimos exactamente qué herramienta de IA usar. Sin tecnicismos, sin rodeos.
       </p>
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10 text-sm text-gray-500 dark:text-gray-400">
-        <span class="flex items-center gap-1.5"><span>⚡</span> Solo 5 preguntas</span>
-        <span class="flex items-center gap-1.5"><span>🎯</span> Recomendación personalizada</span>
-        <span class="flex items-center gap-1.5"><span>🆓</span> Gratis, sin registro</span>
+      <div class="flex flex-wrap justify-center gap-6 mb-10">
+        <span class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <svg class="w-4 h-4 text-[#7C3AED] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          Solo 5 preguntas
+        </span>
+        <span class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <svg class="w-4 h-4 text-[#7C3AED] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          Resultado personalizado
+        </span>
+        <span class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <svg class="w-4 h-4 text-[#7C3AED] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Gratis, sin registro
+        </span>
       </div>
       <button
         id="btn-start"
-        class="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all duration-200 hover:scale-105 shadow-xl shadow-[#7C3AED]/30"
+        class="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold px-8 py-4 rounded-xl text-base transition-colors shadow-lg shadow-[#7C3AED]/30"
       >
         Empezar el test
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
         </svg>
       </button>
@@ -40,39 +53,42 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- QUIZ -->
-  <section id="quiz-section" class="hidden py-8 pb-24 px-4">
-    <div class="max-w-3xl mx-auto">
+  <section id="quiz-section" class="hidden py-10 pb-24 px-4">
+    <div class="max-w-2xl mx-auto">
       <!-- Progress -->
       <div class="mb-8">
         <div class="flex justify-between items-center mb-2">
-          <span id="progress-label" class="text-sm font-medium text-gray-600 dark:text-gray-400">Pregunta 1 de 5</span>
+          <span id="progress-label" class="text-sm font-medium text-gray-500 dark:text-gray-400">Pregunta 1 de 5</span>
           <span id="progress-pct" class="text-sm font-semibold text-[#7C3AED]">0%</span>
         </div>
-        <div class="h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+        <div class="h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
           <div id="progress-bar" class="h-full bg-[#7C3AED] rounded-full transition-all duration-500" style="width: 0%"></div>
         </div>
         <div class="flex gap-1.5 mt-3">
-          <div id="dot-1" class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-2" class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-3" class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-4" class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-5" class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
+          <div id="dot-1" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
+          <div id="dot-2" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
+          <div id="dot-3" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
+          <div id="dot-4" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
+          <div id="dot-5" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
         </div>
       </div>
 
       <!-- Question card -->
-      <div id="question-card" class="bg-white dark:bg-[#1A1A1A] rounded-3xl border border-gray-200 dark:border-gray-800 p-6 sm:p-10 shadow-xl">
-        <p id="q-numero" class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3">Pregunta 1</p>
-        <h2 id="q-texto" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-1 leading-snug"></h2>
-        <p id="q-subtitulo" class="text-sm text-gray-500 dark:text-gray-400 mb-8"></p>
-        <div id="opciones-grid" class="grid gap-3"></div>
+      <div id="question-card" class="bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8">
+        <p id="q-numero" class="text-xs font-semibold text-[#7C3AED] mb-3 uppercase tracking-widest">Pregunta 1</p>
+        <h2 id="q-texto" class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-1 leading-snug"></h2>
+        <p id="q-subtitulo" class="text-sm text-gray-500 dark:text-gray-400 mb-6"></p>
+        <div id="opciones-grid" class="grid gap-2.5"></div>
       </div>
 
       <!-- Email capture card -->
-      <div id="email-card" class="hidden bg-white dark:bg-[#1A1A1A] rounded-3xl border border-gray-200 dark:border-gray-800 p-6 sm:p-10 shadow-xl text-center">
-        <div class="text-6xl mb-4">🎉</div>
-        <p class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-2">¡Ya casi!</p>
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-snug">
+      <div id="email-card" class="hidden bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-10 text-center">
+        <div class="w-14 h-14 mx-auto mb-5 bg-[#7C3AED]/10 dark:bg-[#7C3AED]/15 rounded-2xl flex items-center justify-center">
+          <svg class="w-7 h-7 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-snug">
           Tu resultado te espera
         </h2>
         <p class="text-gray-500 dark:text-gray-400 mb-8 max-w-xs mx-auto leading-relaxed text-sm">
@@ -86,14 +102,14 @@ import Layout from '../layouts/Layout.astro';
               type="email"
               placeholder="tu@email.com"
               autocomplete="email"
-              class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#7C3AED] transition-colors text-sm"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-colors text-sm"
             />
             <p id="email-error" class="hidden text-xs text-red-500 mt-1 ml-1">Introduce un email válido.</p>
           </div>
           <button
             type="submit"
             id="btn-email-submit"
-            class="w-full bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 hover:scale-[1.02] flex items-center justify-center gap-2 text-sm"
+            class="w-full bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
           >
             <span id="btn-email-text">Ver mi resultado</span>
             <svg id="btn-email-arrow" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -106,7 +122,7 @@ import Layout from '../layouts/Layout.astro';
           </button>
         </form>
 
-        <button id="btn-skip-email" class="mt-5 text-xs text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors underline underline-offset-2">
+        <button id="btn-skip-email" class="mt-5 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
           Saltar y ver el resultado
         </button>
       </div>
@@ -114,53 +130,55 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- RESULTS -->
-  <section id="results-section" class="hidden py-8 pb-24 px-4">
-    <div class="max-w-3xl mx-auto">
+  <section id="results-section" class="hidden py-10 pb-24 px-4">
+    <div class="max-w-2xl mx-auto">
       <div class="text-center mb-10">
-        <div id="confetti-container" class="relative h-16 mb-2 overflow-visible pointer-events-none"></div>
+        <div id="confetti-container" class="relative h-12 mb-4 overflow-visible pointer-events-none"></div>
         <p class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-2">Tu resultado</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">Tu IA ideal es...</h2>
-        <p class="text-gray-600 dark:text-gray-400">Basado en tus respuestas, aquí está tu recomendación.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Tu IA ideal es...</h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Basado en tus respuestas, aquí está tu recomendación personalizada.</p>
       </div>
 
       <!-- Winner card -->
-      <div id="winner-card" class="rounded-3xl p-6 sm:p-8 mb-6 text-white shadow-2xl overflow-hidden">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="text-5xl flex-shrink-0" id="winner-emoji"></div>
-          <div>
-            <p class="text-sm font-semibold opacity-75 mb-0.5" id="winner-empresa"></p>
-            <h3 class="text-3xl font-bold leading-none" id="winner-nombre"></h3>
+      <div id="winner-card" class="rounded-2xl mb-6 text-white overflow-hidden shadow-xl">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <p class="text-sm font-medium opacity-70 mb-1" id="winner-empresa"></p>
+              <h3 class="text-3xl sm:text-4xl font-extrabold leading-tight" id="winner-nombre"></h3>
+            </div>
+            <div class="flex-shrink-0" id="winner-emoji"></div>
           </div>
-        </div>
-        <p class="text-lg font-semibold opacity-90 mb-3" id="winner-tagline"></p>
-        <p class="opacity-80 mb-5 leading-relaxed text-sm sm:text-base" id="winner-desc"></p>
-        <div class="flex flex-wrap gap-2 mb-6" id="winner-pros"></div>
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <a id="winner-link" href="#" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">
-            Probar ahora
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-            </svg>
-          </a>
-          <span class="flex items-center gap-1.5 text-sm opacity-75">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <span id="winner-precio"></span>
-          </span>
+          <p class="text-base font-semibold opacity-90 mb-3" id="winner-tagline"></p>
+          <p class="opacity-75 mb-5 leading-relaxed text-sm" id="winner-desc"></p>
+          <div class="flex flex-wrap gap-2 mb-5" id="winner-pros"></div>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-5 border-t border-white/20">
+            <a id="winner-link" href="#" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">
+              Probar ahora
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+            <span class="flex items-center gap-1.5 text-sm opacity-70">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              <span id="winner-precio"></span>
+            </span>
+          </div>
         </div>
       </div>
 
       <!-- Alternatives -->
       <div class="mb-10">
-        <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4">También puede interesarte</h3>
-        <div id="alt-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">También puede interesarte</p>
+        <div id="alt-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
       </div>
 
       <!-- Restart -->
-      <div class="text-center pt-4 border-t border-gray-200 dark:border-gray-800">
-        <button id="btn-restart" class="inline-flex items-center gap-2 text-[#7C3AED] hover:text-[#6D28D9] font-semibold transition-colors text-sm">
+      <div class="text-center pt-6 border-t border-gray-200 dark:border-gray-800">
+        <button id="btn-restart" class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#7C3AED] font-medium transition-colors">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
@@ -173,65 +191,64 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   @keyframes slideInRight {
-    from { transform: translateX(60px); opacity: 0; }
+    from { transform: translateX(50px); opacity: 0; }
     to   { transform: translateX(0);    opacity: 1; }
   }
   @keyframes slideOutLeft {
     from { transform: translateX(0);     opacity: 1; }
-    to   { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(-50px); opacity: 0; }
   }
   @keyframes fadeInUp {
-    from { transform: translateY(40px); opacity: 0; }
+    from { transform: translateY(30px); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
   }
   @keyframes popIn {
     0%   { transform: scale(1); }
-    40%  { transform: scale(1.06); }
+    35%  { transform: scale(1.04); }
     100% { transform: scale(1); }
   }
   @keyframes confettiFall {
-    0%   { transform: translateY(0)     rotate(0deg);   opacity: 1; }
-    100% { transform: translateY(80px)  rotate(720deg); opacity: 0; }
+    0%   { transform: translateY(0)    rotate(0deg);   opacity: 1; }
+    100% { transform: translateY(80px) rotate(720deg); opacity: 0; }
   }
 
-  .slide-in  { animation: slideInRight 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
-  .slide-out { animation: slideOutLeft 0.25s cubic-bezier(0.55, 0, 0.75, 0.06) both; }
-  .fade-in-up { animation: fadeInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+  .slide-in   { animation: slideInRight 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+  .slide-out  { animation: slideOutLeft  0.25s cubic-bezier(0.55, 0, 0.75, 0.06)    both; }
+  .fade-in-up { animation: fadeInUp      0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
-  /* Los botones de opciones se crean en JS, por eso necesitan :global() */
   :global(.opcion-card) {
     cursor: pointer;
-    border: 2px solid transparent;
-    background: #F3F4F6;
+    border: 1.5px solid #E5E7EB;
+    background: white;
     transition:
-      transform    0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-      box-shadow   0.2s  ease,
+      transform    0.2s ease,
+      box-shadow   0.2s ease,
       border-color 0.15s ease,
       background   0.15s ease;
   }
   :global(.dark .opcion-card) {
-    background: #111827;
+    background: #1A1A1A;
+    border-color: #1F2937;
   }
   :global(.op-emoji) {
     display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   :global(.op-titulo) {
     transition: color 0.15s ease;
   }
   :global(.opcion-card:hover) {
     border-color: #7C3AED;
-    transform: translateY(-4px) scale(1.02);
-    box-shadow:
-      0 0 0 4px rgba(124, 58, 237, 0.12),
-      0 16px 32px rgba(124, 58, 237, 0.2);
-    background: rgba(124, 58, 237, 0.04);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.14);
+    background: rgba(124, 58, 237, 0.03);
   }
   :global(.dark .opcion-card:hover) {
-    background: rgba(124, 58, 237, 0.09);
+    background: rgba(124, 58, 237, 0.07);
+    border-color: #7C3AED;
   }
   :global(.opcion-card:hover .op-emoji) {
-    transform: scale(1.3) rotate(-8deg);
+    transform: scale(1.2);
   }
   :global(.opcion-card:hover .op-titulo) {
     color: #7C3AED;
@@ -239,18 +256,17 @@ import Layout from '../layouts/Layout.astro';
   :global(.opcion-card.selected) {
     border-color: #7C3AED;
     background: #7C3AED !important;
-    animation: popIn 0.3s ease;
+    animation: popIn 0.25s ease;
   }
   :global(.opcion-card.selected .op-titulo) { color: white; }
-  :global(.opcion-card.selected .op-desc)   { color: rgba(255,255,255,0.75); }
+  :global(.opcion-card.selected .op-desc)   { color: rgba(255,255,255,0.72); }
   :global(.confetti-piece) {
     position: absolute;
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 2px;
     animation: confettiFall 0.9s ease-out forwards;
   }
-
 </style>
 
 <script>
@@ -274,6 +290,7 @@ import Layout from '../layouts/Layout.astro';
     nombre: string;
     empresa: string;
     emoji: string;
+    logo: string;
     tagline: string;
     descripcion: string;
     precio: string;
@@ -330,7 +347,7 @@ import Layout from '../layouts/Layout.astro';
     },
     {
       pregunta: '¿Cómo trabajas habitualmente?',
-      subtitulo: 'Último paso, ya casi terminamos 🏁',
+      subtitulo: 'Último paso, ya casi terminamos',
       grid: 'grid-cols-1 sm:grid-cols-2',
       opciones: [
         { emoji: '🙋', titulo: 'Solo o uso personal', desc: 'Freelance, hobby o proyectos propios', puntos: { cursor: 2, claude: 2, chatgpt: 1, midjourney: 1, perplexity: 1 } },
@@ -344,6 +361,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'ChatGPT',
       empresa: 'OpenAI',
       emoji: '🤖',
+      logo: '/images/logos/chatgpt.svg',
       tagline: 'El más popular y versátil del mercado',
       descripcion: 'ChatGPT es la referencia mundial de la IA. Funciona para casi cualquier tarea: escribir, analizar, programar, responder preguntas... Si no sabes por dónde empezar, empieza aquí. Tiene una interfaz muy intuitiva y una comunidad enorme.',
       precio: 'Gratis · Pro desde $20/mes',
@@ -356,6 +374,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Claude',
       empresa: 'Anthropic',
       emoji: '🧠',
+      logo: '/images/logos/claude.svg',
       tagline: 'El mejor para análisis profundo y escritura de calidad',
       descripcion: 'Claude destaca por su razonamiento, sus textos excelentemente redactados y su capacidad para procesar documentos muy largos. Es también uno de los más cuidadosos con la privacidad y el más honesto cuando no sabe algo.',
       precio: 'Gratis · Pro desde $20/mes',
@@ -368,6 +387,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Gemini',
       empresa: 'Google',
       emoji: '⭐',
+      logo: '/images/logos/gemini.svg',
       tagline: 'La mejor opción gratuita con integración Google',
       descripcion: 'Gemini es la IA de Google y se integra perfectamente con Gmail, Docs, Drive y el resto del ecosistema. Su versión gratuita es muy potente, tiene acceso a internet en tiempo real y es la mejor elección si ya usas Google.',
       precio: 'Gratis · Advanced desde $19.99/mes',
@@ -380,6 +400,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Perplexity',
       empresa: 'Perplexity AI',
       emoji: '🔍',
+      logo: '/images/logos/perplexity.svg',
       tagline: 'El buscador IA que siempre cita sus fuentes',
       descripcion: 'Perplexity es como un Google mejorado con IA que te da respuestas directas y cita siempre sus fuentes. Perfecto si necesitas información actualizada, investigar cualquier tema o verificar datos en tiempo real.',
       precio: 'Gratis · Pro desde $20/mes',
@@ -392,6 +413,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Midjourney',
       empresa: 'Midjourney',
       emoji: '🎨',
+      logo: '/images/logos/midjourney.svg',
       tagline: 'La IA de imágenes con mayor calidad artística',
       descripcion: 'Midjourney genera las imágenes más impresionantes del mercado. Si buscas arte, ilustraciones o imágenes de alto impacto visual, es la opción de referencia entre diseñadores y creativos de todo el mundo.',
       precio: 'Desde $10/mes',
@@ -404,6 +426,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Adobe Firefly',
       empresa: 'Adobe',
       emoji: '🔥',
+      logo: '/images/logos/adobe-firefly.svg',
       tagline: 'Imágenes IA pensadas para diseñadores',
       descripcion: 'Adobe Firefly está diseñado para uso comercial seguro y se integra directamente en Photoshop, Illustrator y el resto de apps de Adobe. Ideal si ya trabajas en el ecosistema Creative Cloud.',
       precio: 'Gratis con créditos · desde €4.99/mes',
@@ -416,6 +439,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Cursor',
       empresa: 'Anysphere',
       emoji: '⚡',
+      logo: '/images/logos/cursor.svg',
       tagline: 'El editor de código con IA más potente',
       descripcion: 'Cursor es VS Code reinventado con IA nativa. Entiende todo tu proyecto, no solo el archivo abierto. Ideal para desarrolladores individuales que quieren multiplicar su productividad de forma drástica.',
       precio: 'Gratis · Pro desde $20/mes',
@@ -428,6 +452,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'GitHub Copilot',
       empresa: 'GitHub / Microsoft',
       emoji: '🚀',
+      logo: '/images/logos/copilot.svg',
       tagline: 'El estándar en IA para equipos de desarrollo',
       descripcion: 'GitHub Copilot es la opción de referencia en empresas. Se integra con cualquier IDE, gestiona código en equipo y tiene herramientas de revisión y seguridad. El más maduro para entornos profesionales.',
       precio: '$10/mes individual · $19/mes empresa',
@@ -440,6 +465,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'ElevenLabs',
       empresa: 'ElevenLabs',
       emoji: '🎙️',
+      logo: '/images/logos/elevenlabs.svg',
       tagline: 'Las voces sintéticas más realistas del mercado',
       descripcion: 'ElevenLabs convierte texto en voz con una naturalidad que impresiona. Puedes clonar tu propia voz, crear personajes con voces únicas o doblar contenido a cualquier idioma con calidad profesional.',
       precio: 'Gratis · desde $5/mes',
@@ -452,6 +478,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Runway',
       empresa: 'Runway',
       emoji: '🎬',
+      logo: '/images/logos/runwayml.svg',
       tagline: 'Genera y edita vídeos con IA profesional',
       descripcion: 'Runway es la IA de vídeo más avanzada del mercado. Genera vídeos desde texto, aplica efectos imposibles de conseguir manualmente y edita con herramientas impulsadas por IA de calidad cinematográfica.',
       precio: 'Gratis · desde $15/mes',
@@ -464,6 +491,7 @@ import Layout from '../layouts/Layout.astro';
       nombre: 'Notion AI',
       empresa: 'Notion',
       emoji: '📋',
+      logo: '/images/logos/notion.svg',
       tagline: 'La IA integrada en tu espacio de trabajo',
       descripcion: 'Notion AI vive dentro de tu workspace de Notion. Te ayuda a redactar notas, resumir reuniones, crear tareas y organizar información de equipo. Perfecta si ya usas Notion o quieres adoptar una sola herramienta para todo.',
       precio: 'Requiere Notion · +$10/mes',
@@ -474,16 +502,12 @@ import Layout from '../layouts/Layout.astro';
     },
   };
 
-  // ── Config ───────────────────────────────────────────────────────
-  // Crea una cuenta gratuita en formspree.io y pon aquí tu ID de formulario
   const FORMSPREE_ID = 'xojzddkv';
 
-  // ── State ────────────────────────────────────────────────────────
   let preguntaActual = 0;
   let respuestas: Puntos[] = [];
   let animating = false;
 
-  // ── Helpers ──────────────────────────────────────────────────────
   const $ = (id: string) => document.getElementById(id) as HTMLElement;
 
   function show(id: string) { $(id).classList.remove('hidden'); }
@@ -516,23 +540,27 @@ import Layout from '../layouts/Layout.astro';
     $('q-subtitulo').textContent = p.subtitulo;
 
     const grid = $('opciones-grid');
-    grid.className = `grid gap-3 ${p.grid}`;
+    grid.className = `grid gap-2.5 ${p.grid}`;
     grid.innerHTML = '';
 
     p.opciones.forEach((op) => {
       const btn = document.createElement('button');
-      btn.className = 'opcion-card rounded-2xl p-4 text-left w-full';
+      btn.className = 'opcion-card rounded-xl p-3.5 text-left w-full';
       btn.innerHTML = `
-        <div class="op-emoji text-3xl mb-2">${op.emoji}</div>
-        <div class="op-titulo font-semibold text-gray-900 dark:text-white text-sm leading-snug">${op.titulo}</div>
-        <div class="op-desc text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-snug">${op.desc}</div>
+        <div class="flex items-start gap-3">
+          <span class="op-emoji text-lg leading-none flex-shrink-0 mt-0.5">${op.emoji}</span>
+          <div>
+            <div class="op-titulo font-semibold text-gray-900 dark:text-white text-sm leading-snug">${op.titulo}</div>
+            <div class="op-desc text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-snug">${op.desc}</div>
+          </div>
+        </div>
       `;
       btn.addEventListener('click', () => selectOption(btn, op.puntos));
       grid.appendChild(btn);
     });
 
     card.classList.remove('slide-out');
-    void card.offsetWidth; // force reflow
+    void card.offsetWidth;
     card.classList.add('slide-in');
     card.addEventListener('animationend', () => card.classList.remove('slide-in'), { once: true });
   }
@@ -541,7 +569,6 @@ import Layout from '../layouts/Layout.astro';
     if (animating) return;
     animating = true;
 
-    // Disable all other buttons
     $('opciones-grid').querySelectorAll('button').forEach(b => (b as HTMLButtonElement).disabled = true);
     btn.classList.add('selected');
     respuestas[preguntaActual] = puntos;
@@ -560,32 +587,28 @@ import Layout from '../layouts/Layout.astro';
           animating = false;
         }
       }, { once: true });
-    }, 420);
+    }, 380);
   }
 
   function showEmailCapture() {
-    // Barra al 100%
     ($('progress-bar') as HTMLElement).style.width = '100%';
     $('progress-label').textContent = '¡Test completado!';
     $('progress-pct').textContent = '100%';
     for (let i = 1; i <= 5; i++) $(`dot-${i}`).style.background = '#7C3AED';
 
-    // Si ya capturamos el email antes, vamos directo a resultados
     if (localStorage.getItem('quiz_email')) {
       hide('quiz-section');
       showResults();
       return;
     }
 
-    // El question-card ya tiene 'slide-out' de selectOption — está fuera de pantalla.
-    // Solo hay que ocultarlo en el DOM y mostrar el email-card.
     const qCard = $('question-card');
     qCard.classList.add('hidden');
     qCard.classList.remove('slide-out');
 
     const eCard = $('email-card');
     eCard.classList.remove('hidden');
-    void eCard.offsetWidth; // fuerza reflow para que la animación arranque
+    void eCard.offsetWidth;
     eCard.classList.add('fade-in-up');
     eCard.addEventListener('animationend', () => eCard.classList.remove('fade-in-up'), { once: true });
   }
@@ -621,14 +644,14 @@ import Layout from '../layouts/Layout.astro';
   function spawnConfetti() {
     const container = $('confetti-container');
     const colors = ['#7C3AED', '#A78BFA', '#F59E0B', '#10B981', '#EF4444', '#3B82F6', '#EC4899'];
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < 24; i++) {
       const piece = document.createElement('div');
       piece.className = 'confetti-piece';
       piece.style.left = `${10 + Math.random() * 80}%`;
       piece.style.top = '0';
       piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-      piece.style.animationDelay = `${Math.random() * 0.6}s`;
-      piece.style.animationDuration = `${0.7 + Math.random() * 0.7}s`;
+      piece.style.animationDelay = `${Math.random() * 0.5}s`;
+      piece.style.animationDuration = `${0.7 + Math.random() * 0.6}s`;
       piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
       container.appendChild(piece);
     }
@@ -636,16 +659,19 @@ import Layout from '../layouts/Layout.astro';
 
   function showResults() {
     const ranked = calcularScores();
-    // Pick winner from known IAs
     const [winnerId] = ranked.find(([id]) => IAs[id]) ?? ranked[0];
     const winner = IAs[winnerId];
     if (!winner) return;
 
-    // Winner card
     const wCard = $('winner-card');
     wCard.style.background = `linear-gradient(135deg, ${winner.colorFrom}, ${winner.colorTo})`;
 
-    $('winner-emoji').textContent = winner.emoji;
+    $('winner-emoji').innerHTML = `
+      <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center overflow-hidden p-2">
+        <img src="${winner.logo}" alt="${winner.nombre}" class="w-full h-full object-contain"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="hidden text-3xl">${winner.emoji}</span>
+      </div>`;
     $('winner-empresa').textContent = winner.empresa;
     $('winner-nombre').textContent = winner.nombre;
     $('winner-tagline').textContent = winner.tagline;
@@ -660,14 +686,19 @@ import Layout from '../layouts/Layout.astro';
         </svg>${p}</span>`
     ).join('');
 
-    // Alternatives
     const alts = ranked.filter(([id]) => id !== winnerId && IAs[id]).slice(0, 2);
     $('alt-grid').innerHTML = alts.map(([id]) => {
       const ia = IAs[id];
       return `
         <a href="${ia.web}" target="_blank" rel="noopener noreferrer"
-          class="group flex items-center gap-4 p-4 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/60 hover:shadow-lg hover:shadow-[#7C3AED]/10 transition-all duration-300">
-          <span class="text-3xl flex-shrink-0">${ia.emoji}</span>
+          class="group flex items-center gap-3 p-4 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/50 hover:shadow-md hover:shadow-[#7C3AED]/10 transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl flex-shrink-0 bg-white dark:bg-gray-100 border border-gray-100 dark:border-gray-200 flex items-center justify-center overflow-hidden p-1.5">
+            <img src="${ia.logo}" alt="${ia.nombre}" class="w-full h-full object-contain"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="hidden w-full h-full items-center justify-center text-white font-bold text-xs rounded-lg" style="background: linear-gradient(135deg, ${ia.colorFrom}, ${ia.colorTo})">
+              ${ia.nombre.substring(0, 2).toUpperCase()}
+            </div>
+          </div>
           <div class="min-w-0 flex-1">
             <p class="font-bold text-gray-900 dark:text-white text-sm">${ia.nombre}</p>
             <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">${ia.tagline}</p>
@@ -699,14 +730,12 @@ import Layout from '../layouts/Layout.astro';
   function restartQuiz() {
     hide('results-section');
     $('confetti-container').innerHTML = '';
-    // Resetear email card y question card
     $('email-card').classList.add('hidden');
     const qCard = $('question-card');
     qCard.classList.remove('hidden', 'slide-out');
     startQuiz();
   }
 
-  // ── Email form ────────────────────────────────────────────────────
   $('email-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const input = $('email-input') as HTMLInputElement;
@@ -731,7 +760,6 @@ import Layout from '../layouts/Layout.astro';
   });
 
   $('btn-skip-email').addEventListener('click', goToResults);
-
   $('btn-start').addEventListener('click', startQuiz);
   $('btn-restart').addEventListener('click', restartQuiz);
 </script>
