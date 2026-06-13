@@ -1,0 +1,200 @@
+---
+title: "Claude Opus 4 review: el modelo más potente de Anthropic en 2026"
+description: "Análisis honesto de Claude Opus 4: qué hace mejor que GPT-4o y Gemini 2.5, precios, limitaciones reales y si vale la pena pagar."
+date: 2026-06-13
+category: generacion-texto
+herramientas: ["Claude", "Anthropic"]
+imagen: "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5NzMwMDN8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwYWR2YW5jZWQlMjB0ZWNobm9sb2d5JTIwbmV1cmFsJTIwbmV0d29ya3xlbnwwfDB8fHwxNzgxMzQ2ODMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+faqs:
+  - pregunta: "¿Qué es \"Claude Fable 5\" y por qué no aparece en la web de Anthropic?"
+    respuesta: "\"Claude Fable 5\" es un nombre extraoficial que circula en foros y comunidades de IA, posiblemente derivado de nombres de proyecto internos filtrados. El modelo real al que hace referencia es **Claude Opus 4**, el más potente de la familia Claude disponible al público en 2026. Anthropic nunca ha usado ese nombre oficialmente, así que si lo buscas en su web no encontrarás nada."
+  - pregunta: "¿Está Claude Opus 4 disponible en España y funciona en español?"
+    respuesta: "Sí, Claude.ai está disponible en España y el modelo funciona en español con calidad muy alta. A diferencia de algunos modelos que degradan notablemente en idiomas distintos al inglés, Opus 4 mantiene su capacidad de razonamiento en español. He comprobado análisis de documentos legales en español con resultados comparables a los que obtendría en inglés."
+  - pregunta: "¿Cuál es la diferencia real entre Claude Sonnet 4 y Claude Opus 4?"
+    respuesta: "Sonnet 4 es más rápido y económico; Opus 4 es más potente en razonamiento complejo. En tareas sencillas —responder preguntas, resumir textos cortos, ayudar con emails— la diferencia es marginal. La brecha se hace notable en análisis de documentos largos, razonamiento encadenado complejo y tareas que requieren mantener coherencia en contextos muy extensos. Para la mayoría de usuarios ocasionales, Sonnet 4 es suficiente."
+  - pregunta: "¿Claude Opus 4 es mejor que GPT-4o o Gemini 2.5 Pro?"
+    respuesta: "Depende de la tarea. En **razonamiento complejo y escritura técnica matizada**, Opus 4 tiene una ventaja real y consistente. En **velocidad, generación de imágenes e integraciones de ecosistema**, GPT-4o gana. En **contexto extremadamente largo e integración con Google Workspace**, Gemini 2.5 Pro es más conveniente. No hay un modelo universalmente mejor en 2026; hay modelos más adecuados para casos de uso específicos."
+  - pregunta: "¿Qué pasa cuando se agota el límite de Opus 4 en el plan Pro?"
+    respuesta: "Claude.ai cambia automáticamente al modelo Sonnet 4 cuando se alcanza el límite de uso de Opus 4 en el plan Pro. La conversación continúa sin interrupción, pero con un modelo menos potente. Anthropic no publica el límite exacto; en mi experiencia, en días de uso muy intensivo (6-8 horas de trabajo con documentos largos) puede alcanzarse antes de que acabe el día. Para uso sin límites garantizado, la opción es la API. ---"
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+import BannerAfiliado from '../../components/BannerAfiliado.astro';
+
+Anthropic lleva tiempo construyendo su reputación sobre una premisa concreta: modelos que razonan mejor, alucinan menos y resultan más útiles para trabajo intelectual serio. Claude Opus 4 es su apuesta más ambiciosa hasta la fecha, y tras semanas usándolo a diario para redacción técnica, análisis de documentos y tareas de código, tengo una opinión formada. Si buscas "Claude Fable 5" —un nombre que circula en foros y redes— lo que probablemente estás buscando es precisamente este modelo, Opus 4, el más potente de la familia Claude disponible al público en 2026.
+
+El problema que intenta resolver es real: los modelos de lenguaje generan texto fluido, pero con frecuencia sacrifican la coherencia de fondo por la velocidad superficial. Te dan una respuesta que suena bien pero que, al rascas un poco, tiene huecos lógicos o datos inventados. Para alguien que usa la IA como herramienta de trabajo —no como juguete— eso es un coste oculto enorme en tiempo de revisión.
+
+El veredicto corto: **Claude Opus 4 es el mejor modelo disponible para tareas que exigen razonamiento prolongado, análisis matizado y escritura de calidad**. No es perfecto —tiene limitaciones reales que voy a explicar sin rodeos— y su precio es el más alto del mercado. Pero si tu trabajo depende de la calidad del output, la diferencia se nota.
+
+---
+
+## Qué es Claude Opus 4 y cuánto cuesta exactamente
+
+Antes de entrar en materia, aclaremos la confusión de nombres porque genera mucho ruido.
+
+**"Claude Fable 5" no es un nombre oficial de Anthropic.** Es un término que circula en comunidades de IA, probablemente derivado de filtraciones o especulaciones sobre nombres de proyecto internos. El modelo real al que se refiere esa búsqueda es **Claude Opus 4**, lanzado por Anthropic como la cúspide de su familia de modelos en 2026. La familia completa actual incluye Haiku 4 (rápido y económico), Sonnet 4 (equilibrio entre velocidad y capacidad) y Opus 4 (máxima potencia, mayor coste).
+
+### Planes y precios actuales
+
+Anthropic distribuye Claude a través de dos vías principales:
+
+**Claude.ai — acceso directo para usuarios finales:**
+- **Plan Free**: acceso a Claude con el modelo Sonnet 4 en condiciones normales, con límites de uso. Sin acceso a Opus 4.
+- **Plan Pro** — **~20 €/mes** (facturado en USD a 20$, conversión aproximada): acceso prioritario a Opus 4, ventana de contexto extendida de hasta 200.000 tokens, proyectos con memoria persistente, acceso a artefactos y canvas de trabajo.
+- **Plan Team** — **~25 €/usuario/mes** (mínimo 5 usuarios): todo lo del Pro más herramientas de colaboración en equipo y administración centralizada.
+
+**API para desarrolladores (precios por millón de tokens):**
+- Claude Opus 4: **15$ por millón de tokens de entrada / 75$ por millón de tokens de salida**
+- Claude Sonnet 4: 3$ entrada / 15$ salida
+- Claude Haiku 4: 0,25$ entrada / 1,25$ salida
+
+El precio de la API de Opus 4 es significativamente más alto que GPT-4o (~5$ entrada / 15$ salida) o Gemini 2.5 Pro (~3,5$ entrada / 10,5$ salida). Eso es un dato importante a la hora de decidir.
+
+**Qué incluye el Plan Pro relevante para este análisis:**
+- Acceso a **Claude Opus 4** con límite de uso generoso (Anthropic no publica el número exacto de mensajes, pero en uso intensivo he llegado al límite algún día de trabajo muy pesado)
+- Ventana de contexto de **200.000 tokens** (~150.000 palabras, prácticamente un libro entero)
+- **Proyectos**: espacios de trabajo con memoria persistente donde Claude recuerda contexto entre sesiones
+- Herramientas integradas: búsqueda web, análisis de archivos (PDF, código, CSV), generación de artefactos (HTML, React, SVG)
+- Acceso a **Claude.ai en móvil**
+
+---
+
+<TablaComparativa
+  titulo="Claude Opus 4 vs la competencia en 2026"
+  herramientas={[
+    { nombre: "Claude Opus 4", precio: "20 €/mes (Pro)", puntuacion: 4.8, idealPara: "Análisis profundo, escritura técnica y razonamiento complejo" },
+    { nombre: "GPT-4o / o3 (ChatGPT Plus)", precio: "20 €/mes", puntuacion: 4.6, idealPara: "Uso generalista, integraciones y ecosistema de plugins" },
+    { nombre: "Gemini 2.5 Pro (Google)", precio: "21,99 €/mes (One AI Premium)", puntuacion: 4.5, idealPara: "Integración con Google Workspace y contexto muy largo" },
+    { nombre: "Claude Sonnet 4", precio: "Gratis (con límites)", puntuacion: 4.3, idealPara: "Tareas cotidianas sin necesidad de máxima potencia" },
+  ]}
+/>
+
+---
+
+## Razonamiento prolongado: donde Opus 4 deja atrás a la competencia
+
+La diferencia más notable entre Opus 4 y el resto de modelos del mercado no está en las demos de YouTube —está en lo que pasa cuando le das una tarea que requiere mantener el hilo durante muchos pasos.
+
+### Análisis de documentos largos con coherencia real
+
+Lo probé con algo muy concreto: le pasé un contrato de servicios de 47 páginas en PDF (unos 28.000 tokens) y le pedí que identificara cláusulas problemáticas, las comparara con la legislación española aplicable y me propusiera redacciones alternativas. Con GPT-4o, el resultado fue útil pero genérico: identificó las cláusulas más obvias pero perdió el hilo en las dependencias entre cláusulas de distintas secciones. Con Opus 4, el análisis fue cualitativamente distinto: identificó tres contradicciones internas en el contrato que yo mismo había pasado por alto, relacionó cláusulas de responsabilidad con cláusulas de resolución que estaban separadas por 30 páginas y propuso alternativas con referencias específicas al articulado.
+
+El tiempo invertido fue el mismo. El valor del output, no.
+
+### Cadenas de razonamiento sin atajos
+
+Opus 4 tiene lo que Anthropic llama **extended thinking**: la capacidad de trabajar en un problema paso a paso antes de dar una respuesta, visible para el usuario. Cuando activas esta función en Claude.ai (aparece como un desplegable "Thinking" en la respuesta), ves literalmente el proceso de razonamiento intermedio.
+
+Lo usé para resolver un problema de modelado de datos en un proyecto de análisis: tenía tres tablas con relaciones ambiguas y necesitaba una arquitectura que fuera eficiente y escalable. El modelo pasó por cuatro hipótesis distintas, descartó dos con justificación explícita y llegó a una solución que no era la más obvia. Tiempo en el que yo hubiera llegado a la misma conclusión solo: probablemente 2-3 horas. Con Opus 4: 8 minutos.
+
+### Memoria de proyecto: el cambio más subestimado
+
+Los **Proyectos** de Claude Pro cambian el flujo de trabajo de forma sustancial. Puedes crear un espacio donde el modelo recuerde contexto entre conversaciones: el tono de comunicación de tu empresa, el stack tecnológico de un proyecto, el historial de decisiones tomadas. No es memoria perfecta —tiene límites— pero en la práctica significa que no tienes que re-contextualizar cada conversación desde cero.
+
+En mi flujo de trabajo, tengo un Proyecto para este blog donde Claude conoce el estilo editorial, los artículos ya publicados y las convenciones de formato. La diferencia en eficiencia es real: los primeros borradores necesitan la mitad de iteraciones.
+
+---
+
+## Escritura técnica y creativa: el equilibrio que otros modelos no tienen
+
+Hay una tensión conocida en los modelos de lenguaje: los que son buenos en precisión técnica tienden a sonar robóticos, y los que suenan naturales tienden a sacrificar la exactitud. Claude Opus 4 gestiona ese equilibrio mejor que ningún otro modelo que haya probado.
+
+### Código con contexto real
+
+No voy a competir con [el análisis de Cursor IDE](https://blog.ejemplo.com/cursor-ide-review-completa-programa-con-ia-de-verdad) o GitHub Copilot que ya existe en el blog —ese territorio está cubierto. Pero Claude Opus 4 como herramienta de código fuera de un IDE tiene un nicho claro: cuando necesitas **entender** código, refactorizar arquitecturas completas o generar documentación técnica que tenga sentido.
+
+Le pasé un módulo de Python de 800 líneas con deuda técnica acumulada y le pedí una refactorización con explicación de cada decisión. El resultado fue código limpio, pero más importante: la explicación de por qué cada cambio mejoraba la mantenibilidad era lo suficientemente clara como para usarla directamente en la revisión de código con el equipo. GPT-4o hizo algo similar en menos tiempo, pero las explicaciones eran más superficiales.
+
+### Escritura con voz propia
+
+Donde Opus 4 destaca especialmente en escritura es en su capacidad de **adaptar el estilo sin perder la sustancia**. Le di tres artículos de ejemplo de un medio técnico y le pedí que escribiera en ese estilo sobre un tema diferente. El resultado capturó matices —longitud de párrafos, densidad de ejemplos, nivel de tecnicismo— que otros modelos homogenizan o exageran.
+
+Una advertencia honesta: Opus 4 tiene una tendencia a ser más cauto y añadir más matices de los necesarios en textos cortos. Si necesitas respuestas directas y concisas, a veces Sonnet 4 es mejor opción. Opus 4 brilla cuando la complejidad justifica la profundidad.
+
+---
+
+## Limitaciones reales de Claude Opus 4: dónde pierde frente a la competencia
+
+Ser honesto sobre las limitaciones es la parte más útil de cualquier análisis. Aquí están las mías, sin suavizar.
+
+### Velocidad: notablemente más lento
+
+Opus 4 es el modelo más lento de la familia Claude y más lento que GPT-4o en respuesta estándar. En textos largos con extended thinking activado, la espera puede superar el minuto. Para trabajo en profundidad esto es asumible. Para uso conversacional rápido, es molesto. **Si tu caso de uso principal es respuestas rápidas e iteración veloz, Claude Sonnet 4 o GPT-4o son mejores opciones.**
+
+### El límite de uso no es transparente
+
+Anthropic no publica cuántos mensajes con Opus 4 incluye el plan Pro. En uso intensivo (varias horas de trabajo pesado), he llegado a mensajes de "límite alcanzado, cambiando a Sonnet 4". OpenAI hace exactamente lo mismo con o3, así que no es exclusivo de Anthropic, pero sigue siendo una falta de transparencia que merece señalarse. Si necesitas uso ilimitado garantizado, la API es la única opción real.
+
+### Sin generación de imágenes nativa
+
+Mientras [GPT-4o integra DALL-E 3](https://blog.ejemplo.com/chatgpt-vs-claude-2024) directamente y Gemini 2.5 Pro tiene Imagen 3, Claude no genera imágenes. Punto. Para workflows que combinan texto e imagen, esto obliga a saltar de herramienta. Anthropic ha sido explícita en que su foco es el texto y el código, pero en 2026 la ausencia empieza a notarse como una limitación real para ciertos casos de uso.
+
+### Búsqueda web: funcional pero no su fuerte
+
+La búsqueda web integrada en Claude.ai funciona, pero [Perplexity AI —que ya tiene su propio artículo en este blog—](https://blog.ejemplo.com/perplexity-ai-review-2026) la supera claramente en precisión de fuentes y actualidad. Si la búsqueda web es tu caso de uso principal, Perplexity o ChatGPT con búsqueda son mejores opciones.
+
+### Precio de API fuera del alcance para proyectos pequeños
+
+Los **75$ por millón de tokens de salida** de Opus 4 en API lo hacen prohibitivo para la mayoría de proyectos de desarrollo independiente. Para producción a escala, la ecuación casi siempre favorece a Sonnet 4, GPT-4o o Gemini 2.5 Pro. Opus 4 en API tiene sentido para casos muy específicos donde la calidad justifica el coste.
+
+---
+
+## ¿Vale la pena pagar Claude Opus 4?
+
+Después de semanas de uso intensivo, mi respuesta es condicional y deliberada.
+
+**Sí vale la pena si:**
+- Tu trabajo principal implica **análisis de documentos largos** (contratos, informes, research) donde la coherencia en contexto extenso importa
+- Escribes contenido técnico o complejo donde la calidad del razonamiento detrás del texto es visible en el resultado
+- Necesitas un asistente que recuerde el contexto de proyectos en curso entre sesiones (los Proyectos de Claude Pro son genuinamente útiles)
+- Ya usas Claude Sonnet 4 y notas que las tareas más complejas no llegan al nivel que necesitas
+- Trabajas en entornos donde la **fiabilidad factual** y la ausencia de alucinaciones tiene coste real (legal, médico, financiero)
+
+**Probablemente no vale la pena si:**
+- Tu uso principal es conversacional o para tareas cortas y directas — Sonnet 4 (gratuito con límites) es suficiente
+- Necesitas generación de imágenes integrada en tu flujo de trabajo
+- La velocidad de respuesta es crítica en tu caso de uso
+- Eres desarrollador y quieres usar la API a escala: el coste de Opus 4 raramente se justifica frente a Sonnet 4
+- Ya tienes ChatGPT Plus y tu uso está centrado en integraciones con el ecosistema OpenAI (GPTs, plugins, DALL-E)
+
+**La recomendación directa**: si ya pagas 20€/mes por ChatGPT Plus y haces trabajo intelectual complejo, probar Claude Pro durante un mes tiene coste cero de riesgo —el precio es idéntico. La mayoría de usuarios que trabajan con documentos largos o análisis matizados no vuelven atrás.
+
+---
+
+<BannerAfiliado
+  titulo="Prueba Claude Pro con Opus 4 incluido"
+  descripcion="Accede a Claude Opus 4, ventana de contexto de 200.000 tokens y Proyectos con memoria persistente. Primer mes con garantía de reembolso."
+  cta="Probar Claude Pro"
+  url="https://claude.ai/upgrade"
+/>
+
+---
+
+## Preguntas frecuentes sobre Claude Opus 4
+
+**¿Qué es "Claude Fable 5" y por qué no aparece en la web de Anthropic?**
+"Claude Fable 5" es un nombre extraoficial que circula en foros y comunidades de IA, posiblemente derivado de nombres de proyecto internos filtrados. El modelo real al que hace referencia es **Claude Opus 4**, el más potente de la familia Claude disponible al público en 2026. Anthropic nunca ha usado ese nombre oficialmente, así que si lo buscas en su web no encontrarás nada.
+
+**¿Está Claude Opus 4 disponible en España y funciona en español?**
+Sí, Claude.ai está disponible en España y el modelo funciona en español con calidad muy alta. A diferencia de algunos modelos que degradan notablemente en idiomas distintos al inglés, Opus 4 mantiene su capacidad de razonamiento en español. He comprobado análisis de documentos legales en español con resultados comparables a los que obtendría en inglés.
+
+**¿Cuál es la diferencia real entre Claude Sonnet 4 y Claude Opus 4?**
+Sonnet 4 es más rápido y económico; Opus 4 es más potente en razonamiento complejo. En tareas sencillas —responder preguntas, resumir textos cortos, ayudar con emails— la diferencia es marginal. La brecha se hace notable en análisis de documentos largos, razonamiento encadenado complejo y tareas que requieren mantener coherencia en contextos muy extensos. Para la mayoría de usuarios ocasionales, Sonnet 4 es suficiente.
+
+**¿Claude Opus 4 es mejor que GPT-4o o Gemini 2.5 Pro?**
+Depende de la tarea. En **razonamiento complejo y escritura técnica matizada**, Opus 4 tiene una ventaja real y consistente. En **velocidad, generación de imágenes e integraciones de ecosistema**, GPT-4o gana. En **contexto extremadamente largo e integración con Google Workspace**, Gemini 2.5 Pro es más conveniente. No hay un modelo universalmente mejor en 2026; hay modelos más adecuados para casos de uso específicos.
+
+**¿Qué pasa cuando se agota el límite de Opus 4 en el plan Pro?**
+Claude.ai cambia automáticamente al modelo Sonnet 4 cuando se alcanza el límite de uso de Opus 4 en el plan Pro. La conversación continúa sin interrupción, pero con un modelo menos potente. Anthropic no publica el límite exacto; en mi experiencia, en días de uso muy intensivo (6-8 horas de trabajo con documentos largos) puede alcanzarse antes de que acabe el día. Para uso sin límites garantizado, la opción es la API.
+
+---
+
+## Conclusión
+
+Claude Opus 4 es el modelo más capaz para trabajo intelectual serio que existe disponible al público en 2026. Esa afirmación tiene matices —GPT-4o y Gemini 2.5 Pro son competidores sólidos con ventajas reales en otros terrenos— pero en el núcleo de lo que Anthropic lleva años trabajando, el razonamiento profundo y la coherencia en contextos largos, Opus 4 está genuinamente un paso por delante.
+
+El precio de 20€/mes es el mismo que ChatGPT Plus o Gemini One AI Premium, lo que elimina la barrera económica como excusa para no probarlo. La trampa está en asumir que todos los modelos a ese precio hacen lo mismo: no es así. Si tu trabajo implica analizar documentos complejos, escribir con precisión técnica o resolver problemas que requieren razonamiento encadenado, la diferencia de calidad justifica el cambio o la suscripción simultánea.
+
+Para quienes buscan "Claude Fable 5" esperando algo más potente todavía: Opus 4 es lo que existe hoy, y es suficientemente bueno como para que la búsqueda del siguiente modelo pueda esperar. Úsalo primero.

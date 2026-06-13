@@ -31,9 +31,9 @@
     "tema": "Cursor IDE review completa: programa con IA de verdad",
     "usado": true
   },
-  { 
-    "tema": "Claude Fable 5 review: el modelo más potente de Anthropic disponible al público", 
-    "usado": false 
+  {
+    "tema": "Claude Fable 5 review: el modelo más potente de Anthropic disponible al público",
+    "usado": true
   },
   {
     "tema": "Codeium vs GitHub Copilot gratis: comparativa real",
@@ -59,9 +59,9 @@
     "tema": "Grok de xAI: review del rival de ChatGPT",
     "usado": false
   },
-  { 
+  {
     "tema": "Claude Fable 5 vs GPT 5.5: comparativa completa 2026",
-    "usado": false 
+    "usado": false
   },
   {
     "tema": "Mistral AI: el modelo europeo que desafía a OpenAI",
@@ -103,9 +103,9 @@
     "tema": "Gamma.app para crear presentaciones con IA",
     "usado": false
   },
-  { 
+  {
     "tema": "Claude Fable 5 vs Gemini 3.1 Pro: cuál es mejor",
-    "usado": false 
+    "usado": false
   },
   {
     "tema": "Mem.ai el segundo cerebro con inteligencia artificial",
