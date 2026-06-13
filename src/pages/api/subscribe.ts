@@ -68,6 +68,7 @@ export const POST: APIRoute = async ({ request }) => {
       body: JSON.stringify({
         from: fromEmail,
         to: email,
+        reply_to: 'comunidad.aienespanol@gmail.com',
         subject: '¡Bienvenido a IA en Español! 🤖',
         html: `
 <!DOCTYPE html>
