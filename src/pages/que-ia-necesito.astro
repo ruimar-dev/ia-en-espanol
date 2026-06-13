@@ -1,5 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('blog', ({ data }) => !data.draft);
+
+const IA_HERRAMIENTAS: Record<string, string[]> = {
+  chatgpt:    ['ChatGPT'],
+  claude:     ['Claude', 'Anthropic'],
+  gemini:     ['Google Gemini', 'Gemini'],
+  perplexity: ['Perplexity AI', 'Perplexity'],
+  midjourney: ['Midjourney'],
+  firefly:    ['Adobe Firefly'],
+  cursor:     ['Cursor'],
+  copilot:    ['GitHub Copilot'],
+  elevenlabs: ['ElevenLabs'],
+  runway:     ['Runway'],
+  notion:     ['Notion AI', 'Notion'],
+};
+
+const articulosPorIA: Record<string, Array<{ title: string; description: string; slug: string; imagen?: string }>> = {};
+for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
+  articulosPorIA[iaId] = allArticles
+    .filter(a => a.data.herramientas.some(h => names.includes(h)))
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, 2)
+    .map(a => ({ title: a.data.title, description: a.data.description, slug: a.slug, imagen: a.data.imagen }));
+}
 ---
 
 <Layout
@@ -142,12 +168,15 @@ import Layout from '../layouts/Layout.astro';
       <!-- Winner card -->
       <div id="winner-card" class="rounded-2xl mb-6 text-white overflow-hidden shadow-xl">
         <div class="p-6 sm:p-8">
-          <div class="flex items-start justify-between gap-4 mb-5">
+          <div class="flex items-start justify-between gap-4 mb-3">
             <div>
               <p class="text-sm font-medium opacity-70 mb-1" id="winner-empresa"></p>
               <h3 class="text-3xl sm:text-4xl font-extrabold leading-tight" id="winner-nombre"></h3>
             </div>
             <div class="flex-shrink-0" id="winner-emoji"></div>
+          </div>
+          <div class="mb-4">
+            <span id="winner-match" class="inline-flex items-center gap-1.5 bg-white/20 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide"></span>
           </div>
           <p class="text-base font-semibold opacity-90 mb-3" id="winner-tagline"></p>
           <p class="opacity-75 mb-5 leading-relaxed text-sm" id="winner-desc"></p>
@@ -170,10 +199,46 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Alternatives -->
-      <div class="mb-10">
-        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">También puede interesarte</p>
-        <div id="alt-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+      <!-- Share -->
+      <div id="share-section" class="hidden mb-8">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">Comparte tu resultado</p>
+        <div class="flex flex-wrap gap-2">
+          <button id="btn-copy-link"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1A1A1A] text-gray-700 dark:text-gray-300 hover:border-[#7C3AED] hover:text-[#7C3AED] dark:hover:border-[#A78BFA] dark:hover:text-[#A78BFA] text-sm font-medium transition-colors">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+            </svg>
+            <span id="btn-copy-text">Copiar enlace</span>
+          </button>
+          <a id="btn-share-x" href="#" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1A1A1A] text-gray-700 dark:text-gray-300 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white text-sm font-medium transition-colors">
+            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+            </svg>
+            Compartir en X
+          </a>
+          <a id="btn-share-whatsapp" href="#" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1A1A1A] text-gray-700 dark:text-gray-300 hover:border-[#25D366] hover:text-[#25D366] dark:hover:border-[#25D366] dark:hover:text-[#25D366] text-sm font-medium transition-colors">
+            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Comparison -->
+      <div id="comparison-section" class="hidden mb-10">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Comparativa del podio</p>
+        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <div id="comparison-table" class="min-w-[480px] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden"></div>
+        </div>
+      </div>
+
+      <!-- Related articles -->
+      <div id="related-section" class="hidden mb-8">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Sigue leyendo</p>
+        <div id="related-grid" class="grid grid-cols-1 gap-3"></div>
       </div>
 
       <!-- Restart -->
@@ -187,6 +252,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+
+  <script type="application/json" id="articulos-data" set:html={JSON.stringify(articulosPorIA)}></script>
 </Layout>
 
 <style>
@@ -284,6 +351,12 @@ import Layout from '../layouts/Layout.astro';
     subtitulo: string;
     grid: string;
     opciones: Opcion[];
+    saltarSi?: (idx: (number | null)[]) => boolean;
+  }
+
+  interface Penalidad {
+    condicion: (idx: (number | null)[]) => boolean;
+    factores: Partial<Record<string, number>>;
   }
 
   interface IAInfo {
@@ -328,6 +401,7 @@ import Layout from '../layouts/Layout.astro';
       pregunta: '¿Cómo te defines con la IA?',
       subtitulo: 'Sé honesto, no hay respuesta incorrecta',
       grid: 'grid-cols-1 sm:grid-cols-3',
+      saltarSi: (idx) => idx[0] === 3 || idx[0] === 4,
       opciones: [
         { emoji: '🌱', titulo: 'Soy principiante', desc: 'Poca o ninguna experiencia aún', puntos: { chatgpt: 3, gemini: 2, notion: 2 } },
         { emoji: '🚀', titulo: 'Ya uso alguna IA', desc: 'Conozco lo básico, quiero más', puntos: { claude: 2, chatgpt: 2, midjourney: 1, perplexity: 1 } },
@@ -338,6 +412,7 @@ import Layout from '../layouts/Layout.astro';
       pregunta: '¿Qué es lo más importante para ti?',
       subtitulo: 'Elige solo uno — el que más pese en tu decisión',
       grid: 'grid-cols-2',
+      saltarSi: (idx) => idx[0] === 3 || idx[0] === 4,
       opciones: [
         { emoji: '⚡', titulo: 'Velocidad', desc: 'Que funcione ya y sin complicaciones', puntos: { gemini: 3, chatgpt: 2, perplexity: 2 } },
         { emoji: '🎯', titulo: 'Máxima calidad', desc: 'Prefiero lo mejor aunque lleve más tiempo', puntos: { claude: 3, midjourney: 2, chatgpt: 1 } },
@@ -502,10 +577,45 @@ import Layout from '../layouts/Layout.astro';
     },
   };
 
-  const FORMSPREE_ID = 'xojzddkv';
+  // Índices de referencia rápida
+  // Q1 opciones: 0=Escribir, 1=Imágenes, 2=Programar, 3=Audio, 4=Vídeo, 5=Organizar
+  // Q2 opciones: 0=Gratis, 1=Hasta20€, 2=LoQueSea
+  // Q3 opciones: 0=Principiante, 1=Intermedio, 2=Técnico  (null si saltada)
+  // Q4 opciones: 0=Velocidad, 1=Calidad, 2=Creatividad, 3=Privacidad (null si saltada)
+  // Q5 opciones: 0=Solo, 1=Equipo
+
+  const PENALIDADES: Penalidad[] = [
+    {
+      // Sin presupuesto → penaliza herramientas sin plan gratuito real
+      condicion: (idx) => idx[1] === 0,
+      factores: { midjourney: 0.15, runway: 0.10, notion: 0.20, copilot: 0.40 },
+    },
+    {
+      // Programar + priorizar creatividad: incoherente con las herramientas de código
+      condicion: (idx) => idx[0] === 2 && idx[3] === 2,
+      factores: { midjourney: 0.20, firefly: 0.20 },
+    },
+    {
+      // Principiante + Cursor: la curva de aprendizaje de Cursor es demasiado alta
+      condicion: (idx) => idx[2] === 0,
+      factores: { cursor: 0.50 },
+    },
+  ];
+
+  function aplicarPenalidades(scores: Record<string, number>): Record<string, number> {
+    const resultado = { ...scores };
+    PENALIDADES.forEach(({ condicion, factores }) => {
+      if (!condicion(respuestasIdx)) return;
+      (Object.entries(factores) as [string, number][]).forEach(([ia, factor]) => {
+        if (resultado[ia] !== undefined) resultado[ia] = resultado[ia] * factor;
+      });
+    });
+    return resultado;
+  }
 
   let preguntaActual = 0;
-  let respuestas: Puntos[] = [];
+  let respuestas: (Puntos | null)[] = [];
+  let respuestasIdx: (number | null)[] = [];
   let animating = false;
 
   const $ = (id: string) => document.getElementById(id) as HTMLElement;
@@ -513,17 +623,35 @@ import Layout from '../layouts/Layout.astro';
   function show(id: string) { $(id).classList.remove('hidden'); }
   function hide(id: string) { $(id).classList.add('hidden'); }
 
+  function esSaltada(qIdx: number): boolean {
+    return !!(preguntas[qIdx].saltarSi?.(respuestasIdx));
+  }
+
+  function getTotalRelevante(): number {
+    return preguntas.filter((_, i) => !esSaltada(i)).length;
+  }
+
+  function getPreguntaVisual(idx: number): number {
+    let count = 0;
+    for (let i = 0; i <= idx; i++) { if (!esSaltada(i)) count++; }
+    return count;
+  }
+
   function updateProgress(idx: number) {
-    const total = preguntas.length;
-    const pct = Math.round((idx / total) * 100);
+    const total = getTotalRelevante();
+    const visual = getPreguntaVisual(idx);
+    const pct = Math.round(((visual - 1) / total) * 100);
     ($('progress-bar') as HTMLElement).style.width = `${pct}%`;
-    $('progress-label').textContent = `Pregunta ${idx + 1} de ${total}`;
+    $('progress-label').textContent = `Pregunta ${visual} de ${total}`;
     $('progress-pct').textContent = `${pct}%`;
-    for (let i = 1; i <= total; i++) {
+    for (let i = 1; i <= preguntas.length; i++) {
       const dot = $(`dot-${i}`);
-      if (i <= idx) {
+      const qIdx = i - 1;
+      if (esSaltada(qIdx)) {
+        dot.style.background = 'rgba(124,58,237,0.12)';
+      } else if (qIdx < idx) {
         dot.style.background = '#7C3AED';
-      } else if (i === idx + 1) {
+      } else if (qIdx === idx) {
         dot.style.background = '#A78BFA';
       } else {
         dot.style.background = '';
@@ -535,7 +663,7 @@ import Layout from '../layouts/Layout.astro';
     const p = preguntas[idx];
     const card = $('question-card');
 
-    $('q-numero').textContent = `Pregunta ${idx + 1}`;
+    $('q-numero').textContent = `Pregunta ${getPreguntaVisual(idx)}`;
     $('q-texto').textContent = p.pregunta;
     $('q-subtitulo').textContent = p.subtitulo;
 
@@ -543,7 +671,7 @@ import Layout from '../layouts/Layout.astro';
     grid.className = `grid gap-2.5 ${p.grid}`;
     grid.innerHTML = '';
 
-    p.opciones.forEach((op) => {
+    p.opciones.forEach((op, opIdx) => {
       const btn = document.createElement('button');
       btn.className = 'opcion-card rounded-xl p-3.5 text-left w-full';
       btn.innerHTML = `
@@ -555,7 +683,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
       `;
-      btn.addEventListener('click', () => selectOption(btn, op.puntos));
+      btn.addEventListener('click', () => selectOption(btn, op.puntos, opIdx));
       grid.appendChild(btn);
     });
 
@@ -565,19 +693,25 @@ import Layout from '../layouts/Layout.astro';
     card.addEventListener('animationend', () => card.classList.remove('slide-in'), { once: true });
   }
 
-  function selectOption(btn: HTMLButtonElement, puntos: Puntos) {
+  function selectOption(btn: HTMLButtonElement, puntos: Puntos, opIdx: number) {
     if (animating) return;
     animating = true;
 
     $('opciones-grid').querySelectorAll('button').forEach(b => (b as HTMLButtonElement).disabled = true);
     btn.classList.add('selected');
     respuestas[preguntaActual] = puntos;
+    respuestasIdx[preguntaActual] = opIdx;
 
     setTimeout(() => {
       const card = $('question-card');
       card.classList.add('slide-out');
       card.addEventListener('animationend', () => {
         preguntaActual++;
+        // Saltar preguntas que no aplican y registrarlas como null
+        while (preguntaActual < preguntas.length && esSaltada(preguntaActual)) {
+          respuestasIdx[preguntaActual] = null;
+          preguntaActual++;
+        }
         if (preguntaActual < preguntas.length) {
           updateProgress(preguntaActual);
           renderQuestion(preguntaActual);
@@ -594,7 +728,9 @@ import Layout from '../layouts/Layout.astro';
     ($('progress-bar') as HTMLElement).style.width = '100%';
     $('progress-label').textContent = '¡Test completado!';
     $('progress-pct').textContent = '100%';
-    for (let i = 1; i <= 5; i++) $(`dot-${i}`).style.background = '#7C3AED';
+    for (let i = 1; i <= preguntas.length; i++) {
+      $(`dot-${i}`).style.background = esSaltada(i - 1) ? 'rgba(124,58,237,0.12)' : '#7C3AED';
+    }
 
     if (localStorage.getItem('quiz_email')) {
       hide('quiz-section');
@@ -615,15 +751,13 @@ import Layout from '../layouts/Layout.astro';
 
   async function submitEmail(email: string) {
     localStorage.setItem('quiz_email', email);
-    if (FORMSPREE_ID) {
-      try {
-        await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ email, fuente: 'quiz-que-ia-necesito' }),
-        });
-      } catch (_) {}
-    }
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+    } catch (_) {}
   }
 
   function goToResults() {
@@ -631,14 +765,94 @@ import Layout from '../layouts/Layout.astro';
     showResults();
   }
 
+  function buildResultUrl(): string {
+    const url = new URL(window.location.href);
+    url.searchParams.set('r', respuestasIdx.map(i => i === null ? 'n' : i).join('-'));
+    return url.toString();
+  }
+
+  function setupShareButtons(url: string, iaName: string) {
+    const text = `Mi IA ideal según el test es ${iaName} 🤖 ¿Cuál es la tuya?`;
+    ($('btn-share-x') as HTMLAnchorElement).href =
+      `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    ($('btn-share-whatsapp') as HTMLAnchorElement).href =
+      `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+    $('btn-copy-link').onclick = async () => {
+      try { await navigator.clipboard.writeText(url); } catch (_) {}
+      $('btn-copy-text').textContent = '¡Enlace copiado!';
+      setTimeout(() => { $('btn-copy-text').textContent = 'Copiar enlace'; }, 2000);
+    };
+  }
+
+  function showRelatedArticles(iaId: string) {
+    const dataEl = document.getElementById('articulos-data');
+    if (!dataEl) return;
+    type Articulo = { title: string; description: string; slug: string; imagen?: string };
+    const map: Record<string, Articulo[]> = JSON.parse(dataEl.textContent ?? '{}');
+    const articles = map[iaId] ?? [];
+    if (articles.length === 0) { hide('related-section'); return; }
+    $('related-grid').innerHTML = articles.map(({ title, description, slug, imagen }) => `
+      <a href="/blog/${slug}" class="group flex gap-4 p-4 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/50 hover:shadow-md hover:shadow-[#7C3AED]/10 transition-all duration-300">
+        <div class="w-20 h-16 rounded-xl flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
+          ${imagen
+            ? `<img src="${imagen}" alt="" class="w-full h-full object-cover" loading="lazy"/>`
+            : `<div class="w-full h-full bg-gradient-to-br from-[#7C3AED]/20 to-[#7C3AED]/5"></div>`}
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="font-bold text-gray-900 dark:text-white text-sm leading-snug line-clamp-2 group-hover:text-[#7C3AED] transition-colors">${title}</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5 line-clamp-2 leading-relaxed">${description}</p>
+        </div>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#7C3AED] flex-shrink-0 self-center transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>`).join('');
+    show('related-section');
+  }
+
+  function tryRestoreFromUrl(): boolean {
+    const params = new URLSearchParams(window.location.search);
+    const r = params.get('r');
+    if (!r) return false;
+    const tokens = r.split('-');
+    if (tokens.length !== preguntas.length) return false;
+    const indices: (number | null)[] = tokens.map(t => t === 'n' ? null : parseInt(t, 10));
+    for (let i = 0; i < preguntas.length; i++) {
+      const idx = indices[i];
+      if (idx === null) {
+        if (!preguntas[i].saltarSi?.(indices)) return false;
+      } else {
+        if (isNaN(idx) || idx < 0 || idx >= preguntas[i].opciones.length) return false;
+      }
+    }
+    respuestasIdx = indices;
+    respuestas = indices.map((optIdx, qIdx) =>
+      optIdx === null ? null : preguntas[qIdx].opciones[optIdx].puntos
+    );
+    hide('intro');
+    showResults();
+    return true;
+  }
+
+  function calcularMatchPct(iaId: string, actualScore: number): number {
+    let maxScore = 0;
+    preguntas.forEach((p, i) => {
+      if (esSaltada(i)) return;
+      const max = Math.max(0, ...p.opciones.map((op) => op.puntos[iaId] ?? 0));
+      maxScore += max;
+    });
+    if (maxScore === 0) return 0;
+    return Math.round((actualScore / maxScore) * 100);
+  }
+
   function calcularScores(): [string, number][] {
     const scores: Record<string, number> = {};
     respuestas.forEach((puntos) => {
+      if (!puntos) return;
       Object.entries(puntos).forEach(([ia, pts]) => {
         scores[ia] = (scores[ia] ?? 0) + pts;
       });
     });
-    return Object.entries(scores).sort(([, a], [, b]) => b - a);
+    return Object.entries(aplicarPenalidades(scores)).sort(([, a], [, b]) => b - a);
   }
 
   function spawnConfetti() {
@@ -657,11 +871,89 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
+  function renderComparison(top3: [string, number][]) {
+    const medals = ['🥇', '🥈', '🥉'];
+    const podium = top3.map(([id, score], pos) => ({
+      ia: IAs[id], id, pct: calcularMatchPct(id, score), pos,
+    }));
+
+    const col = 'px-4 py-3 text-center align-top';
+    const label = 'px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 align-middle whitespace-nowrap w-28';
+
+    const logoCell = ({ ia, pos }: typeof podium[0]) => `
+      <div class="flex flex-col items-center gap-2 pt-1">
+        <span class="text-xl leading-none">${medals[pos]}</span>
+        <div class="w-10 h-10 rounded-xl bg-white dark:bg-gray-100 border border-gray-100 flex items-center justify-center overflow-hidden p-1.5 flex-shrink-0">
+          <img src="${ia.logo}" alt="${ia.nombre}" class="w-full h-full object-contain"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="hidden w-full h-full items-center justify-center text-white font-bold text-xs rounded-lg"
+            style="background:linear-gradient(135deg,${ia.colorFrom},${ia.colorTo})">${ia.nombre.substring(0, 2).toUpperCase()}</div>
+        </div>
+        <span class="text-sm font-bold text-gray-900 dark:text-white leading-tight text-center">${ia.nombre}</span>
+      </div>`;
+
+    $('comparison-table').innerHTML = `
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b border-gray-200 dark:border-gray-800">
+            <th class="${label} border-b-0"></th>
+            ${podium.map(p => `
+              <th class="${col} border-b-0 pb-4 relative" style="${p.pos === 0 ? `border-top:3px solid ${p.ia.colorFrom}` : ''}">
+                ${logoCell(p)}
+              </th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-gray-50 dark:bg-white/[0.03]">
+            <td class="${label}">Compatibilidad</td>
+            ${podium.map(p => `
+              <td class="${col}">
+                <span class="text-lg font-extrabold ${p.pos === 0 ? 'text-[#7C3AED]' : 'text-gray-600 dark:text-gray-300'}">${p.pct}%</span>
+              </td>`).join('')}
+          </tr>
+          <tr class="border-t border-gray-100 dark:border-gray-800/60">
+            <td class="${label}">Precio</td>
+            ${podium.map(p => `
+              <td class="${col}">
+                <span class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">${p.ia.precio}</span>
+              </td>`).join('')}
+          </tr>
+          <tr class="border-t border-gray-100 dark:border-gray-800/60 bg-gray-50 dark:bg-white/[0.03]">
+            <td class="${label}">Puntos fuertes</td>
+            ${podium.map(p => `
+              <td class="${col}">
+                <div class="flex flex-col items-center gap-1">
+                  ${p.ia.pros.map(pro => `<span class="text-xs bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full leading-snug text-center">${pro}</span>`).join('')}
+                </div>
+              </td>`).join('')}
+          </tr>
+          <tr class="border-t border-gray-100 dark:border-gray-800/60">
+            <td class="${label}">Probar</td>
+            ${podium.map(p => `
+              <td class="${col} pb-4">
+                <a href="${p.ia.web}" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${p.pos === 0 ? 'bg-[#7C3AED] text-white hover:bg-[#6D28D9]' : 'border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-[#7C3AED] hover:text-[#7C3AED]'}">
+                  Probar
+                  <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                </a>
+              </td>`).join('')}
+          </tr>
+        </tbody>
+      </table>`;
+    show('comparison-section');
+  }
+
   function showResults() {
     const ranked = calcularScores();
-    const [winnerId] = ranked.find(([id]) => IAs[id]) ?? ranked[0];
+    const top3 = ranked.filter(([id]) => IAs[id]).slice(0, 3);
+    if (top3.length === 0) return;
+    const [winnerId, winnerScore] = top3[0];
     const winner = IAs[winnerId];
     if (!winner) return;
+
+    const matchPct = calcularMatchPct(winnerId, winnerScore);
 
     const wCard = $('winner-card');
     wCard.style.background = `linear-gradient(135deg, ${winner.colorFrom}, ${winner.colorTo})`;
@@ -674,6 +966,7 @@ import Layout from '../layouts/Layout.astro';
       </div>`;
     $('winner-empresa').textContent = winner.empresa;
     $('winner-nombre').textContent = winner.nombre;
+    $('winner-match').innerHTML = `<svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>${matchPct}% de compatibilidad`;
     $('winner-tagline').textContent = winner.tagline;
     $('winner-desc').textContent = winner.descripcion;
     $('winner-precio').textContent = winner.precio;
@@ -686,29 +979,7 @@ import Layout from '../layouts/Layout.astro';
         </svg>${p}</span>`
     ).join('');
 
-    const alts = ranked.filter(([id]) => id !== winnerId && IAs[id]).slice(0, 2);
-    $('alt-grid').innerHTML = alts.map(([id]) => {
-      const ia = IAs[id];
-      return `
-        <a href="${ia.web}" target="_blank" rel="noopener noreferrer"
-          class="group flex items-center gap-3 p-4 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/50 hover:shadow-md hover:shadow-[#7C3AED]/10 transition-all duration-300">
-          <div class="w-10 h-10 rounded-xl flex-shrink-0 bg-white dark:bg-gray-100 border border-gray-100 dark:border-gray-200 flex items-center justify-center overflow-hidden p-1.5">
-            <img src="${ia.logo}" alt="${ia.nombre}" class="w-full h-full object-contain"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="hidden w-full h-full items-center justify-center text-white font-bold text-xs rounded-lg" style="background: linear-gradient(135deg, ${ia.colorFrom}, ${ia.colorTo})">
-              ${ia.nombre.substring(0, 2).toUpperCase()}
-            </div>
-          </div>
-          <div class="min-w-0 flex-1">
-            <p class="font-bold text-gray-900 dark:text-white text-sm">${ia.nombre}</p>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">${ia.tagline}</p>
-            <p class="text-xs text-[#7C3AED] font-medium mt-1">${ia.precio}</p>
-          </div>
-          <svg class="w-4 h-4 text-gray-400 group-hover:text-[#7C3AED] flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>`;
-    }).join('');
+    renderComparison(top3);
 
     show('results-section');
     const rs = $('results-section');
@@ -716,6 +987,12 @@ import Layout from '../layouts/Layout.astro';
     rs.addEventListener('animationend', () => rs.classList.remove('fade-in-up'), { once: true });
 
     spawnConfetti();
+
+    const resultUrl = buildResultUrl();
+    history.replaceState(null, '', resultUrl);
+    setupShareButtons(resultUrl, winner.nombre);
+    show('share-section');
+    showRelatedArticles(winnerId);
   }
 
   function startQuiz() {
@@ -729,10 +1006,15 @@ import Layout from '../layouts/Layout.astro';
 
   function restartQuiz() {
     hide('results-section');
+    hide('share-section');
+    hide('related-section');
+    hide('comparison-section');
+    history.replaceState(null, '', window.location.pathname);
     $('confetti-container').innerHTML = '';
     $('email-card').classList.add('hidden');
     const qCard = $('question-card');
     qCard.classList.remove('hidden', 'slide-out');
+    respuestasIdx = [];
     startQuiz();
   }
 
@@ -762,4 +1044,6 @@ import Layout from '../layouts/Layout.astro';
   $('btn-skip-email').addEventListener('click', goToResults);
   $('btn-start').addEventListener('click', startQuiz);
   $('btn-restart').addEventListener('click', restartQuiz);
+
+  tryRestoreFromUrl();
 </script>
