@@ -212,6 +212,46 @@ async function addReverseLinks(client, newSlug, newTitle, newDescription, existi
   }
 }
 
+async function researchTool(client, topic) {
+  console.log(`🔍 Investigando información actualizada sobre: "${topic}"...`);
+  try {
+    const response = await client.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 3000,
+      tools: [{
+        type: 'web_search_20250305',
+        name: 'web_search',
+        max_uses: 6,
+      }],
+      messages: [{
+        role: 'user',
+        content: `Investiga la herramienta de IA "${topic}" para escribir un artículo de blog actualizado. Necesito datos VERIFICADOS y actuales (busca fuentes de 2025-2026):
+
+1. Precio exacto actual: planes disponibles, precios en USD/EUR, si hay versión gratuita y sus límites
+2. Funcionalidades principales disponibles hoy
+3. Cambios o actualizaciones importantes en los últimos 6 meses
+4. Principales competidores directos con sus precios aproximados
+5. Limitaciones conocidas y quejas frecuentes de usuarios reales
+6. Disponibilidad en España y Latinoamérica si aplica
+
+Para cada dato de precio o funcionalidad, indica la URL fuente. Si no encuentras información fiable sobre algún punto, dilo explícitamente en lugar de inventar. Prioriza páginas oficiales del producto y reseñas técnicas recientes.`,
+      }],
+      betas: ['web-search-2025-03-05'],
+    });
+
+    const textContent = response.content
+      .filter(block => block.type === 'text')
+      .map(block => block.text)
+      .join('\n');
+
+    console.log('✅ Investigación web completada');
+    return textContent;
+  } catch (err) {
+    console.log(`⚠️  Investigación web no disponible: ${err.message}. El artículo usará solo conocimiento base.`);
+    return null;
+  }
+}
+
 async function generateDraft() {
   // Load topics
   if (!fs.existsSync(TOPICS_FILE)) {
@@ -235,19 +275,28 @@ async function generateDraft() {
 
   const client = new Anthropic();
 
+  // Research step: get current, verified information before generating
+  const research = await researchTool(client, nextTopic.tema);
+
   const systemPrompt = `Eres un redactor experto en herramientas de inteligencia artificial que escribe en español para un blog técnico hispanohablante orientado a profesionales.
 
 Tu voz es cercana, directa y honesta. Nunca usas lenguaje corporativo vacío ni frases de relleno. Tienes experiencia real usando las herramientas de las que escribes y lo transmites con ejemplos concretos en primera persona ("Lo probé con...", "En mi flujo de trabajo...").
 
-Conoces el ecosistema de IA a fondo: sabes que en 2026 los modelos principales son Gemini 2.5, Claude Sonnet 4 / Opus 4, GPT-4o / o3 y los modelos open source como Llama y Mistral. Nunca refieras versiones antiguas como actuales.
+Conoces el ecosistema de IA a fondo. Los modelos principales de Anthropic en 2026 son Claude Fable 5, Claude Opus 4.8, Claude Sonnet 4.6 y Claude Haiku 4.5. De OpenAI: GPT-4o y la familia o3. De Google: Gemini 2.5 Pro. También existen modelos open source relevantes como Llama y Mistral. Nunca presentes versiones antiguas como actuales.
+
+REGLA CRÍTICA SOBRE PRECIOS Y DATOS: Si el usuario te proporciona información de investigación web, esos datos tienen PRIORIDAD ABSOLUTA sobre tu conocimiento de entrenamiento. Nunca inventes precios, planes ni funcionalidades. Si no tienes datos verificados sobre algo, di que no tienes información actualizada en lugar de inventar.
 
 Escribes con los principios E-E-A-T de Google en mente: demuestras Experiencia, Pericia, Autoridad y Confianza en cada artículo. Eso significa: opiniones claras, comparaciones honestas con competidores por nombre, admitir puntos débiles reales, y no inflar artificialmente las virtudes de ninguna herramienta.
 
 Tu audiencia son profesionales hispanohablantes (España y Latinoamérica) que usan IA para trabajo, creatividad y productividad. Les interesa saber si deben pagar, qué obtienen exactamente y cómo encaja en su flujo de trabajo real.`;
 
+  const researchSection = research
+    ? `\nINFORMACIÓN ACTUALIZADA VERIFICADA (usa estos datos con prioridad sobre tu conocimiento de entrenamiento):\n${research}\n`
+    : '\n⚠️ No hay datos de investigación web disponibles. Sé conservador con precios y funcionalidades: solo incluye datos que conozcas con certeza, e indica claramente cuando algo puede estar desactualizado.\n';
+
   const userPrompt = `Ya existen estos artículos en el blog (no repitas contenido ni enfoque):
 ${existingList}
-
+${researchSection}
 Genera un artículo completo y optimizado para SEO sobre "${nextTopic.tema}".
 
 ---
@@ -321,7 +370,8 @@ REQUISITOS DE CALIDAD:
 - Menciona competidores por nombre con comparaciones honestas
 - Al menos 2 ejemplos en primera persona con detalles concretos (cifras, tiempo, resultado)
 - Precios en euros para España cuando sea posible; dólares si solo existe en USD
-- Los modelos de IA actuales en 2026 son: Gemini 2.5 Pro, Claude Sonnet 4 / Opus 4, GPT-4o / o3 — nunca menciones versiones anteriores como actuales
+- Los modelos de IA actuales en 2026 son: Claude Fable 5, Claude Opus 4.8, Claude Sonnet 4.6 (Anthropic); GPT-4o y familia o3 (OpenAI); Gemini 2.5 Pro (Google) — nunca menciones versiones anteriores como actuales
+- Para precios y funcionalidades específicas, usa SIEMPRE los datos de la sección "INFORMACIÓN ACTUALIZADA VERIFICADA" si están disponibles. Si no están disponibles, indica que los precios pueden haber cambiado y anima al lector a verificar en la web oficial
 - No escribas frases vacías como "en el vertiginoso mundo de la IA" o "revolucionario" o "disruptivo"
 
 ---
