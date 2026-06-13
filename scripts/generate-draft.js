@@ -373,6 +373,7 @@ REQUISITOS DE CALIDAD:
 - Los modelos de IA actuales en 2026 son: Claude Fable 5, Claude Opus 4.8, Claude Sonnet 4.6 (Anthropic); GPT-4o y familia o3 (OpenAI); Gemini 2.5 Pro (Google) — nunca menciones versiones anteriores como actuales
 - Para precios y funcionalidades específicas, usa SIEMPRE los datos de la sección "INFORMACIÓN ACTUALIZADA VERIFICADA" si están disponibles. Si no están disponibles, indica que los precios pueden haber cambiado y anima al lector a verificar en la web oficial
 - No escribas frases vacías como "en el vertiginoso mundo de la IA" o "revolucionario" o "disruptivo"
+- ENLACES INTERNOS: si mencionas otro artículo del blog, usa SIEMPRE URLs relativas con el formato exacto /blog/slug (ejemplo: /blog/cursor-ide-review). NUNCA uses dominios inventados como "blog.ejemplo.com", "tudominio.com" o cualquier dominio ficticio. Si no sabes el slug exacto de un artículo, no pongas enlace y menciona el artículo solo por nombre en texto plano
 
 ---
 
@@ -406,6 +407,14 @@ herramientas: Herramienta1, Herramienta2
 
   const metaBlock = metaMatch[1];
   let body = bodyMatch[1].trim();
+
+  // Strip invented domains from internal blog links — any Markdown link pointing
+  // to a non-relative URL that contains /blog/ is converted to a relative path.
+  // Links to external sites (no /blog/ in path) are left untouched.
+  body = body.replace(
+    /\(https?:\/\/[^)]*\/blog\/([^)]+)\)/g,
+    '(/blog/$1)'
+  );
 
   function parseLine(block, key) {
     const match = block.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
