@@ -13,4 +13,18 @@ export default defineConfig({
     tailwind(),
     sitemap(),
   ],
+  redirects: {
+    '/blog/chatgpt-vs-claude-2024': {
+      status: 301,
+      destination: '/blog/chatgpt-vs-claude-2026',
+    },
+    '/blog/mejores-ia-generacion-imagen-2024': {
+      status: 301,
+      destination: '/blog/mejores-ia-generacion-imagen-2026',
+    },
+    '/blog/claude-fable-5-review-el-modelo-mas-potente-de-anthropic-disponible-al-publico': {
+      status: 301,
+      destination: '/blog/claude-fable-5-review',
+    },
+  },
 });

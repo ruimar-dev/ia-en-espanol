@@ -382,6 +382,7 @@ Responde EXACTAMENTE en este formato, con los dos delimitadores tal cual:
 <<<METADATA>>>
 title: título del artículo (50-80 caracteres, incluye año si es relevante)
 description: descripción SEO (130-160 caracteres, natural, orientada a búsqueda)
+slug: URL slug optimizado para SEO — REGLAS ESTRICTAS: (1) máximo 5 palabras y 50 caracteres; (2) incluye solo el nombre de la herramienta principal y 1-2 palabras de acción como "review", "vs", "guia", "mejores", "como"; (3) NO incluyas: preposiciones (de, en, para, con), artículos (el, la, los, las, un), adjetivos vacíos (completa, honesto, potente, real, verdad), ni el año salvo en listas tipo "mejores X" donde la frescura importa para el CTR; (4) todo minúsculo, separado por guiones; EJEMPLOS CORRECTOS: "cursor-review", "chatgpt-vs-claude", "mejores-ia-imagen-2026", "midjourney-guia-principiantes"; EJEMPLOS INCORRECTOS: "cursor-ide-review-completa-programa-con-ia-de-verdad", "claude-fable-5-review-el-modelo-mas-potente-de-anthropic-disponible-al-publico"
 category: una de estas exactamente: generacion-texto | generacion-imagen | codigo | audio | video | productividad
 herramientas: Herramienta1, Herramienta2
 <<<BODY>>>
@@ -423,6 +424,7 @@ herramientas: Herramienta1, Herramienta2
 
   const title = parseLine(metaBlock, 'title');
   const description = parseLine(metaBlock, 'description');
+  const slugRaw = parseLine(metaBlock, 'slug');
   const category = parseLine(metaBlock, 'category');
   const herramientasRaw = parseLine(metaBlock, 'herramientas');
   const herramientas = herramientasRaw ? herramientasRaw.split(',').map(h => h.trim()).filter(Boolean) : [];
@@ -437,7 +439,10 @@ herramientas: Herramienta1, Herramienta2
   }
 
   const date = getCurrentDate();
-  const slug = slugify(nextTopic.tema);
+  const slug = slugRaw && /^[a-z0-9-]+$/.test(slugRaw) ? slugRaw : slugify(nextTopic.tema);
+  if (!slugRaw || !/^[a-z0-9-]+$/.test(slugRaw)) {
+    console.log(`⚠️  Slug no válido ("${slugRaw}"), usando fallback: "${slug}"`);
+  }
   const filename = `${slug}.mdx`;
   const outputPath = path.join(BLOG_DIR, filename);
 
