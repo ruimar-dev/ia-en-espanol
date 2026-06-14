@@ -156,10 +156,10 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
   </section>
 
   <!-- RESULTS -->
-  <section id="results-section" class="hidden py-10 pb-24 px-4">
+  <section id="results-section" class="hidden pt-4 pb-24 px-4">
     <div class="max-w-2xl mx-auto">
       <div class="text-center mb-10">
-        <div id="confetti-container" class="relative h-12 mb-4 overflow-visible pointer-events-none"></div>
+        <div id="confetti-container" class="relative h-8 mb-2 overflow-visible pointer-events-none"></div>
         <p class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-2">Tu resultado</p>
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Tu IA ideal es...</h2>
         <p class="text-sm text-gray-500 dark:text-gray-400">Basado en tus respuestas, aquí está tu recomendación personalizada.</p>
@@ -230,8 +230,10 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       <!-- Comparison -->
       <div id="comparison-section" class="hidden mb-10">
         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Comparativa del podio</p>
-        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
-          <div id="comparison-table" class="min-w-[480px] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden"></div>
+        <div class="overflow-x-auto -mx-4 sm:mx-0">
+          <div class="px-4 sm:px-0">
+            <div id="comparison-table" class="min-w-[480px] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden"></div>
+          </div>
         </div>
       </div>
 
