@@ -1,5 +1,129 @@
 [
   {
+    "tema": "DeepSeek R1 review: el modelo chino que revolucionó la IA",
+    "usado": false
+  },
+  {
+    "tema": "NotebookLM review: convierte tus PDFs en podcasts con IA",
+    "usado": false
+  },
+  {
+    "tema": "DeepSeek R1 vs ChatGPT: cuál es mejor en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Bolt.new review: crea apps web sin saber programar",
+    "usado": false
+  },
+  {
+    "tema": "Windsurf review: el IDE con IA que compite con Cursor",
+    "usado": false
+  },
+  {
+    "tema": "HeyGen review: crea vídeos con avatar IA sin cámara",
+    "usado": false
+  },
+  {
+    "tema": "Flux review: el generador de imágenes gratuito que compite con Midjourney",
+    "usado": false
+  },
+  {
+    "tema": "Cursor vs Windsurf: qué IDE con IA elegir en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Grok 3 vs ChatGPT o3: qué modelo de IA es mejor",
+    "usado": false
+  },
+  {
+    "tema": "Grok de xAI: review del rival de ChatGPT",
+    "usado": false
+  },
+  {
+    "tema": "Claude Fable 5 vs GPT 5.5: comparativa completa 2026",
+    "usado": false
+  },
+  {
+    "tema": "Claude Fable 5 vs Gemini 3.1 Pro: cuál es mejor",
+    "usado": false
+  },
+  {
+    "tema": "Midjourney v7 vs Flux: qué generador de imágenes elegir en 2026",
+    "usado": false
+  },
+  {
+    "tema": "ChatGPT o3 review: razonamiento avanzado de OpenAI",
+    "usado": false
+  },
+  {
+    "tema": "Claude Sonnet 4.6 review: el mejor modelo para el día a día",
+    "usado": false
+  },
+  {
+    "tema": "Las mejores herramientas IA para crear vídeos en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Herramientas IA gratuitas más útiles en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Gamma.app para crear presentaciones con IA",
+    "usado": false
+  },
+  {
+    "tema": "Suno AI para crear música con inteligencia artificial",
+    "usado": false
+  },
+  {
+    "tema": "Udio vs Suno: la batalla de las IA musicales",
+    "usado": false
+  },
+  {
+    "tema": "Leonardo.ai para generar imágenes de alta calidad",
+    "usado": false
+  },
+  {
+    "tema": "Adobe Firefly review completa 2026",
+    "usado": false
+  },
+  {
+    "tema": "Mistral AI: el modelo europeo que desafía a OpenAI",
+    "usado": false
+  },
+  {
+    "tema": "Codeium vs GitHub Copilot gratis: comparativa real",
+    "usado": false
+  },
+  {
+    "tema": "DALL-E 3 guía completa de prompts y uso",
+    "usado": false
+  },
+  {
+    "tema": "Otter.ai para transcribir y resumir reuniones",
+    "usado": false
+  },
+  {
+    "tema": "Luma Ray 2 review: vídeo realista con IA",
+    "usado": false
+  },
+  {
+    "tema": "Notion AI vs ChatGPT: cuál es mejor para productividad",
+    "usado": false
+  },
+  {
+    "tema": "Jasper AI para marketing y creación de contenidos",
+    "usado": false
+  },
+  {
+    "tema": "Writesonic review para escribir contenido SEO con IA",
+    "usado": false
+  },
+  {
+    "tema": "Canva AI funciones de inteligencia artificial 2026",
+    "usado": false
+  },
+  {
     "tema": "Perplexity AI review completa",
     "usado": true
   },
@@ -36,99 +160,15 @@
     "usado": true
   },
   {
-    "tema": "Codeium vs GitHub Copilot gratis: comparativa real",
-    "usado": false
-  },
-  {
-    "tema": "DALL-E 3 guía completa de prompts y uso",
-    "usado": false
-  },
-  {
     "tema": "Runway ML para crear vídeos profesionales con IA",
     "usado": true
-  },
-  {
-    "tema": "Adobe Firefly review completa 2026",
-    "usado": false
-  },
-  {
-    "tema": "Otter.ai para transcribir y resumir reuniones",
-    "usado": false
-  },
-  {
-    "tema": "Grok de xAI: review del rival de ChatGPT",
-    "usado": false
-  },
-  {
-    "tema": "Claude Fable 5 vs GPT 5.5: comparativa completa 2026",
-    "usado": false
-  },
-  {
-    "tema": "Mistral AI: el modelo europeo que desafía a OpenAI",
-    "usado": false
-  },
-  {
-    "tema": "Suno AI para crear música con inteligencia artificial",
-    "usado": false
   },
   {
     "tema": "Pika Labs review: vídeos cortos con IA",
     "usado": true
   },
   {
-    "tema": "Tabnine vs Codeium: autocompletado de código con IA",
-    "usado": false
-  },
-  {
     "tema": "Murf.ai para crear voz en off profesional",
     "usado": true
-  },
-  {
-    "tema": "Leonardo.ai para generar imágenes de alta calidad",
-    "usado": false
-  },
-  {
-    "tema": "Udio vs Suno: la batalla de las IA musicales",
-    "usado": false
-  },
-  {
-    "tema": "ChatGPT o1 para qué sirve el razonamiento avanzado",
-    "usado": false
-  },
-  {
-    "tema": "Luma Dream Machine review: vídeo realista con IA",
-    "usado": false
-  },
-  {
-    "tema": "Gamma.app para crear presentaciones con IA",
-    "usado": false
-  },
-  {
-    "tema": "Claude Fable 5 vs Gemini 3.1 Pro: cuál es mejor",
-    "usado": false
-  },
-  {
-    "tema": "Mem.ai el segundo cerebro con inteligencia artificial",
-    "usado": false
-  },
-  {
-    "tema": "Jasper AI para marketing y creación de contenidos",
-    "usado": false
-  },
-  {
-    "tema": "Writesonic review para escribir contenido SEO con IA",
-    "usado": false
-  },
-  {
-    "tema": "Canva AI funciones de inteligencia artificial 2026",
-    "usado": false
-  },
-  {
-    "tema": "Claude 3.7 Sonnet review y casos de uso reales",
-    "usado": false
-  },
-  {
-    "tema": "Herramientas IA gratuitas más útiles en 2026",
-    "usado": false
   }
 ]
