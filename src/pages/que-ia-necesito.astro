@@ -5,17 +5,22 @@ import { getCollection } from 'astro:content';
 const allArticles = await getCollection('blog', ({ data }) => !data.draft);
 
 const IA_HERRAMIENTAS: Record<string, string[]> = {
-  chatgpt:    ['ChatGPT'],
-  claude:     ['Claude', 'Anthropic'],
-  gemini:     ['Google Gemini', 'Gemini'],
-  perplexity: ['Perplexity AI', 'Perplexity'],
-  midjourney: ['Midjourney'],
-  firefly:    ['Adobe Firefly'],
-  cursor:     ['Cursor'],
-  copilot:    ['GitHub Copilot'],
-  elevenlabs: ['ElevenLabs'],
-  runway:     ['Runway'],
-  notion:     ['Notion AI', 'Notion'],
+  chatgpt:     ['ChatGPT'],
+  claude:      ['Claude', 'Anthropic'],
+  gemini:      ['Google Gemini', 'Gemini'],
+  perplexity:  ['Perplexity AI', 'Perplexity'],
+  midjourney:  ['Midjourney'],
+  firefly:     ['Adobe Firefly'],
+  cursor:      ['Cursor'],
+  copilot:     ['GitHub Copilot'],
+  elevenlabs:  ['ElevenLabs'],
+  runway:      ['Runway'],
+  notion:      ['Notion AI', 'Notion'],
+  grok:        ['Grok', 'xAI'],
+  deepseek:    ['DeepSeek', 'DeepSeek R1'],
+  notebooklm:  ['NotebookLM'],
+  heygen:      ['HeyGen'],
+  bolt:        ['Bolt.new', 'Bolt'],
 };
 
 const articulosPorIA: Record<string, Array<{ title: string; description: string; slug: string; imagen?: string }>> = {};
@@ -381,12 +386,12 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       subtitulo: 'Elige lo que más encaja con tu día a día',
       grid: 'grid-cols-2 sm:grid-cols-3',
       opciones: [
-        { emoji: '✍️', titulo: 'Escribir y analizar', desc: 'Emails, resúmenes, documentos', puntos: { chatgpt: 3, claude: 3, gemini: 2, perplexity: 2, notion: 1 } },
+        { emoji: '✍️', titulo: 'Escribir y analizar', desc: 'Emails, resúmenes, documentos', puntos: { chatgpt: 3, claude: 3, gemini: 2, perplexity: 2, notion: 1, grok: 2, deepseek: 2 } },
         { emoji: '🎨', titulo: 'Crear imágenes', desc: 'Arte, diseño, ilustraciones', puntos: { midjourney: 3, firefly: 3, chatgpt: 1 } },
-        { emoji: '💻', titulo: 'Programar', desc: 'Código, bugs, proyectos tech', puntos: { cursor: 3, copilot: 3, chatgpt: 2, claude: 1 } },
+        { emoji: '💻', titulo: 'Programar', desc: 'Código, bugs, proyectos tech', puntos: { cursor: 3, copilot: 3, chatgpt: 2, claude: 1, bolt: 2 } },
         { emoji: '🎙️', titulo: 'Audio y voces', desc: 'Podcasts, narración, voz IA', puntos: { elevenlabs: 3 } },
-        { emoji: '🎬', titulo: 'Crear vídeos', desc: 'Generar o editar con IA', puntos: { runway: 3 } },
-        { emoji: '📋', titulo: 'Organizar trabajo', desc: 'Notas, tareas, proyectos', puntos: { notion: 3, chatgpt: 2, gemini: 2, claude: 1 } },
+        { emoji: '🎬', titulo: 'Crear vídeos', desc: 'Generar o editar con IA', puntos: { runway: 3, heygen: 3 } },
+        { emoji: '📋', titulo: 'Organizar trabajo', desc: 'Notas, tareas, proyectos', puntos: { notion: 3, chatgpt: 2, gemini: 2, claude: 1, notebooklm: 2 } },
       ],
     },
     {
@@ -394,9 +399,9 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       subtitulo: 'Sin juicios, todas las opciones son válidas',
       grid: 'grid-cols-1 sm:grid-cols-3',
       opciones: [
-        { emoji: '🆓', titulo: 'Gratis, a poder ser', desc: 'Solo quiero probar o no tengo presupuesto', puntos: { gemini: 3, perplexity: 2, chatgpt: 1 } },
-        { emoji: '💰', titulo: 'Hasta 20 € al mes', desc: 'Pago si de verdad lo merece', puntos: { chatgpt: 3, claude: 3, cursor: 2, copilot: 2, midjourney: 2, elevenlabs: 1 } },
-        { emoji: '💎', titulo: 'Lo que haga falta', desc: 'Quiero lo mejor sin límites', puntos: { claude: 2, midjourney: 2, runway: 3, elevenlabs: 2, copilot: 1 } },
+        { emoji: '🆓', titulo: 'Gratis, a poder ser', desc: 'Solo quiero probar o no tengo presupuesto', puntos: { gemini: 3, perplexity: 2, chatgpt: 1, notebooklm: 3, deepseek: 2, grok: 1 } },
+        { emoji: '💰', titulo: 'Hasta 20 € al mes', desc: 'Pago si de verdad lo merece', puntos: { chatgpt: 3, claude: 3, cursor: 2, copilot: 2, midjourney: 2, elevenlabs: 1, bolt: 2, heygen: 1 } },
+        { emoji: '💎', titulo: 'Lo que haga falta', desc: 'Quiero lo mejor sin límites', puntos: { claude: 2, midjourney: 2, runway: 3, elevenlabs: 2, copilot: 1, heygen: 2 } },
       ],
     },
     {
@@ -405,9 +410,9 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       grid: 'grid-cols-1 sm:grid-cols-3',
       saltarSi: (idx) => idx[0] === 3 || idx[0] === 4,
       opciones: [
-        { emoji: '🌱', titulo: 'Soy principiante', desc: 'Poca o ninguna experiencia aún', puntos: { chatgpt: 3, gemini: 2, notion: 2 } },
-        { emoji: '🚀', titulo: 'Ya uso alguna IA', desc: 'Conozco lo básico, quiero más', puntos: { claude: 2, chatgpt: 2, midjourney: 1, perplexity: 1 } },
-        { emoji: '🔬', titulo: 'Soy bastante técnico', desc: 'Me manejo bien con herramientas complejas', puntos: { cursor: 3, copilot: 2, claude: 2, perplexity: 1 } },
+        { emoji: '🌱', titulo: 'Soy principiante', desc: 'Poca o ninguna experiencia aún', puntos: { chatgpt: 3, gemini: 2, notion: 2, notebooklm: 2, bolt: 1 } },
+        { emoji: '🚀', titulo: 'Ya uso alguna IA', desc: 'Conozco lo básico, quiero más', puntos: { claude: 2, chatgpt: 2, midjourney: 1, perplexity: 1, grok: 1 } },
+        { emoji: '🔬', titulo: 'Soy bastante técnico', desc: 'Me manejo bien con herramientas complejas', puntos: { cursor: 3, copilot: 2, claude: 2, perplexity: 1, deepseek: 2 } },
       ],
     },
     {
@@ -416,10 +421,10 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       grid: 'grid-cols-2',
       saltarSi: (idx) => idx[0] === 3 || idx[0] === 4,
       opciones: [
-        { emoji: '⚡', titulo: 'Velocidad', desc: 'Que funcione ya y sin complicaciones', puntos: { gemini: 3, chatgpt: 2, perplexity: 2 } },
-        { emoji: '🎯', titulo: 'Máxima calidad', desc: 'Prefiero lo mejor aunque lleve más tiempo', puntos: { claude: 3, midjourney: 2, chatgpt: 1 } },
-        { emoji: '🌈', titulo: 'Creatividad', desc: 'Que me sorprenda e inspire', puntos: { midjourney: 3, firefly: 3, claude: 2 } },
-        { emoji: '🔒', titulo: 'Privacidad', desc: 'Mis datos no deben entrenar modelos', puntos: { claude: 3, perplexity: 1 } },
+        { emoji: '⚡', titulo: 'Velocidad', desc: 'Que funcione ya y sin complicaciones', puntos: { gemini: 3, chatgpt: 2, perplexity: 2, grok: 2, bolt: 1 } },
+        { emoji: '🎯', titulo: 'Máxima calidad', desc: 'Prefiero lo mejor aunque lleve más tiempo', puntos: { claude: 3, midjourney: 2, chatgpt: 1, deepseek: 2 } },
+        { emoji: '🌈', titulo: 'Creatividad', desc: 'Que me sorprenda e inspire', puntos: { midjourney: 3, firefly: 3, claude: 2, heygen: 2 } },
+        { emoji: '🔒', titulo: 'Privacidad', desc: 'Mis datos no deben entrenar modelos', puntos: { claude: 3, perplexity: 1, deepseek: 1 } },
       ],
     },
     {
@@ -427,8 +432,8 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       subtitulo: 'Último paso, ya casi terminamos',
       grid: 'grid-cols-1 sm:grid-cols-2',
       opciones: [
-        { emoji: '🙋', titulo: 'Solo o uso personal', desc: 'Freelance, hobby o proyectos propios', puntos: { cursor: 2, claude: 2, chatgpt: 1, midjourney: 1, perplexity: 1 } },
-        { emoji: '👥', titulo: 'Con equipo o empresa', desc: 'Colaboro con otras personas', puntos: { copilot: 3, notion: 3, chatgpt: 2, gemini: 1 } },
+        { emoji: '🙋', titulo: 'Solo o uso personal', desc: 'Freelance, hobby o proyectos propios', puntos: { cursor: 2, claude: 2, chatgpt: 1, midjourney: 1, perplexity: 1, notebooklm: 2, bolt: 2, deepseek: 1, grok: 1 } },
+        { emoji: '👥', titulo: 'Con equipo o empresa', desc: 'Colaboro con otras personas', puntos: { copilot: 3, notion: 3, chatgpt: 2, gemini: 1, heygen: 2 } },
       ],
     },
   ];
@@ -577,6 +582,71 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       colorFrom: '#475569',
       colorTo: '#1E293B',
     },
+    grok: {
+      nombre: 'Grok',
+      empresa: 'xAI',
+      emoji: '⚡',
+      logo: '',
+      tagline: 'La IA de X con datos en tiempo real',
+      descripcion: 'Grok es la IA de xAI, disponible en X (Twitter) y en grok.com. Tiene acceso a publicaciones en tiempo real, responde con menos restricciones que otros modelos y viene incluido si ya pagas X Premium. Ideal si vives en X o necesitas información muy actualizada.',
+      precio: 'Incluido en X Premium ($8-$16/mes)',
+      web: 'https://grok.com',
+      pros: ['Datos de X en tiempo real', 'Incluido en X Premium', 'Menos filtros que otros'],
+      colorFrom: '#111111',
+      colorTo: '#2d2d2d',
+    },
+    deepseek: {
+      nombre: 'DeepSeek R1',
+      empresa: 'DeepSeek',
+      emoji: '🔬',
+      logo: '',
+      tagline: 'Razonamiento avanzado gratuito y open source',
+      descripcion: 'DeepSeek R1 es un modelo chino open source que iguala o supera a GPT-4o en razonamiento matemático y código a una fracción del coste. Disponible gratis en su web, ejecutable localmente y con API muy barata. El favorito de los desarrolladores en 2026.',
+      precio: 'Gratis · API desde $0.14/M tokens',
+      web: 'https://chat.deepseek.com',
+      pros: ['Razonamiento matemático top', 'Open source y local', 'Precio imbatible'],
+      colorFrom: '#1a6faf',
+      colorTo: '#0e4a8a',
+    },
+    notebooklm: {
+      nombre: 'NotebookLM',
+      empresa: 'Google',
+      emoji: '📚',
+      logo: '',
+      tagline: 'Tu asistente de investigación con tus propios documentos',
+      descripcion: 'NotebookLM analiza cualquier PDF, web o documento que le pases y te permite hacerle preguntas. Su función estrella: genera un podcast de audio con dos locutores que debaten sobre el contenido de tus propios archivos. Completamente gratis.',
+      precio: 'Gratis',
+      web: 'https://notebooklm.google.com',
+      pros: ['Completamente gratis', 'Analiza tus PDFs', 'Genera podcasts de audio'],
+      colorFrom: '#1a73e8',
+      colorTo: '#0d47a1',
+    },
+    heygen: {
+      nombre: 'HeyGen',
+      empresa: 'HeyGen',
+      emoji: '🎭',
+      logo: '',
+      tagline: 'Vídeos con avatar IA sin cámara ni equipo',
+      descripcion: 'HeyGen genera vídeos con avatares realistas que hablan con tu voz o una voz IA. Perfecto para crear presentaciones corporativas, formaciones o contenido de marketing sin necesidad de cámara, estudio ni equipo de producción.',
+      precio: 'Gratis (1 min/mes) · desde $24/mes',
+      web: 'https://heygen.com',
+      pros: ['Avatar IA realista', 'Doblaje automático', 'Sin cámara necesaria'],
+      colorFrom: '#7B2D8B',
+      colorTo: '#4a1570',
+    },
+    bolt: {
+      nombre: 'Bolt.new',
+      empresa: 'StackBlitz',
+      emoji: '🔨',
+      logo: '',
+      tagline: 'Construye apps web completas solo con texto',
+      descripcion: 'Bolt.new te permite crear aplicaciones web funcionales describiendo lo que quieres. No necesitas saber programar: genera el código, lo despliega y te da una URL lista para usar. Ideal para prototipos, MVPs o herramientas internas sin contratar un desarrollador.',
+      precio: 'Gratis (limitado) · Pro desde $20/mes',
+      web: 'https://bolt.new',
+      pros: ['Sin saber programar', 'App funcional en minutos', 'Despliegue automático'],
+      colorFrom: '#FF6B00',
+      colorTo: '#c45200',
+    },
   };
 
   // Índices de referencia rápida
@@ -590,7 +660,7 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
     {
       // Sin presupuesto → penaliza herramientas sin plan gratuito real
       condicion: (idx) => idx[1] === 0,
-      factores: { midjourney: 0.15, runway: 0.10, notion: 0.20, copilot: 0.40 },
+      factores: { midjourney: 0.15, runway: 0.10, notion: 0.20, copilot: 0.40, heygen: 0.20, bolt: 0.50 },
     },
     {
       // Programar + priorizar creatividad: incoherente con las herramientas de código
@@ -601,6 +671,11 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       // Principiante + Cursor: la curva de aprendizaje de Cursor es demasiado alta
       condicion: (idx) => idx[2] === 0,
       factores: { cursor: 0.50 },
+    },
+    {
+      // Técnico + programar → bolt.new no es la herramienta para desarrolladores reales
+      condicion: (idx) => idx[0] === 2 && idx[2] === 2,
+      factores: { bolt: 0.15 },
     },
   ];
 
