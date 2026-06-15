@@ -5,11 +5,12 @@ import TablaComparativa from '../../components/TablaComparativa.astro';
 const comparativas = [
   {
     id: 'llm',
-    titulo: 'Mejores modelos de lenguaje (LLM) en 2026',
-    descripcion: 'Los asistentes de IA conversacionales más potentes del mercado.',
+    titulo: 'Mejores IAs de texto en 2026',
+    descripcion: 'Los asistentes y modelos de lenguaje más potentes del mercado, actualizados a junio de 2026.',
     herramientas: [
-      { nombre: 'Claude 3.5 Sonnet', precio: '$20/mes', puntuacion: 4.8, idealPara: 'Escritura, análisis, documentos largos' },
-      { nombre: 'ChatGPT-4o', precio: '$20/mes', puntuacion: 4.7, idealPara: 'Uso general, imágenes, plugins' },
+      { nombre: 'Claude Opus 4.8', precio: '$20/mes (Pro)', puntuacion: 4.8, idealPara: 'Programación, razonamiento, documentos largos' },
+      { nombre: 'ChatGPT (GPT-5.5)', precio: '$20/mes (Plus)', puntuacion: 4.7, idealPara: 'Uso general, memoria en tiempo real, plugins' },
+      { nombre: 'Google AI Pro', precio: '$19,99/mes', puntuacion: 4.5, idealPara: 'Integración con Gmail, Docs y Google Workspace' },
       { nombre: 'Jasper', precio: '$39/mes', puntuacion: 4.4, idealPara: 'Redacción de marketing y contenido', enlaceAfiliado: 'https://www.jasper.ai' },
       { nombre: 'Writesonic', precio: '$16/mes', puntuacion: 4.2, idealPara: 'Copywriting y artículos SEO', enlaceAfiliado: 'https://writesonic.com' },
     ],
@@ -17,23 +18,23 @@ const comparativas = [
   {
     id: 'imagen',
     titulo: 'Mejores generadores de imagen IA',
-    descripcion: 'Comparativa de las herramientas de generación de imagen más populares.',
+    descripcion: 'Comparativa de las herramientas de generación de imagen más populares en 2026.',
     herramientas: [
-      { nombre: 'Midjourney v6.1', precio: '$10–$60/mes', puntuacion: 4.9, idealPara: 'Arte, calidad máxima' },
-      { nombre: 'Leonardo.ai', precio: 'Freemium', puntuacion: 4.5, idealPara: 'Calidad alta, plan gratuito generoso', enlaceAfiliado: 'https://leonardo.ai' },
-      { nombre: 'Adobe Firefly', precio: 'Con Creative Cloud', puntuacion: 4.3, idealPara: 'Uso comercial 100% seguro', enlaceAfiliado: 'https://www.adobe.com/es/products/firefly.html' },
-      { nombre: 'Stable Diffusion XL', precio: 'Gratis (local)', puntuacion: 4.3, idealPara: 'Control total y privacidad' },
+      { nombre: 'Midjourney v8', precio: '$10–$60/mes', puntuacion: 4.9, idealPara: 'Arte, calidad máxima, consistencia de personajes' },
+      { nombre: 'Flux', precio: 'Gratis (local)', puntuacion: 4.6, idealPara: 'Open source sin costes, calidad comparable a MJ' },
+      { nombre: 'Leonardo.ai', precio: 'Freemium', puntuacion: 4.5, idealPara: 'Concept art, videojuegos, plan gratuito generoso', enlaceAfiliado: 'https://leonardo.ai' },
+      { nombre: 'Adobe Firefly', precio: 'Con Creative Cloud', puntuacion: 4.4, idealPara: 'Uso comercial 100% seguro, integrado en Photoshop', enlaceAfiliado: 'https://www.adobe.com/es/products/firefly.html' },
     ],
   },
   {
     id: 'codigo',
     titulo: 'Asistentes de programación IA',
-    descripcion: 'Las mejores herramientas para escribir, entender y refactorizar código.',
+    descripcion: 'Las mejores herramientas para escribir, entender y refactorizar código en 2026.',
     herramientas: [
-      { nombre: 'Cursor', precio: '$20/mes', puntuacion: 4.8, idealPara: 'IDE completo con IA' },
-      { nombre: 'GitHub Copilot', precio: '$10/mes', puntuacion: 4.6, idealPara: 'Plugin en tu IDE actual' },
-      { nombre: 'Codeium', precio: 'Gratis', puntuacion: 4.2, idealPara: 'Alternativa gratuita' },
-      { nombre: 'Tabnine', precio: '$12/mes', puntuacion: 4.0, idealPara: 'Privacidad y ejecución local' },
+      { nombre: 'Cursor', precio: '$20/mes', puntuacion: 4.8, idealPara: 'IDE completo con IA, ediciones multi-fichero' },
+      { nombre: 'Windsurf', precio: '$20/mes (Pro)', puntuacion: 4.6, idealPara: 'IDE con IA, comprensión del contexto completo' },
+      { nombre: 'GitHub Copilot', precio: 'Desde $10/mes*', puntuacion: 4.5, idealPara: 'Plugin en tu IDE actual, estándar en empresas' },
+      { nombre: 'Codeium', precio: 'Gratis', puntuacion: 4.2, idealPara: 'Alternativa gratuita a Copilot' },
     ],
   },
   {
@@ -41,10 +42,21 @@ const comparativas = [
     titulo: 'Herramientas de voz y audio IA',
     descripcion: 'Síntesis de voz, clonación y generación de música con inteligencia artificial.',
     herramientas: [
-      { nombre: 'ElevenLabs', precio: '$5–$99/mes', puntuacion: 4.8, idealPara: 'Voz realista, clonación', enlaceAfiliado: 'https://try.elevenlabs.io/5pqit62qinao' },
-      { nombre: 'Murf.ai', precio: '$19/mes', puntuacion: 4.5, idealPara: 'Voiceover profesional', enlaceAfiliado: 'https://murf.ai' },
-      { nombre: 'Udio', precio: 'Freemium', puntuacion: 4.4, idealPara: 'Generación de música completa' },
-      { nombre: 'Adobe Podcast', precio: 'Gratis (beta)', puntuacion: 4.2, idealPara: 'Mejora de calidad de audio' },
+      { nombre: 'ElevenLabs', precio: '$5–$99/mes', puntuacion: 4.8, idealPara: 'Voz + clonación + Music v2 con efectos de sonido', enlaceAfiliado: 'https://try.elevenlabs.io/5pqit62qinao' },
+      { nombre: 'Murf.ai', precio: '$19/mes', puntuacion: 4.5, idealPara: 'Voiceover profesional para vídeos y presentaciones', enlaceAfiliado: 'https://murf.ai' },
+      { nombre: 'Suno', precio: 'Gratis / Pro $10/mes', puntuacion: 4.5, idealPara: 'Música completa desde texto, hasta 4 minutos' },
+      { nombre: 'Adobe Podcast', precio: 'Gratis', puntuacion: 4.2, idealPara: 'Mejora automática de calidad de voz y audio' },
+    ],
+  },
+  {
+    id: 'video',
+    titulo: 'Mejores generadores de vídeo IA',
+    descripcion: 'Herramientas de generación y edición de vídeo con inteligencia artificial en 2026.',
+    herramientas: [
+      { nombre: 'RunwayML', precio: 'Desde $15/mes', puntuacion: 4.6, idealPara: 'Suite profesional, control de cámara, integración MCP' },
+      { nombre: 'Kling 2.0', precio: 'Desde $10/mes', puntuacion: 4.5, idealPara: 'Mejor relación calidad-precio, vídeos de hasta 3 min' },
+      { nombre: 'Sora 2', precio: 'ChatGPT Pro / Perplexity Max', puntuacion: 4.5, idealPara: 'Física realista, calidad OpenAI, nueva en 2026' },
+      { nombre: 'HeyGen', precio: 'Desde $29/mes', puntuacion: 4.5, idealPara: 'Avatares IA, doblaje automático, vídeos corporativos' },
     ],
   },
 ];
@@ -56,8 +68,11 @@ const comparativas = [
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Comparativas</h1>
-    <p class="text-gray-600 dark:text-gray-400 mb-4">
+    <p class="text-gray-600 dark:text-gray-400 mb-1">
       Tablas comparativas actualizadas para ayudarte a elegir la herramienta correcta sin perder tiempo.
+    </p>
+    <p class="text-xs text-gray-400 dark:text-gray-500 mb-4">
+      Actualizado: junio 2026. *GitHub Copilot migró a facturación por créditos AI en junio 2026; el coste real puede variar según uso.
     </p>
 
     <!-- Jump links -->
