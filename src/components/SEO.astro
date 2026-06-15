@@ -30,12 +30,28 @@ const jsonLd = article && publishDate
       description,
       image: ogImage,
       datePublished: publishDate.toISOString(),
+      dateModified: publishDate.toISOString(),
+      inLanguage: 'es',
+      url: canonical,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      author: {
+        '@type': 'Person',
+        name: 'Sergio Ruiz',
+        url: `${siteUrl}/sobre-mi`,
+        sameAs: [
+          'https://www.linkedin.com/in/sergio-ruiz-martin-a1530b316',
+          'https://github.com/ruimar-dev',
+        ],
+      },
       publisher: {
         '@type': 'Organization',
         name: 'IA en Español',
         url: siteUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/images/logo web.png`,
+        },
       },
-      url: canonical,
     })
   : null;
 ---
