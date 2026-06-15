@@ -38,164 +38,138 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
   description="Responde 5 preguntas y descubre qué herramienta de inteligencia artificial es perfecta para ti. Quiz gratuito y personalizado."
 >
   <!-- INTRO -->
-  <section id="intro" class="relative overflow-hidden py-24 px-4 text-center">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#f0ebff] to-[#fafafa] dark:from-[#0f0f0f] dark:via-[#1a0a2e] dark:to-[#0f0f0f]" aria-hidden="true"></div>
-    <div class="relative max-w-2xl mx-auto">
-      <span class="inline-block bg-[#7C3AED]/10 dark:bg-white/10 text-[#7C3AED] dark:text-white/80 text-sm font-semibold px-4 py-1.5 rounded-full mb-6 border border-[#7C3AED]/20 dark:border-white/10">
-        Test interactivo
+  <section id="intro" class="wrap--narrow" style="padding-top:56px; padding-bottom:80px; text-align:center;">
+    <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent);">Recomendador</span>
+    <h1 style="margin:12px 0 0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2.2rem,5vw,2.875rem); line-height:1.05; letter-spacing:-0.025em; color:var(--ink);">¿Qué IA necesitas?</h1>
+    <p style="margin:14px auto 0; font-size:18px; line-height:1.55; color:var(--ink2); max-width:440px;">5 preguntas rápidas y te decimos exactamente qué herramienta de IA usar. Sin tecnicismos, sin rodeos.</p>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin:32px 0 36px;">
+      <span style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink2);">
+        <svg style="width:16px;height:16px;color:var(--accent);flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Solo 5 preguntas
       </span>
-      <h1 class="font-extrabold text-gray-900 dark:text-white mb-4 leading-tight tracking-tight" style="font-size: clamp(2.5rem, 5vw, 4rem);">
-        ¿Qué IA<br/>
-        <span class="text-[#7C3AED] dark:text-[#A78BFA]">necesitas?</span>
-      </h1>
-      <p class="text-lg text-gray-600 dark:text-white/70 mb-10 max-w-lg mx-auto leading-relaxed">
-        5 preguntas rápidas y te decimos exactamente qué herramienta de IA usar. Sin tecnicismos, sin rodeos.
-      </p>
-      <div class="flex flex-wrap justify-center gap-6 mb-10">
-        <span class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <svg class="w-4 h-4 text-[#7C3AED] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-          Solo 5 preguntas
-        </span>
-        <span class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <svg class="w-4 h-4 text-[#7C3AED] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-          </svg>
-          Resultado personalizado
-        </span>
-        <span class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <svg class="w-4 h-4 text-[#7C3AED] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          Gratis, sin registro
-        </span>
-      </div>
-      <button
-        id="btn-start"
-        class="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold px-8 py-4 rounded-xl text-base transition-colors shadow-lg shadow-[#7C3AED]/30"
-      >
-        Empezar el test
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-        </svg>
-      </button>
+      <span style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink2);">
+        <svg style="width:16px;height:16px;color:var(--accent);flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        Resultado personalizado
+      </span>
+      <span style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink2);">
+        <svg style="width:16px;height:16px;color:var(--accent);flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Gratis, sin registro
+      </span>
     </div>
+
+    <button
+      id="btn-start"
+      style="display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:var(--bg); border:none; padding:15px 28px; border-radius:12px; font-family:'Geist',sans-serif; font-size:16px; font-weight:600; cursor:pointer; transition:all .18s;"
+    >
+      Empezar el test
+      <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
   </section>
 
   <!-- QUIZ -->
-  <section id="quiz-section" class="hidden py-10 pb-24 px-4">
-    <div class="max-w-2xl mx-auto">
-      <!-- Progress -->
-      <div class="mb-8">
-        <div class="flex justify-between items-center mb-2">
-          <span id="progress-label" class="text-sm font-medium text-gray-500 dark:text-gray-400">Pregunta 1 de 5</span>
-          <span id="progress-pct" class="text-sm font-semibold text-[#7C3AED]">0%</span>
-        </div>
-        <div class="h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
-          <div id="progress-bar" class="h-full bg-[#7C3AED] rounded-full transition-all duration-500" style="width: 0%"></div>
-        </div>
-        <div class="flex gap-1.5 mt-3">
-          <div id="dot-1" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-2" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-3" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-4" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-          <div id="dot-5" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-800 transition-all duration-300"></div>
-        </div>
+  <section id="quiz-section" class="hidden wrap--narrow" style="padding-top:40px; padding-bottom:80px;">
+    <!-- Progress -->
+    <div style="margin-bottom:28px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span id="progress-label" style="font-family:'Geist Mono',monospace; font-size:12px; color:var(--muted);">Pregunta 1 de 5</span>
+        <span id="progress-pct" style="font-family:'Geist Mono',monospace; font-size:12px; color:var(--muted);">0%</span>
       </div>
-
-      <!-- Question card -->
-      <div id="question-card" class="bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8">
-        <p id="q-numero" class="text-xs font-semibold text-[#7C3AED] mb-3 uppercase tracking-widest">Pregunta 1</p>
-        <h2 id="q-texto" class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-1 leading-snug"></h2>
-        <p id="q-subtitulo" class="text-sm text-gray-500 dark:text-gray-400 mb-6"></p>
-        <div id="opciones-grid" class="grid gap-2.5"></div>
+      <div style="height:6px; border-radius:99px; background:var(--hover); overflow:hidden;">
+        <div id="progress-bar" style="height:100%; width:0%; background:var(--accent); border-radius:99px; transition:width .35s ease;"></div>
       </div>
+      <div style="display:flex; gap:6px; margin-top:10px;">
+        <div id="dot-1" style="height:3px; flex:1; border-radius:99px; transition:all .3s;"></div>
+        <div id="dot-2" style="height:3px; flex:1; border-radius:99px; transition:all .3s;"></div>
+        <div id="dot-3" style="height:3px; flex:1; border-radius:99px; transition:all .3s;"></div>
+        <div id="dot-4" style="height:3px; flex:1; border-radius:99px; transition:all .3s;"></div>
+        <div id="dot-5" style="height:3px; flex:1; border-radius:99px; transition:all .3s;"></div>
+      </div>
+    </div>
 
-      <!-- Email capture card -->
-      <div id="email-card" class="hidden bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-10 text-center">
-        <div class="w-14 h-14 mx-auto mb-5 bg-[#7C3AED]/10 dark:bg-[#7C3AED]/15 rounded-2xl flex items-center justify-center">
-          <svg class="w-7 h-7 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    <!-- Question card -->
+    <div id="question-card" style="background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:36px; box-shadow:0 1px 2px var(--shadow), 0 12px 32px var(--shadow);">
+      <p id="q-numero" style="margin:0 0 16px; font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);"></p>
+      <h2 id="q-texto" style="margin:0 0 8px; font-family:'Newsreader',serif; font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.02em; color:var(--ink);"></h2>
+      <p id="q-subtitulo" style="margin:0 0 24px; font-size:14px; line-height:1.5; color:var(--ink3);"></p>
+      <div id="opciones-grid" class="grid gap-2.5"></div>
+    </div>
+
+    <!-- Email capture card -->
+    <div id="email-card" class="hidden" style="background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:40px; box-shadow:0 1px 2px var(--shadow), 0 12px 32px var(--shadow); text-align:center;">
+      <div style="width:56px; height:56px; margin:0 auto 20px; background:var(--accent-tint); border-radius:16px; display:flex; align-items:center; justify-content:center;">
+        <svg style="width:28px;height:28px;color:var(--accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <h2 style="margin:0 0 8px; font-family:'Newsreader',serif; font-weight:500; font-size:28px; line-height:1.12; letter-spacing:-0.02em; color:var(--ink);">Tu resultado te espera</h2>
+      <p style="margin:0 auto 28px; font-size:15px; line-height:1.6; color:var(--ink2); max-width:300px;">Déjanos tu email y te enviamos las mejores reviews de herramientas IA cada semana. Sin spam, solo lo bueno.</p>
+
+      <form id="email-form" novalidate style="max-width:320px; margin:0 auto; text-align:left;">
+        <div style="margin-bottom:10px;">
+          <input
+            id="email-input"
+            type="email"
+            placeholder="tu@email.com"
+            autocomplete="email"
+            style="width:100%; padding:14px 18px; border:1px solid var(--border2); border-radius:11px; font-family:'Geist',sans-serif; font-size:15px; color:var(--ink); background:var(--bg); outline:none; box-sizing:border-box; transition:border-color .18s;"
+          />
+          <p id="email-error" class="hidden" style="font-size:12px; color:#ef4444; margin:6px 0 0 2px;">Introduce un email válido.</p>
+        </div>
+        <button
+          type="submit"
+          id="btn-email-submit"
+          style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:var(--ink); color:var(--bg); border:none; padding:14px; border-radius:11px; font-family:'Geist',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:all .18s;"
+        >
+          <span id="btn-email-text">Ver mi resultado</span>
+          <svg id="btn-email-arrow" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          <svg id="btn-email-spinner" class="hidden animate-spin" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
           </svg>
-        </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-snug">
-          Tu resultado te espera
-        </h2>
-        <p class="text-gray-500 dark:text-gray-400 mb-8 max-w-xs mx-auto leading-relaxed text-sm">
-          Déjanos tu email y te enviamos las mejores reviews de herramientas IA cada semana. Sin spam, solo lo bueno.
-        </p>
-
-        <form id="email-form" novalidate class="space-y-3 max-w-xs mx-auto text-left">
-          <div>
-            <input
-              id="email-input"
-              type="email"
-              placeholder="tu@email.com"
-              autocomplete="email"
-              class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-colors text-sm"
-            />
-            <p id="email-error" class="hidden text-xs text-red-500 mt-1 ml-1">Introduce un email válido.</p>
-          </div>
-          <button
-            type="submit"
-            id="btn-email-submit"
-            class="w-full bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
-          >
-            <span id="btn-email-text">Ver mi resultado</span>
-            <svg id="btn-email-arrow" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-            <svg id="btn-email-spinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
-            </svg>
-          </button>
-        </form>
-
-        <button id="btn-skip-email" class="mt-5 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-          Saltar y ver el resultado
         </button>
-      </div>
+      </form>
+
+      <button id="btn-skip-email" style="margin-top:20px; background:none; border:none; cursor:pointer; font-family:'Geist',sans-serif; font-size:13px; color:var(--ink3); padding:0; transition:color .15s;">Saltar y ver el resultado</button>
     </div>
   </section>
 
   <!-- RESULTS -->
-  <section id="results-section" class="hidden pt-4 pb-24 px-4">
-    <div class="max-w-2xl mx-auto">
-      <div class="text-center mb-10">
-        <div id="confetti-container" class="relative h-8 mb-2 overflow-visible pointer-events-none"></div>
-        <p class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-2">Tu resultado</p>
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Tu IA ideal es...</h2>
-        <p class="text-sm text-gray-500 dark:text-gray-400">Basado en tus respuestas, aquí está tu recomendación personalizada.</p>
+  <section id="results-section" class="hidden wrap--narrow" style="padding-top:40px; padding-bottom:80px;">
+    <div>
+      <div style="text-align:center; margin-bottom:36px;">
+        <div id="confetti-container" style="position:relative; height:32px; margin-bottom:8px; overflow:visible; pointer-events:none;"></div>
+        <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent);">Tu resultado</span>
+        <h2 style="margin:10px 0 6px; font-family:'Newsreader',serif; font-weight:500; font-size:32px; line-height:1.1; letter-spacing:-0.02em; color:var(--ink);">Tu IA ideal es...</h2>
+        <p style="font-size:14px; color:var(--ink3);">Basado en tus respuestas, aquí está tu recomendación personalizada.</p>
       </div>
 
       <!-- Winner card -->
-      <div id="winner-card" class="rounded-2xl mb-6 text-white overflow-hidden shadow-xl">
-        <div class="p-6 sm:p-8">
-          <div class="flex items-start justify-between gap-4 mb-3">
-            <div>
-              <p class="text-sm font-medium opacity-70 mb-1" id="winner-empresa"></p>
-              <h3 class="text-3xl sm:text-4xl font-extrabold leading-tight" id="winner-nombre"></h3>
+      <div id="winner-card" style="background:var(--surface); border:1px solid var(--border); border-radius:20px; margin-bottom:24px; overflow:hidden; box-shadow:0 1px 2px var(--shadow), 0 12px 32px var(--shadow);">
+        <div id="winner-topbar" style="height:4px;"></div>
+        <div style="padding:28px;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px;">
+            <div style="flex:1; min-width:0;">
+              <p id="winner-empresa" style="margin:0 0 4px; font-size:11px; font-family:'Geist Mono',monospace; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);"></p>
+              <h3 id="winner-nombre" style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(1.8rem,5vw,2.2rem); line-height:1.05; letter-spacing:-0.02em; color:var(--ink);"></h3>
             </div>
-            <div class="flex-shrink-0" id="winner-emoji"></div>
+            <div id="winner-emoji" style="flex-shrink:0;"></div>
           </div>
-          <div class="mb-4">
-            <span id="winner-match" class="inline-flex items-center gap-1.5 bg-white/20 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide"></span>
+          <div style="margin-bottom:14px;">
+            <span id="winner-match" style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--accent); background:var(--accent-tint); padding:5px 12px; border-radius:7px; font-family:'Geist',sans-serif;"></span>
           </div>
-          <p class="text-base font-semibold opacity-90 mb-3" id="winner-tagline"></p>
-          <p class="opacity-75 mb-5 leading-relaxed text-sm" id="winner-desc"></p>
-          <div class="flex flex-wrap gap-2 mb-5" id="winner-pros"></div>
-          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-5 border-t border-white/20">
-            <a id="winner-link" href="#" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">
+          <p id="winner-tagline" style="margin:0 0 8px; font-size:16px; font-weight:600; line-height:1.4; color:var(--ink);"></p>
+          <p id="winner-desc" style="margin:0 0 20px; font-size:14px; line-height:1.6; color:var(--ink2);"></p>
+          <div id="winner-pros" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;"></div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding-top:20px; border-top:1px solid var(--border);">
+            <a id="winner-link" href="#" target="_blank" rel="noopener noreferrer" class="winner-cta-btn">
               Probar ahora
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg style="width:14px;height:14px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
               </svg>
             </a>
-            <span class="flex items-center gap-1.5 text-sm opacity-70">
-              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <span style="display:flex; align-items:center; gap:6px; font-family:'Geist Mono',monospace; font-size:12px; color:var(--muted);">
+              <svg style="width:14px;height:14px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/>
               </svg>
               <span id="winner-precio"></span>
@@ -205,26 +179,23 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       </div>
 
       <!-- Share -->
-      <div id="share-section" class="hidden mb-8">
-        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">Comparte tu resultado</p>
-        <div class="flex flex-wrap gap-2">
-          <button id="btn-copy-link"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1A1A1A] text-gray-700 dark:text-gray-300 hover:border-[#7C3AED] hover:text-[#7C3AED] dark:hover:border-[#A78BFA] dark:hover:text-[#A78BFA] text-sm font-medium transition-colors">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <div id="share-section" class="hidden" style="margin-bottom:32px;">
+        <p style="font-family:'Geist Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:0 0 12px;">Comparte tu resultado</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <button id="btn-copy-link" class="share-btn">
+            <svg style="width:16px;height:16px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
             </svg>
             <span id="btn-copy-text">Copiar enlace</span>
           </button>
-          <a id="btn-share-x" href="#" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1A1A1A] text-gray-700 dark:text-gray-300 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white text-sm font-medium transition-colors">
-            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <a id="btn-share-x" href="#" target="_blank" rel="noopener noreferrer" class="share-btn">
+            <svg style="width:16px;height:16px;flex-shrink:0;" fill="currentColor" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
             </svg>
             Compartir en X
           </a>
-          <a id="btn-share-whatsapp" href="#" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1A1A1A] text-gray-700 dark:text-gray-300 hover:border-[#25D366] hover:text-[#25D366] dark:hover:border-[#25D366] dark:hover:text-[#25D366] text-sm font-medium transition-colors">
-            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <a id="btn-share-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--wa">
+            <svg style="width:16px;height:16px;flex-shrink:0;" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             WhatsApp
@@ -233,25 +204,25 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       </div>
 
       <!-- Comparison -->
-      <div id="comparison-section" class="hidden mb-10">
-        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Comparativa del podio</p>
-        <div class="overflow-x-auto -mx-4 sm:mx-0">
-          <div class="px-4 sm:px-0">
-            <div id="comparison-table" class="min-w-[480px] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden"></div>
+      <div id="comparison-section" class="hidden" style="margin-bottom:40px;">
+        <p style="font-family:'Geist Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:0 0 16px;">Comparativa del podio</p>
+        <div style="overflow-x:auto; margin:0 -20px;">
+          <div style="padding:0 20px;">
+            <div id="comparison-table" style="min-width:480px; border-radius:16px; border:1px solid var(--border); overflow:hidden;"></div>
           </div>
         </div>
       </div>
 
       <!-- Related articles -->
-      <div id="related-section" class="hidden mb-8">
-        <p class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Sigue leyendo</p>
-        <div id="related-grid" class="grid grid-cols-1 gap-3"></div>
+      <div id="related-section" class="hidden" style="margin-bottom:32px;">
+        <p style="font-family:'Geist Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:0 0 16px;">Sigue leyendo</p>
+        <div id="related-grid" style="display:flex; flex-direction:column; gap:12px;"></div>
       </div>
 
       <!-- Restart -->
-      <div class="text-center pt-6 border-t border-gray-200 dark:border-gray-800">
-        <button id="btn-restart" class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#7C3AED] font-medium transition-colors">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <div style="text-align:center; padding-top:24px; border-top:1px solid var(--border);">
+        <button id="btn-restart" style="display:inline-flex; align-items:center; gap:8px; background:none; border:none; cursor:pointer; font-family:'Geist',sans-serif; font-size:14px; font-weight:500; color:var(--ink3); padding:0; transition:color .15s;">
+          <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
           Repetir el test
@@ -290,56 +261,224 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
   .slide-out  { animation: slideOutLeft  0.25s cubic-bezier(0.55, 0, 0.75, 0.06)    both; }
   .fade-in-up { animation: fadeInUp      0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
+  /* Default color for progress dots (JS clears inline style to reset to this) */
+  :global(#dot-1), :global(#dot-2), :global(#dot-3),
+  :global(#dot-4), :global(#dot-5) {
+    background: var(--border);
+  }
+
   :global(.opcion-card) {
     cursor: pointer;
-    border: 1.5px solid #E5E7EB;
-    background: white;
-    transition:
-      transform    0.2s ease,
-      box-shadow   0.2s ease,
-      border-color 0.15s ease,
-      background   0.15s ease;
-  }
-  :global(.dark .opcion-card) {
-    background: #1A1A1A;
-    border-color: #1F2937;
+    border: 1px solid var(--border2) !important;
+    background: var(--bg) !important;
+    border-radius: 13px !important;
+    padding: 18px 20px !important;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
   }
   :global(.op-emoji) {
     display: inline-block;
     transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   :global(.op-titulo) {
+    color: var(--ink) !important;
     transition: color 0.15s ease;
   }
-  :global(.opcion-card:hover) {
-    border-color: #7C3AED;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.14);
-    background: rgba(124, 58, 237, 0.03);
+  :global(.op-desc) {
+    color: var(--ink3) !important;
   }
-  :global(.dark .opcion-card:hover) {
-    background: rgba(124, 58, 237, 0.07);
-    border-color: #7C3AED;
+  :global(.opcion-card:hover) {
+    border-color: var(--accent) !important;
+    background: var(--accent-tint) !important;
+    transform: translateX(3px);
+    box-shadow: none;
   }
   :global(.opcion-card:hover .op-emoji) {
-    transform: scale(1.2);
+    transform: scale(1.15);
   }
   :global(.opcion-card:hover .op-titulo) {
-    color: #7C3AED;
+    color: var(--accent) !important;
   }
   :global(.opcion-card.selected) {
-    border-color: #7C3AED;
-    background: #7C3AED !important;
+    border-color: var(--accent) !important;
+    background: var(--accent-tint) !important;
     animation: popIn 0.25s ease;
   }
-  :global(.opcion-card.selected .op-titulo) { color: white; }
-  :global(.opcion-card.selected .op-desc)   { color: rgba(255,255,255,0.72); }
+  :global(.opcion-card.selected .op-titulo) {
+    color: var(--accent) !important;
+  }
+  :global(.opcion-card.selected .op-desc) {
+    color: var(--ink2) !important;
+  }
   :global(.confetti-piece) {
     position: absolute;
     width: 8px;
     height: 8px;
     border-radius: 2px;
     animation: confettiFall 0.9s ease-out forwards;
+  }
+
+  /* Winner card CTA */
+  :global(.winner-cta-btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 12px 20px;
+    border-radius: 11px;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.18s;
+  }
+  :global(.winner-cta-btn:hover) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px var(--shadow);
+  }
+
+  /* Share buttons */
+  :global(.share-btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 11px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    color: var(--ink2);
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  :global(.share-btn:hover) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  :global(.share-btn--wa:hover) {
+    border-color: #25D366;
+    color: #25D366;
+  }
+
+  /* Comparison table rows */
+  :global(.comp-row-alt) { background: var(--stripe-a); }
+  :global(.comp-label) {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink3);
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 112px;
+  }
+  :global(.comp-cell) {
+    padding: 12px 16px;
+    text-align: center;
+    vertical-align: top;
+  }
+  :global(.comp-divider) { border-top: 1px solid var(--border); }
+  :global(.comp-btn-primary) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: var(--ink);
+    color: var(--bg);
+    transition: all 0.15s;
+  }
+  :global(.comp-btn-primary:hover) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+  :global(.comp-btn-secondary) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    color: var(--ink2);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  :global(.comp-btn-secondary:hover) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  :global(.comp-pro-tag) {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--ink2);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 3px 8px;
+    border-radius: 99px;
+    line-height: 1.4;
+  }
+
+  /* Related article cards */
+  :global(.related-card) {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  :global(.related-card:hover) {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  :global(.related-card-img) {
+    width: 80px;
+    height: 64px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--hover);
+  }
+  :global(.related-card-title) {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--ink);
+    transition: color 0.15s;
+  }
+  :global(.related-card:hover .related-card-title) {
+    color: var(--accent);
+  }
+  :global(.related-card-desc) {
+    font-size: 12px;
+    color: var(--ink3);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  :global(.related-card-arrow) {
+    color: var(--muted);
+    flex-shrink: 0;
+    align-self: center;
+    transition: color 0.15s;
+  }
+  :global(.related-card:hover .related-card-arrow) {
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    #question-card { padding: 24px 20px !important; }
+    #email-card { padding: 28px 20px !important; }
   }
 </style>
 
@@ -725,11 +864,11 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       const dot = $(`dot-${i}`);
       const qIdx = i - 1;
       if (esSaltada(qIdx)) {
-        dot.style.background = 'rgba(124,58,237,0.12)';
+        dot.style.background = 'var(--accent-tint)';
       } else if (qIdx < idx) {
-        dot.style.background = '#7C3AED';
+        dot.style.background = 'var(--accent)';
       } else if (qIdx === idx) {
-        dot.style.background = '#A78BFA';
+        dot.style.background = 'var(--muted)';
       } else {
         dot.style.background = '';
       }
@@ -806,7 +945,7 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
     $('progress-label').textContent = '¡Test completado!';
     $('progress-pct').textContent = '100%';
     for (let i = 1; i <= preguntas.length; i++) {
-      $(`dot-${i}`).style.background = esSaltada(i - 1) ? 'rgba(124,58,237,0.12)' : '#7C3AED';
+      $(`dot-${i}`).style.background = esSaltada(i - 1) ? 'var(--accent-tint)' : 'var(--accent)';
     }
 
     if (localStorage.getItem('quiz_email')) {
@@ -869,17 +1008,17 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
     const articles = map[iaId] ?? [];
     if (articles.length === 0) { hide('related-section'); return; }
     $('related-grid').innerHTML = articles.map(({ title, description, slug, imagen }) => `
-      <a href="/blog/${slug}" class="group flex gap-4 p-4 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-[#7C3AED]/50 hover:shadow-md hover:shadow-[#7C3AED]/10 transition-all duration-300">
-        <div class="w-20 h-16 rounded-xl flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
+      <a href="/blog/${slug}" class="related-card">
+        <div class="related-card-img">
           ${imagen
-            ? `<img src="${imagen}" alt="" class="w-full h-full object-cover" loading="lazy"/>`
-            : `<div class="w-full h-full bg-gradient-to-br from-[#7C3AED]/20 to-[#7C3AED]/5"></div>`}
+            ? `<img src="${imagen}" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>`
+            : `<div style="width:100%;height:100%;background:var(--stripe-a);"></div>`}
         </div>
-        <div class="min-w-0 flex-1">
-          <p class="font-bold text-gray-900 dark:text-white text-sm leading-snug line-clamp-2 group-hover:text-[#7C3AED] transition-colors">${title}</p>
-          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5 line-clamp-2 leading-relaxed">${description}</p>
+        <div style="min-width:0;flex:1;">
+          <p class="related-card-title">${title}</p>
+          <p class="related-card-desc">${description}</p>
         </div>
-        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#7C3AED] flex-shrink-0 self-center transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="related-card-arrow" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
         </svg>
       </a>`).join('');
@@ -954,64 +1093,59 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
       ia: IAs[id], id, pct: calcularMatchPct(id, score), pos,
     }));
 
-    const col = 'px-4 py-3 text-center align-top';
-    const label = 'px-4 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 align-middle whitespace-nowrap w-28';
-
     const logoCell = ({ ia, pos }: typeof podium[0]) => `
-      <div class="flex flex-col items-center gap-2 pt-1">
-        <span class="text-xl leading-none">${medals[pos]}</span>
-        <div class="w-10 h-10 rounded-xl bg-white dark:bg-gray-100 border border-gray-100 flex items-center justify-center overflow-hidden p-1.5 flex-shrink-0">
-          <img src="${ia.logo}" alt="${ia.nombre}" class="w-full h-full object-contain"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="hidden w-full h-full items-center justify-center text-white font-bold text-xs rounded-lg"
-            style="background:linear-gradient(135deg,${ia.colorFrom},${ia.colorTo})">${ia.nombre.substring(0, 2).toUpperCase()}</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px;">
+        <span style="font-size:20px;line-height:1;">${medals[pos]}</span>
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px;flex-shrink:0;">
+          <img src="${ia.logo}" alt="${ia.nombre}" style="width:100%;height:100%;object-fit:contain;"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,${ia.colorFrom},${ia.colorTo});border-radius:6px;color:#fff;font-size:10px;font-weight:700;display:none;align-items:center;justify-content:center;">${ia.nombre.substring(0, 2).toUpperCase()}</div>
         </div>
-        <span class="text-sm font-bold text-gray-900 dark:text-white leading-tight text-center">${ia.nombre}</span>
+        <span style="font-size:13px;font-weight:600;color:var(--ink);line-height:1.3;text-align:center;">${ia.nombre}</span>
       </div>`;
 
     $('comparison-table').innerHTML = `
-      <table class="w-full border-collapse">
+      <table style="width:100%;border-collapse:collapse;">
         <thead>
-          <tr class="border-b border-gray-200 dark:border-gray-800">
-            <th class="${label} border-b-0"></th>
+          <tr style="border-bottom:1px solid var(--border);">
+            <th class="comp-label" style="border-bottom:none;"></th>
             ${podium.map(p => `
-              <th class="${col} border-b-0 pb-4 relative" style="${p.pos === 0 ? `border-top:3px solid ${p.ia.colorFrom}` : ''}">
+              <th class="comp-cell" style="border-bottom:none;padding-bottom:16px;${p.pos === 0 ? `border-top:3px solid ${p.ia.colorFrom};` : ''}">
                 ${logoCell(p)}
               </th>`).join('')}
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-gray-50 dark:bg-white/[0.03]">
-            <td class="${label}">Compatibilidad</td>
+          <tr class="comp-row-alt">
+            <td class="comp-label">Compatibilidad</td>
             ${podium.map(p => `
-              <td class="${col}">
-                <span class="text-lg font-extrabold ${p.pos === 0 ? 'text-[#7C3AED]' : 'text-gray-600 dark:text-gray-300'}">${p.pct}%</span>
+              <td class="comp-cell">
+                <span style="font-size:18px;font-weight:800;color:${p.pos === 0 ? 'var(--accent)' : 'var(--ink2)'};">${p.pct}%</span>
               </td>`).join('')}
           </tr>
-          <tr class="border-t border-gray-100 dark:border-gray-800/60">
-            <td class="${label}">Precio</td>
+          <tr class="comp-divider">
+            <td class="comp-label">Precio</td>
             ${podium.map(p => `
-              <td class="${col}">
-                <span class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">${p.ia.precio}</span>
+              <td class="comp-cell">
+                <span style="font-size:12px;color:var(--ink2);line-height:1.5;">${p.ia.precio}</span>
               </td>`).join('')}
           </tr>
-          <tr class="border-t border-gray-100 dark:border-gray-800/60 bg-gray-50 dark:bg-white/[0.03]">
-            <td class="${label}">Puntos fuertes</td>
+          <tr class="comp-divider comp-row-alt">
+            <td class="comp-label">Puntos fuertes</td>
             ${podium.map(p => `
-              <td class="${col}">
-                <div class="flex flex-col items-center gap-1">
-                  ${p.ia.pros.map(pro => `<span class="text-xs bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full leading-snug text-center">${pro}</span>`).join('')}
+              <td class="comp-cell">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  ${p.ia.pros.map(pro => `<span class="comp-pro-tag">${pro}</span>`).join('')}
                 </div>
               </td>`).join('')}
           </tr>
-          <tr class="border-t border-gray-100 dark:border-gray-800/60">
-            <td class="${label}">Probar</td>
+          <tr class="comp-divider">
+            <td class="comp-label">Probar</td>
             ${podium.map(p => `
-              <td class="${col} pb-4">
-                <a href="${p.ia.web}" target="_blank" rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${p.pos === 0 ? 'bg-[#7C3AED] text-white hover:bg-[#6D28D9]' : 'border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-[#7C3AED] hover:text-[#7C3AED]'}">
+              <td class="comp-cell" style="padding-bottom:16px;">
+                <a href="${p.ia.web}" target="_blank" rel="noopener noreferrer" class="${p.pos === 0 ? 'comp-btn-primary' : 'comp-btn-secondary'}">
                   Probar
-                  <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <svg style="width:12px;height:12px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
                 </a>
@@ -1032,26 +1166,25 @@ for (const [iaId, names] of Object.entries(IA_HERRAMIENTAS)) {
 
     const matchPct = calcularMatchPct(winnerId, winnerScore);
 
-    const wCard = $('winner-card');
-    wCard.style.background = `linear-gradient(135deg, ${winner.colorFrom}, ${winner.colorTo})`;
+    $('winner-topbar').style.background = `linear-gradient(90deg, ${winner.colorFrom}, ${winner.colorTo})`;
 
     $('winner-emoji').innerHTML = `
-      <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center overflow-hidden p-2">
-        <img src="${winner.logo}" alt="${winner.nombre}" class="w-full h-full object-contain"
+      <div style="width:64px;height:64px;border-radius:16px;overflow:hidden;background:var(--hover);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:10px;">
+        <img src="${winner.logo}" alt="${winner.nombre}" style="width:100%;height:100%;object-fit:contain;"
           onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-        <span class="hidden text-3xl">${winner.emoji}</span>
+        <span style="display:none;font-size:28px;">${winner.emoji}</span>
       </div>`;
     $('winner-empresa').textContent = winner.empresa;
     $('winner-nombre').textContent = winner.nombre;
-    $('winner-match').innerHTML = `<svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>${matchPct}% de compatibilidad`;
+    $('winner-match').innerHTML = `<svg style="width:12px;height:12px;flex-shrink:0;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>${matchPct}% de compatibilidad`;
     $('winner-tagline').textContent = winner.tagline;
     $('winner-desc').textContent = winner.descripcion;
     $('winner-precio').textContent = winner.precio;
     ($('winner-link') as HTMLAnchorElement).href = winner.web;
 
     $('winner-pros').innerHTML = winner.pros.map(p =>
-      `<span class="inline-flex items-center gap-1.5 bg-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-        <svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      `<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-tint);padding:5px 12px;border-radius:7px;font-family:'Geist',sans-serif;">
+        <svg style="width:12px;height:12px;flex-shrink:0;" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
         </svg>${p}</span>`
     ).join('');

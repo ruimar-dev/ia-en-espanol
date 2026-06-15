@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ArticuloCard from '../../components/ArticuloCard.astro';
 import { getCollection } from 'astro:content';
-import { CATEGORIA_LABELS } from '../../content/config';
+import { CATEGORIA_LABELS, CATEGORIAS } from '../../content/config';
+import type { Categoria } from '../../content/config';
 
 const articulos = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -11,97 +11,132 @@ function readingTime(body: string) {
   return Math.max(1, Math.ceil(body.split(/\s+/).length / 200));
 }
 
-const categorias = Object.entries(CATEGORIA_LABELS);
+function formatDateShort(date: Date) {
+  const d = date.getDate();
+  const m = date.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase().replace('.', '');
+  return `${d} ${m}`;
+}
+
+const total = articulos.length;
 ---
 
-<Layout title="Blog" description="Todos los artículos sobre herramientas de IA en español. Reviews, comparativas y guías prácticas.">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog</h1>
-    <p class="text-gray-600 dark:text-gray-400 mb-8">
-      {articulos.length} {articulos.length === 1 ? 'artículo publicado' : 'artículos publicados'}
-    </p>
+<Layout
+  title="Blog — IA en Español"
+  description="Reviews honestas, comparativas y guías de las herramientas de IA que de verdad merecen tu tiempo."
+>
+  <!-- Cabecera -->
+  <section class="wrap" style="padding-top:64px;">
+    <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink3);">{total} {total === 1 ? 'artículo publicado' : 'artículos publicados'}</span>
+    <h1 style="margin:10px 0 0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2.5rem,5vw,3.375rem); line-height:1.02; letter-spacing:-0.025em; color:var(--ink);">El Blog</h1>
+    <p style="margin:18px 0 0; font-size:19px; line-height:1.55; color:var(--ink2); max-width:560px;">Reviews honestas, comparativas y guías de las herramientas de IA que de verdad merecen tu tiempo. Filtra por lo que te interese.</p>
 
     <!-- Filtros -->
-    <div class="flex flex-wrap gap-2 mb-10" id="filtros" role="group" aria-label="Filtrar por categoría">
+    <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:36px;" role="group" aria-label="Filtrar por categoría">
       <button
         data-cat=""
-        class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-[#7C3AED] text-white transition-colors"
-      >
-        Todos
-      </button>
-      {categorias.map(([slug, label]) => (
+        class="filter-btn active"
+        style="padding:9px 16px; border-radius:99px; border:1px solid var(--ink); background:var(--ink); color:var(--bg); font-size:14px; font-weight:600; cursor:pointer; font-family:'Geist',sans-serif;"
+      >Todos</button>
+      {CATEGORIAS.map((slug: Categoria) => (
         <button
           data-cat={slug}
-          class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#7C3AED] hover:text-white transition-colors"
+          class="filter-btn"
+          style="padding:9px 16px; border-radius:99px; border:1px solid var(--border2); background:var(--surface); color:var(--ink2); font-size:14px; font-weight:500; cursor:pointer; font-family:'Geist',sans-serif; transition:all .15s;"
+        >{CATEGORIA_LABELS[slug]}</button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="wrap" style="padding-top:40px; padding-bottom:80px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:28px;" id="articulos-grid">
+      {articulos.map(articulo => (
+        <a
+          href={`/blog/${articulo.slug}`}
+          style="display:block; text-decoration:none;"
+          class="articulo-item"
+          data-category={articulo.data.category}
         >
-          {label}
-        </button>
+          <article style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:12px; height:100%; display:flex; flex-direction:column; transition:all .2s;" class="article-card">
+            <div style="border-radius:11px; border:1px solid var(--border); height:178px; position:relative; overflow:hidden; flex-shrink:0;">
+              {articulo.data.imagen ? (
+                <img
+                  src={articulo.data.imagen}
+                  alt={articulo.data.title}
+                  style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg,var(--stripe-a),var(--stripe-a) 11px,var(--stripe-b) 11px,var(--stripe-b) 22px);" aria-hidden="true"></div>
+              )}
+            </div>
+            <div style="padding:18px 10px 12px; flex:1; display:flex; flex-direction:column;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:13px; flex-wrap:wrap;">
+                <span style="font-size:11px; font-weight:600; color:var(--accent); background:var(--accent-tint); padding:4px 9px; border-radius:6px;">{CATEGORIA_LABELS[articulo.data.category]}</span>
+                <span style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--muted);">{formatDateShort(articulo.data.date)} · {readingTime(articulo.body)} MIN</span>
+              </div>
+              <h3 style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:21px; line-height:1.2; letter-spacing:-0.01em; color:var(--ink);">{articulo.data.title}</h3>
+              <p style="margin:11px 0 0; font-size:14px; line-height:1.55; color:var(--ink3); flex:1;">{articulo.data.description}</p>
+            </div>
+          </article>
+        </a>
       ))}
     </div>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articulos-grid">
-      {articulos.map((articulo) => (
-        <div data-category={articulo.data.category} class="articulo-item">
-          <ArticuloCard
-            title={articulo.data.title}
-            description={articulo.data.description}
-            date={articulo.data.date}
-            category={articulo.data.category}
-            slug={articulo.slug}
-            imagen={articulo.data.imagen}
-            readingTime={readingTime(articulo.body)}
-          />
-        </div>
-      ))}
-    </div>
-
-    {articulos.length === 0 && (
-      <div class="text-center py-20 text-gray-500 dark:text-gray-400">
-        <p class="text-lg">Próximamente los primeros artículos.</p>
-      </div>
-    )}
-
-    <p id="sin-resultados" class="hidden text-center py-12 text-gray-500 dark:text-gray-400">
+    <p id="sin-resultados" style="display:none; text-align:center; padding:48px 0; font-size:16px; color:var(--ink3);">
       No hay artículos en esta categoría todavía.
     </p>
-  </div>
+  </section>
 </Layout>
+
+<style>
+  .article-card:hover {
+    box-shadow: 0 14px 32px var(--shadow);
+    transform: translateY(-3px);
+  }
+
+
+</style>
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
   const items = document.querySelectorAll<HTMLElement>('.articulo-item');
   const sinResultados = document.getElementById('sin-resultados');
 
-  const activeClasses = ['bg-[#7C3AED]', 'text-white'];
-  const inactiveClasses = ['bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300'];
+  function setActive(btn: HTMLButtonElement) {
+    btn.style.background = 'var(--ink)';
+    btn.style.color = 'var(--bg)';
+    btn.style.borderColor = 'var(--ink)';
+    btn.style.fontWeight = '600';
+  }
+
+  function setInactive(btn: HTMLButtonElement) {
+    btn.style.background = 'var(--surface)';
+    btn.style.color = 'var(--ink2)';
+    btn.style.borderColor = 'var(--border2)';
+    btn.style.fontWeight = '500';
+  }
 
   function setFilter(cat: string) {
-    buttons.forEach((btn) => {
-      const isActive = btn.dataset.cat === cat;
-      activeClasses.forEach((c) => btn.classList.toggle(c, isActive));
-      inactiveClasses.forEach((c) => btn.classList.toggle(c, !isActive));
-    });
+    buttons.forEach(btn => (btn.dataset.cat === cat ? setActive(btn) : setInactive(btn)));
 
     let visible = 0;
-    items.forEach((item) => {
+    items.forEach(item => {
       const matches = !cat || item.dataset.category === cat;
-      item.style.display = matches ? '' : 'none';
+      (item as HTMLElement).style.display = matches ? '' : 'none';
       if (matches) visible++;
     });
 
-    sinResultados?.classList.toggle('hidden', visible > 0);
+    if (sinResultados) sinResultados.style.display = visible > 0 ? 'none' : 'block';
 
     const url = new URL(window.location.href);
     cat ? url.searchParams.set('cat', cat) : url.searchParams.delete('cat');
     window.history.replaceState({}, '', url.toString());
   }
 
-  // Apply filter from URL on load
   const initialCat = new URLSearchParams(window.location.search).get('cat') ?? '';
   setFilter(initialCat);
 
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => setFilter(btn.dataset.cat ?? ''));
-  });
+  buttons.forEach(btn => btn.addEventListener('click', () => setFilter(btn.dataset.cat ?? '')));
 </script>

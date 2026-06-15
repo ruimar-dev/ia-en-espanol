@@ -1,69 +1,107 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const steps = [
+  { num: '01', title: 'Uso real, no demos', text: 'Cada herramienta se prueba en tareas reales durante al menos una o dos semanas.' },
+  { num: '02', title: 'Lo bueno y lo malo', text: 'Pros y contras claros. Si algo falla o no compensa, lo decimos sin rodeos.' },
+  { num: '03', title: 'Precio sobre la mesa', text: 'Analizamos coste real y relación calidad/precio, no solo capacidades.' },
+  { num: '04', title: 'Nota con criterio', text: 'Una nota que combina calidad, precio y experiencia, recalculada cada semana.' },
+];
 ---
 
 <Layout
-  title="Sobre mí"
+  title="Sobre mí — IA en Español"
   description="Quién está detrás de IA en Español y por qué escribo sobre inteligencia artificial en castellano."
 >
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-    <!-- Header -->
-    <div class="flex flex-col items-center text-center mb-12">
-      <div
-        class="w-24 h-24 rounded-full bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] flex items-center justify-center text-white text-3xl font-bold mb-4 shadow-xl shadow-[#7C3AED]/30"
-        aria-hidden="true"
-      >
-        IA
-      </div>
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">Sobre mí</h1>
-      <p class="text-[#7C3AED] font-semibold">Editor de IA en Español</p>
+  <!-- Intro -->
+  <section class="wrap--mid" style="padding-top:72px; display:flex; gap:48px; align-items:center; flex-wrap:wrap;">
+    <img
+      src="/images/sergio.jpg"
+      alt="Sergio, autor de IA en Español"
+      width="180"
+      height="180"
+      style="width:180px; height:180px; flex-shrink:0; border-radius:24px; object-fit:cover; object-position:center top; border:1px solid var(--border);"
+      loading="eager"
+      decoding="async"
+    />
+    <div style="flex:1; min-width:300px;">
+      <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent);">Sobre mí</span>
+      <h1 style="margin:12px 0 0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2rem,4vw,2.875rem); line-height:1.05; letter-spacing:-0.025em; color:var(--ink);">Hola, soy Sergio.<br>Pruebo IA para que tú no tengas que hacerlo.</h1>
     </div>
+  </section>
 
-    <div class="space-y-6">
-      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">¿Qué es IA en Español?</h2>
-        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-          <strong class="text-gray-900 dark:text-white">IA en Español</strong> nació de la frustración de no encontrar análisis honestos y en profundidad sobre herramientas de inteligencia artificial escritos en castellano. La mayoría del contenido está en inglés, y las traducciones suelen ser superficiales o directamente irrelevantes para el contexto hispano.
-        </p>
-        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-          Aquí escribo comparativas reales, reviews tras semanas de uso y guías prácticas para sacar el máximo partido a las herramientas de IA. Sin hype, sin marketing, con criterio.
-        </p>
-      </div>
+  <!-- Bio -->
+  <section class="wrap--narrow" style="padding-top:48px; font-size:18px; line-height:1.78; color:var(--ink2);">
+    <p style="margin:0 0 24px;">Llevo años trabajando con herramientas de inteligencia artificial en proyectos reales y, con el tiempo, me cansé de las reviews infladas y los hilos llenos de humo. Tanta promesa y tan poca prueba de verdad.</p>
+    <p style="margin:0;">Así que monté <strong style="color:var(--ink); font-weight:600;">IA en Español</strong>: un sitio donde cada herramienta se analiza con criterio, en español de verdad —sin anglicismos innecesarios— y diciendo lo bueno y lo malo. Si algo no merece la pena, lo digo.</p>
+  </section>
 
-      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">¿Por qué confiar en mis reviews?</h2>
-        <ul class="space-y-3">
-          {[
-            'Pruebo cada herramienta durante al menos 2 semanas antes de publicar.',
-            'Los enlaces de afiliado están claramente marcados y no afectan a las puntuaciones.',
-            'Actualizo los artículos cuando las herramientas cambian significativamente.',
-            'Incluyo casos de uso reales, no solo especificaciones técnicas de marketing.',
-            'Si una herramienta es mala, lo digo. Aunque tenga programa de afiliados.',
-          ].map((item) => (
-            <li class="flex items-start gap-3">
-              <span class="text-[#7C3AED] font-bold mt-0.5 flex-shrink-0" aria-hidden="true">✓</span>
-              <span class="text-gray-600 dark:text-gray-400 leading-relaxed">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Política de afiliados</h2>
-        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-          Algunos enlaces de este blog son de afiliado. Esto significa que si compras a través de ellos, puedo recibir una pequeña comisión sin coste adicional para ti. Nunca recomiendo herramientas que no usaría yo mismo, y las puntuaciones son independientes del programa de afiliados.
-        </p>
-      </div>
-
-      <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Contacto</h2>
-        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-          ¿Quieres sugerir una herramienta para analizar? ¿Tienes una colaboración en mente? Escríbeme a{' '}
-          <a href="mailto:hola@iaenespanol.com" class="text-[#7C3AED] hover:underline font-medium">
-            hola@iaenespanol.com
-          </a>
-        </p>
-      </div>
+  <!-- Metodología -->
+  <section class="wrap--mid" style="padding-top:56px;">
+    <h2 style="margin:0 0 28px; font-family:'Newsreader',serif; font-weight:500; font-size:32px; letter-spacing:-0.02em; color:var(--ink);">Cómo analizamos</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;">
+      {steps.map(s => (
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px;">
+          <span style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:var(--accent);">{s.num}</span>
+          <h3 style="margin:12px 0 8px; font-size:16px; font-weight:600; color:var(--ink);">{s.title}</h3>
+          <p style="margin:0; font-size:14px; line-height:1.55; color:var(--ink3);">{s.text}</p>
+        </div>
+      ))}
     </div>
-  </div>
+  </section>
+
+  <!-- Values band -->
+  <section class="wrap--mid" style="padding-top:48px;">
+    <div style="background:var(--band-bg); border-radius:22px; padding:48px;">
+      <h2 style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:34px; line-height:1.1; letter-spacing:-0.02em; color:#fafaf9; max-width:520px;">Sin humo significa una cosa: si te recomiendo algo, es porque lo usaría yo.</h2>
+      <p style="margin:18px 0 0; font-size:16px; line-height:1.6; color:#a1a1aa; max-width:520px;">Algunos enlaces son de afiliado y ayudan a mantener el proyecto, pero nunca cambian el veredicto. La nota se la gana la herramienta, no su programa de afiliados.</p>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="wrap--mid" style="padding-top:48px; padding-bottom:80px; text-align:center;">
+    <h2 style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:30px; letter-spacing:-0.02em; color:var(--ink);">¿Hablamos?</h2>
+    <p style="margin:12px auto 24px; font-size:16px; line-height:1.6; color:var(--ink2); max-width:420px;">¿Quieres que analice una herramienta concreta o tienes una duda? Escríbeme y la próxima review puede ser la tuya.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="/#newsletter" class="cta-primary">Suscribirme a la newsletter <span>→</span></a>
+      <a href="/blog" class="cta-secondary">Ver el blog</a>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 14px 24px;
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .18s;
+  }
+  .cta-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px var(--shadow);
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--border2);
+    padding: 14px 24px;
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .18s;
+  }
+  .cta-secondary:hover { border-color: var(--ink); }
+
+</style>

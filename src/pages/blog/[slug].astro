@@ -12,6 +12,8 @@ export async function getStaticPaths() {
 
 const { articulo } = Astro.props;
 const { Content } = await articulo.render();
+
+const minutosLectura = Math.max(3, Math.ceil(articulo.body.split(/\s+/).length / 200));
 ---
 
 <ArticuloLayout
@@ -24,6 +26,8 @@ const { Content } = await articulo.render();
   afiliado={articulo.data.afiliado}
   imagen={articulo.data.imagen}
   faqs={articulo.data.faqs}
+  ratings={articulo.data.ratings}
+  minutosLectura={minutosLectura}
 >
   <Content />
 </ArticuloLayout>

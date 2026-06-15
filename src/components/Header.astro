@@ -13,54 +13,45 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header
-  id="site-header"
-  class="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 transition-all duration-300"
->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-1.5 font-extrabold text-xl">
-        <span class="text-[#7C3AED]">IA</span>
-        <span class="text-gray-900 dark:text-white">en Español</span>
+<header id="site-header">
+  <div class="header-inner">
+    <div class="header-row">
+      <!-- Logo -->
+      <a href="/" class="site-logo">
+        <span class="logo-ia">IA</span>
+        <span class="logo-text">en Español</span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6">
+      <!-- Desktop nav -->
+      <nav class="desktop-nav" aria-label="Navegación principal">
         {navLinks.map(({ href, label }) => (
           <a
             href={href}
-            class:list={[
-              'text-sm font-medium transition-colors hover:text-[#7C3AED]',
-              currentPath.startsWith(href)
-                ? 'text-[#7C3AED]'
-                : 'text-gray-600 dark:text-gray-400',
-            ]}
+            class:list={['nav-link', { 'nav-link--active': currentPath.startsWith(href) }]}
           >
             {label}
           </a>
         ))}
       </nav>
 
-      <div class="flex items-center gap-1">
-        <button
-          id="search-btn"
-          aria-label="Buscar"
-          class="flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-        >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <!-- Actions -->
+      <div class="header-actions">
+        <button id="search-btn" aria-label="Buscar" class="search-btn">
+          <svg style="width:16px;height:16px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <span class="hidden sm:inline">Buscar</span>
+          <span class="search-label">Buscar</span>
         </button>
 
         <ThemeToggle />
 
         <button
           id="mobile-menu-btn"
-          class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          class="mobile-menu-btn"
           aria-label="Menú de navegación"
           aria-expanded="false"
         >
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg style="width:20px;height:20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path id="icon-hamburger" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             <path id="icon-close" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" class="hidden" />
           </svg>
@@ -68,26 +59,19 @@ const currentPath = Astro.url.pathname;
       </div>
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
-      <nav class="flex flex-col gap-1">
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+      <nav class="mobile-nav">
         {navLinks.map(({ href, label }) => (
           <a
             href={href}
-            class:list={[
-              'px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
-              currentPath.startsWith(href)
-                ? 'bg-[#7C3AED]/10 text-[#7C3AED]'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
-            ]}
+            class:list={['mobile-nav-link', { 'mobile-nav-link--active': currentPath.startsWith(href) }]}
           >
             {label}
           </a>
         ))}
-        <a
-          href="/buscar"
-          class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <a href="/buscar" class="mobile-nav-link mobile-nav-search">
+          <svg style="width:16px;height:16px;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           Buscar
@@ -98,24 +82,163 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <style>
+  /* === Base === */
   #site-header {
-    background-color: rgba(250, 250, 250, 0.6);
-  }
-  :global(.dark) #site-header {
-    background-color: rgba(15, 15, 15, 0.6);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--border);
+    background-color: color-mix(in srgb, var(--bg) 70%, transparent);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   #site-header[data-scrolled="true"] {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    background-color: rgba(250, 250, 250, 0.95);
+    background-color: color-mix(in srgb, var(--bg) 95%, transparent);
   }
-  :global(.dark) #site-header[data-scrolled="true"] {
-    background-color: rgba(15, 15, 15, 0.95);
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 24px;
+  }
+
+  /* === Logo === */
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .logo-ia   { color: var(--accent); }
+  .logo-text { color: var(--ink); }
+
+  /* === Desktop nav === */
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 4px;
+  }
+  @media (min-width: 768px) {
+    .desktop-nav { display: flex; }
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-link:hover {
+    color: var(--ink);
+    background: var(--hover);
+  }
+  .nav-link--active {
+    color: var(--accent);
+    background: var(--accent-tint);
+  }
+  .nav-link--active:hover {
+    color: var(--accent);
+    background: var(--accent-tint);
+  }
+
+  /* === Actions === */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .search-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 9px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    color: var(--ink3);
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .search-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .search-label { display: none; }
+  @media (min-width: 560px) {
+    .search-label { display: inline; }
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: none;
+    color: var(--ink2);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .mobile-menu-btn:hover { background: var(--hover); }
+  @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+
+  /* === Mobile menu === */
+  .mobile-menu {
+    border-top: 1px solid var(--border);
+    padding: 12px 0 16px;
+  }
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .mobile-nav-link:hover {
+    background: var(--hover);
+    color: var(--ink);
+  }
+  .mobile-nav-link--active {
+    background: var(--accent-tint);
+    color: var(--accent);
+  }
+  .mobile-nav-link--active:hover {
+    background: var(--accent-tint);
+    color: var(--accent);
   }
 </style>
 
 <script>
-  // Scroll blur effect
+  // Scroll blur
   const siteHeader = document.getElementById('site-header');
   function updateScrollState() {
     siteHeader?.setAttribute('data-scrolled', String(window.scrollY > 20));
@@ -124,10 +247,10 @@ const currentPath = Astro.url.pathname;
   updateScrollState();
 
   // Mobile menu
-  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileBtn  = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const iconHamburger = document.getElementById('icon-hamburger');
-  const iconClose = document.getElementById('icon-close');
+  const iconClose     = document.getElementById('icon-close');
 
   function setMenuOpen(open: boolean) {
     mobileMenu?.classList.toggle('hidden', !open);
@@ -138,23 +261,20 @@ const currentPath = Astro.url.pathname;
 
   mobileBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    setMenuOpen(!isOpen);
+    setMenuOpen(mobileMenu?.classList.contains('hidden') ?? true);
   });
 
   document.addEventListener('click', (e) => {
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    if (isOpen && !mobileMenu?.contains(e.target as Node)) {
+    if (!mobileMenu?.classList.contains('hidden') && !mobileMenu?.contains(e.target as Node)) {
       setMenuOpen(false);
     }
   });
 
-  // Search button → navigate to /buscar
+  // Search
   document.getElementById('search-btn')?.addEventListener('click', () => {
     window.location.href = '/buscar';
   });
 
-  // Ctrl+K / Cmd+K shortcut
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
