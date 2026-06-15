@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4C1D95;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1050" cy="80" r="280" fill="white" fill-opacity="0.05"/>
+  <circle cx="150" cy="580" r="220" fill="white" fill-opacity="0.05"/>
+  <text x="600" y="220" font-family="system-ui,sans-serif" font-size="68" font-weight="bold" fill="white" text-anchor="middle">Midjourney V8.1</text>
+  <text x="600" y="310" font-family="system-ui,sans-serif" font-size="52" font-weight="bold" fill="white" text-anchor="middle">Guía para principiantes</text>
+  <text x="600" y="400" font-family="system-ui,sans-serif" font-size="30" fill="white" fill-opacity="0.75" text-anchor="middle">2K nativo · Texto preciso · 5× más rápido</text>
+  <text x="600" y="480" font-family="system-ui,sans-serif" font-size="26" fill="white" fill-opacity="0.55" text-anchor="middle">iaenespanol.es</text>
+</svg>
