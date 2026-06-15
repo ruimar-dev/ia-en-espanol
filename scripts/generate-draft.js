@@ -89,7 +89,9 @@ async function searchUnsplashImage(query) {
     return null;
   }
 
-  return data.results[0].urls.regular;
+  const parsed = new URL(data.results[0].urls.regular);
+  parsed.searchParams.set('fm', 'webp');
+  return parsed.toString();
 }
 
 async function addInternalLinks(client, body, currentSlug, relatedArticles) {
