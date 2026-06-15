@@ -10,6 +10,7 @@ interface Props {
   title: string;
   description: string;
   date: Date;
+  dateModified?: Date;
   category: Categoria;
   herramientas: string[];
   afiliado?: string;
@@ -17,7 +18,7 @@ interface Props {
   faqs?: Array<{ pregunta: string; respuesta: string }>;
 }
 
-const { title, description, date, category, herramientas, afiliado, imagen, faqs } = Astro.props;
+const { title, description, date, dateModified, category, herramientas, afiliado, imagen, faqs } = Astro.props;
 const siteUrl = import.meta.env.SITE_URL || Astro.site?.toString() || 'https://iaenespanol.es';
 
 const dateFormatted = date.toLocaleDateString('es-ES', {
@@ -27,7 +28,7 @@ const dateFormatted = date.toLocaleDateString('es-ES', {
 });
 ---
 
-<Layout title={title} description={description} image={imagen} article publishDate={date}>
+<Layout title={title} description={description} image={imagen} article publishDate={date} dateModified={dateModified}>
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

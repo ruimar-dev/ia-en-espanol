@@ -30,6 +30,7 @@ const blog = defineCollection({
     herramientas: z.array(z.string()).default([]),
     afiliado: z.string().url().optional(),
     imagen: z.string().optional(),
+    dateModified: z.coerce.date().optional(),
     faqs: z.array(z.object({
       pregunta: z.string(),
       respuesta: z.string(),
