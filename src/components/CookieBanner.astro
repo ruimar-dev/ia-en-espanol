@@ -67,6 +67,7 @@
 
   document.getElementById('cookie-accept')?.addEventListener('click', () => {
     localStorage.setItem(KEY, 'all');
+    (window as any).gtag?.('consent', 'update', { analytics_storage: 'granted' });
     dismiss();
   });
 
