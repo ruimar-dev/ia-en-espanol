@@ -13,6 +13,7 @@ export interface Herramienta {
 
 export const herramientas: Herramienta[] = [
   // Generación de texto
+  { slug: 'neuronwriter', nombre: 'NeuronWriter', descripcion: 'Herramienta de escritura SEO con IA que analiza los resultados de Google y te guía para crear contenido optimizado que posicione.', categoria: 'generacion-texto', rating: 4.3, url: 'https://app.neuronwriter.com/ar/6809702873b807e3a94ed0c0661d7298', afiliado: 'https://app.neuronwriter.com/ar/6809702873b807e3a94ed0c0661d7298' },
   { slug: 'writesonic', nombre: 'Writesonic', descripcion: 'Plataforma de copywriting con IA para artículos SEO, anuncios y contenido de marketing. Genera borradores largos en segundos.', categoria: 'generacion-texto', rating: 4.2, logo: '/images/logos/writesonic.svg', url: 'https://writesonic.com?fp_ref=sergio20', afiliado: 'https://writesonic.com?fp_ref=sergio20' },
   { slug: 'chatgpt', nombre: 'ChatGPT', descripcion: 'El chatbot de IA más popular. Ideal para escritura, análisis y programación en lenguaje natural.', categoria: 'generacion-texto', rating: 4.7, logo: '/images/logos/chatgpt.svg', url: 'https://chatgpt.com' },
   { slug: 'claude', nombre: 'Claude', descripcion: 'Asistente de Anthropic con excelente razonamiento, contexto largo hasta 1M tokens y seguimiento de instrucciones.', categoria: 'generacion-texto', rating: 4.8, logo: '/images/logos/claude.svg', url: 'https://claude.ai' },
