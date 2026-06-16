@@ -10,6 +10,24 @@ const TOPICS_FILE = path.join(__dirname, 'topics.json');
 const EXHAUSTED_FILE = path.join(__dirname, 'temas-agotados.txt');
 const DRAFT_TOPIC_FILE = path.join(__dirname, '.draft-topic');
 
+// Herramientas con programa de afiliados verificado
+const AFFILIATE_LINKS = {
+  'elevenlabs':    'https://try.elevenlabs.io/5pqit62qinao',
+  'murf':          'https://murf.ai',
+  'murf.ai':       'https://murf.ai',
+  'adobe firefly': 'https://www.adobe.com/es/products/firefly.html',
+  'firefly':       'https://www.adobe.com/es/products/firefly.html',
+  'jasper':        'https://www.jasper.ai',
+  'writesonic':    'https://writesonic.com?fp_ref=sergio20',
+  'leonardo.ai':   'https://leonardo.ai',
+  'leonardo':      'https://leonardo.ai',
+  'notion':        'https://notion.so',
+  'notion ai':     'https://notion.so',
+  'otter.ai':      'https://otter.ai',
+  'otter':         'https://otter.ai',
+  'neuronwriter':  'https://app.neuronwriter.com/ar/6809702873b807e3a94ed0c0661d7298',
+};
+
 function slugify(text) {
   return text
     .toLowerCase()
@@ -149,6 +167,72 @@ function serializeFaqsYaml(faqs) {
     const r = respuesta.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     lines.push(`  - pregunta: "${p}"`);
     lines.push(`    respuesta: "${r}"`);
+  }
+  return '\n' + lines.join('\n');
+}
+
+function findAffiliateLink(herramientas, topic) {
+  const candidates = [
+    ...herramientas.map(h => h.toLowerCase()),
+    topic.toLowerCase(),
+  ];
+  for (const candidate of candidates) {
+    if (AFFILIATE_LINKS[candidate]) return AFFILIATE_LINKS[candidate];
+    for (const [key, url] of Object.entries(AFFILIATE_LINKS)) {
+      if (candidate.includes(key) || key.includes(candidate)) return url;
+    }
+  }
+  return null;
+}
+
+function injectAffiliateUrl(body, affiliateUrl) {
+  if (!affiliateUrl) return body;
+  return body.replace(
+    /(<BannerAfiliado\b[\s\S]*?\burl=")([^"]*?)(")/,
+    `$1${affiliateUrl}$3`
+  );
+}
+
+async function generateRatings(client, body) {
+  const excerpt = body.slice(0, 4000);
+  const response = await client.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 300,
+    messages: [{
+      role: 'user',
+      content: `Basándote en este extracto de una review de herramienta IA, genera entre 4 y 5 criterios de evaluación con su puntuación del 1 al 5 (usa un decimal, ej: 4.2). Los criterios deben ser los más relevantes para la herramienta analizada (ejemplos útiles: "Calidad de outputs", "Facilidad de uso", "Relación calidad-precio", "Velocidad", "Soporte en español", "Integraciones").
+
+Extracto:
+${excerpt}
+
+Responde SOLO con JSON válido, sin texto adicional:
+[
+  {"label": "...", "score": X.X},
+  {"label": "...", "score": X.X},
+  {"label": "...", "score": X.X},
+  {"label": "...", "score": X.X}
+]`,
+    }],
+  });
+  try {
+    const text = response.content[0].text.trim();
+    const json = text.match(/\[[\s\S]*\]/)?.[0];
+    if (!json) return null;
+    const ratings = JSON.parse(json);
+    if (!Array.isArray(ratings) || ratings.length === 0) return null;
+    return ratings;
+  } catch {
+    return null;
+  }
+}
+
+function serializeRatingsYaml(ratings) {
+  if (!ratings || ratings.length === 0) return '';
+  const lines = ['ratings:'];
+  for (const { label, score } of ratings) {
+    const l = label.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    lines.push(`  - label: "${l}"`);
+    lines.push(`    score: ${score}`);
   }
   return '\n' + lines.join('\n');
 }
@@ -451,12 +535,23 @@ herramientas: Herramienta1, Herramienta2
   const herramientasArr = Array.isArray(herramientas) ? herramientas : [];
   const herramientasYaml = herramientasArr.map(h => `"${h}"`).join(', ');
 
+  const affiliateUrl = findAffiliateLink(herramientasArr, nextTopic.tema);
+  if (affiliateUrl) {
+    body = injectAffiliateUrl(body, affiliateUrl);
+    console.log(`💰 Enlace de afiliado inyectado en BannerAfiliado: ${affiliateUrl}`);
+  }
+
   const existingArticles = getExistingArticles().filter(a => a.slug !== slug);
   if (existingArticles.length > 0) {
     console.log('🔗 Insertando enlaces internos relacionados...');
     body = await addInternalLinks(client, body, slug, existingArticles);
     console.log('✅ Enlaces internos añadidos');
   }
+
+  console.log('⭐ Generando ratings...');
+  const ratings = await generateRatings(client, body);
+  if (ratings) console.log(`✅ Ratings generados: ${ratings.length} criterios`);
+  else console.log('⚠️  No se pudieron generar ratings');
 
   console.log('🖼️  Generando query de imagen...');
   const imageQuery = await generateImageQuery(client, nextTopic.tema, title);
@@ -472,14 +567,16 @@ herramientas: Herramienta1, Herramienta2
   const safeDescription = description.replace(/"/g, '\\"');
 
   const imagenLine = imageUrl ? `\nimagen: "${imageUrl}"` : '';
+  const afiliadoLine = affiliateUrl ? `\nafiliado: "${affiliateUrl}"` : '';
   const faqsYaml = serializeFaqsYaml(faqs);
+  const ratingsYaml = serializeRatingsYaml(ratings);
 
   const fileContent = `---
 title: "${safeTitle}"
 description: "${safeDescription}"
 date: ${date}
 category: ${category}
-herramientas: [${herramientasYaml}]${imagenLine}${faqsYaml}
+herramientas: [${herramientasYaml}]${imagenLine}${afiliadoLine}${ratingsYaml}${faqsYaml}
 draft: true
 ---
 
