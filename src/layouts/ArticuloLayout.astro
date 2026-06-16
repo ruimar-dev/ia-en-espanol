@@ -35,17 +35,18 @@ const dateModifiedFormatted = dateModified
       .replace('.', '')
   : null;
 
-// Buscar herramienta principal en herramientas.ts para mostrar el score en el sidebar
-const herramientaPrincipal =
-  herramientas.length > 0
-    ? (herramientasData.find((h) =>
-        herramientas.some(
-          (n) =>
-            n.toLowerCase().includes(h.nombre.toLowerCase()) ||
-            h.nombre.toLowerCase().includes(n.toLowerCase().split(' ')[0])
-        )
-      ) ?? null)
-    : null;
+// Buscar herramienta principal respetando el orden del frontmatter (el primero que matchee gana)
+const herramientaPrincipal: (typeof herramientasData)[0] | null = (() => {
+  for (const n of herramientas) {
+    const found = herramientasData.find(
+      (h) =>
+        n.toLowerCase().includes(h.nombre.toLowerCase()) ||
+        h.nombre.toLowerCase().includes(n.toLowerCase().split(' ')[0])
+    );
+    if (found) return found;
+  }
+  return null;
+})();
 const score = herramientaPrincipal ? herramientaPrincipal.rating * 2 : null;
 
 // Artículos relacionados (misma categoría, excluye el actual)
