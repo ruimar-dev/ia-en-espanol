@@ -8,6 +8,14 @@ export default defineConfig({
   site: 'https://iaenespanol.es',
   output: 'hybrid',
   adapter: vercel(),
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark:  'github-dark',
+      },
+    },
+  },
   integrations: [
     mdx(),
     tailwind(),
