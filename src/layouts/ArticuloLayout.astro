@@ -146,6 +146,8 @@ const relacionados = todos
     </article>
 
     <aside class="art-sidebar">
+      <div id="toc-container"></div>
+
       {ratings && ratings.length > 0 && score !== null && (
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px; box-shadow:0 1px 2px var(--shadow), 0 12px 28px var(--shadow);">
           <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;">
@@ -505,6 +507,9 @@ const relacionados = todos
     .art-sidebar {
       position: static !important;
     }
+    #toc-container {
+      display: none;
+    }
   }
   @media (max-width: 640px) {
     :global(.article-prose > p:first-of-type::first-letter) {
@@ -515,3 +520,87 @@ const relacionados = todos
     }
   }
 </style>
+
+<script>
+(function () {
+  const prose = document.querySelector('.article-prose');
+  const container = document.getElementById('toc-container');
+  if (!prose || !container) return;
+
+  const headings = Array.from(prose.querySelectorAll('h2'));
+  if (headings.length < 5) return;
+
+  // Assign IDs to headings
+  headings.forEach((h, i) => {
+    if (!h.id) {
+      const slug = h.textContent.trim()
+        .toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '') || `seccion-${i}`;
+      h.id = slug;
+    }
+  });
+
+  // Build TOC nav
+  const nav = document.createElement('nav');
+  nav.setAttribute('aria-label', 'Tabla de contenidos');
+  nav.style.cssText = 'background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:20px 22px;';
+
+  const label = document.createElement('p');
+  label.textContent = 'Contenido';
+  label.style.cssText = 'margin:0 0 12px; font-family:"Geist Mono",monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:500;';
+  nav.appendChild(label);
+
+  const ol = document.createElement('ol');
+  ol.style.cssText = 'margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1px;';
+
+  headings.forEach((h) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent.replace(/[#]+$/, '').trim();
+    a.dataset.tocId = h.id;
+    a.style.cssText = 'display:block; font-size:13px; line-height:1.4; color:var(--ink3); text-decoration:none; padding:5px 8px; border-radius:7px; border-left:2px solid transparent; transition:color .15s, background .15s, border-color .15s;';
+    li.appendChild(a);
+    ol.appendChild(li);
+  });
+
+  nav.appendChild(ol);
+  container.appendChild(nav);
+
+  // Highlight active section on scroll
+  const links = Array.from(ol.querySelectorAll('a[data-toc-id]'));
+
+  function setActive(id) {
+    links.forEach(a => {
+      const active = a.dataset.tocId === id;
+      a.style.color = active ? 'var(--accent)' : 'var(--ink3)';
+      a.style.background = active ? 'var(--accent-tint)' : 'transparent';
+      a.style.borderLeftColor = active ? 'var(--accent)' : 'transparent';
+      a.style.fontWeight = active ? '600' : '400';
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  headings.forEach(h => observer.observe(h));
+
+  // Smooth scroll with offset for sticky header
+  ol.addEventListener('click', e => {
+    const a = e.target.closest('a[data-toc-id]');
+    if (!a) return;
+    e.preventDefault();
+    const target = document.getElementById(a.dataset.tocId);
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+})();
+</script>
