@@ -138,6 +138,9 @@ const relacionados = todos
     )}
   </div>
 
+  <!-- Table of contents (desktop only, auto-generated from H2s) -->
+  <div id="toc-container"></div>
+
   <!-- Body: prose + sidebar -->
   <div class="art-grid">
     <article class="article-prose">
@@ -146,8 +149,6 @@ const relacionados = todos
     </article>
 
     <aside class="art-sidebar">
-      <div id="toc-container"></div>
-
       {ratings && ratings.length > 0 && score !== null && (
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px; box-shadow:0 1px 2px var(--shadow), 0 12px 28px var(--shadow);">
           <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;">
@@ -499,6 +500,13 @@ const relacionados = todos
     transform: translateY(-3px);
   }
 
+  /* TOC above article */
+  #toc-container {
+    max-width: 1080px;
+    margin: 28px auto 0;
+    padding-inline: clamp(20px, 5vw, 32px);
+  }
+
   /* Responsive */
   @media (max-width: 900px) {
     .art-grid {
@@ -547,15 +555,15 @@ const relacionados = todos
   // Build TOC nav
   const nav = document.createElement('nav');
   nav.setAttribute('aria-label', 'Tabla de contenidos');
-  nav.style.cssText = 'background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:20px 22px;';
+  nav.style.cssText = 'background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 24px;';
 
   const label = document.createElement('p');
-  label.textContent = 'Contenido';
-  label.style.cssText = 'margin:0 0 12px; font-family:"Geist Mono",monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:500;';
+  label.textContent = 'En este artículo';
+  label.style.cssText = 'margin:0 0 14px; font-family:"Geist Mono",monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-weight:500;';
   nav.appendChild(label);
 
   const ol = document.createElement('ol');
-  ol.style.cssText = 'margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:1px;';
+  ol.style.cssText = 'margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:2px;';
 
   headings.forEach((h) => {
     const li = document.createElement('li');
@@ -563,7 +571,7 @@ const relacionados = todos
     a.href = `#${h.id}`;
     a.textContent = h.textContent.replace(/[#]+$/, '').trim();
     a.dataset.tocId = h.id;
-    a.style.cssText = 'display:block; font-size:13px; line-height:1.4; color:var(--ink3); text-decoration:none; padding:5px 8px; border-radius:7px; border-left:2px solid transparent; transition:color .15s, background .15s, border-color .15s;';
+    a.style.cssText = 'display:block; font-size:14px; line-height:1.4; color:var(--ink2); text-decoration:none; padding:6px 10px; border-radius:7px; border-left:2px solid transparent; transition:color .15s, background .15s, border-color .15s;';
     li.appendChild(a);
     ol.appendChild(li);
   });
@@ -571,26 +579,15 @@ const relacionados = todos
   nav.appendChild(ol);
   container.appendChild(nav);
 
-  // Highlight active section on scroll
-  const links = Array.from(ol.querySelectorAll('a[data-toc-id]'));
-
-  function setActive(id) {
-    links.forEach(a => {
-      const active = a.dataset.tocId === id;
-      a.style.color = active ? 'var(--accent)' : 'var(--ink3)';
-      a.style.background = active ? 'var(--accent-tint)' : 'transparent';
-      a.style.borderLeftColor = active ? 'var(--accent)' : 'transparent';
-      a.style.fontWeight = active ? '600' : '400';
-    });
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) setActive(entry.target.id);
-    });
-  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
-
-  headings.forEach(h => observer.observe(h));
+  // Hover styles
+  ol.addEventListener('mouseover', e => {
+    const a = e.target.closest('a[data-toc-id]');
+    if (a) { a.style.color = 'var(--accent)'; a.style.borderLeftColor = 'var(--accent)'; a.style.background = 'var(--accent-tint)'; }
+  });
+  ol.addEventListener('mouseout', e => {
+    const a = e.target.closest('a[data-toc-id]');
+    if (a) { a.style.color = 'var(--ink2)'; a.style.borderLeftColor = 'transparent'; a.style.background = 'transparent'; }
+  });
 
   // Smooth scroll with offset for sticky header
   ol.addEventListener('click', e => {
