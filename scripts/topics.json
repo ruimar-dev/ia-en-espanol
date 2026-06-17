@@ -1,79 +1,306 @@
 [
-  { "tema": "DeepSeek R1 review: el modelo chino que revolucionó la IA", "usado": true },
-  { "tema": "Midjourney V8.1 guía completa para principiantes: 2K nativo, texto preciso y 5× más rápido", "usado": true },
-  { "tema": "NotebookLM review: convierte tus PDFs en podcasts con IA", "usado": true },
-  { "tema": "Perplexity AI review completa", "usado": true },
-  { "tema": "ChatGPT vs Claude en 2026", "usado": true },
-  { "tema": "Midjourney v6 guía completa para principiantes", "usado": true },
-  { "tema": "Google Gemini Pro review en español", "usado": true },
-  { "tema": "Stable Diffusion 3 vs Midjourney: cuál usar", "usado": true },
-  { "tema": "ElevenLabs: la mejor IA para crear voces en español", "usado": true },
-  { "tema": "Sora de OpenAI: generación de vídeo con IA", "usado": true },
-  { "tema": "Cursor IDE review completa: programa con IA de verdad", "usado": true },
-  { "tema": "Claude Fable 5 review: el modelo más potente de Anthropic disponible al público", "usado": true },
-  { "tema": "Runway ML para crear vídeos profesionales con IA", "usado": true },
-  { "tema": "Pika Labs review: vídeos cortos con IA", "usado": true },
-  { "tema": "Murf.ai para crear voz en off profesional", "usado": true },
-
-  { "tema": "Qué es ChatGPT y para qué sirve: guía para no técnicos", "usado": false },
-  { "tema": "DeepSeek R1 vs ChatGPT: cuál es mejor en 2026", "usado": false },
-  { "tema": "IA para profesores: cómo ahorrar horas de trabajo con inteligencia artificial", "usado": false },
-  { "tema": "Bolt.new review: crea apps web sin saber programar", "usado": false },
-  { "tema": "Cómo escribir prompts perfectos para ChatGPT: guía completa con ejemplos en español", "usado": false },
-  { "tema": "Grok de xAI: review del rival de ChatGPT", "usado": false },
-  { "tema": "Qué es la inteligencia artificial: explicación sin tecnicismos", "usado": false },
-  { "tema": "Windsurf review: el IDE con IA que compite con Cursor", "usado": false },
-  { "tema": "IA para emprendedores: herramientas que sustituyen a un equipo entero", "usado": false },
-  { "tema": "ChatGPT o3 review: razonamiento avanzado de OpenAI", "usado": false },
-  { "tema": "¿La IA va a quitarme el trabajo? Respuesta honesta con datos de 2026", "usado": false },
-  { "tema": "HeyGen review: crea vídeos con avatar IA sin cámara", "usado": false },
-  { "tema": "IA para estudiantes: cómo estudiar más rápido y mejor con inteligencia artificial", "usado": false },
-  { "tema": "Cómo crear contenido para redes sociales con IA: guía práctica con ejemplos reales", "usado": false },
-  { "tema": "Flux review: el generador de imágenes gratuito que compite con Midjourney", "usado": false },
-  { "tema": "Para qué sirve la IA: 10 usos reales que cambian el día a día", "usado": false },
-  { "tema": "Cursor vs Windsurf: qué IDE con IA elegir en 2026", "usado": false },
-  { "tema": "IA para freelancers: cómo facturar más trabajando menos horas", "usado": false },
-  { "tema": "Grok vs ChatGPT: qué modelo de xAI elegir en 2026", "usado": false },
-  { "tema": "Cómo crear un currículum con IA que llame la atención a los reclutadores", "usado": false },
-  { "tema": "Claude Sonnet 4.6 review: el mejor modelo para el día a día", "usado": false },
-  { "tema": "IA para marketing: las mejores herramientas para marketers en 2026", "usado": false },
-  { "tema": "Suno AI para crear música con inteligencia artificial", "usado": false },
-  { "tema": "ChatGPT gratis vs de pago: ¿merece la pena pagar 20 € al mes?", "usado": false },
-  { "tema": "Adobe Firefly review completa 2026", "usado": false },
-  { "tema": "Cómo preparar una entrevista de trabajo con IA: preguntas, respuestas y simulacros", "usado": false },
-  { "tema": "Udio vs Suno: la batalla de las IA musicales", "usado": false },
-  { "tema": "IA para diseñadores gráficos: cómo la IA cambia el flujo de trabajo creativo", "usado": false },
-  { "tema": "Claude Fable 5 vs Gemini 3.1 Pro: cuál es mejor", "usado": false },
-  { "tema": "Qué trabajos crea y destruye la IA: datos reales de 2026", "usado": false },
-  { "tema": "Midjourney v8.1 vs Flux: qué generador de imágenes elegir en 2026", "usado": false },
-  { "tema": "Cómo empezar a usar la IA si no sabes nada de tecnología", "usado": false },
-  { "tema": "Gamma.app para crear presentaciones con IA", "usado": false },
-  { "tema": "IA para pequeñas empresas: las mejores herramientas sin gran inversión", "usado": false },
-  { "tema": "Luma Dream Machine review: vídeo realista con IA en 2026", "usado": false },
-  { "tema": "Cómo usar la IA para aprender inglés más rápido en 2026", "usado": false },
-  { "tema": "Leonardo.ai para generar imágenes de alta calidad", "usado": false },
-  { "tema": "Las mejores IAs gratuitas de 2026: lo que puedes hacer sin pagar nada", "usado": false },
-  { "tema": "Notion AI vs ChatGPT: cuál es mejor para productividad", "usado": false },
-  { "tema": "IA para abogados: qué puede y qué no puede hacer la inteligencia artificial en derecho", "usado": false },
-  { "tema": "Mistral AI: el modelo europeo que desafía a OpenAI", "usado": false },
-  { "tema": "Cómo automatizar tareas repetitivas con IA sin saber programar", "usado": false },
-  { "tema": "Codeium vs GitHub Copilot gratis: comparativa real", "usado": false },
-  { "tema": "La IA en España: cómo nos afecta y qué oportunidades reales hay", "usado": false },
-  { "tema": "DALL-E guía completa de prompts: cómo generar imágenes con ChatGPT en 2026", "usado": false },
-  { "tema": "IA para recursos humanos: cómo optimizar selección, onboarding y formación", "usado": false },
-  { "tema": "Las mejores herramientas IA para crear vídeos en 2026", "usado": false },
-  { "tema": "Mitos y verdades sobre la inteligencia artificial: lo que dice la gente y lo que es real", "usado": false },
-  { "tema": "Otter.ai para transcribir y resumir reuniones", "usado": false },
-  { "tema": "Cómo usar IA para resumir documentos largos en segundos", "usado": false },
-  { "tema": "Jasper AI para marketing y creación de contenidos", "usado": false },
-  { "tema": "IA para periodistas y redactores: herramientas reales sin perder la voz propia", "usado": false },
-  { "tema": "Writesonic review para escribir contenido SEO con IA", "usado": false },
-  { "tema": "Cómo crear una presentación con IA en menos de 10 minutos", "usado": false },
-  { "tema": "Canva AI funciones de inteligencia artificial 2026", "usado": false },
-  { "tema": "Ética de la IA: qué está bien y qué no cuando usas inteligencia artificial", "usado": false },
-  { "tema": "Los mejores prompts en español para ChatGPT, Claude y Gemini en 2026", "usado": false },
-  { "tema": "Cuánto cuesta usar IA en 2026: guía de precios de las principales herramientas", "usado": false },
-  { "tema": "Cómo hacer que la IA no suene a robot: trucos para humanizar el contenido generado", "usado": false },
-  { "tema": "Cómo escribir mejores emails con IA: prompts y ejemplos paso a paso", "usado": false },
-  { "tema": "Cómo usar IA para traducir documentos con contexto real, no solo palabras", "usado": false }
+  {
+    "tema": "DeepSeek R1 review: el modelo chino que revolucionó la IA",
+    "usado": true
+  },
+  {
+    "tema": "Midjourney V8.1 guía completa para principiantes: 2K nativo, texto preciso y 5× más rápido",
+    "usado": true
+  },
+  {
+    "tema": "NotebookLM review: convierte tus PDFs en podcasts con IA",
+    "usado": true
+  },
+  {
+    "tema": "Perplexity AI review completa",
+    "usado": true
+  },
+  {
+    "tema": "ChatGPT vs Claude en 2026",
+    "usado": true
+  },
+  {
+    "tema": "Midjourney v6 guía completa para principiantes",
+    "usado": true
+  },
+  {
+    "tema": "Google Gemini Pro review en español",
+    "usado": true
+  },
+  {
+    "tema": "Stable Diffusion 3 vs Midjourney: cuál usar",
+    "usado": true
+  },
+  {
+    "tema": "ElevenLabs: la mejor IA para crear voces en español",
+    "usado": true
+  },
+  {
+    "tema": "Sora de OpenAI: generación de vídeo con IA",
+    "usado": true
+  },
+  {
+    "tema": "Cursor IDE review completa: programa con IA de verdad",
+    "usado": true
+  },
+  {
+    "tema": "Claude Fable 5 review: el modelo más potente de Anthropic disponible al público",
+    "usado": true
+  },
+  {
+    "tema": "Runway ML para crear vídeos profesionales con IA",
+    "usado": true
+  },
+  {
+    "tema": "Pika Labs review: vídeos cortos con IA",
+    "usado": true
+  },
+  {
+    "tema": "Murf.ai para crear voz en off profesional",
+    "usado": true
+  },
+  {
+    "tema": "Qué es ChatGPT y para qué sirve: guía para no técnicos",
+    "usado": true
+  },
+  {
+    "tema": "DeepSeek R1 vs ChatGPT: cuál es mejor en 2026",
+    "usado": false
+  },
+  {
+    "tema": "IA para profesores: cómo ahorrar horas de trabajo con inteligencia artificial",
+    "usado": false
+  },
+  {
+    "tema": "Bolt.new review: crea apps web sin saber programar",
+    "usado": false
+  },
+  {
+    "tema": "Cómo escribir prompts perfectos para ChatGPT: guía completa con ejemplos en español",
+    "usado": false
+  },
+  {
+    "tema": "Grok de xAI: review del rival de ChatGPT",
+    "usado": false
+  },
+  {
+    "tema": "Qué es la inteligencia artificial: explicación sin tecnicismos",
+    "usado": false
+  },
+  {
+    "tema": "Windsurf review: el IDE con IA que compite con Cursor",
+    "usado": false
+  },
+  {
+    "tema": "IA para emprendedores: herramientas que sustituyen a un equipo entero",
+    "usado": false
+  },
+  {
+    "tema": "ChatGPT o3 review: razonamiento avanzado de OpenAI",
+    "usado": false
+  },
+  {
+    "tema": "¿La IA va a quitarme el trabajo? Respuesta honesta con datos de 2026",
+    "usado": false
+  },
+  {
+    "tema": "HeyGen review: crea vídeos con avatar IA sin cámara",
+    "usado": false
+  },
+  {
+    "tema": "IA para estudiantes: cómo estudiar más rápido y mejor con inteligencia artificial",
+    "usado": false
+  },
+  {
+    "tema": "Cómo crear contenido para redes sociales con IA: guía práctica con ejemplos reales",
+    "usado": false
+  },
+  {
+    "tema": "Flux review: el generador de imágenes gratuito que compite con Midjourney",
+    "usado": false
+  },
+  {
+    "tema": "Para qué sirve la IA: 10 usos reales que cambian el día a día",
+    "usado": false
+  },
+  {
+    "tema": "Cursor vs Windsurf: qué IDE con IA elegir en 2026",
+    "usado": false
+  },
+  {
+    "tema": "IA para freelancers: cómo facturar más trabajando menos horas",
+    "usado": false
+  },
+  {
+    "tema": "Grok vs ChatGPT: qué modelo de xAI elegir en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Cómo crear un currículum con IA que llame la atención a los reclutadores",
+    "usado": false
+  },
+  {
+    "tema": "Claude Sonnet 4.6 review: el mejor modelo para el día a día",
+    "usado": false
+  },
+  {
+    "tema": "IA para marketing: las mejores herramientas para marketers en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Suno AI para crear música con inteligencia artificial",
+    "usado": false
+  },
+  {
+    "tema": "ChatGPT gratis vs de pago: ¿merece la pena pagar 20 € al mes?",
+    "usado": false
+  },
+  {
+    "tema": "Adobe Firefly review completa 2026",
+    "usado": false
+  },
+  {
+    "tema": "Cómo preparar una entrevista de trabajo con IA: preguntas, respuestas y simulacros",
+    "usado": false
+  },
+  {
+    "tema": "Udio vs Suno: la batalla de las IA musicales",
+    "usado": false
+  },
+  {
+    "tema": "IA para diseñadores gráficos: cómo la IA cambia el flujo de trabajo creativo",
+    "usado": false
+  },
+  {
+    "tema": "Claude Fable 5 vs Gemini 3.1 Pro: cuál es mejor",
+    "usado": false
+  },
+  {
+    "tema": "Qué trabajos crea y destruye la IA: datos reales de 2026",
+    "usado": false
+  },
+  {
+    "tema": "Midjourney v8.1 vs Flux: qué generador de imágenes elegir en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Cómo empezar a usar la IA si no sabes nada de tecnología",
+    "usado": false
+  },
+  {
+    "tema": "Gamma.app para crear presentaciones con IA",
+    "usado": false
+  },
+  {
+    "tema": "IA para pequeñas empresas: las mejores herramientas sin gran inversión",
+    "usado": false
+  },
+  {
+    "tema": "Luma Dream Machine review: vídeo realista con IA en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Cómo usar la IA para aprender inglés más rápido en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Leonardo.ai para generar imágenes de alta calidad",
+    "usado": false
+  },
+  {
+    "tema": "Las mejores IAs gratuitas de 2026: lo que puedes hacer sin pagar nada",
+    "usado": false
+  },
+  {
+    "tema": "Notion AI vs ChatGPT: cuál es mejor para productividad",
+    "usado": false
+  },
+  {
+    "tema": "IA para abogados: qué puede y qué no puede hacer la inteligencia artificial en derecho",
+    "usado": false
+  },
+  {
+    "tema": "Mistral AI: el modelo europeo que desafía a OpenAI",
+    "usado": false
+  },
+  {
+    "tema": "Cómo automatizar tareas repetitivas con IA sin saber programar",
+    "usado": false
+  },
+  {
+    "tema": "Codeium vs GitHub Copilot gratis: comparativa real",
+    "usado": false
+  },
+  {
+    "tema": "La IA en España: cómo nos afecta y qué oportunidades reales hay",
+    "usado": false
+  },
+  {
+    "tema": "DALL-E guía completa de prompts: cómo generar imágenes con ChatGPT en 2026",
+    "usado": false
+  },
+  {
+    "tema": "IA para recursos humanos: cómo optimizar selección, onboarding y formación",
+    "usado": false
+  },
+  {
+    "tema": "Las mejores herramientas IA para crear vídeos en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Mitos y verdades sobre la inteligencia artificial: lo que dice la gente y lo que es real",
+    "usado": false
+  },
+  {
+    "tema": "Otter.ai para transcribir y resumir reuniones",
+    "usado": false
+  },
+  {
+    "tema": "Cómo usar IA para resumir documentos largos en segundos",
+    "usado": false
+  },
+  {
+    "tema": "Jasper AI para marketing y creación de contenidos",
+    "usado": false
+  },
+  {
+    "tema": "IA para periodistas y redactores: herramientas reales sin perder la voz propia",
+    "usado": false
+  },
+  {
+    "tema": "Writesonic review para escribir contenido SEO con IA",
+    "usado": false
+  },
+  {
+    "tema": "Cómo crear una presentación con IA en menos de 10 minutos",
+    "usado": false
+  },
+  {
+    "tema": "Canva AI funciones de inteligencia artificial 2026",
+    "usado": false
+  },
+  {
+    "tema": "Ética de la IA: qué está bien y qué no cuando usas inteligencia artificial",
+    "usado": false
+  },
+  {
+    "tema": "Los mejores prompts en español para ChatGPT, Claude y Gemini en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Cuánto cuesta usar IA en 2026: guía de precios de las principales herramientas",
+    "usado": false
+  },
+  {
+    "tema": "Cómo hacer que la IA no suene a robot: trucos para humanizar el contenido generado",
+    "usado": false
+  },
+  {
+    "tema": "Cómo escribir mejores emails con IA: prompts y ejemplos paso a paso",
+    "usado": false
+  },
+  {
+    "tema": "Cómo usar IA para traducir documentos con contexto real, no solo palabras",
+    "usado": false
+  }
 ]
