@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { herramientas } from '../data/herramientas';
+import { ranking } from '../data/ranking';
 import { CATEGORIA_LABELS, CATEGORIAS } from '../content/config';
 import type { Categoria } from '../content/config';
 
@@ -17,15 +18,13 @@ function readingTime(body: string) {
 const [featuredArticulo, ...restArticulos] = todosLosArticulos;
 const gridArticulos = restArticulos.slice(0, 6);
 
-const topRanking = [...herramientas]
-  .sort((a, b) => b.rating - a.rating)
-  .slice(0, 4)
-  .map((h, i) => ({
-    rank: String(i + 1).padStart(2, '0'),
-    name: h.nombre,
-    cat: CATEGORIA_LABELS[h.categoria],
-    score: h.rating.toFixed(1),
-  }));
+const RANKING_SCORES = [9.4, 9.2, 9.0, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2];
+const topRanking = ranking.herramientas.slice(0, 4).map((h) => ({
+  rank: String(h.posicion).padStart(2, '0'),
+  name: h.nombre,
+  cat: h.categoria,
+  score: (RANKING_SCORES[h.posicion - 1] ?? (10 - h.posicion * 0.2)).toFixed(1),
+}));
 
 const mesLabel = new Date()
   .toLocaleDateString('es-ES', { month: 'short', year: 'numeric' })
