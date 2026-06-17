@@ -451,6 +451,46 @@ const relacionados = todos
     display: block;
   }
 
+  /* Tables */
+  :global(.article-prose table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 28px;
+    font-size: 15px;
+    line-height: 1.5;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  :global(.article-prose thead tr) {
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+  }
+  :global(.article-prose th) {
+    padding: 11px 14px;
+    text-align: left;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  :global(.article-prose td) {
+    padding: 11px 14px;
+    color: var(--ink2);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  :global(.article-prose tbody tr:last-child td) {
+    border-bottom: none;
+  }
+  :global(.article-prose tbody tr:hover td) {
+    background: var(--hover);
+  }
+  :global(.article-prose td strong) {
+    color: var(--ink);
+  }
+
   /* Related card hover */
   .related-card:hover {
     box-shadow: 0 14px 32px var(--shadow);
