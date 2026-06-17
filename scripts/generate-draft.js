@@ -200,7 +200,7 @@ async function generateRatings(client, body) {
     max_tokens: 300,
     messages: [{
       role: 'user',
-      content: `Basándote en este extracto de una review de herramienta IA, genera entre 4 y 5 criterios de evaluación con su puntuación del 1 al 5 (usa un decimal, ej: 4.2). Los criterios deben ser los más relevantes para la herramienta analizada (ejemplos útiles: "Calidad de outputs", "Facilidad de uso", "Relación calidad-precio", "Velocidad", "Soporte en español", "Integraciones").
+      content: `Basándote en este extracto de una review de herramienta IA, genera entre 4 y 5 criterios de evaluación con su puntuación del 1 al 10 (usa un decimal, ej: 8.4). Los criterios deben ser los más relevantes para la herramienta analizada (ejemplos útiles: "Calidad de outputs", "Facilidad de uso", "Relación calidad-precio", "Velocidad", "Soporte en español", "Integraciones").
 
 Extracto:
 ${excerpt}
