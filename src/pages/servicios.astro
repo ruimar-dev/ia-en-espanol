@@ -1,0 +1,884 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    icon: 'code',
+    title: 'Páginas web profesionales',
+    description: 'Webs rápidas, modernas y optimizadas para SEO. Desde landing pages hasta blogs completos con Astro, Next.js o WordPress.',
+    price: 'desde 500€',
+    items: [
+      'Diseño personalizado',
+      'SEO técnico',
+      'Versión móvil',
+      'Formulario de contacto',
+      'Dominio y hosting configurado',
+    ],
+  },
+  {
+    icon: 'bot',
+    title: 'Automatizaciones con IA',
+    description: 'Ahorra horas cada semana automatizando tareas repetitivas con inteligencia artificial. Gestión de reservas, respuestas automáticas, generación de contenido.',
+    price: 'a consultar',
+    items: [
+      'Análisis de procesos',
+      'Integración con tus herramientas actuales',
+      'Formación incluida',
+      'Soporte el primer mes',
+    ],
+  },
+  {
+    icon: 'lightbulb',
+    title: 'Consultoría IA para tu negocio',
+    description: 'Te ayudo a identificar qué herramientas IA pueden ahorrarte tiempo y dinero en tu negocio, y cómo implementarlas sin complicaciones.',
+    price: 'desde 80€/hora',
+    items: [
+      'Análisis de tu negocio',
+      'Informe de herramientas recomendadas',
+      'Plan de implementación',
+      'Sesión de seguimiento',
+    ],
+  },
+];
+
+const stats = [
+  { num: '12+',  label: 'proyectos entregados' },
+  { num: '100%', label: 'entregas en plazo' },
+  { num: '< 48h', label: 'tiempo de respuesta' },
+];
+
+const techs = ['Astro', 'Next.js', 'WordPress', 'n8n', 'Claude API'];
+
+const reasons = [
+  {
+    title: 'Desarrollador con experiencia real',
+    text: 'No soy una agencia con 10 intermediarios. Trabajas directamente conmigo.',
+  },
+  {
+    title: 'Especializado en IA',
+    text: 'Estoy al día de las últimas herramientas. Tu negocio se beneficia de ello.',
+  },
+  {
+    title: 'Basado en Andalucía',
+    text: 'Puedo reunirme en persona si estás en la zona. Trato cercano y directo.',
+  },
+  {
+    title: 'Entrega rápida',
+    text: 'Sin colas ni esperas de meses. Proyectos ágiles con resultados visibles.',
+  },
+];
+
+const steps = [
+  { num: '01', label: 'Consulta gratuita' },
+  { num: '02', label: 'Propuesta' },
+  { num: '03', label: 'Desarrollo' },
+  { num: '04', label: 'Entrega y soporte' },
+];
+---
+
+<Layout
+  title="Servicios — Desarrollo web e IA para tu negocio | IA en Español"
+  description="Desarrollo web profesional y automatizaciones con IA para autónomos y pymes. Webs con Astro/Next.js, consultoría IA y automatizaciones. Primera consulta gratuita."
+>
+
+  <!-- ─── Hero ──────────────────────────────────────────────── -->
+  <section class="hero-section">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap--mid" style="position:relative; padding-top:88px; padding-bottom:72px; text-align:center;">
+      <span class="eyebrow">Servicios profesionales</span>
+      <h1 class="hero-title">Desarrollo web e IA<br>para tu negocio</h1>
+      <p class="hero-sub">Creo webs modernas y automatizaciones con IA para autónomos y pymes.<br>Sin tecnicismos, con resultados.</p>
+      <a href="#contacto" class="btn-primary">Cuéntame tu proyecto</a>
+      <div class="tech-strip" aria-label="Tecnologías">
+        {techs.map(t => <span class="tech-chip">{t}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Stats ─────────────────────────────────────────────── -->
+  <section class="wrap--mid" style="padding-bottom:72px;">
+    <div class="stats-strip">
+      {stats.map((s, i) => (
+        <>
+          <div class="stat">
+            <span class="stat-num">{s.num}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+          {i < stats.length - 1 && <div class="stat-sep" aria-hidden="true"></div>}
+        </>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── Servicios ─────────────────────────────────────────── -->
+  <section class="wrap" style="padding-bottom:80px;">
+    <div class="services-grid">
+      {services.map(s => (
+        <div class="service-card">
+          <div class="service-icon">
+            {s.icon === 'code' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            )}
+            {s.icon === 'bot' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 8V4H8"/>
+                <rect width="16" height="12" x="4" y="8" rx="2"/>
+                <path d="M2 14h2"/>
+                <path d="M20 14h2"/>
+                <path d="M15 13v2"/>
+                <path d="M9 13v2"/>
+              </svg>
+            )}
+            {s.icon === 'lightbulb' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                <path d="M9 18h6"/>
+                <path d="M10 22h4"/>
+              </svg>
+            )}
+          </div>
+          <h2 class="service-title">{s.title}</h2>
+          <p class="service-desc">{s.description}</p>
+          <div class="service-price">{s.price}</div>
+          <ul class="service-list">
+            {s.items.map(item => (
+              <li class="service-list-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0; margin-top:3px; color:var(--accent);">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="#contacto" class="btn-service">Consultar →</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── Por qué trabajar conmigo ──────────────────────────── -->
+  <section class="wrap--mid" style="padding-bottom:80px;">
+    <h2 class="section-title">Por qué trabajar conmigo</h2>
+    <div class="reasons-grid">
+      {reasons.map(r => (
+        <div class="reason-card">
+          <h3 class="reason-title">{r.title}</h3>
+          <p class="reason-text">{r.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── Proceso ───────────────────────────────────────────── -->
+  <section class="wrap--mid" style="padding-bottom:80px;">
+    <h2 class="section-title">Cómo trabajamos</h2>
+    <div class="steps-row">
+      {steps.map((s, i) => (
+        <>
+          <div class="step">
+            <span class="step-num">{s.num}</span>
+            <span class="step-label">{s.label}</span>
+          </div>
+          {i < steps.length - 1 && (
+            <div class="step-connector" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </div>
+          )}
+        </>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── Contacto ──────────────────────────────────────────── -->
+  <section class="contact-section" id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+
+        <!-- Info column -->
+        <div class="contact-info">
+          <span class="eyebrow contact-eyebrow">Contacto</span>
+          <h2 class="contact-heading">¿Hablamos?</h2>
+          <p class="contact-lead">Cuéntame tu proyecto sin compromiso.<br>Primera consulta gratuita.</p>
+
+          <ul class="contact-details">
+            <li class="contact-detail-item">
+              <span class="detail-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </span>
+              <span>comunidad.aienespanol@gmail.com</span>
+            </li>
+            <li class="contact-detail-item">
+              <span class="detail-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </span>
+              <span>Andalucía, España</span>
+            </li>
+            <li class="contact-detail-item">
+              <span class="detail-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <span>Respuesta en menos de 48 h</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Form card -->
+        <div class="form-card">
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input id="nombre" name="nombre" type="text" class="form-input" placeholder="Tu nombre" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" class="form-input" placeholder="tu@email.com" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" class="form-input form-textarea" placeholder="Cuéntame qué necesitas…" rows="5" required></textarea>
+            </div>
+
+            <div id="form-error" class="form-feedback form-feedback--error" hidden></div>
+
+            <button type="submit" id="form-submit" class="btn-submit">
+              <span id="btn-label">Enviar mensaje</span>
+              <svg id="btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" class="spinner hidden">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Success state -->
+          <div id="form-success" class="form-success" hidden>
+            <div class="success-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <p class="success-title">¡Mensaje enviado!</p>
+            <p class="success-sub">Te responderé en menos de 48 horas.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ── Eyebrow label ── */
+  .eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  /* ── Hero ── */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 90% 70% at 50% -10%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 65%
+    );
+    pointer-events: none;
+  }
+  .hero-title {
+    margin: 0 0 20px;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+  }
+  .hero-sub {
+    margin: 0 auto 32px;
+    max-width: 520px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink2);
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .tech-strip {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .tech-chip {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink3);
+  }
+
+  /* ── Stats strip ── */
+  .stats-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 40px;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+    padding: 8px 0;
+  }
+  .stat-num {
+    font-family: 'Newsreader', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink2);
+  }
+  .stat-sep {
+    width: 1px;
+    height: 44px;
+    background: var(--border);
+    flex-shrink: 0;
+    margin: 0 24px;
+    align-self: center;
+  }
+  @media (max-width: 480px) {
+    .stat-sep { display: none; }
+    .stats-strip { gap: 16px; padding: 24px 20px; }
+  }
+
+  /* ── Services grid ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .service-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  .service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-tint);
+    color: var(--accent);
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+  .service-title {
+    margin: 0 0 10px;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .service-desc {
+    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink2);
+    flex: 1;
+  }
+  .service-price {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--accent-tint);
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .service-list {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .service-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink2);
+  }
+  .btn-service {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 20px;
+    border-radius: 10px;
+    background: var(--hover);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    margin-top: auto;
+  }
+  .btn-service:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    margin: 0 0 32px;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* ── Reasons grid ── */
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 560px) {
+    .reasons-grid { grid-template-columns: 1fr; }
+  }
+  .reason-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .reason-title {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .reason-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink2);
+  }
+
+  /* ── Process steps ── */
+  .steps-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  .step-num {
+    font-family: 'Newsreader', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .step-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink2);
+    line-height: 1.3;
+  }
+  .step-connector {
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  @media (max-width: 600px) {
+    .step-connector { display: none; }
+    .step { min-width: calc(50% - 8px); flex: none; }
+    .steps-row { gap: 10px; }
+  }
+
+  /* ── Contact section ── */
+  .contact-section {
+    background: #f5f3ff;
+    border-top: 1px solid #e4e0ff;
+    padding: 80px 0 96px;
+  }
+  :global(.dark) .contact-section {
+    background: #0d0b1a;
+    border-top-color: #1e1b38;
+  }
+
+  .contact-eyebrow { color: var(--accent); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* Info column */
+  .contact-heading {
+    margin: 0 0 16px;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  :global(.dark) .contact-heading { color: #f0effe; }
+
+  .contact-lead {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink2);
+  }
+  :global(.dark) .contact-lead { color: #a09ab8; }
+
+  .contact-details {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .contact-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--ink2);
+    word-break: break-all;
+  }
+  :global(.dark) .contact-detail-item { color: #9490b0; }
+
+  .detail-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--accent-tint);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  :global(.dark) .detail-icon {
+    background: rgba(137, 131, 255, 0.12);
+    color: #8983ff;
+  }
+
+  /* Form card */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 2px 24px var(--shadow);
+  }
+  :global(.dark) .form-card {
+    background: #13112a;
+    border-color: rgba(137, 131, 255, 0.18);
+    box-shadow:
+      0 0 0 1px rgba(137, 131, 255, 0.06),
+      0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+  @media (max-width: 500px) {
+    .form-card { padding: 24px 20px; }
+  }
+
+  /* Form elements */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .form-row .form-group { margin-bottom: 0; }
+
+  .form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink2);
+    letter-spacing: 0.01em;
+  }
+  :global(.dark) .form-label { color: #9490b0; }
+
+  .form-input {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .form-input::placeholder { color: var(--muted); }
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+  :global(.dark) .form-input {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: rgba(137, 131, 255, 0.16);
+    color: #f0effe;
+  }
+  :global(.dark) .form-input::placeholder { color: rgba(137, 131, 255, 0.3); }
+  :global(.dark) .form-input:focus {
+    border-color: #8983ff;
+    box-shadow: 0 0 0 3px rgba(137, 131, 255, 0.14);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-feedback {
+    font-size: 13px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+  }
+  .form-feedback--error {
+    background: var(--bad-bg);
+    color: var(--bad);
+    border: 1px solid color-mix(in srgb, var(--bad) 30%, transparent);
+  }
+  :global(.dark) .form-feedback--error {
+    background: rgba(248, 113, 113, 0.1);
+    color: #fca5a5;
+    border-color: rgba(248, 113, 113, 0.25);
+  }
+
+  .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 11px;
+    padding: 13px 28px;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-submit:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 38%, transparent);
+  }
+  .btn-submit:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* ── Spinner ── */
+  .hidden { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner { animation: spin 0.8s linear infinite; }
+
+  /* ── Success state ── */
+  .form-success {
+    text-align: center;
+    padding: 32px 0;
+  }
+  .success-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--good-bg);
+    color: var(--good);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  :global(.dark) .success-icon-wrap {
+    background: rgba(74, 222, 128, 0.12);
+    color: #4ade80;
+  }
+  .success-title {
+    margin: 0 0 8px;
+    font-family: 'Newsreader', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  :global(.dark) .success-title { color: #f0effe; }
+  .success-sub {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink2);
+  }
+  :global(.dark) .success-sub { color: #9490b0; }
+</style>
+
+<script>
+  const form     = document.getElementById('contact-form') as HTMLFormElement | null;
+  const errorEl  = document.getElementById('form-error') as HTMLElement | null;
+  const successEl = document.getElementById('form-success') as HTMLElement | null;
+  const submitBtn = document.getElementById('form-submit') as HTMLButtonElement | null;
+  const btnLabel  = document.getElementById('btn-label') as HTMLElement | null;
+  const spinner   = document.getElementById('btn-spinner') as HTMLElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !errorEl || !successEl || !submitBtn) return;
+
+    errorEl.hidden = true;
+    errorEl.textContent = '';
+
+    const data = {
+      nombre:  (form.elements.namedItem('nombre')  as HTMLInputElement).value.trim(),
+      email:   (form.elements.namedItem('email')   as HTMLInputElement).value.trim(),
+      mensaje: (form.elements.namedItem('mensaje') as HTMLTextAreaElement).value.trim(),
+    };
+
+    submitBtn.disabled = true;
+    if (btnLabel) btnLabel.textContent = 'Enviando…';
+    spinner?.classList.remove('hidden');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json: { ok?: boolean; error?: string } = await res.json();
+
+      if (!res.ok || !json.ok) throw new Error(json.error ?? 'Error al enviar el mensaje.');
+
+      form.hidden = true;
+      successEl.hidden = false;
+
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Error inesperado. Inténtalo de nuevo.';
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      submitBtn.disabled = false;
+      if (btnLabel) btnLabel.textContent = 'Enviar mensaje';
+      spinner?.classList.add('hidden');
+    }
+  });
+
+  document.querySelectorAll('a[href="#contacto"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById('contacto');
+      if (!target) return;
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+</script>
