@@ -78,14 +78,26 @@ function getCurrentDate() {
   return new Date().toISOString().split('T')[0];
 }
 
-async function searchUnsplashImage(query) {
+function getUsedUnsplashIds() {
+  if (!fs.existsSync(BLOG_DIR)) return new Set();
+  const files = fs.readdirSync(BLOG_DIR).filter(f => f.endsWith('.mdx') || f.endsWith('.md'));
+  const ids = new Set();
+  for (const file of files) {
+    const content = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
+    const match = content.match(/imagen:\s*["']?https:\/\/images\.unsplash\.com\/(photo-[^?/"'\s]+)/);
+    if (match) ids.add(match[1]);
+  }
+  return ids;
+}
+
+async function searchUnsplashImage(query, usedIds = new Set()) {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY;
   if (!accessKey) {
     console.log('⚠️  UNSPLASH_ACCESS_KEY no configurada, se omite imagen');
     return null;
   }
 
-  const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape`;
+  const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=15&orientation=landscape`;
   let response;
   try {
     response = await fetch(url, {
@@ -102,12 +114,19 @@ async function searchUnsplashImage(query) {
   }
 
   const data = await response.json();
-  if (!data.results || data.results.length === 0) {
+  const results = data.results || [];
+  if (results.length === 0) {
     console.log('⚠️  Unsplash no devolvió resultados para esta búsqueda');
     return null;
   }
 
-  const parsed = new URL(data.results[0].urls.regular);
+  const picked = results.find(r => !usedIds.has(`photo-${r.id}`));
+  if (!picked) {
+    console.log(`⚠️  Todas las fotos de Unsplash para "${query}" ya están en uso, reutilizando la primera`);
+  }
+  const result = picked || results[0];
+
+  const parsed = new URL(result.urls.regular);
   parsed.searchParams.set('fm', 'webp');
   return parsed.toString();
 }
@@ -556,7 +575,9 @@ herramientas: Herramienta1, Herramienta2
   console.log('🖼️  Generando query de imagen...');
   const imageQuery = await generateImageQuery(client, nextTopic.tema, title);
   console.log(`🔍 Query Unsplash: "${imageQuery}"`);
-  const imageUrl = await searchUnsplashImage(imageQuery);
+  const usedImageIds = getUsedUnsplashIds();
+  console.log(`📷 Fotos ya en uso: ${usedImageIds.size}`);
+  const imageUrl = await searchUnsplashImage(imageQuery, usedImageIds);
   if (imageUrl) console.log(`✅ Imagen encontrada: ${imageUrl}`);
 
   const faqs = parseFaqs(body);
