@@ -134,6 +134,12 @@ const { titulo, herramientas } = Astro.props;
   .cmp-btn .cmp-check { display: none; }
   .cmp-btn.is-sel .cmp-plus { display: none; }
   .cmp-btn.is-sel .cmp-check { display: inline; }
+
+  @keyframes cmp-pulse {
+    0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0   rgba(79,70,229,.45); }
+    50%       { transform: scale(1.18); box-shadow: 0 0 0 7px rgba(79,70,229,0);   }
+  }
+  .cmp-pulse { animation: cmp-pulse .75s ease-in-out 4; }
 </style>
 
 <style>
