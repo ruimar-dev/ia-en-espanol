@@ -139,6 +139,38 @@ const comparativas = [
       })}
     </div>
   </div>
+
+  <!-- ── Compare tray ── -->
+  <div id="cmp-tray" role="status" aria-live="polite">
+    <div class="wrap" style="padding-top:14px; padding-bottom:14px;">
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <span style="font-size:13px; font-weight:600; color:var(--ink); white-space:nowrap; flex-shrink:0;">Comparando:</span>
+        <div id="cmp-pills" style="display:flex; gap:8px; flex:1; flex-wrap:wrap; min-width:0;"></div>
+        <div style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
+          <button id="cmp-clear" style="font-size:13px; color:var(--ink3); background:none; border:none; cursor:pointer; padding:0; text-decoration:underline; font-family:'Geist',sans-serif;">Limpiar</button>
+          <button id="cmp-go" disabled style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:#fff; border:none; cursor:pointer; padding:10px 18px; border-radius:10px; font-size:14px; font-weight:600; font-family:'Geist',sans-serif; transition:opacity .18s;">
+            Comparar
+            <svg style="width:14px;height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Compare modal ── -->
+  <div id="cmp-overlay" role="dialog" aria-modal="true" aria-labelledby="cmp-modal-title">
+    <div id="cmp-modal">
+      <div style="padding:20px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-shrink:0;">
+        <h2 id="cmp-modal-title" style="margin:0; font-size:18px; font-weight:700; color:var(--ink); font-family:'Newsreader',serif;">Comparativa</h2>
+        <button id="cmp-close" aria-label="Cerrar comparación" style="background:none; border:none; cursor:pointer; color:var(--ink3); font-size:28px; line-height:1; padding:4px; flex-shrink:0;">×</button>
+      </div>
+      <div id="cmp-table-wrap"></div>
+      <div style="padding:14px 24px; border-top:1px solid var(--border); text-align:right; flex-shrink:0;">
+        <button id="cmp-modal-clear" style="font-size:13px; color:var(--ink3); background:none; border:none; cursor:pointer; text-decoration:underline; font-family:'Geist',sans-serif;">Limpiar comparación</button>
+      </div>
+    </div>
+  </div>
+
 </Layout>
 
 <style>
@@ -146,4 +178,192 @@ const comparativas = [
     border-color: var(--accent);
     box-shadow: 0 4px 16px var(--shadow);
   }
+
+  #cmp-tray {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 24px var(--shadow);
+    transform: translateY(100%);
+    transition: transform .28s cubic-bezier(.22,1,.36,1);
+  }
+
+  #cmp-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(0,0,0,.55);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(3px);
+  }
+  #cmp-overlay.open { display: flex; }
+
+  #cmp-modal {
+    background: var(--surface);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 860px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 60px rgba(0,0,0,.3);
+  }
+  #cmp-table-wrap { overflow: auto; flex: 1; }
+
+  #cmp-go:disabled { opacity: 0.4; cursor: not-allowed; }
 </style>
+
+<script>
+  interface Tool {
+    nombre: string;
+    precio: string;
+    puntuacion: number;
+    idealPara: string;
+    enlaceAfiliado: string | null;
+    badge: string | null;
+  }
+
+  let selected: Tool[] = [];
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+
+    const cmpBtn = target.closest<HTMLButtonElement>('.cmp-btn');
+    if (cmpBtn?.dataset.tool) {
+      const tool = JSON.parse(cmpBtn.dataset.tool) as Tool;
+      const idx = selected.findIndex(t => t.nombre === tool.nombre);
+      if (idx > -1) {
+        selected.splice(idx, 1);
+      } else {
+        if (selected.length >= 3) return;
+        selected.push(tool);
+      }
+      syncButtons();
+      renderTray();
+      return;
+    }
+
+    const pill = target.closest<HTMLElement>('[data-remove]');
+    if (pill?.dataset.remove) {
+      const nombre = pill.dataset.remove;
+      selected = selected.filter(t => t.nombre !== nombre);
+      syncButtons();
+      renderTray();
+      return;
+    }
+
+    if (target.closest('#cmp-go') && !(document.getElementById('cmp-go') as HTMLButtonElement).disabled) {
+      openModal(); return;
+    }
+    if (target.closest('#cmp-clear'))       { clearAll(); return; }
+    if (target.closest('#cmp-close'))       { closeModal(); return; }
+    if (target.closest('#cmp-modal-clear')) { clearAll(); closeModal(); return; }
+    if (target === document.getElementById('cmp-overlay')) { closeModal(); return; }
+  });
+
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  function syncButtons() {
+    document.querySelectorAll<HTMLButtonElement>('.cmp-btn').forEach(b => {
+      if (!b.dataset.tool) return;
+      const tool = JSON.parse(b.dataset.tool) as Tool;
+      const isSel = selected.some(t => t.nombre === tool.nombre);
+      const isFull = selected.length >= 3 && !isSel;
+      b.classList.toggle('is-sel', isSel);
+      b.disabled = isFull;
+    });
+  }
+
+  function renderTray() {
+    const tray = document.getElementById('cmp-tray')!;
+    const pillsEl = document.getElementById('cmp-pills')!;
+    const goBtn = document.getElementById('cmp-go') as HTMLButtonElement;
+
+    tray.style.transform = selected.length ? 'translateY(0)' : 'translateY(100%)';
+    goBtn.disabled = selected.length < 2;
+
+    pillsEl.innerHTML = selected.map(t => `
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;background:var(--accent-tint);border:1px solid var(--accent);font-size:12px;font-weight:600;color:var(--accent);font-family:'Geist',sans-serif;">
+        ${esc(t.nombre)}
+        <button data-remove="${esc(t.nombre)}" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:16px;line-height:1;padding:0;" aria-label="Quitar ${esc(t.nombre)}">×</button>
+      </span>
+    `).join('');
+  }
+
+  function clearAll() {
+    selected = [];
+    document.querySelectorAll<HTMLButtonElement>('.cmp-btn').forEach(b => {
+      b.classList.remove('is-sel');
+      b.disabled = false;
+    });
+    renderTray();
+  }
+
+  function openModal() {
+    const overlay = document.getElementById('cmp-overlay')!;
+    const wrap = document.getElementById('cmp-table-wrap')!;
+    const title = document.getElementById('cmp-modal-title')!;
+
+    title.textContent = `Comparando ${selected.length} herramientas`;
+
+    const thCols = selected.map(t => `
+      <th style="padding:16px 18px;text-align:center;font-size:14px;font-weight:700;color:var(--ink);border-left:1px solid var(--border);min-width:160px;">
+        ${esc(t.nombre)}
+        ${t.badge ? `<br><span style="display:inline-block;margin-top:5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:4px;background:${/gratis|precio/i.test(t.badge)?'var(--good-bg)':'var(--accent-tint)'};color:${/gratis|precio/i.test(t.badge)?'var(--good)':'var(--accent)'};">${esc(t.badge)}</span>` : ''}
+      </th>
+    `).join('');
+
+    const rows: { label: string; render: (t: Tool) => string }[] = [
+      { label: 'Puntuación', render: t => stars(t.puntuacion) },
+      { label: 'Precio',     render: t => `<span style="color:var(--ink2);">${esc(t.precio)}</span>` },
+      { label: 'Ideal para', render: t => `<span style="font-size:13px;color:var(--ink2);">${esc(t.idealPara)}</span>` },
+      { label: 'Enlace',     render: t => t.enlaceAfiliado
+        ? `<a href="${esc(t.enlaceAfiliado)}" target="_blank" rel="noopener noreferrer sponsored" style="color:var(--accent);font-weight:600;font-size:13px;">Ver oferta →</a>`
+        : `<span style="color:var(--muted)">—</span>` },
+    ];
+
+    const bodyRows = rows.map(row => `
+      <tr style="border-top:1px solid var(--border);">
+        <td style="padding:14px 18px;font-size:13px;font-weight:600;color:var(--ink3);white-space:nowrap;">${row.label}</td>
+        ${selected.map(t => `<td style="padding:14px 18px;text-align:center;border-left:1px solid var(--border);">${row.render(t)}</td>`).join('')}
+      </tr>
+    `).join('');
+
+    wrap.innerHTML = `
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead>
+          <tr style="background:var(--surface);">
+            <th style="padding:16px 18px;text-align:left;font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;">Característica</th>
+            ${thCols}
+          </tr>
+        </thead>
+        <tbody>${bodyRows}</tbody>
+      </table>
+    `;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('cmp-overlay')?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function stars(score: number) {
+    const s = Array.from({ length: 5 }, (_, i) =>
+      `<svg style="width:15px;height:15px;color:${i < Math.round(score) ? '#fbbf24' : 'var(--border2)'};display:inline-block;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`
+    ).join('');
+    return `<span style="display:inline-flex;align-items:center;gap:2px;">${s}<span style="font-size:12px;color:var(--muted);margin-left:5px;font-family:'Geist Mono',monospace;">${score}</span></span>`;
+  }
+
+  function esc(str: string) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>

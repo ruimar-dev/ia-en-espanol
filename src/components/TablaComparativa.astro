@@ -26,6 +26,7 @@ const { titulo, herramientas } = Astro.props;
     <table style="width:100%; border-collapse:collapse; font-size:14px; min-width:500px;">
       <thead>
         <tr style="background:var(--ink); color:var(--bg); text-align:left;">
+          <th style="padding:13px 10px; width:44px;" aria-label="Comparar"></th>
           <th style="padding:13px 18px; font-weight:600; font-size:13px;">Herramienta</th>
           <th style="padding:13px 18px; font-weight:600; font-size:13px;">Precio</th>
           <th style="padding:13px 18px; font-weight:600; font-size:13px;">Puntuación</th>
@@ -36,6 +37,24 @@ const { titulo, herramientas } = Astro.props;
       <tbody>
         {herramientas.map((h, i) => (
           <tr style={`border-top:1px solid var(--border); background:${i % 2 === 1 ? 'var(--stripe-a)' : 'var(--surface)'};`} class="tabla-row">
+            <td style="padding:13px 10px; text-align:center;">
+              <button
+                class="cmp-btn"
+                data-tool={JSON.stringify({
+                  nombre: h.nombre,
+                  precio: h.precio,
+                  puntuacion: h.puntuacion,
+                  idealPara: h.idealPara,
+                  enlaceAfiliado: h.enlaceAfiliado ?? null,
+                  badge: h.badge ?? null,
+                })}
+                title={`Añadir ${h.nombre} a comparación`}
+                aria-label={`Añadir ${h.nombre} a comparación`}
+              >
+                <span class="cmp-plus" aria-hidden="true">+</span>
+                <span class="cmp-check" aria-hidden="true">✓</span>
+              </button>
+            </td>
             <td style="padding:13px 18px; font-weight:600; color:var(--ink);">
               {h.nombre}
               {h.badge && (
@@ -82,6 +101,40 @@ const { titulo, herramientas } = Astro.props;
     </table>
   </div>
 </div>
+
+<style is:global>
+  .cmp-btn {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, background .15s, color .15s;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .cmp-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-tint);
+  }
+  .cmp-btn.is-sel {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+  .cmp-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .cmp-btn .cmp-check { display: none; }
+  .cmp-btn.is-sel .cmp-plus { display: none; }
+  .cmp-btn.is-sel .cmp-check { display: inline; }
+</style>
 
 <style>
   .tabla-row:hover { background: var(--hover) !important; }
