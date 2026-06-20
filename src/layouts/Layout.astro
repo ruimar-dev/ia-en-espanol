@@ -114,26 +114,8 @@ const { title, description, image, article, publishDate, dateModified, canonical
       .wrap--narrow{ max-width: 680px;  }
     </style>
 
-    <!-- Inline theme init to prevent flash of wrong theme -->
-    <script is:inline>
-      (function () {
-        var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var dark = stored === 'dark' || (!stored && prefersDark);
-        document.documentElement.classList.toggle('dark', dark);
-      })();
-    </script>
-    <!-- GA4 Consent Mode v2: defaults denied, grant only if already consented -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', wait_for_update: 500 });
-      if (localStorage.getItem('cookie-consent') === 'all') {
-        gtag('consent', 'update', { analytics_storage: 'granted' });
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-ZJXJJTM7FV');
-    </script>
+    <script src="/theme-init.js"></script>
+    <script src="/ga-consent.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJXJJTM7FV"></script>
   </head>
   <body class="font-sans transition-colors duration-200 min-h-screen flex flex-col" style="background:var(--bg); color:var(--ink);">
