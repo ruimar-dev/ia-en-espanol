@@ -15,6 +15,15 @@ const articulosPorCategoria = {
   productividad: allArticles.filter(a => a.data.category === 'productividad').slice(0, 3),
 };
 
+const catMeta: Record<string, { color: string; label: string; icon: string }> = {
+  llm:           { color: '#7C3AED', label: 'Texto',          icon: '<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>' },
+  imagen:        { color: '#2563EB', label: 'Imagen',         icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>' },
+  codigo:        { color: '#16A34A', label: 'Código',         icon: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>' },
+  audio:         { color: '#EA580C', label: 'Audio',          icon: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="8" y1="7" x2="8" y2="17"/><line x1="4" y1="9" x2="4" y2="15"/><line x1="16" y1="7" x2="16" y2="17"/><line x1="20" y1="9" x2="20" y2="15"/>' },
+  video:         { color: '#DC2626', label: 'Vídeo',          icon: '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>' },
+  productividad: { color: '#0D9488', label: 'Productividad',  icon: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
+};
+
 const comparativas = [
   {
     id: 'llm',
@@ -85,68 +94,133 @@ const comparativas = [
     ],
   },
 ];
+
+const totalHerramientas = comparativas.reduce((sum, c) => sum + c.herramientas.length, 0);
 ---
 
 <Layout
-  title="Comparativas de herramientas IA"
-  description="Tablas comparativas actualizadas de las mejores herramientas de inteligencia artificial por categoría."
+  title="Comparativas de herramientas IA 2026 — Tablas actualizadas"
+  description="Compara las mejores herramientas de inteligencia artificial por categoría. Tablas actualizadas a junio de 2026 con precios, puntuaciones y comparador interactivo."
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Comparativas</h1>
-    <p class="text-gray-600 dark:text-gray-400 mb-1">
-      Tablas comparativas actualizadas para ayudarte a elegir la herramienta correcta sin perder tiempo.
-    </p>
-    <p class="text-xs text-gray-400 dark:text-gray-500 mb-4">
-      Actualizado: junio 2026. *GitHub Copilot migró a facturación por créditos AI en junio 2026; el coste real puede variar según uso.
-    </p>
 
-    <!-- Jump links -->
-    <div class="flex flex-wrap gap-2 mb-12">
-      {comparativas.map(({ id, titulo }) => (
-        <a
-          href={`#${id}`}
-          class="text-sm px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#7C3AED] hover:text-white transition-colors font-medium"
-        >
-          {titulo.split(' ').slice(0, 3).join(' ')}…
-        </a>
-      ))}
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="comp-hero">
+    <div class="wrap" style="padding-top:72px; padding-bottom:64px;">
+
+      <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:22px;">
+        <span style="width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0;"></span>
+        <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink2);">Comparativas · Junio 2026</span>
+      </div>
+
+      <h1 style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.05; letter-spacing:-0.025em; color:var(--ink);">
+        Compara las mejores<br>
+        <span style="font-style:italic; color:var(--accent);">herramientas de IA</span>
+      </h1>
+
+      <p style="margin:22px 0 0; font-size:18px; line-height:1.6; color:var(--ink2); max-width:540px;">
+        Tablas actualizadas sin opinión de marca. Selecciona hasta 3 herramientas y compáralas lado a lado en segundos.
+      </p>
+
+      <!-- Stats strip -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-n">{totalHerramientas}</span>
+          <span class="hero-stat-l">herramientas</span>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-n">{comparativas.length}</span>
+          <span class="hero-stat-l">categorías</span>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-n">{allArticles.length}</span>
+          <span class="hero-stat-l">reviews publicadas</span>
+        </div>
+      </div>
+
     </div>
+  </section>
+
+  <!-- ══ CATEGORY NAV ══════════════════════════════════ -->
+  <nav class="cat-nav" aria-label="Saltar a categoría">
+    <div class="wrap" style="padding-top:36px; padding-bottom:36px;">
+      <div class="cat-grid">
+        {comparativas.map(({ id, titulo, herramientas: h }) => {
+          const m = catMeta[id];
+          return (
+            <a href={`#${id}`} class="cat-card" style={`--c:${m.color};`}>
+              <span class="cat-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={m.icon} />
+              </span>
+              <span class="cat-name">{m.label}</span>
+              <span class="cat-count">{h.length} herramientas</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ MAIN CONTENT ══════════════════════════════════ -->
+  <div class="wrap" style="padding-bottom:80px;">
 
     <!-- Hint comparador -->
-    <div style="display:flex; align-items:flex-start; gap:10px; padding:11px 15px; border-radius:10px; background:var(--accent-tint); border:1px solid var(--accent); margin-bottom:32px; font-size:13px; color:var(--accent);">
-      <svg style="width:16px; height:16px; flex-shrink:0; margin-top:2px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 8h.01M12 12v4"/></svg>
+    <div class="cmp-hint">
+      <svg style="width:15px; height:15px; flex-shrink:0; margin-top:1px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 8h.01M12 12v4"/></svg>
       <span>Pulsa <strong style="background:var(--accent); color:#fff; padding:1px 7px; border-radius:12px; font-size:13px; font-weight:700; margin:0 2px;">+</strong> en hasta 3 herramientas para compararlas lado a lado.</span>
     </div>
 
-    <div class="space-y-16">
+    <!-- Sections -->
+    <div class="comp-sections">
       {comparativas.map(({ id, titulo, descripcion, herramientas }) => {
+        const m = catMeta[id];
         const articulos = articulosPorCategoria[id as keyof typeof articulosPorCategoria] ?? [];
         return (
-          <section id={id} class="scroll-mt-20">
-            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{titulo}</h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{descripcion}</p>
+          <section id={id} class="comp-section" style={`--c:${m.color};`}>
+
+            <!-- Section header -->
+            <div class="comp-section-head">
+              <span class="comp-cat-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={m.icon} />
+                {m.label}
+              </span>
+              <h2 class="comp-section-title">{titulo}</h2>
+              <p class="comp-section-desc">{descripcion}</p>
+              <span class="comp-section-meta">
+                {herramientas.length} herramientas · Actualizado junio 2026
+              </span>
+            </div>
+
             <TablaComparativa herramientas={herramientas} />
 
             {articulos.length > 0 && (
-              <div style="margin-top:20px;">
-                <p style="margin:0 0 10px; font-family:'Geist Mono',monospace; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink3);">Artículos relacionados</p>
-                <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px;">
+              <div class="comp-articles">
+                <p class="comp-articles-label">Artículos relacionados</p>
+                <div class="comp-articles-grid">
                   {articulos.map(a => (
-                    <a href={`/blog/${a.slug}`} class="art-rel-card" style="display:block; padding:13px 15px; border-radius:10px; border:1px solid var(--border); background:var(--surface); text-decoration:none; transition:all .18s;">
-                      <span style="display:block; font-size:13px; font-weight:600; color:var(--ink); line-height:1.35; margin-bottom:5px;">{a.data.title}</span>
-                      <span style="font-size:12px; color:var(--accent); font-weight:500;">Leer artículo →</span>
+                    <a href={`/blog/${a.slug}`} class="comp-article-card" style={`--c:${m.color};`}>
+                      <span class="comp-article-title">{a.data.title}</span>
+                      <span class="comp-article-cta">Leer artículo →</span>
                     </a>
                   ))}
                 </div>
               </div>
             )}
+
           </section>
         );
       })}
     </div>
+
+    <!-- Nota legal -->
+    <p style="margin-top:16px; font-size:12px; color:var(--muted); max-width:680px;">
+      *GitHub Copilot migró a facturación por créditos AI en junio 2026; el coste real puede variar según uso. Los enlaces marcados como afiliados generan una comisión sin coste adicional para ti.
+    </p>
+
   </div>
 
-  <!-- ── Compare tray ── -->
+  <!-- ══ COMPARE TRAY ══════════════════════════════════ -->
   <div id="cmp-tray" role="status" aria-live="polite">
     <div class="wrap" style="padding-top:14px; padding-bottom:14px;">
       <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
@@ -164,7 +238,7 @@ const comparativas = [
     </div>
   </div>
 
-  <!-- ── Compare modal ── -->
+  <!-- ══ COMPARE MODAL ═════════════════════════════════ -->
   <div id="cmp-overlay" role="dialog" aria-modal="true" aria-labelledby="cmp-modal-title">
     <div id="cmp-modal">
       <div style="padding:20px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-shrink:0;">
@@ -181,11 +255,212 @@ const comparativas = [
 </Layout>
 
 <style>
-  .art-rel-card:hover {
-    border-color: var(--accent);
-    box-shadow: 0 4px 16px var(--shadow);
+  /* ── Hero ─────────────────────────────────────── */
+  .comp-hero {
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { display: flex; flex-direction: column; gap: 2px; }
+  .hero-stat-n {
+    font-family: 'Newsreader', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .hero-stat-l {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+  }
+  .hero-stat-sep {
+    width: 1px;
+    height: 36px;
+    background: var(--border2);
+    flex-shrink: 0;
   }
 
+  /* ── Category nav ─────────────────────────────── */
+  .cat-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding: 20px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    text-decoration: none;
+    text-align: center;
+    transition: border-color .18s, box-shadow .18s, transform .18s;
+  }
+  .cat-card:hover {
+    border-color: var(--c);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 12%, transparent), 0 4px 16px var(--shadow);
+    transform: translateY(-2px);
+  }
+  .cat-icon-wrap {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+    color: var(--c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .18s;
+  }
+  .cat-card:hover .cat-icon-wrap {
+    background: color-mix(in srgb, var(--c) 20%, transparent);
+  }
+  .cat-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .cat-count {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* ── Hint comparador ──────────────────────────── */
+  .cmp-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 15px;
+    border-radius: 10px;
+    background: var(--accent-tint);
+    border: 1px solid var(--accent);
+    margin: 36px 0 0;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* ── Sections ─────────────────────────────────── */
+  .comp-sections { display: flex; flex-direction: column; gap: 0; }
+
+  .comp-section {
+    padding: 56px 0 0;
+    scroll-margin-top: 80px;
+  }
+  .comp-section + .comp-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .comp-section-head {
+    padding-left: 20px;
+    border-left: 3px solid var(--c);
+    margin-bottom: 8px;
+  }
+  .comp-cat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+    color: var(--c);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .comp-section-title {
+    margin: 0;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .comp-section-desc {
+    margin: 10px 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink2);
+    max-width: 580px;
+  }
+  .comp-section-meta {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  /* ── Related articles ─────────────────────────── */
+  .comp-articles { margin-top: 24px; }
+  .comp-articles-label {
+    margin: 0 0 12px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+  }
+  .comp-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .comp-article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--c);
+    background: var(--surface);
+    text-decoration: none;
+    transition: box-shadow .18s, transform .18s;
+  }
+  .comp-article-card:hover {
+    box-shadow: 0 4px 16px var(--shadow);
+    transform: translateY(-2px);
+  }
+  .comp-article-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .comp-article-cta {
+    font-size: 12px;
+    color: var(--c);
+    font-weight: 600;
+  }
+
+  /* ── Compare tray ─────────────────────────────── */
   #cmp-tray {
     position: fixed;
     bottom: 0; left: 0; right: 0;
@@ -197,6 +472,7 @@ const comparativas = [
     transition: transform .28s cubic-bezier(.22,1,.36,1);
   }
 
+  /* ── Compare modal ────────────────────────────── */
   #cmp-overlay {
     display: none;
     position: fixed;
@@ -209,7 +485,6 @@ const comparativas = [
     backdrop-filter: blur(3px);
   }
   #cmp-overlay.open { display: flex; }
-
   #cmp-modal {
     background: var(--surface);
     border-radius: 16px;
@@ -222,7 +497,6 @@ const comparativas = [
     box-shadow: 0 24px 60px rgba(0,0,0,.3);
   }
   #cmp-table-wrap { overflow: auto; flex: 1; }
-
   #cmp-go:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* móvil: contador en vez de pills */
@@ -245,7 +519,7 @@ const comparativas = [
 
   let selected: Tool[] = [];
 
-  // Pulso inicial: primer botón de cada sección para llamar la atención
+  // Pulso inicial: primer botón de cada sección
   document.querySelectorAll<HTMLElement>('section[id]').forEach((section, i) => {
     const btn = section.querySelector<HTMLElement>('.cmp-btn');
     if (btn) setTimeout(() => btn.classList.add('cmp-pulse'), i * 150);
@@ -313,7 +587,6 @@ const comparativas = [
 
     const countEl = document.getElementById('cmp-count');
     if (countEl) countEl.textContent = `${selected.length} herramienta${selected.length !== 1 ? 's' : ''} seleccionada${selected.length !== 1 ? 's' : ''}`;
-
 
     pillsEl.innerHTML = selected.map(t => `
       <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;background:var(--accent-tint);border:1px solid var(--accent);font-size:12px;font-weight:600;color:var(--accent);font-family:'Geist',sans-serif;white-space:nowrap;flex-shrink:0;">
