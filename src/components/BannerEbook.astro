@@ -1,0 +1,155 @@
+---
+// Banner promocional del ebook "50 Prompts de IA para Autónomos y Pymes"
+// Se inserta al final de los artículos del blog
+---
+
+<aside class="banner-ebook" aria-label="Recurso descargable">
+  <div class="ebook-inner">
+    <div class="ebook-img-wrap" aria-hidden="true">
+      <img
+        src="https://public-files.gumroad.com/fkygm4vulj1i37v3nppizddi9cbo"
+        alt="Portada del ebook 50 Prompts de IA para Autónomos y Pymes"
+        width="335"
+        height="189"
+        loading="lazy"
+        decoding="async"
+        class="ebook-cover"
+      />
+    </div>
+    <div class="ebook-content">
+      <span class="ebook-eyebrow">PDF descargable · €9.99</span>
+      <h3 class="ebook-title">50 Prompts de IA para tu negocio</h3>
+      <p class="ebook-desc">
+        Listos para copiar y pegar en ChatGPT, Claude o Gemini. Emails, redes, ventas, gestión y productividad — sin improvisar.
+      </p>
+      <ul class="ebook-bullets" aria-label="Incluye">
+        <li>📧 Email y comunicación</li>
+        <li>📱 Redes y marketing</li>
+        <li>🎯 Ventas y atención al cliente</li>
+      </ul>
+      <a
+        href="https://iaenespanol.gumroad.com/l/50-prompts-para-autonomos-y-pymes"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ebook-cta"
+      >
+        Descargar el pack
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .banner-ebook {
+    margin: 40px 0 8px;
+    border-radius: 18px;
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+    background: var(--accent-tint);
+    overflow: hidden;
+  }
+
+  .ebook-inner {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .ebook-img-wrap {
+    flex-shrink: 0;
+    width: 240px;
+    background: linear-gradient(160deg, #4c1d95, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+  }
+
+  .ebook-cover {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    display: block;
+  }
+
+  .ebook-content {
+    flex: 1;
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ebook-eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .ebook-title {
+    margin: 0;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .ebook-desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink2);
+  }
+
+  .ebook-bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .ebook-bullets li {
+    font-size: 12.5px;
+    color: var(--ink2);
+  }
+
+  .ebook-cta {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .18s;
+    margin-top: 4px;
+  }
+
+  .ebook-cta:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px var(--shadow);
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 540px) {
+    .ebook-inner { flex-direction: column; }
+    .ebook-img-wrap { width: 100%; padding: 20px; }
+    .ebook-cover { max-width: 240px; margin: 0 auto; }
+    .ebook-content { padding: 20px; }
+  }
+</style>

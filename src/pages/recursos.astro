@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Recursos de IA para tu negocio — IA en Español"
+  description="Guías, prompts y plantillas descargables para autónomos y pymes que quieren sacarle partido a la inteligencia artificial. En español, sin tecnicismos."
+>
+  <!-- HEADER -->
+  <section class="wrap--narrow" style="padding-top:72px; padding-bottom:56px;">
+    <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:22px;">
+      <span style="width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0;"></span>
+      <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink2);">Recursos descargables</span>
+    </div>
+    <h1 style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2rem,4.5vw,3.25rem); line-height:1.06; letter-spacing:-0.025em; color:var(--ink);">
+      Recursos para trabajar<br>
+      <span style="font-style:italic; color:var(--accent);">más inteligente</span> con la IA
+    </h1>
+    <p style="margin:22px 0 0; font-size:18px; line-height:1.6; color:var(--ink2); max-width:520px;">
+      Guías, packs de prompts y plantillas listas para usar en tu negocio. Sin necesidad de conocimientos técnicos.
+    </p>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="wrap" style="padding-bottom:80px;">
+
+    <!-- Producto: 50 Prompts -->
+    <div class="producto-card">
+      <!-- Portada -->
+      <div class="producto-cover" aria-hidden="true">
+        <img
+          src="https://public-files.gumroad.com/fkygm4vulj1i37v3nppizddi9cbo"
+          alt="50 Prompts de IA para Autónomos y Pymes — portada"
+          width="670"
+          height="377"
+          loading="eager"
+          decoding="async"
+          class="producto-img"
+        />
+        <div class="producto-badge">Disponible ahora</div>
+      </div>
+
+      <!-- Contenido -->
+      <div class="producto-content">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+          <span style="font-family:'Geist Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); background:var(--accent-tint); padding:4px 10px; border-radius:6px;">PDF · Pack de prompts</span>
+          <span style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--muted);">15 páginas · 935 KB</span>
+        </div>
+
+        <h2 style="margin:0 0 12px; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(1.6rem,3vw,2.25rem); line-height:1.1; letter-spacing:-0.02em; color:var(--ink);">
+          50 Prompts de IA para<br>Autónomos y Pymes
+        </h2>
+
+        <p style="margin:0 0 20px; font-size:16px; line-height:1.65; color:var(--ink2);">
+          50 prompts listos para copiar y pegar en ChatGPT, Claude o Gemini. Ahorra horas cada semana en emails, redes sociales, ventas, gestión y productividad sin necesidad de conocimientos técnicos.
+        </p>
+
+        <!-- Categorías incluidas -->
+        <div class="categorias-grid">
+          {[
+            { emoji: '📧', label: 'Email y comunicación', num: '10' },
+            { emoji: '📱', label: 'Redes y marketing', num: '10' },
+            { emoji: '💼', label: 'Gestión y administración', num: '10' },
+            { emoji: '🎯', label: 'Ventas y atención al cliente', num: '10' },
+            { emoji: '⚙️', label: 'Productividad personal', num: '10' },
+            { emoji: '💡', label: 'Bonus: mejorar cualquier prompt', num: '+' },
+          ].map(({ emoji, label, num }) => (
+            <div class="categoria-item">
+              <span class="categoria-emoji">{emoji}</span>
+              <span class="categoria-label">{label}</span>
+              <span class="categoria-num">{num}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="producto-cta-row">
+          <div>
+            <div class="producto-precio">€9.99</div>
+            <div class="producto-precio-note">Descarga inmediata · Pago seguro</div>
+          </div>
+          <a
+            href="https://iaenespanol.gumroad.com/l/50-prompts-para-autonomos-y-pymes"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-comprar"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Descargar ahora
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Próximamente -->
+    <div style="margin-top:48px; text-align:center; padding:48px 24px; border:1px dashed var(--border2); border-radius:18px;">
+      <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Próximamente</span>
+      <p style="margin:14px 0 0; font-size:16px; color:var(--ink2);">Más guías y plantillas en camino. <a href="/#newsletter" style="color:var(--accent); font-weight:600; text-decoration:none;">Suscríbete</a> para ser el primero en saber cuándo están disponibles.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .producto-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px var(--shadow), 0 12px 32px var(--shadow);
+  }
+
+  .producto-cover {
+    background: linear-gradient(160deg, #2e1065, #7c3aed 60%, #6d28d9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    position: relative;
+    min-height: 320px;
+  }
+
+  .producto-img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display: block;
+  }
+
+  .producto-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #22c55e;
+    color: #052e16;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 7px;
+  }
+
+  .producto-content {
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categorias-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+    padding: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .categoria-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .categoria-emoji {
+    font-size: 15px;
+    flex-shrink: 0;
+    width: 22px;
+    text-align: center;
+  }
+
+  .categoria-label {
+    flex: 1;
+    font-size: 13.5px;
+    color: var(--ink2);
+  }
+
+  .categoria-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    background: var(--accent-tint);
+    padding: 2px 7px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+
+  .producto-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .producto-precio {
+    font-family: 'Newsreader', serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .producto-precio-note {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-comprar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .18s;
+    white-space: nowrap;
+  }
+
+  .btn-comprar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px var(--shadow);
+  }
+
+  /* Tablet and mobile */
+  @media (max-width: 780px) {
+    .producto-card {
+      grid-template-columns: 1fr;
+    }
+    .producto-cover {
+      min-height: 220px;
+      padding: 28px;
+    }
+    .producto-content {
+      padding: 28px 24px;
+    }
+  }
+</style>

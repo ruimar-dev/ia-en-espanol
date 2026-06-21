@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import FeedbackArticulo from '../components/FeedbackArticulo.astro';
+import BannerEbook from '../components/BannerEbook.astro';
 import { CATEGORIA_LABELS } from '../content/config';
 import type { Categoria } from '../content/config';
 import { herramientas as herramientasData } from '../data/herramientas';
@@ -151,6 +152,7 @@ const relacionados = todos
     <article class="article-prose">
       <slot />
       <FeedbackArticulo />
+      <BannerEbook />
     </article>
 
     <aside class="art-sidebar">
