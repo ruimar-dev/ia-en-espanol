@@ -17,27 +17,39 @@
       />
     </div>
     <div class="ebook-content">
-      <span class="ebook-eyebrow">PDF descargable · €9.99</span>
+      <span class="ebook-eyebrow">Pack de prompts · IA en Español</span>
       <h3 class="ebook-title">50 Prompts de IA para tu negocio</h3>
       <p class="ebook-desc">
-        Listos para copiar y pegar en ChatGPT, Claude o Gemini. Emails, redes, ventas, gestión y productividad — sin improvisar.
+        Copia, rellena los corchetes y pégalo en ChatGPT, Claude o Gemini. Emails, redes, ventas, gestión y productividad — sin improvisar.
       </p>
-      <ul class="ebook-bullets" aria-label="Incluye">
-        <li>📧 Email y comunicación</li>
-        <li>📱 Redes y marketing</li>
-        <li>🎯 Ventas y atención al cliente</li>
-      </ul>
-      <a
-        href="https://iaenespanol.gumroad.com/l/50-prompts-para-autonomos-y-pymes"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="ebook-cta"
-      >
-        Descargar el pack
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-      </a>
+
+      <div class="ebook-lead-wrap" id="ebook-lead-wrap">
+        <p class="ebook-lead-label">Consigue 5 prompts gratis ahora mismo:</p>
+        <form class="ebook-lead-form" data-form="lead-magnet">
+          <input
+            type="email"
+            class="ebook-lead-input"
+            placeholder="tu@email.com"
+            required
+            autocomplete="email"
+          />
+          <button type="submit" class="ebook-lead-btn">
+            <span class="ebook-lead-btn-text">Envíamelos</span>
+            <svg class="ebook-lead-spinner" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity=".25"/>
+              <path d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+        <p class="ebook-lead-success" aria-live="polite">¡Listo! Revisa tu bandeja de entrada.</p>
+        <p class="ebook-lead-error" aria-live="polite"></p>
+        <p class="ebook-lead-note">
+          ¿Prefieres el pack completo?
+          <a href="https://iaenespanol.gumroad.com/l/50-prompts-para-autonomos-y-pymes" target="_blank" rel="noopener noreferrer">
+            Descargar los 50 por €9.99 →
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </aside>
@@ -122,28 +134,102 @@
     color: var(--ink2);
   }
 
-  .ebook-cta {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-family: 'Geist', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all .18s;
+  .ebook-lead-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     margin-top: 4px;
   }
 
-  .ebook-cta:hover {
+  .ebook-lead-label {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .ebook-lead-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .ebook-lead-input {
+    flex: 1;
+    min-width: 0;
+    padding: 9px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', sans-serif;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color .15s;
+  }
+
+  .ebook-lead-input:focus {
+    border-color: var(--accent);
+  }
+
+  .ebook-lead-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 9px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter .15s, transform .15s;
+  }
+
+  .ebook-lead-btn:hover:not(:disabled) {
     filter: brightness(1.1);
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px var(--shadow);
   }
+
+  .ebook-lead-btn:disabled { opacity: .65; cursor: not-allowed; }
+
+  .ebook-lead-spinner {
+    display: none;
+    animation: spin .7s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .ebook-lead-success {
+    display: none;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #16a34a;
+  }
+
+  .ebook-lead-error {
+    display: none;
+    margin: 0;
+    font-size: 13px;
+    color: #dc2626;
+  }
+
+  .ebook-lead-note {
+    margin: 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .ebook-lead-note a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .ebook-lead-note a:hover { text-decoration: underline; }
 
   /* Mobile: stack vertically */
   @media (max-width: 540px) {
@@ -151,5 +237,54 @@
     .ebook-img-wrap { width: 100%; padding: 20px; }
     .ebook-cover { max-width: 240px; margin: 0 auto; }
     .ebook-content { padding: 20px; }
+    .ebook-lead-form { flex-direction: column; }
+    .ebook-lead-btn { width: 100%; justify-content: center; }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-form="lead-magnet"]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const wrap = form.closest<HTMLElement>('.ebook-lead-wrap')!;
+      const input = form.querySelector<HTMLInputElement>('input[type="email"]')!;
+      const btn = form.querySelector<HTMLButtonElement>('button')!;
+      const btnText = btn.querySelector<HTMLElement>('.ebook-lead-btn-text')!;
+      const spinner = btn.querySelector<SVGElement>('.ebook-lead-spinner')!;
+      const success = wrap.querySelector<HTMLElement>('.ebook-lead-success')!;
+      const error = wrap.querySelector<HTMLElement>('.ebook-lead-error')!;
+
+      btn.disabled = true;
+      btnText.textContent = 'Enviando...';
+      spinner.style.display = 'block';
+      success.style.display = 'none';
+      error.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/lead-magnet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: input.value.trim() }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          error.textContent = data.error ?? 'Error al enviar. Inténtalo de nuevo.';
+          error.style.display = 'block';
+          btn.disabled = false;
+          btnText.textContent = 'Envíamelos';
+          spinner.style.display = 'none';
+        }
+      } catch {
+        error.textContent = 'Error de conexión. Inténtalo de nuevo.';
+        error.style.display = 'block';
+        btn.disabled = false;
+        btnText.textContent = 'Envíamelos';
+        spinner.style.display = 'none';
+      }
+    });
+  });
+</script>
