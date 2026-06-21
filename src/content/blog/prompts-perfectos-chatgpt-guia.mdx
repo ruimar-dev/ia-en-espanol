@@ -5,17 +5,6 @@ date: 2026-06-21
 category: generacion-texto
 herramientas: ["ChatGPT", "Claude", "Gemini", "Perplexity"]
 imagen: "https://images.unsplash.com/photo-1675865254433-6ba341f0f00b?crop=entropy&cs=tinysrgb&fit=max&fm=webp&ixid=M3w5NzMwMDN8MHwxfHNlYXJjaHwxfHxDaGF0R1BUJTIwcHJvbXB0JTIwd3JpdGluZyUyMEFJfGVufDB8MHx8fDE3ODIwNDA4MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-ratings:
-  - label: "Calidad de outputs"
-    score: 8.7
-  - label: "Facilidad de uso"
-    score: 7.9
-  - label: "Relación calidad-precio"
-    score: 7.5
-  - label: "Curva de aprendizaje"
-    score: 8.2
-  - label: "Versatilidad de aplicaciones"
-    score: 8.4
 faqs:
   - pregunta: "¿Funcionan estas técnicas de prompting también con Claude o Gemini?"
     respuesta: "Sí, el marco CRAFT y las técnicas como few-shot o chain of thought son agnósticos al modelo. Los fundamentos funcionan igual con [Claude Fable 5](/blog/claude-fable-5-review), [Gemini 2.5 Pro](/blog/google-gemini-pro-review-en-espanol) o cualquier modelo de lenguaje actual. Lo que varía es la sensibilidad del modelo a la precisión del prompt: Claude tiende a seguir instrucciones complejas con más fidelidad, mientras que GPT-4o es más creativo en la interpretación. Adapta el nivel de detalle según el modelo que uses."
@@ -27,7 +16,7 @@ faqs:
     respuesta: "Hay algunas extensiones y herramientas de terceros que intentan \"optimizar\" prompts automáticamente, pero en mi experiencia el beneficio real está en entender el porqué, no en delegar la construcción del prompt. Lo más útil es pedirle al propio ChatGPT que mejore tu prompt: \"Este es mi prompt original: [...]. Mejóralo para obtener resultados más precisos sobre [objetivo].\" Es un ejercicio que también te enseña mucho."
   - pregunta: "¿El plan gratuito de ChatGPT es suficiente para practicar prompting?"
     respuesta: "Para aprender y practicar las técnicas de esta guía, sí. El plan gratuito tiene acceso a modelos con suficiente capacidad para que la diferencia entre un buen y un mal prompt sea visible. La limitación real del plan gratuito es el acceso a GPT-4o en horas punta y el límite de mensajes. Si empiezas a usar ChatGPT de forma regular para trabajo, el plan de pago se justifica por el acceso más consistente, no por el sistema de prompts en sí."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
@@ -39,7 +28,7 @@ Lo he visto con mis propios ojos (y en mis propios chats). Antes de entender có
 
 Esta guía no es una lista de "prompts mágicos" que copiar y pegar. Es un marco para que entiendas por qué funcionan ciertas estructuras, con ejemplos reales de lo que yo uso, los errores más comunes y cómo adaptarlo a tu trabajo diario. Si ya tienes cuenta en ChatGPT, puedes empezar a aplicar esto hoy mismo.
 
-## Qué es un prompt y cuánto cuesta acceder a ChatGPT exactamente
+## Qué es un prompt (y qué planes tiene ChatGPT en 2026)
 
 Antes de entrar en técnica, aclaremos el escenario porque hay bastante confusión. **Un prompt** es simplemente la instrucción o mensaje que le envías al modelo. Puede tener una palabra o cinco párrafos —el tamaño importa, pero importa más la estructura.
 
@@ -112,7 +101,7 @@ Si no indicas el formato, el modelo elige el que considera adecuado —y a veces
 
 ## Técnicas avanzadas que marcan la diferencia en el día a día
 
-Una vez tienes el marco CRAFT interiorizado, hay un segundo nivel de técnicas que multiplicar los resultados en casos específicos.
+Una vez tienes el marco CRAFT interiorizado, hay un segundo nivel de técnicas que multiplican los resultados en casos específicos.
 
 ### Few-shot prompting: enseña con ejemplos
 
@@ -188,12 +177,6 @@ Esta pregunta me la hacen mucho y la respuesta honesta tiene matices.
 
 La inversión real en aprender estas técnicas es de **2 a 4 horas** para tener el marco claro y unos días de práctica para que se vuelva automático. El retorno, si lo aplicas en trabajo real, se ve en la primera semana.
 
-<BannerAfiliado
-  titulo="Empieza con ChatGPT Plus y aplica estas técnicas hoy"
-  descripcion="Accede a GPT-4o con límites más amplios y prueba los prompts de esta guía en un contexto de trabajo real. La diferencia con el plan gratuito es notable."
-  cta="Ver planes de ChatGPT"
-  url="https://chat.openai.com"
-/>
 
 ## Preguntas frecuentes sobre prompts para ChatGPT
 
