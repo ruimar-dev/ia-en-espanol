@@ -11,9 +11,10 @@ interface Herramienta {
 interface Props {
   titulo?: string;
   herramientas: Herramienta[];
+  comparador?: boolean;
 }
 
-const { titulo, herramientas } = Astro.props;
+const { titulo, herramientas, comparador = false } = Astro.props;
 ---
 
 <div style="margin:32px 0; overflow:hidden; border-radius:14px; border:1px solid var(--border);">
@@ -26,7 +27,7 @@ const { titulo, herramientas } = Astro.props;
     <table style="width:100%; border-collapse:collapse; font-size:14px; min-width:500px;">
       <thead>
         <tr style="background:var(--ink); color:var(--bg); text-align:left;">
-          <th style="padding:13px 10px; font-weight:600; font-size:11px; letter-spacing:0.06em; white-space:nowrap;">Comparar</th>
+          {comparador && <th style="padding:13px 10px; font-weight:600; font-size:11px; letter-spacing:0.06em; white-space:nowrap;">Comparar</th>}
           <th style="padding:13px 18px; font-weight:600; font-size:13px;">Herramienta</th>
           <th style="padding:13px 18px; font-weight:600; font-size:13px;">Precio</th>
           <th style="padding:13px 18px; font-weight:600; font-size:13px;">Puntuación</th>
@@ -37,24 +38,26 @@ const { titulo, herramientas } = Astro.props;
       <tbody>
         {herramientas.map((h, i) => (
           <tr style={`border-top:1px solid var(--border); background:${i % 2 === 1 ? 'var(--stripe-a)' : 'var(--surface)'};`} class="tabla-row">
-            <td style="padding:13px 10px; text-align:center;">
-              <button
-                class="cmp-btn"
-                data-tool={JSON.stringify({
-                  nombre: h.nombre,
-                  precio: h.precio,
-                  puntuacion: h.puntuacion,
-                  idealPara: h.idealPara,
-                  enlaceAfiliado: h.enlaceAfiliado ?? null,
-                  badge: h.badge ?? null,
-                })}
-                title={`Añadir ${h.nombre} a comparación`}
-                aria-label={`Añadir ${h.nombre} a comparación`}
-              >
-                <span class="cmp-plus" aria-hidden="true">+</span>
-                <span class="cmp-check" aria-hidden="true">✓</span>
-              </button>
-            </td>
+            {comparador && (
+              <td style="padding:13px 10px; text-align:center;">
+                <button
+                  class="cmp-btn"
+                  data-tool={JSON.stringify({
+                    nombre: h.nombre,
+                    precio: h.precio,
+                    puntuacion: h.puntuacion,
+                    idealPara: h.idealPara,
+                    enlaceAfiliado: h.enlaceAfiliado ?? null,
+                    badge: h.badge ?? null,
+                  })}
+                  title={`Añadir ${h.nombre} a comparación`}
+                  aria-label={`Añadir ${h.nombre} a comparación`}
+                >
+                  <span class="cmp-plus" aria-hidden="true">+</span>
+                  <span class="cmp-check" aria-hidden="true">✓</span>
+                </button>
+              </td>
+            )}
             <td style="padding:13px 18px; font-weight:600; color:var(--ink);">
               {h.nombre}
               {h.badge && (
