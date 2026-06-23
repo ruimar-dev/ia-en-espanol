@@ -1,6 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const siteUrl = 'https://iaenespanol.es';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Sergio',
+  url: siteUrl,
+  image: `${siteUrl}/images/sergio.jpg`,
+  description: 'Analista de herramientas de inteligencia artificial y autor de IA en Español, blog de reviews y comparativas de IA en castellano.',
+  jobTitle: 'Analista de herramientas IA',
+  knowsAbout: [
+    'Inteligencia Artificial',
+    'Modelos de lenguaje grandes',
+    'ChatGPT',
+    'Claude',
+    'Midjourney',
+    'Herramientas de productividad con IA',
+  ],
+  sameAs: [siteUrl],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'IA en Español',
+    url: siteUrl,
+  },
+};
+
 const steps = [
   { num: '01', title: 'Uso real, no demos', text: 'Cada herramienta se prueba en tareas reales durante al menos una o dos semanas.' },
   { num: '02', title: 'Lo bueno y lo malo', text: 'Pros y contras claros. Si algo falla o no compensa, lo decimos sin rodeos.' },
@@ -13,6 +39,8 @@ const steps = [
   title="Sobre mí — IA en Español"
   description="Quién está detrás de IA en Español y por qué escribo sobre inteligencia artificial en castellano."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
   <!-- Intro -->
   <section class="wrap--mid" style="padding-top:72px; display:flex; gap:48px; align-items:center; flex-wrap:wrap;">
     <img
