@@ -3,13 +3,13 @@ import ThemeToggle from './ThemeToggle.astro';
 
 const navLinks = [
   { href: '/blog', label: 'Blog' },
-  { href: '/ranking', label: 'Ranking' },
-  { href: '/comparativas', label: 'Comparativas' },
   { href: '/herramientas', label: 'Herramientas' },
+  { href: '/comparativas', label: 'Comparativas' },
+  { href: '/guias', label: 'Guías' },
+  { href: '/ranking', label: 'Ranking' },
+  { href: '/que-ia-necesito', label: '¿Qué IA?' },
   { href: '/recursos', label: 'Recursos' },
   { href: '/servicios', label: 'Servicios' },
-  { href: '/que-ia-necesito', label: '¿Qué IA?' },
-  { href: '/sobre-mi', label: 'Sobre mí' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -24,7 +24,7 @@ const currentPath = Astro.url.pathname;
         <span class="logo-text">en Español</span>
       </a>
 
-      <!-- Desktop nav -->
+      <!-- Desktop nav centrada -->
       <nav class="desktop-nav" aria-label="Navegación principal">
         {navLinks.map(({ href, label }) => (
           <a
@@ -110,6 +110,7 @@ const currentPath = Astro.url.pathname;
     justify-content: space-between;
     height: 64px;
     gap: 24px;
+    position: relative;
   }
 
   /* === Logo === */
@@ -125,11 +126,14 @@ const currentPath = Astro.url.pathname;
   .logo-ia   { color: var(--accent); }
   .logo-text { color: var(--ink); }
 
-  /* === Desktop nav === */
+  /* === Desktop nav — centrada === */
   .desktop-nav {
     display: none;
     align-items: center;
     gap: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
   @media (min-width: 768px) {
     .desktop-nav { display: flex; }
@@ -143,6 +147,7 @@ const currentPath = Astro.url.pathname;
     color: var(--ink2);
     text-decoration: none;
     transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
   }
   .nav-link:hover {
     color: var(--ink);
@@ -267,7 +272,7 @@ const currentPath = Astro.url.pathname;
   });
 
   document.addEventListener('click', (e) => {
-    if (!mobileMenu?.classList.contains('hidden') && !mobileMenu?.contains(e.target as Node)) {
+    if (!mobileMenu?.classList.contains('hidden') && !mobileMenu?.contains(e.target as Node) && !mobileBtn?.contains(e.target as Node)) {
       setMenuOpen(false);
     }
   });

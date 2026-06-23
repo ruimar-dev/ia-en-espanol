@@ -1,0 +1,1042 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticuloCard from '../../components/ArticuloCard.astro';
+import { getCollection } from 'astro:content';
+
+const articulos = (await getCollection('blog', ({ data }) =>
+  !data.draft && data.category === 'generacion-texto'
+)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const faqs = [
+  {
+    q: '¿Cuál es el mejor chatbot de IA en 2026?',
+    a: 'No existe un "mejor" absoluto: cada herramienta tiene su dominio. Claude Fable 5 lidera en escritura y análisis de documentos; ChatGPT destaca por su ecosistema y versatilidad; Gemini es insustituible en el ecosistema Google; y DeepSeek R1 ofrece razonamiento técnico gratuito y open source.',
+  },
+  {
+    q: '¿Son gratis los chatbots de IA?',
+    a: 'Todos los grandes chatbots tienen plan gratuito: ChatGPT Free, Claude Free, Gemini gratuito y DeepSeek web sin coste. Los planes de pago (~20 €/mes) dan acceso a los modelos más potentes, más capacidad de contexto y funciones avanzadas como análisis de documentos o generación de imágenes.',
+  },
+  {
+    q: '¿Cuál es el chatbot más seguro para datos empresariales en Europa?',
+    a: 'Para entornos empresariales sujetos al RGPD, las opciones más recomendables son Claude, ChatGPT y Gemini, que procesan datos con mejores garantías para el mercado europeo. DeepSeek procesa datos en China, lo que plantea dudas de cumplimiento en entornos con información confidencial.',
+  },
+  {
+    q: '¿Cuál es el mejor chatbot de IA para programar?',
+    a: 'Para razonamiento técnico puro y debugging, Claude Opus 4.8 y DeepSeek R1 son muy sólidos. Para flujos de trabajo integrados en el editor de código, herramientas especializadas como Cursor o GitHub Copilot —que usan Claude o GPT como base— ofrecen más productividad real.',
+  },
+  {
+    q: '¿En qué se diferencia ChatGPT de Claude y Gemini?',
+    a: 'ChatGPT destaca por su ecosistema de herramientas (DALL-E, búsqueda web, miles de GPTs personalizados) y su versatilidad; Claude por la calidad de escritura, el análisis de documentos largos y su precisión en español; Gemini por la integración nativa con Gmail, Docs y Drive, y su arquitectura multimodal nativa.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const chatbots = [
+  {
+    nombre: 'ChatGPT',
+    empresa: 'OpenAI',
+    color: '#10A37F',
+    modelo: 'GPT-5.5 / o3',
+    desc: 'El asistente de IA más utilizado del mundo. Su mayor ventaja es la versatilidad y el ecosistema: generación de imágenes con DALL-E integrada en el chat, miles de GPTs personalizados, búsqueda web en tiempo real e intérprete de código con ejecución. Es la opción más completa para quien quiere un solo asistente que lo haga todo.',
+    puntos: ['Generación de imágenes integrada (DALL-E)', 'Miles de GPTs personalizados', 'Búsqueda web en tiempo real', 'Intérprete de código con ejecución directa'],
+    href: '/blog/chatgpt-que-es-guia',
+    label: 'Leer guía completa de ChatGPT →',
+  },
+  {
+    nombre: 'Claude',
+    empresa: 'Anthropic',
+    color: '#D97706',
+    modelo: 'Fable 5 / Opus 4.8',
+    desc: 'La referencia en escritura, análisis de documentos y razonamiento matizado. Produce el texto en español más natural de los cuatro, gestiona documentos de hasta un millón de tokens de contexto y mantiene el tono en textos largos mejor que ningún competidor. Indispensable para profesionales que trabajan intensivamente con texto.',
+    puntos: ['Mejor escritura en español del mercado', 'Contexto de hasta 1 millón de tokens', 'Proyectos con memoria persistente entre sesiones', 'Código limpio con explicaciones arquitectónicas'],
+    href: '/blog/claude-fable-5-review',
+    label: 'Leer review de Claude Fable 5 →',
+  },
+  {
+    nombre: 'Gemini',
+    empresa: 'Google',
+    color: '#4285F4',
+    modelo: 'Gemini 2.5 Pro',
+    desc: 'La opción más inteligente si tu trabajo vive en el ecosistema Google. Integración nativa y profunda con Gmail, Docs, Drive y Meet, arquitectura multimodal diseñada desde cero para entender texto, imágenes, audio y vídeo de forma simultánea, y una ventana de contexto de un millón de tokens que no tiene rival a su precio.',
+    puntos: ['Integración nativa con todo Google Workspace', 'Arquitectura multimodal desde la base', 'Contexto de 1 millón de tokens incluido', 'Generación de imágenes con Imagen 3'],
+    href: '/blog/google-gemini-pro-review-en-espanol',
+    label: 'Leer review de Gemini →',
+  },
+  {
+    nombre: 'DeepSeek',
+    empresa: 'DeepSeek AI',
+    color: '#6366F1',
+    modelo: 'R1 / V3',
+    desc: 'El disruptor open source que cambió las reglas del juego en 2025. DeepSeek R1 es el modelo de razonamiento técnico más potente disponible de forma gratuita, publicado bajo licencia MIT. Ideal para desarrollo, matemáticas y análisis de código. Importante: los datos pasan por servidores en China, lo que tiene implicaciones para uso con datos sensibles.',
+    puntos: ['Razonamiento técnico comparable a modelos de pago', 'Completamente gratuito en versión web', 'Open source (licencia MIT)', 'API con coste muy inferior a la competencia'],
+    href: '/blog/deepseek-r1-review',
+    label: 'Leer review de DeepSeek R1 →',
+  },
+];
+---
+
+<Layout
+  title="Chatbots de IA en 2026: Guía completa para elegir el mejor (ChatGPT, Claude, Gemini, DeepSeek)"
+  description="Guía completa de chatbots de IA en 2026: qué son, cómo evolucionaron y cómo elegir entre ChatGPT, Claude, Gemini y DeepSeek según tu caso de uso real."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow hero-glow--1" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--2" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--3" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <!-- Columna texto -->
+      <div class="hero-text">
+        <p class="hero-eyebrow">GUÍA COMPLETA · ACTUALIZADA JUNIO 2026</p>
+        <h1 class="hero-title">Chatbots de IA en 2026</h1>
+        <p class="hero-subtitle">
+          Todo lo que necesitas saber para elegir entre ChatGPT, Claude, Gemini y DeepSeek.
+          Sin tecnicismos innecesarios, con casos de uso reales.
+        </p>
+        <div class="hero-bottom">
+          <div class="hero-stats">
+            <span class="stat"><strong>4</strong> chatbots analizados</span>
+            <span class="stat"><strong>8</strong> artículos de referencia</span>
+            <span class="stat">Jun <strong>2026</strong></span>
+          </div>
+          <a href="#principales" class="hero-cta">Ver los 4 chatbots →</a>
+        </div>
+      </div>
+      <!-- Columna visual -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hv-card" style="--bc:#10A37F; --i:0">
+          <strong>ChatGPT</strong>
+          <span>Versatilidad y ecosistema</span>
+        </div>
+        <div class="hv-card" style="--bc:#DA7756; --i:1">
+          <strong>Claude</strong>
+          <span>Escritura y análisis</span>
+        </div>
+        <div class="hv-card" style="--bc:#4285F4; --i:2">
+          <strong>Gemini</strong>
+          <span>Ecosistema Google</span>
+        </div>
+        <div class="hv-card" style="--bc:#4D6AF0; --i:3">
+          <strong>DeepSeek</strong>
+          <span>Razonamiento técnico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <div class="toc-outer">
+    <div class="wrap--narrow">
+      <nav class="toc-box" aria-label="Tabla de contenidos">
+        <p class="toc-label">En esta guía</p>
+        <ol class="toc-list">
+          <li><a href="#que-son">¿Qué son los chatbots de IA?</a></li>
+          <li><a href="#evolucion">Cómo han evolucionado hasta 2026</a></li>
+          <li><a href="#principales">Los 4 chatbots principales del mercado</a></li>
+          <li><a href="#como-elegir">Cómo elegir según tu caso de uso</a></li>
+          <li><a href="#precios">Comparativa de precios</a></li>
+          <li><a href="#faqs">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: QUÉ SON -->
+  <section class="sect" id="que-son">
+    <div class="wrap--narrow">
+      <h2>¿Qué son los chatbots de IA y por qué han cambiado la forma de trabajar?</h2>
+
+      <p>
+        Un chatbot de inteligencia artificial es un sistema con el que puedes mantener una conversación en lenguaje natural —escribiendo o hablando— y que responde de forma coherente, contextual y generativa. A diferencia de los buscadores, que encuentran contenido que ya existe, los chatbots <em>crean</em> contenido nuevo: redactan, analizan, razonan, resumen, traducen y explican.
+      </p>
+      <p>
+        La diferencia fundamental con los asistentes virtuales anteriores —Siri, Alexa, los chatbots de atención al cliente— es la comprensión real del lenguaje. Los modelos actuales no buscan palabras clave ni siguen scripts predefinidos: entienden el contexto de la conversación, el matiz de la petición y la intención detrás de las palabras. Eso los convierte en colaboradores útiles para trabajo real, no solo en dispensadores de respuestas básicas.
+      </p>
+      <p>
+        El impacto en la productividad profesional es medible y concreto. Redactar un informe que llevaba dos horas puede hacerse en veinte minutos con el chatbot adecuado. Analizar un contrato de 60 páginas para encontrar cláusulas problemáticas, que antes requería varias horas de lectura cuidadosa, se hace ahora en menos de un minuto. Preparar el guion de una reunión, transformar notas dispersas en un documento estructurado, explicar un concepto complejo al nivel correcto para una audiencia específica: todo eso es ahora una conversación.
+      </p>
+      <p>
+        Esto no significa que los chatbots hayan reemplazado el juicio humano. Siguen cometiendo errores —a veces con mucha confianza—, pueden inventar datos con total naturalidad y no tienen acceso a información en tiempo real por defecto. Entender qué pueden hacer, y qué no, es el punto de partida de esta guía.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: EVOLUCIÓN -->
+  <section class="sect sect--alt" id="evolucion">
+    <div class="wrap--narrow">
+      <h2>Cómo han evolucionado los chatbots de IA hasta 2026</h2>
+      <p>
+        La historia moderna de los chatbots de IA se puede contar en cuatro años que han transformado la industria tecnológica —y la forma de trabajar de millones de personas— más rápido que cualquier tecnología anterior.
+      </p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-year">2022</span>
+          <div class="tl-content">
+            <strong>El momento fundacional.</strong> OpenAI lanza ChatGPT en noviembre. En cinco días alcanza un millón de usuarios; en dos meses, cien millones. Es la primera vez que el gran público puede conversar de forma natural con un modelo de lenguaje avanzado. La reacción oscila entre el asombro y el pánico: educadores preocupados, empresas explorando aplicaciones, periodistas intentando encontrar los límites.
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2023</span>
+          <div class="tl-content">
+            <strong>La carrera se acelera.</strong> GPT-4 eleva enormemente el razonamiento. Google presenta Bard, que más tarde se convierte en Gemini. Anthropic lanza Claude con un enfoque en seguridad y alineamiento. Meta publica los pesos de Llama, abriendo la era del open source en LLMs. Los modelos comienzan a procesar imágenes además de texto: nace la era multimodal.
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2024</span>
+          <div class="tl-content">
+            <strong>La especialización.</strong> Las ventanas de contexto se amplían de 8.000 a 128.000 tokens o más. Aparecen herramientas especializadas (Cursor, GitHub Copilot) que integran los modelos fundacionales en flujos de trabajo de desarrollo. OpenAI lanza o1, el primer modelo con cadenas de pensamiento explícitas. La competencia baja precios y sube calidad de forma sostenida.
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">2025</span>
+          <div class="tl-content">
+            <strong>El gran disruptor.</strong> DeepSeek AI publica R1, un modelo open source con capacidades de razonamiento comparables a los modelos cerrados más avanzados, entrenado con una fracción del presupuesto. Sacude el mercado y obliga a los grandes laboratorios a justificar sus precios. Las ventanas de contexto alcanzan un millón de tokens. Los modelos de razonamiento se convierten en estándar.
+          </div>
+        </div>
+        <div class="tl-item tl-item--last">
+          <span class="tl-year">2026</span>
+          <div class="tl-content">
+            <strong>La madurez diferenciada.</strong> Los cuatro grandes han cristalizado sus nichos: ChatGPT lidera en ecosistema y versatilidad; Claude en escritura y análisis; Gemini en el ecosistema Google y multimodalidad; DeepSeek en razonamiento técnico open source. La pregunta ya no es "¿cuál es el mejor?" sino "¿cuál es el mejor <em>para mi caso de uso</em>?".
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: PRINCIPALES -->
+  <section class="sect" id="principales">
+    <div class="wrap--narrow">
+      <h2>Los chatbots de IA principales del mercado en 2026</h2>
+      <p class="sect-lead">
+        Un resumen honesto de cada herramienta. No profundizamos en detalle aquí —cada una tiene su análisis completo enlazado—, pero sí lo suficiente para orientarte antes de decidir.
+      </p>
+    </div>
+    <div class="wrap bots-wrap">
+      <div class="bots-grid">
+        {chatbots.map(bot => (
+          <div class="bot-card" style={`--bc: ${bot.color}`}>
+            <div class="bot-card-top">
+              <h3 class="bot-name">{bot.nombre}</h3>
+              <p class="bot-meta">{bot.empresa} · {bot.modelo}</p>
+            </div>
+            <p class="bot-desc">{bot.desc}</p>
+            <ul class="bot-strengths">
+              {bot.puntos.map(p => <li>{p}</li>)}
+            </ul>
+            <a href={bot.href} class="bot-cta">{bot.label}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: CÓMO ELEGIR -->
+  <section class="sect sect--alt" id="como-elegir">
+    <div class="wrap--narrow">
+      <h2>Cómo elegir el chatbot de IA adecuado según tu caso de uso</h2>
+      <p>
+        La pregunta más habitual cuando alguien empieza a explorar los chatbots es "¿cuál es el mejor?". La respuesta útil no es un nombre: es una pregunta de vuelta. ¿Mejor para qué? Aquí tienes una guía directa por casos de uso reales.
+      </p>
+    </div>
+    <div class="wrap--mid uses-wrap">
+      <div class="uses-grid">
+        <div class="use-card">
+          <div class="use-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3>Programación y desarrollo</h3>
+          <p>Para razonamiento técnico puro y debugging explicado paso a paso, <strong>Claude Opus 4.8</strong> y <strong>DeepSeek R1</strong> ofrecen las explicaciones arquitectónicas más detalladas del mercado. Para productividad integrada en el editor de código, <strong>Cursor</strong> o <strong>GitHub Copilot</strong> —que usan Claude o GPT como base— son más prácticos en el flujo de trabajo diario. DeepSeek R1 es la mejor opción gratuita para problemas técnicos puntuales sin datos sensibles.</p>
+        </div>
+        <div class="use-card">
+          <div class="use-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </div>
+          <h3>Escritura y contenido</h3>
+          <p><strong>Claude</strong> es la referencia sin discusión para escritura profesional en español. Mantiene el tono en textos largos mejor que ningún otro modelo, produce frases más naturales y sigue instrucciones de estilo con precisión. Para artículos, informes o cualquier texto que vaya a publicarse con tu nombre, Claude es la primera elección. ChatGPT es una alternativa sólida para tareas más cortas y menos exigentes, y tiene la ventaja de poder generar imágenes dentro del mismo chat.</p>
+        </div>
+        <div class="use-card">
+          <div class="use-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <h3>Atención al cliente y trabajo en equipo</h3>
+          <p><strong>ChatGPT</strong> es la opción más madura para flujos de trabajo de equipo: tiene la mayor variedad de integraciones, los GPTs personalizados permiten especializar el asistente para el dominio de negocio, y la memoria persistente evita tener que repetir contexto en cada sesión. Si tu equipo trabaja en Google Workspace, <strong>Gemini Advanced</strong> con su integración nativa en Gmail y Docs tiene ventajas concretas que ChatGPT no puede replicar dentro de ese ecosistema.</p>
+        </div>
+        <div class="use-card">
+          <div class="use-icon">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3>Uso personal y cotidiano</h3>
+          <p><strong>ChatGPT Free</strong> sigue siendo la entrada más fácil al mundo de los chatbots: interfaz intuitiva, modelo gratuito competente y curva de aprendizaje mínima. <strong>Claude Free</strong> ofrece mejor calidad de respuesta pero con límites de uso más estrictos —conviene si la calidad del texto importa más que la cantidad de conversaciones. Si ya usas Google a diario, el plan gratuito de <strong>Gemini</strong> es especialmente práctico por la integración directa con las herramientas que tienes abiertas.</p>
+        </div>
+      </div>
+
+      <div class="grok-note">
+        <p>
+          <strong>¿Y Grok?</strong> El chatbot de xAI tiene un nicho genuino: acceso a datos en tiempo real de la red X (Twitter). Si monitorizas tendencias sociales, cubres noticias o trabajas en marketing de redes, puede ser útil como segunda herramienta complementaria. Como asistente principal, las cuatro opciones anteriores ofrecen más valor por un precio igual o menor. <a href="/blog/grok-xai-review">Lee el análisis completo de Grok →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: PRECIOS -->
+  <section class="sect" id="precios">
+    <div class="wrap--mid">
+      <h2>Comparativa rápida de precios en 2026</h2>
+      <p class="sect-lead-sm">
+        Todos los chatbots principales ofrecen plan gratuito y plan estándar en torno a los 20 €/mes. La diferencia real está en qué incluye cada nivel.
+      </p>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>Herramienta</th>
+              <th>Plan gratuito</th>
+              <th>~20 €/mes</th>
+              <th>Tier premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pt-tool" style="--bc: #10A37F"><strong>ChatGPT</strong></td>
+              <td>GPT-4o mini con límites diarios</td>
+              <td>Plus: GPT-5.5 + o3 + DALL-E + búsqueda web</td>
+              <td>Pro: ~200 USD/mes, acceso ilimitado a o3</td>
+            </tr>
+            <tr>
+              <td class="pt-tool" style="--bc: #D97706"><strong>Claude</strong></td>
+              <td>Haiku 4.5 con límites</td>
+              <td>Pro: Sonnet 4.6 + Opus 4.8 + contexto 1M tokens</td>
+              <td>Max: desde ~100 USD/mes, más uso de Fable 5</td>
+            </tr>
+            <tr>
+              <td class="pt-tool" style="--bc: #4285F4"><strong>Gemini</strong></td>
+              <td>Gemini 1.5 Flash con límites</td>
+              <td>AI Premium: Gemini 2.5 Pro + Workspace (21,99 €)</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td class="pt-tool" style="--bc: #6366F1"><strong>DeepSeek</strong></td>
+              <td>R1 + V3 web completamente gratis</td>
+              <td>API: pago por uso (coste muy bajo por token)</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="price-note">⚠️ Los precios cambian con frecuencia. Verifica siempre el precio actual en la web oficial de cada herramienta antes de suscribirte.</p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: FAQs -->
+  <section class="sect sect--alt" id="faqs">
+    <div class="wrap--narrow">
+      <h2>Preguntas frecuentes sobre chatbots de IA</h2>
+      <div class="faqs">
+        {faqs.map(f => (
+          <div class="faq">
+            <h3 class="faq-q">{f.q}</h3>
+            <p class="faq-a">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: ARTÍCULOS -->
+  <section class="sect" id="articulos">
+    <div class="wrap--narrow">
+      <h2>Profundiza en cada herramienta</h2>
+      <p class="sect-lead">
+        Análisis detallados, comparativas directas y guías prácticas sobre cada uno de los chatbots de este mercado. Actualizados a junio de 2026.
+      </p>
+    </div>
+    <div class="wrap arts-wrap">
+      <div class="arts-grid">
+        {articulos.map(art => (
+          <ArticuloCard
+            title={art.data.title}
+            description={art.data.description}
+            date={art.data.date}
+            category={art.data.category}
+            slug={art.slug}
+            imagen={art.data.imagen}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    padding: 88px 0 100px;
+  }
+  /* Dot grid texture */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, color-mix(in srgb, var(--ink) 5%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Bottom fade */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 140px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Glows */
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-glow--1 {
+    width: 580px; height: 380px;
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    top: -80px; left: -60px;
+    animation: glow-breathe 10s ease-in-out infinite;
+  }
+  .hero-glow--2 {
+    width: 360px; height: 280px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    bottom: -50px; right: 8%;
+    animation: glow-breathe 10s ease-in-out infinite 3s;
+  }
+  .hero-glow--3 {
+    width: 220px; height: 200px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    top: 30%; right: 28%;
+    animation: glow-breathe 10s ease-in-out infinite 6s;
+  }
+  @keyframes glow-breathe {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.18); }
+  }
+
+  /* Two-col layout */
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 290px;
+    gap: 52px;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+  }
+
+  /* ── Text column ── */
+  .hero-text { min-width: 0; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-tint);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: 100px;
+    padding: 5px 14px 5px 10px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 24px;
+    animation: fade-up 0.55s ease both;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    animation: dot-pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes dot-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.25; transform: scale(0.65); }
+  }
+
+  .hero-title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.08;
+    color: var(--ink);
+    margin: 0 0 20px;
+    animation: fade-up 0.55s ease 0.08s both;
+  }
+  .hero-subtitle {
+    font-size: 17px;
+    color: var(--ink2);
+    max-width: 500px;
+    line-height: 1.72;
+    margin: 0 0 32px;
+    animation: fade-up 0.55s ease 0.16s both;
+  }
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fade-up 0.55s ease 0.24s both;
+  }
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 13px;
+    border-radius: 100px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--ink2);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .stat:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    background: var(--accent-tint);
+  }
+  .stat strong { color: var(--ink); font-weight: 600; }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── Visual column ── */
+  .hero-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    animation: fade-up 0.55s ease 0.32s both;
+  }
+  .hv-card {
+    padding: 16px 14px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--bc);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    animation: fade-up 0.5s ease calc(0.36s + var(--i) * 0.07s) both;
+  }
+  .hv-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--bc) 18%, transparent);
+    border-color: color-mix(in srgb, var(--bc) 50%, var(--border));
+  }
+  .hv-card strong {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    font-family: 'Geist', sans-serif;
+  }
+  .hv-card span {
+    font-size: 11px;
+    color: var(--ink2);
+    line-height: 1.4;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ── TOC ── */
+  .toc-outer { padding: 48px 0 16px; }
+  .toc-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px 28px;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .toc-box:hover {
+    box-shadow: 0 4px 20px -6px color-mix(in srgb, var(--accent) 18%, transparent);
+    border-left-color: color-mix(in srgb, var(--accent) 80%, #000 20%);
+  }
+  .toc-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .toc-list {
+    margin: 0;
+    padding: 0 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc-list li { font-size: 14px; }
+  .toc-list a {
+    color: var(--ink2);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .toc-list a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  .sect { padding: 72px 0; }
+  .sect--alt {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .sect--alt::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 30%, transparent), transparent);
+    pointer-events: none;
+  }
+
+  .sect h2 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 24px;
+    line-height: 1.25;
+  }
+  .sect p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink2);
+    margin: 0 0 20px;
+  }
+  .sect p:last-child { margin-bottom: 0; }
+  .sect em { font-style: italic; }
+  .sect strong { color: var(--ink); font-weight: 600; }
+  .sect-lead {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink2);
+    margin: 0 0 0;
+  }
+  .sect-lead-sm {
+    font-size: 15px;
+    color: var(--ink2);
+    margin: 0 0 28px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    margin-top: 36px;
+    border-left: 2px solid var(--border);
+    padding-left: 0;
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 0 0 32px 24px;
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .tl-item.is-visible::before {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  .tl-item--last { padding-bottom: 0; }
+  .tl-year {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    padding-top: 1px;
+  }
+  .tl-content {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink2);
+    margin: 0;
+  }
+  .tl-content strong { color: var(--ink); font-weight: 600; }
+
+  /* ── CHATBOTS GRID ── */
+  .bots-wrap { padding-top: 32px; }
+  .bots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 680px) {
+    .bots-grid { grid-template-columns: 1fr; }
+  }
+
+  .bot-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--bc);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .bot-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px -12px color-mix(in srgb, var(--bc) 28%, transparent);
+    border-color: color-mix(in srgb, var(--bc) 35%, var(--border));
+  }
+  .bot-name {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+  .bot-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink3);
+    margin: 4px 0 0;
+    letter-spacing: 0.03em;
+  }
+  .bot-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink2);
+    margin: 0;
+    flex: 1;
+  }
+  .bot-strengths {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .bot-strengths li {
+    font-size: 13px;
+    color: var(--ink2);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .bot-strengths li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--bc);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .bot-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bc);
+    text-decoration: none;
+    margin-top: auto;
+    transition: gap 0.2s ease, opacity 0.15s;
+  }
+  .bot-cta::after { content: '→'; transition: transform 0.2s ease; }
+  .bot-cta:hover { opacity: 0.8; gap: 8px; }
+  .bot-cta:hover::after { transform: translateX(3px); }
+
+  /* ── USES GRID ── */
+  .uses-wrap { padding-top: 32px; }
+  .uses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 640px) {
+    .uses-grid { grid-template-columns: 1fr; }
+  }
+  .use-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+  .use-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px -8px color-mix(in srgb, var(--accent) 14%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  .use-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-tint);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    transition: transform 0.22s ease, background 0.22s ease;
+  }
+  .use-card:hover .use-icon {
+    transform: scale(1.1) rotate(-4deg);
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+  .use-card h3 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .use-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink2);
+    margin: 0;
+  }
+  .use-card p strong { color: var(--ink); font-weight: 600; }
+  .grok-note {
+    background: var(--accent-tint);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .grok-note p {
+    font-size: 14px;
+    color: var(--ink2);
+    margin: 0;
+    line-height: 1.65;
+  }
+  .grok-note p strong { color: var(--ink); font-weight: 600; }
+  .grok-note a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .grok-note a:hover { text-decoration: underline; }
+
+  /* ── PRICE TABLE ── */
+  .price-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .price-table thead tr { background: var(--surface); }
+  .price-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ink3);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .price-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink2);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .price-table tbody tr:last-child td { border-bottom: none; }
+  .price-table tbody tr {
+    transition: background 0.15s ease;
+  }
+  .price-table tbody tr:hover { background: var(--hover); }
+  .pt-tool {
+    font-weight: 700;
+    color: var(--bc) !important;
+    white-space: nowrap;
+  }
+  .price-note {
+    font-size: 13px;
+    color: var(--ink3);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── FAQs ── */
+  .faqs {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+  .faq {
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 0 -16px;
+    transition: background 0.2s ease;
+  }
+  .faq:last-child { border-bottom: none; }
+  .faq:hover { background: var(--hover, color-mix(in srgb, var(--accent) 4%, transparent)); }
+  .faq-q {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 12px;
+    line-height: 1.35;
+    transition: color 0.2s ease;
+  }
+  .faq:hover .faq-q { color: var(--accent); }
+  .faq-a {
+    font-size: 15px;
+    line-height: 1.72;
+    color: var(--ink2);
+    margin: 0;
+  }
+
+  /* ── ARTICLES GRID ── */
+  .arts-wrap { padding-top: 32px; }
+  .arts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .arts-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .arts-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -48px 0px', threshold: 0.06 });
+
+    // Staggered grid items
+    [
+      { sel: '.bots-grid > *', mod: 2 },
+      { sel: '.uses-grid > *', mod: 2 },
+      { sel: '.arts-grid > *', mod: 3 },
+    ].forEach(({ sel, mod }) => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(i % mod) * 0.08}s`;
+        obs.observe(el);
+      });
+    });
+
+    // FAQs stagger
+    document.querySelectorAll('.faq').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = `${Math.min(i, 4) * 0.07}s`;
+      obs.observe(el);
+    });
+
+    // Timeline stagger
+    document.querySelectorAll('.tl-item').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = `${i * 0.07}s`;
+      obs.observe(el);
+    });
+
+    // Single elements
+    document.querySelectorAll('.toc-box').forEach(el => {
+      el.classList.add('reveal');
+      obs.observe(el);
+    });
+  }
+</script>
