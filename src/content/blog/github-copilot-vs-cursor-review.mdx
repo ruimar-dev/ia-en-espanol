@@ -2,99 +2,139 @@
 title: "GitHub Copilot vs Cursor: ¿Cuál es el mejor asistente de código en 2026?"
 description: "Review completa de GitHub Copilot y Cursor AI tras usarlos en proyectos reales. Productividad, precio, integración y veredicto honesto para desarrolladores."
 date: 2026-05-20
+dateModified: 2026-06-23
 category: codigo
 herramientas: ["GitHub Copilot", "Cursor"]
 imagen: "/images/copilot-vs-cursor.webp"
+faqs:
+  - pregunta: "¿Cuánto cuesta GitHub Copilot vs Cursor al mes?"
+    respuesta: "GitHub Copilot Individual cuesta $10/mes o $100/año. Copilot Business sube a $19/usuario/mes. Cursor tiene plan gratuito con 2.000 completions al mes y un plan Pro a $20/mes. Para uso diario intensivo, Cursor Pro y Copilot Individual son los niveles comparables en precio y el salto de $10 se nota menos de lo que parece."
+  - pregunta: "¿GitHub Copilot merece la pena si ya tengo ChatGPT Plus?"
+    respuesta: "Sí, son complementarios. ChatGPT no está integrado en tu editor y no ve tu código en tiempo real. Copilot vive dentro de VS Code o JetBrains, entiende el contexto del fichero abierto y ofrece sugerencias inline mientras escribes. Son flujos de trabajo distintos: ChatGPT para preguntas y exploración, Copilot para producción."
+  - pregunta: "¿Cursor funciona con cualquier lenguaje de programación?"
+    respuesta: "Sí. Cursor hereda el soporte de lenguajes de VS Code, que cubre prácticamente todo: TypeScript, JavaScript, Python, Go, Rust, Java, C++, PHP, Ruby, y muchos más. Las funciones de IA (Composer, @codebase) funcionan igual de bien en todos ellos, aunque el autocompletado es especialmente preciso en lenguajes con tipado estático."
+  - pregunta: "¿Hay alternativas gratuitas a Copilot y Cursor?"
+    respuesta: "Sí. Codeium ofrece autocompletado IA gratuito para uso individual con soporte en más de 70 lenguajes. Supermaven (adquirido por Cursor en 2024) también tenía plan gratuito. Para quien quiera probar antes de pagar, Codeium es el punto de entrada más claro, aunque ninguna alternativa gratuita llega al nivel de Cursor Pro."
+  - pregunta: "¿Cursor o Copilot para un equipo de empresa?"
+    respuesta: "Depende del tamaño y la integración con GitHub. Si ya usáis GitHub Enterprise, Copilot Business ($19/usuario/mes) encaja sin fricción: gestión centralizada, políticas de empresa, revisión de PRs con IA. Si el equipo es pequeño y prioriza velocidad de desarrollo sobre integración con el stack existente, Cursor Business ($40/usuario/mes) da más potencia por menos fricción administrativa."
 draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
-import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
----
----
 Hace unos años la pregunta era si los asistentes de código merecían la pena. Hoy la pregunta es cuál usar, porque la productividad que aportan es innegable.
 
-He usado GitHub Copilot durante dos años y Cursor durante los últimos cuatro meses en proyectos de TypeScript, Python y Go. Este es mi análisis honesto.
+He usado GitHub Copilot durante dos años y Cursor durante los últimos cuatro meses en proyectos de TypeScript, Python y Go. Este es mi análisis honesto, actualizado a junio de 2026 con las novedades más recientes de ambas herramientas.
 
 <TablaComparativa
   titulo="Copilot vs Cursor vs alternativas"
   herramientas={[
-    { nombre: "Cursor", precio: "$20/mes", puntuacion: 4.8, idealPara: "Desarrollo completo asistido por IA" },
-    { nombre: "GitHub Copilot", precio: "$10/mes", puntuacion: 4.6, idealPara: "Completado de código en tu IDE" },
-    { nombre: "Codeium", precio: "Gratis", puntuacion: 4.2, idealPara: "Alternativa gratuita a Copilot" },
-    { nombre: "Tabnine", precio: "$12/mes", puntuacion: 4.0, idealPara: "Privacidad y ejecución local" },
+    { nombre: "Cursor Pro", precio: "$20/mes", puntuacion: 4.8, idealPara: "Desarrollo completo asistido por IA" },
+    { nombre: "GitHub Copilot", precio: "$10/mes", puntuacion: 4.6, idealPara: "Completado de código en tu IDE actual" },
+    { nombre: "Windsurf", precio: "$15/mes", puntuacion: 4.5, idealPara: "IDE IA con flujo menos disruptivo que Cursor" },
+    { nombre: "Codeium", precio: "Gratis", puntuacion: 4.2, idealPara: "Alternativa gratuita para empezar" },
   ]}
 />
 
+## Cuánto cuesta cada uno exactamente
+
+Antes de comparar funcionalidades, conviene tener claros los precios porque son muy distintos en escala:
+
+**GitHub Copilot:**
+- **Individual:** $10/mes o $100/año. Incluye autocompletado, chat, revisión de PRs e integración con todos los IDEs compatibles.
+- **Business:** $19/usuario/mes. Añade gestión centralizada, políticas de empresa, y contexto de repositorio para el chat.
+- **Enterprise:** $39/usuario/mes. Incorpora búsqueda en toda la base de código de la empresa y personalizaciones avanzadas.
+
+**Cursor:**
+- **Free:** 2.000 completions al mes y 50 peticiones lentas al modelo. Suficiente para probarlo, insuficiente para uso diario real.
+- **Pro:** $20/mes. Completions ilimitadas, acceso a Claude Opus 4.8, GPT-4o y los modelos propios de Cursor sin límite de peticiones rápidas.
+- **Business:** $40/usuario/mes. Control centralizado, sin telemetría y sin datos compartidos con terceros.
+
+Para un desarrollador individual, Cursor Pro cuesta $10 más al mes que Copilot Individual. Esa diferencia se amortiza rápido si el salto de productividad que yo experimenté se repite en tu caso, pero es una variable que debes medir tú mismo.
+
 ## La diferencia fundamental
 
-**GitHub Copilot** es un plugin para tu IDE actual (VS Code, JetBrains, Vim). Se integra en tu flujo de trabajo existente y añade sugerencias inline y un chat de ayuda.
+**GitHub Copilot** es un plugin para tu IDE actual (VS Code, JetBrains, Vim, Neovim). Se integra en tu flujo de trabajo existente y añade sugerencias inline y un chat de ayuda. No tienes que cambiar nada de tu entorno.
 
-**Cursor** es un IDE completo basado en VS Code pero reconstruido para la IA. No es un plugin, es una nueva forma de escribir código.
+**Cursor** es un IDE completo basado en VS Code pero reconstruido para la IA desde cero. No es un plugin añadido después, es una nueva forma de escribir código donde la IA es una capa nativa de la aplicación.
 
 Esta diferencia define todo lo demás.
 
-## Copilot: La opción conservadora
+## GitHub Copilot: la opción conservadora
 
-Si llevas años con tu configuración de VS Code, tienes 200 extensiones y un workflow optimizado, Copilot es la transición menos disruptiva.
+Si llevas años con tu configuración de VS Code, tienes 200 extensiones y un workflow optimizado, Copilot es la transición menos disruptiva. Instalas la extensión y al día siguiente ya estás generando código con tus shortcuts habituales, tus temas y tus atajos intactos.
 
-Las sugerencias inline son buenas. El chat Copilot funciona bien para preguntas sobre código específico. La integración con GitHub para revisar PRs y entender contexto del repositorio es genuinamente útil.
+Las sugerencias inline son buenas, especialmente en código repetitivo: tests, boilerplate, migraciones de esquema. El chat funciona bien para preguntas sobre un fichero específico. La integración con GitHub para revisar PRs y entender el historial del repositorio es genuinamente útil y algo que Cursor no tiene de forma tan nativa.
 
-**Lo que me gusta:**
-- Se integra donde ya trabajas
-- $10/mes es accesible
+En 2026, GitHub añadió el **modo agente de Copilot**: la posibilidad de pedirle que edite múltiples ficheros y ejecute comandos de terminal. Sigue siendo menos fluido que el Composer de Cursor, pero la distancia se ha reducido considerablemente respecto a hace un año.
+
+**Lo que funciona bien:**
+- Se integra donde ya trabajas sin fricción
+- $10/mes es el punto de entrada más bajo del mercado serio
 - Sugerencias inline muy precisas en contextos repetitivos
-- Acceso a GPT-4o y Claude como backends
+- Acceso a GPT-4o y Claude Sonnet 4.6 como backends
+- Integración nativa con GitHub: pull requests, issues, historial
 
-**Lo que me frustra:**
-- El chat no "ve" el proyecto completo, solo el fichero abierto
-- Editar múltiples ficheros simultáneamente requiere hacerlo a mano
-- Para refactorizaciones grandes, hay que darle mucho contexto manual
+**Lo que todavía flojea:**
+- El modo agente llega tarde y aún se siente como un añadido, no como una función central
+- Editar múltiples ficheros simultáneamente sigue siendo más tedioso que en Cursor
+- El chat necesita mucho contexto manual para proyectos grandes
 
-## Cursor: La apuesta disruptiva
+## Cursor: la apuesta disruptiva
 
-Cursor es lo que pasa cuando construyes un IDE pensando en IA desde el primer día, no añadiéndola después.
+Cursor es lo que pasa cuando construyes un IDE pensando en IA desde el primer día. La función **Composer** (Ctrl+I en Windows) te permite pedirle que edite múltiples ficheros a la vez con contexto del proyecto completo. "Añade autenticación JWT a este endpoint, actualiza el middleware y los tests correspondientes" — y lo hace, de verdad, mostrándote los diffs de cada fichero antes de aplicarlos.
 
-La función `Composer` (Ctrl+I) te permite pedirle a Cursor que edite múltiples ficheros a la vez con contexto del proyecto completo. "Añade autenticación JWT a este endpoint y actualiza los tests" — y lo hace, de verdad.
+La función **@codebase** indexa todo tu repositorio para que puedas hacer preguntas como "¿dónde se gestiona el estado de autenticación en este proyecto?" y obtengas referencias exactas a los ficheros relevantes, no una respuesta genérica.
 
-La función `@codebase` indexa todo tu repositorio para que puedas hacer preguntas como "¿dónde se valida el input del usuario en este proyecto?" y obtengas referencias exactas.
+Llevo cuatro meses usándolo en un proyecto de TypeScript con monorepo de doce paquetes. El índice del proyecto tarda unos minutos en generarse la primera vez, pero después las búsquedas son instantáneas y precisas. Le pedí que refactorizara un módulo completo para separar la lógica de negocio de la capa de datos — proceso que me habría llevado tres horas de trabajo manual. Cursor tardó veinte minutos y el código pasó todos los tests existentes sin modificaciones.
 
-**Lo que me gusta:**
-- Composer para ediciones multi-fichero es un salto de productividad real
-- El contexto del proyecto completo marca la diferencia
-- Soporta Claude, GPT-4o y sus propios modelos según la tarea
-- La UX está muy pulida
+**Lo que funciona bien:**
+- Composer para ediciones multi-fichero es el salto de productividad más grande que he experimentado con una herramienta de desarrollo
+- El contexto del proyecto completo marca la diferencia en proyectos medianos y grandes
+- Soporta Claude Opus 4.8, GPT-4o y modelos propios según la complejidad de la tarea
+- La UX está muy pulida y los diffs son fáciles de revisar antes de aceptar
 
-**Lo que me frustra:**
-- Tienes que migrar tu configuración de VS Code (aunque importa extensiones)
-- $20/mes vs $10 de Copilot
-- En proyectos muy grandes, la indexación puede ser lenta
+**Lo que todavía flojea:**
+- Tienes que migrar tu configuración de VS Code (aunque importa extensiones automáticamente)
+- $20/mes vs $10 de Copilot es una diferencia real para equipos grandes
+- En proyectos muy grandes (millones de líneas), la indexación puede ser lenta
 
 ## Productividad real: los números
 
-Estimando en base a mis proyectos:
+No voy a darte métricas de marketing. Esta es mi estimación honesta basada en cuatro meses de uso en proyectos reales:
 
-- **GitHub Copilot:** Ahorro estimado de 1-2 horas diarias en código repetitivo
-- **Cursor:** Ahorro estimado de 3-4 horas diarias, incluyendo refactorizaciones y features completas
+- **GitHub Copilot:** Ahorro estimado de 1-2 horas diarias en código repetitivo: tests unitarios, types de TypeScript, rutas de API predecibles, documentación de funciones.
+- **Cursor Pro:** Ahorro estimado de 3-4 horas diarias, incluyendo refactorizaciones de módulos completos, features que tocan varios ficheros y entender código ajeno.
 
-La diferencia es especialmente notable cuando hay que tocar varios ficheros o entender código ajeno. De hecho, estas herramientas son solo el principio: herramientas como [Bolt.new permiten crear apps web completas sin necesidad de entender código](/blog/bolt-new-review), lo que abre posibilidades todavía mayores para la generación automática.
+La diferencia es especialmente notable en dos situaciones: cuando hay que tocar varios ficheros a la vez, y cuando te incorporas a un proyecto que no conoces. En el segundo caso, @codebase de Cursor es una herramienta de onboarding que no tiene equivalente en Copilot.
+
+## ¿Y Windsurf? La tercera opción a considerar
+
+Desde 2025, **Windsurf** (de Codeium) ha emergido como una alternativa seria a Cursor. También es un IDE basado en VS Code con IA nativa, a $15/mes. Su punto diferencial es una curva de aprendizaje más suave: la integración de IA es menos agresiva que en Cursor, lo que algunos desarrolladores prefieren.
+
+Si la idea de que la IA edite múltiples ficheros de forma autónoma te genera desconfianza, Windsurf ofrece un punto intermedio entre Copilot y Cursor. Tenemos una comparativa completa de [Cursor vs Windsurf](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) si quieres entrar en más detalle.
 
 ## Veredicto
 
-**Usa Cursor si:** Quieres maximizar productividad, no te importa cambiar de IDE y trabajas en proyectos medianos o grandes. Si quieres profundizar más en cómo funciona, he escrito un [análisis honesto de Cursor IDE en 2026](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) con más detalles sobre qué hace bien, qué le falta y si vale la pena.
+**Usa Cursor si:** Quieres maximizar productividad, no te importa cambiar de IDE y trabajas en proyectos medianos o grandes con múltiples ficheros. El coste adicional de $10/mes se amortiza en el primer día de uso intensivo si la diferencia de productividad se cumple en tu caso.
 
-**Usa Copilot si:** Tienes una configuración de IDE muy personalizada, tu empresa ya paga licencias GitHub, o prefieres la transición gradual.
+**Usa Copilot si:** Tienes una configuración de IDE muy personalizada que no quieres migrar, tu empresa ya gestiona licencias de GitHub, o prefieres una transición gradual hacia la IA en el desarrollo. Las mejoras de 2026 en el modo agente lo hacen más competitivo que hace un año.
 
-Personalmente, migré a Cursor hace cuatro meses y no vuelvo atrás. El coste adicional de $10/mes se amortiza en el primer día de uso intensivo.
+Personalmente, migré a Cursor hace cuatro meses y no vuelvo atrás. La función Composer cambió cómo abordo las refactorizaciones y el tiempo que tardo en entender proyectos nuevos se ha reducido a la mitad.
 
-<BannerAfiliado
-  titulo="Genera código con Pieces for Developers"
-  descripcion="Snippets con IA, contexto persistente entre sesiones y búsqueda inteligente. Gratis para desarrolladores individuales."
-  cta="Descargar gratis"
-  url="https://pieces.app"
-  badge="Enlace de afiliado"
-/>
+## Preguntas frecuentes sobre GitHub Copilot vs Cursor
 
----
----
+**¿Cuánto cuesta GitHub Copilot vs Cursor al mes?**
+GitHub Copilot Individual cuesta $10/mes. Cursor Pro cuesta $20/mes. Para uso diario intensivo, la diferencia de $10 es el principal factor de decisión en uso individual; para equipos, entran en juego los planes Business de cada herramienta con precios distintos.
+
+**¿GitHub Copilot merece la pena si ya tengo ChatGPT Plus?**
+Sí, son complementarios. ChatGPT no está integrado en tu editor ni ve tu código en tiempo real. Copilot vive dentro de VS Code, entiende el contexto del fichero y ofrece sugerencias mientras escribes — un flujo de trabajo completamente distinto.
+
+**¿Cursor funciona con cualquier lenguaje de programación?**
+Sí. Cursor hereda el soporte de VS Code: TypeScript, JavaScript, Python, Go, Rust, Java, C++, PHP, Ruby y muchos más. Las funciones de IA funcionan igual de bien en todos ellos.
+
+**¿Hay alternativas gratuitas a Copilot y Cursor?**
+Codeium ofrece autocompletado IA gratuito para uso individual con soporte en más de 70 lenguajes. Es el mejor punto de entrada antes de pagar por ninguna de las dos opciones de pago.
+
+**¿Cursor o Copilot para un equipo de empresa?**
+Si ya usáis GitHub Enterprise, Copilot Business encaja sin fricción: gestión centralizada y revisión de PRs con IA. Para equipos pequeños que priorizan velocidad de desarrollo, Cursor Business da más potencia, aunque sin la integración nativa con GitHub.

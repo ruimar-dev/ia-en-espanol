@@ -1,102 +1,154 @@
 ---
-title: "Las 5 mejores IA para generar imágenes en 2026"
-description: "Midjourney, DALL-E 3, Stable Diffusion, Ideogram y Firefly analizados a fondo. Con ejemplos reales, precios actualizados y casos de uso concretos."
+title: "Las mejores IA para generar imágenes en 2026"
+description: "Midjourney v8, Flux, DALL-E 3, Stable Diffusion y Adobe Firefly analizados a fondo. Con ejemplos reales, precios actualizados y cuál elegir según tu caso."
 date: 2026-04-05
+dateModified: 2026-06-23
 category: generacion-imagen
-herramientas: ["Midjourney", "DALL-E 3", "Stable Diffusion", "Ideogram", "Adobe Firefly"]
-afiliado: "https://leonardo.ai"
+herramientas: ["Midjourney", "Flux", "DALL-E 3", "Stable Diffusion", "Adobe Firefly"]
+afiliado: "https://www.adobe.com/es/products/firefly.html"
 imagen: "/images/ia-generacion-imagen.webp"
+faqs:
+  - pregunta: "¿Cuál es la mejor IA para generar imágenes gratis en 2026?"
+    respuesta: "Flux es la mejor opción de calidad real sin pagar. El modelo base (Flux.1 Schnell) es gratuito y open source, con una calidad que supera a Stable Diffusion en la mayoría de pruebas. Ideogram también tiene plan gratuito generoso (25 imágenes al día) y es especialmente bueno para imágenes con texto integrado. DALL-E 3 incluye un número limitado de generaciones gratuitas en ChatGPT."
+  - pregunta: "¿Midjourney v8 merece la pena frente a las alternativas gratuitas?"
+    respuesta: "Depende del uso. Si necesitas calidad artística máxima — ilustración editorial, concept art, imágenes de alta carga visual — Midjourney v8 sigue siendo el estándar. Si tu uso es más funcional (mockups, imágenes de blog, contenido de redes), Flux o Ideogram te dan el 90% del resultado sin pagar. El plan básico de Midjourney son $10/mes, que se justifican si lo usas más de dos o tres veces por semana."
+  - pregunta: "¿Puedo usar imágenes generadas con IA para proyectos comerciales?"
+    respuesta: "Depende de la herramienta. Adobe Firefly está entrenado con imágenes licenciadas de Adobe Stock y es el más seguro para uso comercial sin restricciones. Midjourney permite uso comercial desde el plan Basic. Flux (modelo open source) permite uso comercial. Stable Diffusion depende del modelo específico — algunos permiten uso comercial y otros no. Siempre verifica los términos de cada herramienta antes de monetizar el contenido."
+  - pregunta: "¿Qué IA genera mejor texto dentro de las imágenes?"
+    respuesta: "Ideogram 2.0 es la opción más fiable para texto integrado en imágenes: logos, carteles, miniaturas de YouTube con texto, anuncios. El resto de herramientas sigue fallando con el texto de forma notable — las letras se deforman o generan caracteres inventados. Si el texto en la imagen es prioritario, Ideogram es la elección clara."
+  - pregunta: "¿Cuánto cuesta generar imágenes con IA al mes?"
+    respuesta: "El rango es amplio. Puedes empezar gratis con Flux o Ideogram (plan gratuito). Midjourney Basic cuesta $10/mes para unas 200 imágenes. Adobe Firefly está incluido en Creative Cloud ($60+/mes). DALL-E 3 viene con ChatGPT Plus ($20/mes). Si solo vas a generar imágenes ocasionalmente, las herramientas gratuitas cubren perfectamente el uso casual."
 draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
-La generación de imágenes con IA ha madurado enormemente en los últimos años. Lo que hace cuatro años era experimental hoy es una herramienta de trabajo real para diseñadores, marketers y creadores de contenido.
+La generación de imágenes con IA ha madurado enormemente. Lo que hace tres años era experimental hoy es una herramienta de trabajo real para diseñadores, marketers y creadores de contenido. Pero el mercado también ha cambiado radicalmente: en 2026 hay nuevos jugadores que han reordenado el ranking.
 
-Pero no todas las herramientas son iguales. Esta es mi comparativa tras usar todas en proyectos reales durante los últimos tres meses.
+Esta es mi comparativa actualizada a junio de 2026, tras usar todas las herramientas en proyectos reales durante los últimos meses.
 
 <TablaComparativa
   titulo="Comparativa de generadores de imagen IA 2026"
   herramientas={[
-    { nombre: "Midjourney v6.1", precio: "$10-$60/mes", puntuacion: 4.9, idealPara: "Arte, calidad máxima" },
-    { nombre: "DALL-E 3", precio: "Con ChatGPT Plus", puntuacion: 4.5, idealPara: "Integración con ChatGPT" },
-    { nombre: "Stable Diffusion XL", precio: "Gratis (local)", puntuacion: 4.3, idealPara: "Control total, privacidad" },
-    { nombre: "Ideogram 2.0", precio: "Freemium", puntuacion: 4.4, idealPara: "Texto en imágenes" },
-    { nombre: "Adobe Firefly", precio: "Con Creative Cloud", puntuacion: 4.2, idealPara: "Uso comercial seguro", enlaceAfiliado: "https://www.adobe.com/es/products/firefly.html" },
+    { nombre: "Midjourney v8", precio: "$10-$60/mes", puntuacion: 4.9, idealPara: "Arte, calidad máxima, proyectos creativos" },
+    { nombre: "Flux 1.1 Pro", precio: "Gratis / pago por créditos", puntuacion: 4.7, idealPara: "Calidad alta sin Discord, open source" },
+    { nombre: "DALL-E 3", precio: "Con ChatGPT Plus ($20/mes)", puntuacion: 4.5, idealPara: "Integración conversacional con ChatGPT" },
+    { nombre: "Adobe Firefly", precio: "Con Creative Cloud", puntuacion: 4.3, idealPara: "Uso comercial seguro, integración Adobe", enlaceAfiliado: "https://www.adobe.com/es/products/firefly.html" },
   ]}
 />
 
-## 1. Midjourney v6.1 — El rey de la calidad
+## 1. Midjourney v8 — El referente de calidad artística
 
-Midjourney sigue siendo el estándar de calidad artística. La versión 6.1 mejoró notablemente la coherencia, el realismo de personas y la comprensión de prompts complejos. Si quieres dominar esta herramienta desde el principio, te recomiendo consultar la <a href="/blog/midjourney-v8-guia-principiantes">guía completa de Midjourney V8.1 para principiantes 2026</a>, que incluye ejemplos reales y mejores prácticas.
+Midjourney sigue siendo el estándar para calidad artística. La versión 8, lanzada en 2026, da un salto significativo respecto a v6: mejor coherencia en imágenes de personas, generación 2K nativa, comprensión de prompts más complejos y una velocidad cinco veces superior a versiones anteriores. La guía completa de [Midjourney v8.1 para principiantes](/blog/midjourney-v8-guia-principiantes) entra en todos los detalles si quieres dominar los parámetros.
 
-**Lo mejor:** Calidad artística inalcanzable por la competencia. Estilos únicos que se reconocen al instante.
+Lo que no ha cambiado: el flujo de trabajo vía Discord sigue siendo el mayor punto de fricción. No hay editor web propio para usar la herramienta fuera de Discord, aunque Midjourney ha mejorado su interfaz web alpha en los últimos meses.
 
-**Lo peor:** Solo funciona via Discord, lo cual es incómodo. No hay editor web propio. El precio de $10/mes para 200 imágenes es ajustado si usas mucho la herramienta.
+**Planes:** Basic ($10/mes, ~200 imágenes), Standard ($30/mes, generación ilimitada en modo relax), Pro ($60/mes, modo fast ilimitado y privacidad).
+
+**Lo mejor:** Calidad artística inalcanzable por ningún competidor. Estilos únicos y reconocibles. v8 ha resuelto muchos de los problemas de coherencia de personas de versiones anteriores.
+
+**Lo peor:** Solo vía Discord, lo que dificulta el flujo de trabajo profesional. Precio elevado si no se usa con frecuencia. Curva de aprendizaje en parámetros (aunque la v8 entiende prompts más naturales).
 
 **Mi nota: 4.9/5**
 
-## 2. DALL-E 3 — La mejor integración
+## 2. Flux 1.1 Pro — El nuevo competidor serio
 
-DALL-E 3 tiene una ventaja clara: está integrado en ChatGPT, lo que permite refinar imágenes conversacionalmente. "Cambia el fondo a azul oscuro y añade más profundidad" funciona de verdad.
+Flux, desarrollado por Black Forest Labs (parte del equipo original de Stable Diffusion), ha irrumpido en 2025-2026 como la alternativa más seria a Midjourney. El modelo base es open source y gratuito; la versión Pro se usa vía API o plataformas como Replicate, fal.ai o Leonardo.ai.
 
-La calidad no llega a Midjourney en estilo artístico, pero para ilustraciones técnicas, mockups o imágenes de blog es más que suficiente.
+Lo probé generando una serie de ilustraciones editoriales para un proyecto de branding. La coherencia en personajes y la capacidad para mantener estilo visual a lo largo de 20 imágenes distintas fue sorprendente para un modelo open source. La calidad fotorrealista es especialmente buena — en muchos casos supera a DALL-E 3.
 
-**Lo mejor:** Integración con ChatGPT, facilidad de uso, buena comprensión del lenguaje natural.
+La ventaja clave sobre Midjourney: **no necesitas Discord**. Puedes usar Flux directamente desde Leonardo.ai o Replicate con una interfaz web limpia, lo que encaja mucho mejor en flujos de trabajo profesionales.
 
-**Lo peor:** Tienes que pagar ChatGPT Plus ($20/mes) para usarlo con frecuencia. Límites de generación.
+**Lo mejor:** Open source y gratuito en su versión base. Calidad fotorrealista competitiva con Midjourney. Sin Discord. Muy bueno para mantener consistencia de personajes.
+
+**Lo peor:** La versión Pro requiere gestionar créditos en plataformas de terceros. La calidad artística estilizada no llega al nivel de Midjourney. Menos comunidad y recursos de aprendizaje.
+
+**Mi nota: 4.7/5**
+
+## 3. DALL-E 3 — La mejor integración conversacional
+
+DALL-E 3 tiene una ventaja que ninguna otra herramienta ofrece: está integrado en ChatGPT, lo que permite refinar imágenes conversacionalmente. "Cambia el fondo a azul oscuro, añade más profundidad y ponlo en formato vertical" funciona de verdad. Es el único generador donde puedes corregir el resultado en lenguaje natural sin aprender parámetros.
+
+La calidad no llega a Midjourney en estilo artístico ni a Flux en fotorrealismo, pero para ilustraciones técnicas, mockups rápidos o imágenes de blog es más que suficiente. Lo uso habitualmente para generar borradores visuales antes de decidir si vale la pena invertir tiempo en Midjourney.
+
+**Lo mejor:** Integración total con ChatGPT, facilidad de uso absoluta, comprensión de prompts en lenguaje natural sin parámetros técnicos.
+
+**Lo peor:** Necesitas ChatGPT Plus ($20/mes) para usarlo con frecuencia. La calidad artística queda por detrás de Midjourney y Flux. Límites de generación incluso en el plan de pago.
 
 **Mi nota: 4.5/5**
 
-## 3. Stable Diffusion XL — Para los que quieren control total
+## 4. Adobe Firefly — La opción segura para uso comercial
 
-SD XL es gratuito, open source y corre localmente si tienes una GPU decente (8GB VRAM mínimo recomendado). Esto significa privacidad total y sin límites de generación.
+Firefly está entrenado únicamente con imágenes con licencia de Adobe Stock, lo que lo convierte en la única opción 100% segura para uso comercial sin riesgo de reclamaciones de copyright. Para agencias y diseñadores que trabajan con clientes empresariales, esto no es un detalle menor: es la diferencia entre poder usar el trabajo y tener un problema legal.
 
-El coste es la curva de aprendizaje: tienes que gestionar modelos, LoRAs, samplers... No es para todo el mundo.
+La calidad fotorrealista ha mejorado mucho en la versión 3, especialmente en personas y composición de escenas. La integración nativa con Photoshop e Illustrator permite usarlo directamente en el flujo de trabajo de diseño sin cambiar de aplicación — algo que ningún otro generador ofrece.
 
-**Lo mejor:** Gratis, sin censura, control absoluto, enorme comunidad de modelos.
+**Lo mejor:** Legalmente seguro sin asteriscos. Integración directa en Photoshop/Illustrator. Buena calidad fotorrealista y mejora constante.
 
-**Lo peor:** Requiere hardware decente y conocimientos técnicos. La calidad base no llega a Midjourney sin afinado.
+**Lo peor:** Requiere suscripción a Creative Cloud para acceso completo. Creativamente más conservador que Midjourney. No es la opción si buscas estilos artísticos únicos.
 
 **Mi nota: 4.3/5**
 
-## 4. Ideogram 2.0 — El mejor para texto en imágenes
+## 5. Stable Diffusion XL — Para los que quieren control total
 
-Ideogram resuelve el problema histórico de la IA con el texto en imágenes. Otros generadores producen letras ilegibles o deformadas. Ideogram genera texto coherente y bien integrado.
+SD XL sigue siendo la opción de los desarrolladores y usuarios avanzados que priorizan control absoluto sobre cualquier otra variable. Es gratuito, open source y puede ejecutarse localmente si tienes una GPU con al menos 8 GB de VRAM, lo que significa generación ilimitada, privacidad total y sin censura.
 
-Si necesitas crear miniaturas de YouTube, anuncios con texto o pósters, Ideogram es la elección correcta.
+El coste es la curva de aprendizaje: tienes que gestionar modelos, LoRAs, samplers y parámetros técnicos. La calidad base sin afinado no llega a Midjourney ni a Flux, pero con los LoRAs adecuados y el modelo correcto puedes obtener resultados muy específicos que ninguna otra herramienta puede replicar.
 
-**Lo mejor:** Texto en imágenes sin igual, templates útiles, plan gratuito generoso.
+**Lo mejor:** Gratuito, sin límites de generación, privacidad total, personalización máxima con LoRAs y modelos específicos.
 
-**Lo peor:** Estilo artístico más limitado que Midjourney. Personalización menor.
+**Lo peor:** Requiere hardware decente y conocimientos técnicos para obtener buenos resultados. La calidad por defecto no compite con las opciones de pago.
+
+**Mi nota: 4.1/5**
+
+## 6. Ideogram 2.0 — El especialista en texto
+
+Ideogram resuelve el problema histórico de la IA con el texto en imágenes. Todos los demás generadores producen letras deformadas o ilegibles cuando intentas incluir texto en la imagen. Ideogram genera texto coherente, bien integrado y tipográficamente correcto. Si necesitas crear miniaturas de YouTube con texto, anuncios o pósters, no hay alternativa comparable.
+
+El plan gratuito (25 imágenes al día) es el más generoso del mercado. Lo uso específicamente para este caso de uso — el resto del tiempo prefiero Midjourney o Flux — pero para texto en imágenes es insustituible.
 
 **Mi nota: 4.4/5**
 
-## 5. Adobe Firefly — La opción "safe" para uso comercial
+## Tres preguntas para elegir la tuya
 
-Firefly está entrenado únicamente con imágenes con licencia de Adobe Stock, lo que lo hace 100% seguro para uso comercial. No tendrás problemas legales por copyright.
+**¿Usas las imágenes para trabajo de cliente o proyectos comerciales?** → Adobe Firefly. Es la única opción sin riesgo legal.
 
-La calidad ha mejorado mucho en la versión 3, especialmente para fotografía de personas y composición de escenas.
+**¿Quieres la máxima calidad artística y pagas por ello?** → Midjourney v8. No hay debate.
 
-**Lo mejor:** Legalmente seguro, integración con Photoshop y Illustrator, buena calidad fotorrealista.
+**¿Buscas calidad alta sin pagar y sin Discord?** → Flux (modelo gratuito vía Leonardo.ai).
 
-**Lo peor:** Requiere suscripción a Creative Cloud para máximo rendimiento. Menos artístico que Midjourney.
+**¿Solo quieres algo rápido integrado en tu flujo con ChatGPT?** → DALL-E 3 sin salir de ChatGPT.
 
-**Mi nota: 4.2/5**
+**¿Necesitas texto dentro de las imágenes?** → Ideogram 2.0.
 
-## ¿Cuál elegir?
+**¿Quieres control total y privacidad?** → Stable Diffusion XL localmente.
 
-- **Para arte y proyectos creativos:** Midjourney
-- **Para uso casual sin curva de aprendizaje:** DALL-E 3 con ChatGPT
-- **Para miniaturas y contenido con texto:** Ideogram
-- **Para privacidad y control total:** Stable Diffusion
-- **Para agencias con clientes:** Adobe Firefly
+## ¿Cuál elijo yo?
+
+Para proyectos creativos propios uso Midjourney v8. Para imágenes funcionales rápidas (portadas de artículos, mockups) uso Flux vía Leonardo.ai. Para imágenes con texto, Ideogram. Nunca uso una sola herramienta — cada una tiene su caso de uso donde es imbatible.
 
 <BannerAfiliado
-  titulo="Prueba Leonardo.ai gratis"
-  descripcion="Plan gratuito con 150 créditos diarios. Calidad comparable a Midjourney sin necesidad de Discord."
-  cta="Empezar gratis"
-  url="https://leonardo.ai"
+  titulo="Prueba Adobe Firefly gratis"
+  descripcion="Generación de imágenes 100% segura para uso comercial, integrada en Photoshop e Illustrator. Primer mes gratis con Creative Cloud."
+  cta="Ver planes de Creative Cloud"
+  url="https://www.adobe.com/es/products/firefly.html"
   badge="Enlace de afiliado"
 />
+
+## Preguntas frecuentes sobre IA para generar imágenes
+
+**¿Cuál es la mejor IA para generar imágenes gratis en 2026?**
+Flux es la mejor opción gratuita con calidad real: el modelo base es open source y está disponible sin pago en plataformas como Leonardo.ai con créditos diarios. Ideogram también tiene plan gratuito generoso (25 imágenes al día) y es especialmente bueno para imágenes con texto.
+
+**¿Midjourney v8 merece la pena frente a las alternativas gratuitas?**
+Si necesitas calidad artística máxima, sí. Si tu uso es más funcional (mockups, imágenes de blog, contenido de redes), Flux o Ideogram te dan el 90% del resultado sin pagar. El plan básico de Midjourney son $10/mes, que se justifican si lo usas más de dos o tres veces por semana.
+
+**¿Puedo usar imágenes generadas con IA para proyectos comerciales?**
+Depende de la herramienta. Adobe Firefly es el más seguro: entrenado con imágenes licenciadas, permite uso comercial sin restricciones. Midjourney permite uso comercial desde el plan Basic. Flux (modelo open source) también lo permite. Stable Diffusion depende del modelo específico. Verifica los términos antes de monetizar.
+
+**¿Qué IA genera mejor texto dentro de las imágenes?**
+Ideogram 2.0 sin competencia. El resto de herramientas sigue fallando en texto integrado de forma notable. Si el texto en la imagen es prioritario, Ideogram es la elección clara.
+
+**¿Cuánto cuesta generar imágenes con IA al mes?**
+Puedes empezar gratis con Flux o Ideogram. Midjourney Basic cuesta $10/mes. Adobe Firefly está incluido en Creative Cloud. DALL-E 3 viene con ChatGPT Plus ($20/mes). Para uso casual, las herramientas gratuitas cubren perfectamente las necesidades.
