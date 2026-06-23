@@ -28,6 +28,141 @@ const AFFILIATE_LINKS = {
   'neuronwriter':  'https://app.neuronwriter.com/ar/6809702873b807e3a94ed0c0661d7298',
 };
 
+function classifyTopic(tema) {
+  const lower = tema.toLowerCase();
+  if (/\breview\b/.test(lower)) return 'review';
+  if (/\bvs\b/.test(lower)) return 'comparativa';
+  return 'guia';
+}
+
+function buildStructureBlock(tipo) {
+  const tablaJsx = `   Usa exactamente este formato JSX:
+   \`\`\`
+   <TablaComparativa
+     titulo="..."
+     herramientas={[
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
+     ]}
+   />
+   \`\`\``;
+
+  const bannerJsx = `   Usa exactamente este formato JSX:
+   \`\`\`
+   <BannerAfiliado
+     titulo="..."
+     descripcion="..."
+     cta="..."
+     url="https://..."
+   />
+   \`\`\``;
+
+  const faqsSection = (n) => `${n}. **## Preguntas frecuentes sobre [herramienta/tema]**
+   - Exactamente 5 preguntas con respuestas de 2-4 líneas cada una
+   - Las preguntas deben ser las que alguien buscaría realmente en Google (long-tail: precio, comparación, disponibilidad en España, si vale la pena, diferencia con competidor)
+   - Formato: **¿Pregunta?** seguido de la respuesta en párrafo`;
+
+  if (tipo === 'review') {
+    return `ESTRUCTURA OBLIGATORIA (en este orden exacto):
+
+1. **Introducción** (sin encabezado H1 — el framework del blog ya muestra el título de la página; empezar directamente con párrafos)
+   - 2-3 párrafos: gancho, contexto del problema que resuelve la herramienta, y un spoiler honesto de tu veredicto
+   - Tono: como alguien que ha usado la herramienta de verdad, no un vendedor
+
+2. **## Qué es [herramienta] y cuánto cuesta exactamente**
+   - Aclara nombres confusos o versiones (mucha gente busca nombres incorrectos — explícalo)
+   - Planes y precios actuales en euros donde aplique
+   - Lista de lo que incluye cada plan relevante
+
+3. **\`<TablaComparativa>\` — insertar el componente aquí con 4 competidores reales**
+${tablaJsx}
+
+4. **## [Fortaleza principal de la herramienta]** (título descriptivo, no genérico)
+   - Usa ### para subsecciones si hay 3 o más aspectos distintos
+   - Incluye al menos UN ejemplo concreto en primera persona con detalles específicos (números, tiempo, resultado)
+
+5. **## [Segunda fortaleza o caso de uso diferenciador]**
+   - Mismo nivel de detalle y ejemplos concretos
+
+6. **## [Tercera sección — puede ser limitaciones o comparación profunda]**
+   - Sé honesto: qué hace mal, dónde pierde frente a competidores, qué le falta todavía
+
+7. **## ¿Vale la pena pagar [herramienta]?**
+   - Criterios claros: "Sí vale la pena si..." y "Probablemente no vale la pena si..." en listas
+   - Recomendación directa y sin ambigüedades
+
+8. **\`<BannerAfiliado>\` — insertar el componente aquí**
+${bannerJsx}
+
+${faqsSection(9)}
+
+10. **## Conclusión**
+    - 2-3 párrafos: resumen del veredicto, para quién es ideal, frase de cierre con perspectiva`;
+  }
+
+  if (tipo === 'comparativa') {
+    return `ESTRUCTURA OBLIGATORIA (en este orden exacto):
+
+1. **Introducción** (sin encabezado H1 — el framework del blog ya muestra el título de la página; empezar directamente con párrafos)
+   - 2-3 párrafos: gancho, por qué esta comparativa importa, spoiler breve del veredicto
+   - Tono: como alguien que ha probado ambas herramientas de verdad
+
+2. **## Qué son [herramienta A] y [herramienta B]: en qué se parecen y en qué difieren**
+   - Aclara el propósito de cada una y para qué tipo de usuario están pensadas
+   - Planes y precios actuales de ambas en euros donde aplique
+
+3. **\`<TablaComparativa>\` — comparación lado a lado con alternativas**
+${tablaJsx}
+
+4. **## [Primer aspecto de comparación — rendimiento / calidad de outputs]**
+   - Compara ambas con ejemplos concretos y resultados reales en primera persona
+
+5. **## [Segundo aspecto — precio y relación calidad-precio]**
+   - Análisis de qué obtienes por tu dinero en cada una
+
+6. **## [Tercer aspecto — casos de uso ideales y limitaciones]**
+   - Para quién es mejor cada una y dónde falla cada una
+
+7. **## ¿Cuál elegir? Recomendación directa**
+   - Criterios claros: "Elige [A] si..." y "Elige [B] si..." en listas
+   - Una recomendación final sin ambigüedades
+
+${faqsSection(8)}
+
+9. **## Conclusión**
+   - 2-3 párrafos: veredicto final, para quién es cada una, frase de cierre`;
+  }
+
+  // guia / TOFU
+  return `ESTRUCTURA OBLIGATORIA (en este orden exacto):
+
+1. **Introducción** (sin encabezado H1 — el framework del blog ya muestra el título de la página; empezar directamente con párrafos)
+   - 2-3 párrafos: gancho con el problema real del lector, contexto y spoiler de lo que va a aprender
+   - Tono: como alguien que ha aplicado esto en su trabajo real, no un divulgador genérico
+
+2. **## [Primer bloque de contenido]** (H2 con título descriptivo que corresponda exactamente al contenido — no uses "cuánto cuesta exactamente" ni similares si no vas a dar precios concretos)
+   - Desarrolla el primer concepto o bloque temático con ejemplos concretos
+   - Si comparas varias herramientas o alternativas, puedes insertar una \`<TablaComparativa>\` aquí
+${tablaJsx}
+
+3. **## [Segundo bloque de contenido]**
+   - Mismo nivel de detalle y ejemplos en primera persona
+
+4. **## [Tercer bloque de contenido]**
+   - Puede ser limitaciones, casos de uso específicos o un aspecto diferenciador del tema
+
+5. **## ¿Cuándo tiene sentido usar [tema / herramienta/s]?**
+   - Criterios claros: "Sí tiene sentido si..." y "Probablemente no si..." en listas
+   - Recomendación directa y sin ambigüedades
+
+${faqsSection(6)}
+
+7. **## Conclusión**
+   - 2-3 párrafos: resumen práctico, para quién aplica, frase de cierre con perspectiva`;
+}
+
 function slugify(text) {
   return text
     .toLowerCase()
@@ -378,6 +513,9 @@ async function generateDraft() {
     ? existingTitles.map(t => `- ${t}`).join('\n')
     : '(ninguno todavía)';
 
+  const tipo = classifyTopic(nextTopic.tema);
+  console.log(`📑 Tipo de artículo: ${tipo}`);
+
   const client = new Anthropic();
 
   // Research step: get current, verified information before generating
@@ -406,63 +544,7 @@ Genera un artículo completo y optimizado para SEO sobre "${nextTopic.tema}".
 
 ---
 
-ESTRUCTURA OBLIGATORIA (en este orden exacto):
-
-1. **Introducción** (sin encabezado H1 — el framework del blog ya muestra el título de la página; empezar directamente con párrafos)
-   - 2-3 párrafos: gancho, contexto del problema que resuelve la herramienta, y un spoiler honesto de tu veredicto
-   - Tono: como alguien que ha usado la herramienta de verdad, no un vendedor
-
-2. **## Qué es [herramienta] y cuánto cuesta exactamente**
-   - Aclara nombres confusos o versiones (mucha gente busca nombres incorrectos — explícalo)
-   - Planes y precios actuales en euros donde aplique
-   - Lista de lo que incluye cada plan relevante
-
-3. **\`<TablaComparativa>\` — insertar el componente aquí con 4 competidores reales**
-   Usa exactamente este formato JSX:
-   \`\`\`
-   <TablaComparativa
-     titulo="[Herramienta] vs la competencia en 2026"
-     herramientas={[
-       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
-       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
-       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
-       { nombre: "...", precio: "...", puntuacion: 4.X, idealPara: "..." },
-     ]}
-   />
-   \`\`\`
-
-4. **## [Fortaleza principal de la herramienta]** (título descriptivo, no genérico)
-   - Usa ### para subsecciones si hay 3 o más aspectos distintos
-   - Incluye al menos UN ejemplo concreto en primera persona con detalles específicos (números, tiempo, resultado)
-
-5. **## [Segunda fortaleza o caso de uso diferenciador]**
-   - Mismo nivel de detalle y ejemplos concretos
-
-6. **## [Tercera sección de análisis — puede ser limitaciones o comparación profunda]**
-   - Sé honesto: qué hace mal, dónde pierde frente a competidores, qué le falta todavía
-
-7. **## ¿Vale la pena pagar [herramienta]?**
-   - Criterios claros: "Sí vale la pena si..." y "Probablemente no vale la pena si..." en listas
-   - Recomendación directa y sin ambigüedades
-
-8. **\`<BannerAfiliado>\` — insertar el componente aquí**
-   Usa exactamente este formato JSX:
-   \`\`\`
-   <BannerAfiliado
-     titulo="..."
-     descripcion="..."
-     cta="..."
-     url="https://..."
-   />
-   \`\`\`
-
-9. **## Preguntas frecuentes sobre [herramienta]**
-   - Exactamente 5 preguntas con respuestas de 2-4 líneas cada una
-   - Las preguntas deben ser las que alguien buscaría realmente en Google (long-tail: precio, comparación, disponibilidad en España, si vale la pena, diferencia con competidor)
-   - Formato: **¿Pregunta?** seguido de la respuesta en párrafo
-
-10. **## Conclusión**
-    - 2-3 párrafos: resumen del veredicto, para quién es ideal, frase de cierre con perspectiva
+${buildStructureBlock(tipo)}
 
 ---
 
@@ -558,6 +640,11 @@ herramientas: Herramienta1, Herramienta2
   if (affiliateUrl) {
     body = injectAffiliateUrl(body, affiliateUrl);
     console.log(`💰 Enlace de afiliado inyectado en BannerAfiliado: ${affiliateUrl}`);
+  } else {
+    // Eliminar cualquier BannerAfiliado que el modelo haya generado sin URL de afiliado válida
+    const before = body.length;
+    body = body.replace(/<BannerAfiliado[\s\S]*?\/>/g, '').replace(/\n{3,}/g, '\n\n').trim();
+    if (body.length < before) console.log('ℹ️  Sin afiliado — BannerAfiliado eliminado del cuerpo');
   }
 
   const existingArticles = getExistingArticles().filter(a => a.slug !== slug);
@@ -567,10 +654,13 @@ herramientas: Herramienta1, Herramienta2
     console.log('✅ Enlaces internos añadidos');
   }
 
-  console.log('⭐ Generando ratings...');
-  const ratings = await generateRatings(client, body);
-  if (ratings) console.log(`✅ Ratings generados: ${ratings.length} criterios`);
-  else console.log('⚠️  No se pudieron generar ratings');
+  let ratings = null;
+  if (tipo === 'review') {
+    console.log('⭐ Generando ratings...');
+    ratings = await generateRatings(client, body);
+    if (ratings) console.log(`✅ Ratings generados: ${ratings.length} criterios`);
+    else console.log('⚠️  No se pudieron generar ratings');
+  }
 
   console.log('🖼️  Generando query de imagen...');
   const imageQuery = await generateImageQuery(client, nextTopic.tema, title);
@@ -592,6 +682,8 @@ herramientas: Herramienta1, Herramienta2
   const faqsYaml = serializeFaqsYaml(faqs);
   const ratingsYaml = serializeRatingsYaml(ratings);
 
+  const bannerImport = affiliateUrl ? `\nimport BannerAfiliado from '../../components/BannerAfiliado.astro';` : '';
+
   const fileContent = `---
 title: "${safeTitle}"
 description: "${safeDescription}"
@@ -601,8 +693,7 @@ herramientas: [${herramientasYaml}]${imagenLine}${afiliadoLine}${ratingsYaml}${f
 draft: true
 ---
 
-import TablaComparativa from '../../components/TablaComparativa.astro';
-import BannerAfiliado from '../../components/BannerAfiliado.astro';
+import TablaComparativa from '../../components/TablaComparativa.astro';${bannerImport}
 
 ${body.trim()}
 `;
