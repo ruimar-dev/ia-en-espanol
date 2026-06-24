@@ -7,16 +7,48 @@ import { getCollection } from 'astro:content';
 import { CATEGORIA_LABELS } from '../../content/config';
 
 export async function getStaticPaths() {
+  // Coincidencia entre un tag de herramienta de un artículo y la herramienta del hub.
+  // Acepta: nombre exacto, variantes de marca (Google Gemini → Gemini, Perplexity AI →
+  // Perplexity), versiones numéricas (Stable Diffusion 3 → Stable Diffusion) y nombres
+  // más largos del producto (Runway ⊂ RunwayML).
+  // Rechaza: sub-modelos con tier (Gemini 2.5 Pro, Claude Sonnet 4.6), que son menciones
+  // de pasada del motor, no del producto que da nombre al hub.
+  const TIER_WORDS = new Set(['pro', 'sonnet', 'opus', 'haiku', 'flash', 'mini', 'turbo', 'max', 'ultra', 'plus', 'nano', 'lite', 'thinking', 'instant', 'preview', 'reasoner']);
+  const BRAND_WORDS = new Set(['google', 'openai', 'microsoft', 'anthropic', 'adobe', 'meta', 'ai', 'the']);
+
+  const norm = (s: string) => s.toLowerCase().trim().replace(/\s+/g, ' ');
+
+  const subseqIndex = (hay: string[], needle: string[]): number => {
+    if (needle.length === 0 || needle.length > hay.length) return -1;
+    for (let i = 0; i + needle.length <= hay.length; i++) {
+      if (needle.every((tok, j) => hay[i + j] === tok)) return i;
+    }
+    return -1;
+  };
+
+  const tagMatchesTool = (tag: string, tool: string): boolean => {
+    const h = norm(tag);
+    const n = norm(tool);
+    if (h === n) return true;
+    const ht = h.split(' ');
+    const nt = n.split(' ');
+    const idx = subseqIndex(ht, nt);
+    if (idx !== -1) {
+      // El nombre de la herramienta aparece dentro del tag: solo es válido si los tokens
+      // sobrantes son de marca/"ai" o versiones numéricas — nunca un tier de sub-modelo.
+      const extra = ht.filter((_, i) => i < idx || i >= idx + nt.length);
+      return extra.every((t) => !TIER_WORDS.has(t) && (BRAND_WORDS.has(t) || /\d/.test(t)));
+    }
+    // Caso inverso: el nombre de la herramienta contiene el tag (Runway ⊂ RunwayML).
+    return h.length >= 4 && n.includes(h);
+  };
+
   const articulos = await getCollection('blog', ({ data }) => !data.draft);
 
   return herramientas.map((herramienta) => {
     const articulosRelacionados = articulos
       .filter((a) =>
-        a.data.herramientas.some((h) => {
-          const hl = h.toLowerCase();
-          const nl = herramienta.nombre.toLowerCase();
-          return hl === nl || hl.includes(nl) || nl.includes(hl);
-        })
+        a.data.herramientas.some((h) => tagMatchesTool(h, herramienta.nombre))
       )
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
@@ -31,7 +63,30 @@ const { herramienta, articulosRelacionados } = Astro.props;
 const siteUrl = import.meta.env.SITE_URL || Astro.site?.toString() || 'https://iaenespanol.es';
 const canonical = `${siteUrl}/herramientas/${herramienta.slug}`;
 
+// Nota en escala /10 (convención del sitio) + estrellas decorativas /5
+const rating10 = (herramienta.rating * 2).toFixed(1);
 const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(herramienta.rating));
+
+// Color por categoría — mismo sistema que /comparativas
+const CATEGORIA_COLOR: Record<string, string> = {
+  'generacion-texto': '#7C3AED',
+  'generacion-imagen': '#2563EB',
+  'codigo': '#16A34A',
+  'audio': '#EA580C',
+  'video': '#DC2626',
+  'productividad': '#0D9488',
+};
+const cColor = CATEGORIA_COLOR[herramienta.categoria] ?? '#7C3AED';
+
+// Dominio legible para la ficha
+let dominio = '';
+if (herramienta.url) {
+  try {
+    dominio = new URL(herramienta.url).hostname.replace(/^www\./, '');
+  } catch {
+    dominio = '';
+  }
+}
 
 const APP_CATEGORY: Record<string, string> = {
   'generacion-texto': 'Productivity',
@@ -72,97 +127,112 @@ const breadcrumbLd = JSON.stringify({
 
 <Layout
   title={`${herramienta.nombre}: análisis, reviews y comparativas`}
-  description={`Análisis completo de ${herramienta.nombre}. Puntuación editorial: ${herramienta.rating}/5. ${herramienta.descripcion}`}
+  description={`Análisis completo de ${herramienta.nombre}. Puntuación editorial: ${rating10}/10. ${herramienta.descripcion}`}
   canonicalUrl={canonical}
 >
   <script type="application/ld+json" set:html={softwareAppLd} />
   <script type="application/ld+json" set:html={breadcrumbLd} />
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <section class="tool-hero" style={`--c:${cColor};`}>
+    <div class="wrap" style="position:relative; z-index:1; padding-top:40px; padding-bottom:8px;">
+      <!-- Breadcrumb -->
+      <nav class="tool-bc" aria-label="Migas de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/herramientas">Herramientas</a>
+        <span aria-hidden="true">/</span>
+        <span class="tool-bc-current">{herramienta.nombre}</span>
+      </nav>
 
-    <!-- Breadcrumb -->
-    <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Migas de pan">
-      <a href="/" class="hover:text-[#7C3AED] transition-colors">Inicio</a>
-      <span aria-hidden="true">/</span>
-      <a href="/herramientas" class="hover:text-[#7C3AED] transition-colors">Herramientas</a>
-      <span aria-hidden="true">/</span>
-      <span class="text-gray-700 dark:text-gray-300">{herramienta.nombre}</span>
-    </nav>
+      <div class="hero-grid">
+        <!-- Columna izquierda: identidad -->
+        <div class="hero-main">
+          <div class="hero-id">
+            <div class="hero-logo">
+              {herramienta.logo ? (
+                <img
+                  src={herramienta.logo}
+                  alt={`Logo de ${herramienta.nombre}`}
+                  width="64"
+                  height="64"
+                  loading="eager"
+                  decoding="async"
+                />
+              ) : (
+                <span aria-hidden="true">{herramienta.nombre[0]}</span>
+              )}
+            </div>
+            <span class="hero-cat">{CATEGORIA_LABELS[herramienta.categoria]}</span>
+          </div>
 
-    <!-- Hero -->
-    <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800 mb-8">
-      <div class="flex items-start gap-5">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#7C3AED]/20 to-[#6D28D9]/30 flex items-center justify-center flex-shrink-0 overflow-hidden">
-          {herramienta.logo ? (
-            <img
-              src={herramienta.logo}
-              alt={`Logo de ${herramienta.nombre}`}
-              width="80"
-              height="80"
-              class="w-full h-full object-cover rounded-2xl"
-              loading="eager"
-            />
-          ) : (
-            <span class="text-[#7C3AED] font-bold text-2xl" aria-hidden="true">{herramienta.nombre[0]}</span>
+          <h1 class="hero-title">{herramienta.nombre}</h1>
+          <p class="hero-desc">{herramienta.descripcion}</p>
+
+          {herramienta.url && (
+            <div class="hero-cta-row">
+              <a
+                href={herramienta.afiliado ?? herramienta.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hero-cta"
+              >
+                Ir a {herramienta.nombre}
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              {herramienta.afiliado && <span class="hero-aff">Enlace de afiliado</span>}
+            </div>
           )}
         </div>
 
-        <div class="flex-1 min-w-0">
-          <div class="flex flex-wrap items-center gap-2 mb-2">
-            <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{herramienta.nombre}</h1>
-            <span class="text-xs font-semibold bg-[#7C3AED]/10 text-[#7C3AED] px-2.5 py-1 rounded-full">
-              {CATEGORIA_LABELS[herramienta.categoria]}
-            </span>
+        <!-- Columna derecha: ficha técnica -->
+        <aside class="hero-card" aria-label="Ficha de la herramienta">
+          <div class="ficha-score">
+            <span class="ficha-num">{rating10}</span>
+            <span class="ficha-den">/10</span>
           </div>
-
-          <div
-            class="flex items-center gap-1 mb-3"
-            role="img"
-            aria-label={`Puntuación: ${herramienta.rating} de 5 estrellas`}
-          >
+          <div class="ficha-stars" role="img" aria-label={`Puntuación: ${rating10} de 10`}>
             {stars.map((filled) => (
-              <svg
-                class:list={['w-5 h-5', filled ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600']}
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
+              <svg class:list={['star', filled && 'star--on']} width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             ))}
-            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">
-              {herramienta.rating.toFixed(1)}
-            </span>
-            <span class="text-sm text-gray-500 dark:text-gray-400">/ 5</span>
           </div>
+          <span class="ficha-score-label">Nota editorial</span>
 
-          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">{herramienta.descripcion}</p>
-        </div>
+          <div class="ficha-rows">
+            <div class="ficha-row">
+              <span class="ficha-k">Categoría</span>
+              <span class="ficha-v">{CATEGORIA_LABELS[herramienta.categoria]}</span>
+            </div>
+            <div class="ficha-row">
+              <span class="ficha-k">Análisis</span>
+              <span class="ficha-v">{articulosRelacionados.length} {articulosRelacionados.length === 1 ? 'artículo' : 'artículos'}</span>
+            </div>
+            {dominio && (
+              <div class="ficha-row">
+                <span class="ficha-k">Web</span>
+                <span class="ficha-v">{dominio}</span>
+              </div>
+            )}
+            <div class="ficha-row">
+              <span class="ficha-k">Afiliado</span>
+              <span class="ficha-v">{herramienta.afiliado ? 'Disponible' : 'No'}</span>
+            </div>
+          </div>
+        </aside>
       </div>
-
-      {herramienta.url && (
-        <div class="mt-6 pt-5 border-t border-gray-100 dark:border-gray-800 flex items-center gap-3 flex-wrap">
-          <a
-            href={herramienta.afiliado ?? herramienta.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-semibold px-5 py-2.5 rounded-xl transition-colors"
-          >
-            Ir a {herramienta.nombre}
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-          {herramienta.afiliado && (
-            <span class="text-xs text-gray-400 dark:text-gray-500">Enlace de afiliado</span>
-          )}
-        </div>
-      )}
     </div>
+  </section>
+
+  <!-- ── CUERPO ─────────────────────────────────────── -->
+  <div class="wrap" style="padding-top:48px; padding-bottom:80px;">
 
     <!-- Banner afiliado (solo si tiene programa) -->
     {herramienta.afiliado && (
-      <div class="mb-8">
+      <div style="margin-bottom:48px;">
         <BannerAfiliado
           titulo={`Prueba ${herramienta.nombre}`}
           descripcion="Si este análisis te ha sido útil, considera usar el enlace de afiliado. Sin coste adicional para ti."
@@ -175,39 +245,35 @@ const breadcrumbLd = JSON.stringify({
 
     <!-- Artículos relacionados -->
     <section>
-      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">
-        Artículos sobre {herramienta.nombre}
-        <span class="text-base font-normal text-gray-500 dark:text-gray-400 ml-2">
-          ({articulosRelacionados.length})
-        </span>
-      </h2>
+      <span class="sec-eyebrow">{articulosRelacionados.length} {articulosRelacionados.length === 1 ? 'análisis' : 'análisis'} publicados</span>
+      <h2 class="sec-title">Artículos sobre {herramienta.nombre}</h2>
 
       {articulosRelacionados.length > 0 ? (
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="arts-grid">
           {articulosRelacionados.map((a) => (
-            <ArticuloCard
-              title={a.data.title}
-              description={a.data.description}
-              date={a.data.date}
-              category={a.data.category}
-              slug={a.slug}
-              imagen={a.data.imagen}
-            />
+            <div class="reveal">
+              <ArticuloCard
+                title={a.data.title}
+                description={a.data.description}
+                date={a.data.date}
+                category={a.data.category}
+                slug={a.slug}
+                imagen={a.data.imagen}
+              />
+            </div>
           ))}
         </div>
       ) : (
-        <p class="text-gray-500 dark:text-gray-400">
-          Aún no tenemos artículos específicos sobre {herramienta.nombre}. Vuelve pronto.
-        </p>
+        <div class="arts-empty">
+          <p>Aún no tenemos artículos específicos sobre {herramienta.nombre}. Vuelve pronto — estamos publicando nuevos análisis cada semana.</p>
+          <a href="/blog">Ver todos los artículos →</a>
+        </div>
       )}
     </section>
 
-    <div class="mt-10">
-      <a
-        href="/herramientas"
-        class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-[#7C3AED] transition-colors"
-      >
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <div style="margin-top:48px;">
+      <a href="/herramientas" class="back-link">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
         Ver todas las herramientas
@@ -215,3 +281,246 @@ const breadcrumbLd = JSON.stringify({
     </div>
   </div>
 </Layout>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────── */
+  .tool-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  /* Glow de color de categoría */
+  .tool-hero::before {
+    content: '';
+    position: absolute;
+    top: -180px;
+    right: -120px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c) 26%, transparent), transparent 68%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .tool-bc {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--ink3);
+    margin-bottom: 28px;
+  }
+  .tool-bc a { color: var(--ink3); text-decoration: none; transition: color .15s; }
+  .tool-bc a:hover { color: var(--c); }
+  .tool-bc-current { color: var(--ink2); }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 40px;
+    align-items: start;
+    padding-bottom: 44px;
+  }
+
+  .hero-id {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .hero-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-shadow: 0 6px 18px var(--shadow);
+  }
+  .hero-logo img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+  .hero-logo span { font-family: 'Newsreader', serif; font-weight: 600; font-size: 28px; color: var(--c); }
+
+  .hero-cat {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+    padding: 6px 12px;
+    border-radius: 99px;
+  }
+
+  .hero-title {
+    margin: 0;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  .hero-desc {
+    margin: 18px 0 0;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink2);
+    max-width: 560px;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--c);
+    color: #fff;
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s, filter .15s;
+  }
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 12px 26px color-mix(in srgb, var(--c) 40%, transparent);
+  }
+  .hero-aff { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  /* ── Ficha técnica ───────────────────────────────── */
+  .hero-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 14px 36px var(--shadow);
+  }
+  .hero-card { border-top: 3px solid var(--c); }
+  .ficha-score { display: flex; align-items: baseline; gap: 4px; }
+  .ficha-num { font-family: 'Newsreader', serif; font-weight: 600; font-size: 44px; line-height: 1; color: var(--c); }
+  .ficha-den { font-family: 'Geist Mono', monospace; font-size: 15px; color: var(--muted); }
+  .ficha-stars { display: flex; gap: 2px; margin-top: 10px; }
+  .star { color: var(--border2); }
+  .star--on { color: #f5b301; }
+  .ficha-score-label {
+    display: block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-top: 10px;
+  }
+  .ficha-rows {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .ficha-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .ficha-k { font-size: 13px; color: var(--ink3); }
+  .ficha-v { font-size: 13px; font-weight: 600; color: var(--ink); text-align: right; }
+
+  /* ── Sección artículos ───────────────────────────── */
+  .sec-eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  .sec-title {
+    margin: 10px 0 28px;
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .arts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+  }
+
+  .arts-empty {
+    background: var(--surface);
+    border: 1px dashed var(--border2);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .arts-empty p { margin: 0; color: var(--ink2); font-size: 15px; line-height: 1.6; }
+  .arts-empty a {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .arts-empty a:hover { text-decoration: underline; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--ink3);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* ── Reveal ──────────────────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  /* ── Responsive ──────────────────────────────────── */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero-card { max-width: 420px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-cta { transition: none; }
+  }
+</style>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const items = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          el.style.transitionDelay = `${(i % 3) * 80}ms`;
+          el.classList.add('is-visible');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+  }
+</script>
