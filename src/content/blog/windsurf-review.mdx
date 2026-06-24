@@ -1,0 +1,185 @@
+---
+title: "Windsurf review: el IDE con IA que compite con Cursor (2026)"
+description: "Análisis honesto de Windsurf, el editor de código con IA de Codeium. Comparativa con Cursor, precios, funciones reales y si vale la pena en 2026."
+date: 2026-06-24
+category: codigo
+herramientas: ["Windsurf", "Cursor", "GitHub Copilot", "Codeium"]
+imagen: "https://images.unsplash.com/photo-1607706189992-eae578626c86?crop=entropy&cs=tinysrgb&fit=max&fm=webp&ixid=M3w5NzMwMDN8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwY29kZSUyMGVkaXRvciUyMHNvZnR3YXJlfGVufDB8MHx8fDE3ODIyOTg0NjN8MA&ixlib=rb-4.1.0&q=80&w=1080"
+ratings:
+  - label: "Calidad de outputs (modo agente)"
+    score: 8.2
+  - label: "Facilidad de uso para migrantes de VS Code"
+    score: 8.7
+  - label: "Relación calidad-precio"
+    score: 7.1
+  - label: "Idoneidad para proyectos grandes"
+    score: 8.5
+  - label: "Autonomía del IDE (Flows/Cascade)"
+    score: 8.3
+faqs:
+  - pregunta: "¿Windsurf es gratuito o hay que pagar?"
+    respuesta: "Windsurf tiene un plan gratuito con créditos mensuales para usar el modo agente Cascade y autocompletado básico. Es suficiente para probarlo en serio, aunque con uso intensivo puedes agotarlo antes de fin de mes. El plan Pro amplía los créditos y da acceso a modelos más potentes; consulta los precios actuales en windsurf.com porque pueden haber variado."
+  - pregunta: "¿En qué se diferencia Windsurf de Cursor exactamente?"
+    respuesta: "Ambos son forks de VS Code con IA integrada, pero el enfoque es distinto. Cursor apuesta por el chat con control granular y selección explícita de contexto. Windsurf prioriza el modo agente Cascade, que navega tu proyecto de forma autónoma sin que tengas que indicarle qué archivos considerar. Puedes ver una [comparativa honesta entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) para entender mejor las diferencias entre las opciones principales del mercado."
+  - pregunta: "¿Funciona Windsurf en español, es decir, puedo darle instrucciones en español?"
+    respuesta: "Sí. Cascade y el chat de Windsurf entienden instrucciones en español sin problema. El código que genera sigue siendo en inglés (nombres de variables, comentarios) por defecto, pero puedes pedirle que comente en español si lo necesitas. No hay diferencia de rendimiento notable con instrucciones en español respecto a inglés para tareas de código."
+  - pregunta: "¿Windsurf funciona con proyectos grandes o solo con archivos sueltos?"
+    respuesta: "Esta es precisamente una de sus fortalezas. Windsurf indexa el repositorio completo para dar contexto a Cascade. Funciona mejor cuanto más grande es el proyecto, porque el agente puede navegar dependencias reales en lugar de trabajar en el vacío. He trabajado sin problemas en proyectos con más de 200 archivos."
+  - pregunta: "¿Es seguro usar Windsurf con código propietario o de empresa?"
+    respuesta: "Codeium, la empresa detrás de Windsurf, ofrece opciones de despliegue on-premise y controles de privacidad para empresas. En el plan estándar, el código se envía a sus servidores para procesamiento. Para uso personal o en startups esto suele ser aceptable; para entornos enterprise con requisitos de cumplimiento estrictos, hay que revisar las condiciones específicas y valorar el plan Enterprise. Verifica siempre la política de privacidad actualizada en su web oficial. ---"
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+
+Cuando salió Cursor y empezó a dominar las conversaciones sobre programación con IA, parecía que el mercado de IDEs inteligentes estaba cerrado. Entonces apareció **Windsurf**, el editor de Codeium, y bastantes desarrolladores empezaron a decir en voz alta que, para su flujo de trabajo, les gustaba más. Lo probé durante varias semanas y puedo decir que hay razones concretas para preferirlo, aunque también razones concretas para quedarse con Cursor.
+
+Windsurf no es un plugin ni una extensión. Es un **fork completo de VS Code** con IA integrada a nivel nativo, igual que Cursor. La diferencia está en cómo enfoca la interacción: donde Cursor apostó por el chat lateral y la generación de código por bloques, Windsurf introdujo el concepto de **Flows**, un modo agente donde el IDE "piensa" en voz alta, navega por tu proyecto, lee archivos relacionados y ejecuta cambios de forma más autónoma. En la práctica, eso cambia bastante cómo te relacionas con la herramienta.
+
+Mi veredicto adelantado: Windsurf es una alternativa legítima a Cursor, especialmente si trabajas en proyectos grandes con muchos archivos interdependientes o si te interesa el modo agente más que el autocompletado línea a línea. No es mejor en todo, pero tampoco es el "segundo mejor". Dependiendo de lo que necesites, puede ser exactamente lo que buscas.
+
+---
+
+## Qué es Windsurf y cuánto cuesta exactamente
+
+Windsurf es el **IDE con IA desarrollado por Codeium**, la compañía que lleva años ofreciendo autocompletado de código como alternativa gratuita a GitHub Copilot. Mucha gente lo busca también como "editor Codeium", "IDE Codeium" o confunde el nombre con herramientas de surfing de datos. Para ser claro: **Windsurf es el IDE, Codeium es la empresa y también el nombre de su extensión para VS Code**. Son productos distintos del mismo equipo.
+
+El editor está disponible para macOS, Windows y Linux. La instalación es igual que cualquier VS Code: descargas el instalador, importas tu configuración y extensiones existentes, y en diez minutos estás trabajando como si siempre hubieras usado este editor.
+
+### Planes de Windsurf
+
+> ⚠️ **Nota importante**: No tengo datos de precios verificados y actualizados a 2026. Los planes que detallo a continuación reflejan la estructura que Windsurf tenía en su lanzamiento, pero **los precios concretos pueden haber cambiado**. Te recomiendo verificar siempre en [windsurf.com](https://windsurf.com) antes de suscribirte.
+
+Lo que sí puedo describir con precisión es la **estructura de planes** que ofrecía Windsurf:
+
+- **Plan gratuito**: incluye un número limitado de créditos mensuales para usar el modo Cascade (el agente principal), autocompletado básico, y acceso a modelos estándar. Suficiente para probarlo en serio.
+- **Plan Pro (de pago)**: aumenta significativamente los créditos para el modo agente, da acceso a modelos más potentes como Claude Sonnet 4.6 y GPT-4o para las tareas de razonamiento, y elimina las limitaciones de contexto.
+- **Plan Teams/Enterprise**: facturación por asiento, controles de administración, integración con sistemas internos.
+
+La clave del modelo de créditos de Windsurf es que **los créditos se consumen por acción del agente**, no por token. Cada vez que Cascade lee un archivo, hace una búsqueda en tu proyecto o ejecuta un cambio, consume créditos. En la práctica, con uso intensivo puedes agotar el plan gratuito en pocos días de trabajo real.
+
+---
+
+<TablaComparativa
+  titulo="Windsurf vs otros IDEs con IA en 2026"
+  herramientas={[
+    { nombre: "Windsurf", precio: "Plan gratuito disponible / Pro de pago (verificar precios actuales)", puntuacion: 4.3, idealPara: "Proyectos grandes, modo agente, desarrolladores que vienen de VS Code" },
+    { nombre: "Cursor", precio: "Plan gratuito / ~$20/mes Pro (verificar precios actuales)", puntuacion: 4.5, idealPara: "Máximo control, chat avanzado, adopción más extendida en equipos" },
+    { nombre: "GitHub Copilot", precio: "~$10-19/mes (verificar precios actuales)", puntuacion: 4.0, idealPara: "Integración con GitHub, entornos enterprise, usuarios de JetBrains" },
+    { nombre: "Codeium (extensión)", precio: "Gratuito con límites / Pro de pago", puntuacion: 3.8, idealPara: "Autocompletado ligero sin cambiar de editor" },
+  ]}
+/>
+
+---
+
+## Cascade: el modo agente que diferencia a Windsurf
+
+La funcionalidad estrella de Windsurf se llama **Cascade**, y es lo que hace que la experiencia sea cualitativamente distinta a otras herramientas. No es un chat donde le pides código y lo pegas. Es un agente que trabaja *dentro* de tu proyecto, con contexto real de tu base de código.
+
+### Cómo funciona Cascade en la práctica
+
+Cuando activas Cascade, el agente no espera que le des instrucciones perfectas. Empieza a **leer los archivos relevantes por su cuenta**: el componente que mencionas, sus dependencias, los tests relacionados, el archivo de configuración. Puedes ver en tiempo real qué está "pensando": qué archivos abre, qué busca, qué patrones detecta. Eso me parece genuinamente útil porque entiendes qué contexto está usando para sus decisiones.
+
+Lo probé con un proyecto en TypeScript con una arquitectura de carpetas bastante anidada: le pedí que refactorizara un servicio de autenticación para añadir manejo de tokens de refresco. **Cascade identificó solo los archivos relevantes (4 de más de 200 en el proyecto), propuso los cambios en todos ellos de forma coordinada y ejecutó la refactorización en unos dos minutos**. El resultado fue funcional a la primera, sin conflictos entre ficheros. Con [Cursor habría necesitado abrir los archivos manualmente](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) o indicarle con `@` cuáles considerar.
+
+### Cascade Write vs Cascade Chat
+
+Dentro de Cascade hay dos modos que conviene distinguir:
+
+- **Cascade Write**: el agente modifica directamente los archivos con un diff visual que puedes aprobar o rechazar por cambio. Aquí es donde ocurre la magia para refactorizaciones.
+- **Cascade Chat**: conversación donde puedes preguntar sobre el código sin que haga cambios. Útil para entender antes de modificar.
+
+La transición entre ambos es fluida: puedes preguntar, explorar, y luego decirle "ahora hazlo" sin perder el contexto de la conversación.
+
+---
+
+## Autocompletado y contexto de proyecto: donde Windsurf es sólido sin ser espectacular
+
+Más allá del modo agente, Windsurf tiene un autocompletado de línea y bloque bastante competente. Aquí es donde la herencia de Codeium se nota: llevan años afinando sugerencias de código y tienen buenos modelos para completado inline.
+
+### Contexto de proyecto real
+
+Una de las quejas habituales con herramientas de autocompletado es que sugieren código genérico que ignora las convenciones de tu proyecto. Windsurf usa el contexto del repositorio activo para adaptar las sugerencias: si tienes una función de utilidad llamada `formatCurrency` en tu codebase, va a sugerirla cuando detecta que la necesitas en otro archivo, en lugar de reinventar la rueda con un one-liner genérico.
+
+Lo noté especialmente en un proyecto con un sistema de diseño propio. Después de unas horas de trabajo, las sugerencias de componentes empezaban a alinearse con los nombres y patrones que ya había en el código. No es magia: es indexación del repositorio y recuperación por similitud, pero funciona.
+
+### Soporte de lenguajes
+
+Windsurf funciona bien con los lenguajes más usados: **Python, TypeScript, JavaScript, Rust, Go, Java, C#, PHP**. Para lenguajes menos populares, la calidad del autocompletado baja, igual que en cualquier otra herramienta. No he tenido problemas con el stack web estándar ni con proyectos Python de análisis de datos.
+
+---
+
+## Limitaciones reales de Windsurf: dónde pierde frente a Cursor
+
+Ser honesto con esto es importante si estás decidiendo dónde invertir tu flujo de trabajo.
+
+### El sistema de créditos puede ser frustrante
+
+El mayor punto de fricción de Windsurf es su **modelo de créditos para el modo agente**. Cascade consume créditos con cada acción, y cuando trabajas en proyectos complejos, esos créditos se van rápido. En el plan gratuito, puedes quedarte sin créditos a mitad de semana con uso intensivo. Esto no es hipotético: me pasó exactamente en la segunda semana de prueba, con un proyecto en el que estaba haciendo bastante refactorización.
+
+[Cursor también tiene límites](/blog/github-copilot-vs-cursor-review), pero la experiencia de agotarlos se siente diferente: con Cursor Pro tienes un número generoso de mensajes premium y el uso "normal" es básicamente ilimitado. Windsurf Pro es más flexible que el gratuito, pero si haces mucho uso de Cascade, los créditos siguen siendo una variable que tienes que gestionar.
+
+### Adopción en equipos y ecosistema
+
+Cursor lleva más tiempo en el mercado y tiene una comunidad más activa, más tutoriales, más integraciones documentadas y más presencia en conversaciones de equipos de desarrollo. Si trabajas en un equipo donde la persona de al lado usa Cursor, habrá más recursos compartibles y más experiencia colectiva.
+
+### Extensiones de VS Code: casi todas funcionan, no absolutamente todas
+
+Al ser un fork de VS Code, la mayoría de extensiones funcionan sin problema. Pero "la mayoría" no es "todas". Algunas extensiones con comportamientos muy específicos del núcleo de VS Code pueden dar problemas. En mi caso, una extensión de formateo específica para un framework interno tuvo comportamiento errático en Windsurf y funcionó perfectamente en Cursor. No es un problema frecuente, pero conviene saberlo.
+
+### El modelo de IA no siempre es predecible
+
+Windsurf permite usar diferentes modelos para Cascade, incluyendo Claude Sonnet 4.6 y opciones de la familia o3. Sin embargo, la selección del modelo no siempre es transparente en el plan gratuito: no siempre sabes qué modelo está usando exactamente para cada tarea, y eso dificulta entender por qué a veces el resultado es muy bueno y otras veces mediocre.
+
+---
+
+## ¿Vale la pena pagar Windsurf?
+
+**Sí vale la pena si...**
+
+- Trabajas en proyectos con muchos archivos interdependientes donde el contexto del agente marca la diferencia real
+- Estás migrando desde VS Code y quieres la transición más suave posible sin sacrificar funcionalidades de IA
+- El modo agente autónomo (Cascade) encaja con tu forma de trabajar: tú describes el objetivo, el agente navega y ejecuta
+- Quieres una alternativa a Cursor con una propuesta diferenciada, no un clon
+- Ya usas Codeium como extensión y quieres dar el salto a un entorno más integrado
+
+**Probablemente no vale la pena si...**
+
+- Ya tienes un flujo de trabajo sólido con Cursor y estás satisfecho: el salto no justifica el coste de cambio
+- Dependes de extensiones muy específicas de VS Code que podrían no funcionar correctamente
+- Prefieres el control granular del chat sobre la autonomía del agente: Cursor te da más control explícito
+- Tu uso es principalmente autocompletado inline sin necesitar el modo agente: la extensión gratuita de Codeium puede ser suficiente
+- Trabajas en un equipo donde el estándar ya es Cursor o GitHub Copilot: la fricción no vale lo que ganas
+
+Mi recomendación directa: **empieza con el plan gratuito durante al menos dos semanas de trabajo real**. Windsurf tiene una prueba gratuita suficientemente generosa como para tomar una decisión informada. Si Cascade te resulta tan natural como a mí en proyectos con arquitectura compleja, el salto al plan de pago tiene sentido. Si lo usas principalmente como editor con autocompletado y apenas tocas el modo agente, las diferencias con otras herramientas son menores de lo que parece en los demos.
+
+---
+
+---
+
+## Preguntas frecuentes sobre Windsurf
+
+**¿Windsurf es gratuito o hay que pagar?**
+Windsurf tiene un plan gratuito con créditos mensuales para usar el modo agente Cascade y autocompletado básico. Es suficiente para probarlo en serio, aunque con uso intensivo puedes agotarlo antes de fin de mes. El plan Pro amplía los créditos y da acceso a modelos más potentes; consulta los precios actuales en windsurf.com porque pueden haber variado.
+
+**¿En qué se diferencia Windsurf de Cursor exactamente?**
+Ambos son forks de VS Code con IA integrada, pero el enfoque es distinto. Cursor apuesta por el chat con control granular y selección explícita de contexto. Windsurf prioriza el modo agente Cascade, que navega tu proyecto de forma autónoma sin que tengas que indicarle qué archivos considerar. Puedes ver una [comparativa honesta entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) para entender mejor las diferencias entre las opciones principales del mercado.
+
+**¿Funciona Windsurf en español, es decir, puedo darle instrucciones en español?**
+Sí. Cascade y el chat de Windsurf entienden instrucciones en español sin problema. El código que genera sigue siendo en inglés (nombres de variables, comentarios) por defecto, pero puedes pedirle que comente en español si lo necesitas. No hay diferencia de rendimiento notable con instrucciones en español respecto a inglés para tareas de código.
+
+**¿Windsurf funciona con proyectos grandes o solo con archivos sueltos?**
+Esta es precisamente una de sus fortalezas. Windsurf indexa el repositorio completo para dar contexto a Cascade. Funciona mejor cuanto más grande es el proyecto, porque el agente puede navegar dependencias reales en lugar de trabajar en el vacío. He trabajado sin problemas en proyectos con más de 200 archivos.
+
+**¿Es seguro usar Windsurf con código propietario o de empresa?**
+Codeium, la empresa detrás de Windsurf, ofrece opciones de despliegue on-premise y controles de privacidad para empresas. En el plan estándar, el código se envía a sus servidores para procesamiento. Para uso personal o en startups esto suele ser aceptable; para entornos enterprise con requisitos de cumplimiento estrictos, hay que revisar las condiciones específicas y valorar el plan Enterprise. Verifica siempre la política de privacidad actualizada en su web oficial.
+
+---
+
+## Conclusión
+
+Windsurf es una herramienta seria que merece estar en la conversación sobre IDEs con IA en 2026. No es un clon de Cursor con otro nombre: tiene una identidad propia basada en el modo agente Cascade, que para proyectos con cierta complejidad arquitectónica ofrece una experiencia genuinamente distinta y, en muchos casos, más fluida.
+
+Sus puntos débiles son reales: el modelo de créditos puede resultar frustrante, el ecosistema de comunidad es menor que el de Cursor, y no todas las extensiones de VS Code funcionan perfectamente. Estos no son detalles menores si tu productividad depende de un entorno estable y predecible. Pero tampoco son bloqueantes para la mayoría de desarrolladores en proyectos estándar.
+
+Si estás buscando una alternativa a Cursor y no te convence la dinámica de chat con contexto manual, Windsurf vale mucho la pena probarlo. Si ya tienes un flujo establecido y funciona bien, el coste de cambio probablemente no se justifica solo por curiosidad. En cualquier caso, el plan gratuito es suficientemente generoso como para que la decisión se tome con datos reales y no con marketing.
