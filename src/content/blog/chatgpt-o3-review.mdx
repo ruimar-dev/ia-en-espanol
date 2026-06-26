@@ -3,7 +3,7 @@ title: "ChatGPT o3 review: razonamiento avanzado de OpenAI (2026)"
 description: "Análisis honesto del modelo o3 de OpenAI: qué lo diferencia, cuánto cuesta, cuándo usarlo y cómo se compara con Claude Fable 5 y Gemini 2.5 Pro."
 date: 2026-06-26
 category: generacion-texto
-herramientas: ["ChatGPT o3", "OpenAI"]
+herramientas: ["ChatGPT"]
 imagen: "/images/chatgpt-o3-review.svg"
 ratings:
   - label: "Calidad de razonamiento complejo"
@@ -27,12 +27,11 @@ faqs:
     respuesta: "Sí, o3 maneja el español con solvencia, incluyendo variantes regionales. Donde puede perder algo de calidad frente a tareas en inglés es en razonamiento muy técnico con terminología especializada, ya que sus datos de entrenamiento en inglés son más extensos. Para análisis de documentos legales o científicos en español, he obtenido resultados muy buenos, aunque siempre recomiendo verificar las conclusiones en documentos de alta importancia."
   - pregunta: "¿Vale más la pena o3 o Gemini 2.5 Pro para razonamiento complejo?"
     respuesta: "Para la mayoría de usuarios hispanohablantes, la elección entre ambos depende del ecosistema: si usas Google Workspace intensivamente, Gemini 2.5 Pro tiene ventajas de integración que o3 no puede igualar. En razonamiento puro sin esas integraciones, o3 lleva ventaja en problemas de código y lógica formal. Gemini 2.5 Pro destaca más cuando el problema requiere contextos muy largos o combinar varias fuentes de información. Para más detalles sobre Gemini, puedes leer el [análisis completo de Google Gemini Pro](/blog/google-gemini-pro-review-en-espanol)."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
 El modelo **o3 de OpenAI** llegó con una promesa específica: no ser el más rápido ni el más barato, sino el que piensa mejor. Después de semanas usándolo en tareas que requieren razonamiento encadenado —análisis de código complejo, problemas matemáticos, deducciones lógicas con múltiples variables— puedo decirte que esa promesa se cumple parcialmente, y con matices importantes que ningún comunicado de prensa va a contarte.
 
 Lo primero que necesitas entender es que o3 no es "ChatGPT mejorado" en el sentido habitual. Mientras que **GPT-4o** optimiza para velocidad y conversación fluida, o3 pertenece a una familia distinta dentro de OpenAI: los modelos de razonamiento que se toman tiempo para pensar antes de responder. Eso cambia completamente cómo debes usarlo y qué puedes esperar de él. Si llegas a o3 esperando respuestas instantáneas para preguntas cotidianas, vas a frustrarte. Si llegas con problemas que requieren análisis profundo, vas a quedarte sorprendido.
@@ -76,7 +75,7 @@ Esta es la pregunta central. Y la respuesta no es "en todo" —es mucho más esp
 
 Lo probé con un caso real de mi trabajo: tenía que analizar el flujo lógico de una función Python con varias condiciones anidadas, identificar un bug específico que aparecía solo bajo ciertas condiciones de entrada, y proponer una solución que no rompiera los tests existentes. **GPT-4o me dio una respuesta en 8 segundos que identificaba el síntoma pero no la causa raíz**. o3 tardó aproximadamente 45 segundos en responder, y llegó directamente a la condición de borde que yo había pasado por alto —una interacción entre dos variables que solo ocurría cuando el usuario pasaba un string vacío con espacios en blanco.
 
-Esa diferencia es significativa. No estoy hablando de un caso anecdótico: en problemas de código con lógica compleja, **o3 consistentemente va más al fondo** que los modelos conversacionales. Si necesitas ayuda con código más rutinario, [IDEs con IA como Cursor](../blog/cursor-ide-review-completa-programa-con-ia-de-verdad) pueden ser más ágiles, pero para análisis arquitectónico profundo, o3 tiene una ventaja real.
+Esa diferencia es significativa. No estoy hablando de un caso anecdótico: en problemas de código con lógica compleja, **o3 consistentemente va más al fondo** que los modelos conversacionales. Si necesitas ayuda con código más rutinario, [IDEs con IA como Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) pueden ser más ágiles, pero para análisis arquitectónico profundo, o3 tiene una ventaja real.
 
 ### Matemáticas y razonamiento cuantitativo
 
