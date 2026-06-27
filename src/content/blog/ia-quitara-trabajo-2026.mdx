@@ -2,7 +2,7 @@
 title: "¿La IA va a quitarme el trabajo? Respuesta honesta 2026"
 description: "¿La IA va a quitarme el trabajo? Analizamos con datos reales de 2026 qué empleos están en riesgo y cuáles no, sin alarmismos."
 date: 2026-06-27
-category: generacion-texto
+category: productividad
 herramientas: ["ChatGPT", "Claude", "Gemini"]
 imagen: "/images/ia-quitara-trabajo-2026.svg"
 faqs:
@@ -16,10 +16,8 @@ faqs:
     respuesta: "Por ahora, sí parece que los beneficios de productividad están siendo capturados principalmente por las empresas en forma de mayor output sin aumentar salarios ni plantilla. Esto es un debate legítimo sobre distribución de valor que va más allá de lo tecnológico y entra en lo político y laboral. Lo que sí es cierto es que el trabajador individual que domina estas herramientas tiene más poder de negociación que el que no las conoce."
   - pregunta: "¿Sirve de algo aprender a usar ChatGPT o Claude si no soy técnico?"
     respuesta: "Completamente. La mayoría de aplicaciones útiles en el trabajo no requieren programar ni entender cómo funcionan los modelos por dentro. Saber escribir buenos prompts, entender qué le puedes pedir a un modelo y, sobre todo, saber evaluar críticamente sus respuestas, son habilidades que cualquier profesional puede desarrollar en semanas y que tienen un retorno inmediato en productividad."
-draft: true
+draft: false
 ---
-
-import TablaComparativa from '../../components/TablaComparativa.astro';
 
 # ¿La IA va a quitarme el trabajo? La respuesta honesta después de 2 años usándola
 
@@ -74,15 +72,12 @@ Un dato que me parece relevante: las empresas que más están implementando IA e
 
 También vale la pena mencionar que los modelos actuales tienen limitaciones concretas que la gente subestima. Claude Fable 5 es impresionante razonando y escribiendo, pero comete errores de bulto en contextos donde falta información, alucina datos con confianza o no sabe lo que no sabe. [GPT-4o y la familia o3](/blog/chatgpt-o3-review) son potentes en razonamiento matemático pero no son infalibles. [Gemini 2.5 Pro](/blog/google-gemini-pro-review-en-espanol) tiene ventajas en integración con datos de Google pero tampoco es omnisciente. La supervisión humana sigue siendo necesaria en casi cualquier aplicación profesional seria.
 
-<TablaComparativa
-  titulo="Perfiles profesionales y su exposición real a la automatización por IA"
-  herramientas={[
-    { nombre: "Redactor de contenido estándar", precio: "Exposición alta", puntuacion: 2.5, idealPara: "Adaptarse hacia contenido especializado, edición crítica o estrategia" },
-    { nombre: "Desarrollador de software", precio: "Exposición media", puntuacion: 3.8, idealPara: "IA asiste pero el criterio técnico y arquitectónico sigue siendo humano" },
-    { nombre: "Diseñador gráfico", precio: "Exposición media-alta", puntuacion: 3.2, idealPara: "Dirección creativa y conceptual; ejecución técnica muy automatizable" },
-    { nombre: "Médico / Abogado / Terapeuta", precio: "Exposición baja", puntuacion: 4.6, idealPara: "Responsabilidad, juicio contextual y relación humana son difíciles de automatizar" },
-  ]}
-/>
+| Perfil | Exposición a la IA | Dónde está el valor real |
+|--------|-------------------|--------------------------|
+| Redactor de contenido estándar | **Alta** | Contenido especializado, edición crítica, estrategia de contenidos |
+| Diseñador gráfico | **Media-alta** | Dirección creativa y conceptual; la ejecución técnica ya es muy automatizable |
+| Desarrollador de software | **Media** | Arquitectura, decisiones técnicas complejas y comunicación con cliente |
+| Médico / Abogado / Terapeuta | **Baja** | Responsabilidad legal/ética, juicio contextual y relación humana |
 
 ---
 
