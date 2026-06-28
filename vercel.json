@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/blog/midjourney-v6-guia-completa-para-principiantes",
+      "destination": "/blog/midjourney-v8-guia-principiantes",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
