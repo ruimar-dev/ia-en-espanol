@@ -240,6 +240,26 @@ const relacionados = todos
     </div>
   </div>
 
+  <!-- Author bio -->
+  <section class="art-author">
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px 28px; display:flex; gap:20px; align-items:flex-start;">
+      <img
+        src="/images/sergio.jpg"
+        alt="Sergio Ruiz, autor de IA en Español"
+        width="72"
+        height="72"
+        loading="lazy"
+        decoding="async"
+        style="width:72px; height:72px; flex-shrink:0; border-radius:50%; object-fit:cover; object-position:center top; border:1px solid var(--border);"
+      />
+      <div>
+        <div style="font-size:15px; font-weight:600; color:var(--ink);">Sergio Ruiz</div>
+        <div style="font-family:'Geist Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-top:4px;">Analista de herramientas IA · IA en Español</div>
+        <p style="margin:10px 0 0; font-size:14px; line-height:1.65; color:var(--ink2);">Llevo años probando herramientas de inteligencia artificial en proyectos reales. En <strong style="color:var(--ink);">IA en Español</strong> cada herramienta se analiza con uso real durante semanas, precios sobre la mesa y una opinión honesta sin rodeos. <a href="/sobre-mi" style="color:var(--accent); text-decoration:none; font-weight:500;">Ver metodología →</a></p>
+      </div>
+    </div>
+  </section>
+
   <!-- Related articles -->
   {relacionados.length > 0 && (
     <section class="art-related">
@@ -598,6 +618,14 @@ const relacionados = todos
   .share-btn--wa:hover { color: #25d366; border-color: #25d366; }
   .share-btn--copy { font-family: inherit; }
   .share-btn--copy.copied { color: var(--good); border-color: var(--good); background: color-mix(in srgb, var(--good) 10%, transparent); }
+
+  /* Author bio */
+  .art-author {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-inline: clamp(20px, 5vw, 32px);
+  }
 
   /* Related card hover */
   .related-card:hover {
