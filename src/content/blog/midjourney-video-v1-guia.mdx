@@ -3,7 +3,7 @@ title: "Midjourney Video V1: guía para animar imágenes con IA (2026)"
 description: "Guía completa de Midjourney Video V1: cómo animar imágenes con IA, precio, calidad real y comparativa con Kling, Runway y Pika."
 date: 2026-06-30
 category: video
-herramientas: ["Midjourney Video V1", "Kling AI", "Runway", "Pika"]
+herramientas: ["Midjourney", "Kling AI", "Runway", "Pika"]
 imagen: "/images/midjourney-video-v1-guia.svg"
 faqs:
   - pregunta: "¿Midjourney Video V1 está incluido en la suscripción normal de Midjourney?"
@@ -16,12 +16,11 @@ faqs:
     respuesta: "Puedes subir imágenes propias y usarlas como base para la animación. Sin embargo, la coherencia y calidad suele ser más alta cuando la imagen de partida fue generada en Midjourney, porque el modelo comparte \"vocabulario visual\" con la imagen. Con fotografías externas o imágenes de otras herramientas, los resultados pueden ser más variables y requerir más iteraciones para obtener algo usable."
   - pregunta: "¿Midjourney Video V1 está disponible en España y Latinoamérica?"
     respuesta: "Sí, Midjourney está disponible globalmente incluidos España y los países de Latinoamérica, y la función de vídeo no tiene restricciones geográficas específicas. El acceso se gestiona a través de la interfaz web (alpha.midjourney.com) y los planes se facturan en dólares estadounidenses, aunque puedes pagar con tarjetas europeas y latinoamericanas sin problema."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
 Cuando Midjourney anunció su función de vídeo, mi primera reacción fue escepticismo. Llevaba meses usando Midjourney para imagen fija y sabía que el salto a vídeo generativo es enormemente más complejo: mantener coherencia temporal, gestionar el movimiento de cámara y no convertir cada cara en un artefacto pulsante a los dos segundos. Pero **Midjourney Video V1** llegó con una propuesta que me hizo prestarle atención: acceso incluido en la misma suscripción que ya usas para imágenes, sin pagar un plan separado. Eso cambia bastante el cálculo.
 
 Lo probé durante varias semanas con proyectos reales: animaciones de producto para un cliente de e-commerce, secuencias de fondo para presentaciones y pruebas de concepto para vídeos de marketing. El resultado no es perfecto —ningún generador de vídeo IA lo es hoy— pero hay contextos donde **Midjourney Video V1 ofrece una relación calidad-precio que ningún competidor directo iguala**. En esta guía te cuento exactamente qué hace, cómo funciona el flujo de trabajo real, dónde flaquea y cuándo tiene sentido incorporarlo a tu pipeline de producción.
@@ -73,11 +72,11 @@ Algunos consejos técnicos que aprendí a golpe de prueba:
 
 Ser honesto aquí es importante, porque esta herramienta tiene limitaciones reales que pueden frustrarte si no las conoces de antemano.
 
-**La duración de los clips es corta.** Si necesitas secuencias de más de 5-6 segundos, Midjourney Video V1 no es tu herramienta. [Kling AI 3.0, que ofrece mejor control de duración de clips](​/blog/kling-ai-review), puede generar clips de hasta 10 segundos con mayor control, y Runway permite extender escenas y encadenarlas dentro de la misma plataforma. Para producción de vídeo narrativo o spots con duración, esas alternativas son más adecuadas.
+**La duración de los clips es corta.** Si necesitas secuencias de más de 5-6 segundos, Midjourney Video V1 no es tu herramienta. [Kling AI 3.0, que ofrece mejor control de duración de clips](/blog/kling-ai-review), puede generar clips de hasta 10 segundos con mayor control, y Runway permite extender escenas y encadenarlas dentro de la misma plataforma. Para producción de vídeo narrativo o spots con duración, esas alternativas son más adecuadas.
 
-**La consistencia de personajes es limitada.** Si intentas animar un retrato humano y el personaje hace cualquier movimiento no trivial, las probabilidades de obtener deformaciones faciales o distorsión de proporciones son altas. Esto es un problema del estado del arte en vídeo IA en general, pero herramientas especializadas en personajes —como [HeyGen para avatares hablantes](​/blog/heygen-review)— gestionan este problema de forma mucho más controlada.
+**La consistencia de personajes es limitada.** Si intentas animar un retrato humano y el personaje hace cualquier movimiento no trivial, las probabilidades de obtener deformaciones faciales o distorsión de proporciones son altas. Esto es un problema del estado del arte en vídeo IA en general, pero herramientas especializadas en personajes —como [HeyGen para avatares hablantes](/blog/heygen-review)— gestionan este problema de forma mucho más controlada.
 
-**No existe generación desde texto puro.** Si necesitas crear una escena de vídeo completa sin imagen de partida, Midjourney Video V1 no puede hacerlo. Para eso necesitas Runway, Kling o [Sora de OpenAI](​/blog/sora-de-openai-generacion-de-video-con-ia). Midjourney Video es "image-to-video" en su concepción actual.
+**No existe generación desde texto puro.** Si necesitas crear una escena de vídeo completa sin imagen de partida, Midjourney Video V1 no puede hacerlo. Para eso necesitas Runway, Kling o [Sora de OpenAI](/blog/sora-de-openai-generacion-de-video-con-ia). Midjourney Video es "image-to-video" en su concepción actual.
 
 **El control de movimiento es menos preciso que en competidores especializados.** Runway Gen-3 tiene herramientas de pincel de movimiento donde puedes indicar exactamente qué zona de la imagen se mueve y en qué dirección. Midjourney Video interpreta tus instrucciones con más libertad, lo que puede ser una ventaja para experimentar, pero una desventaja cuando necesitas precisión.
 
