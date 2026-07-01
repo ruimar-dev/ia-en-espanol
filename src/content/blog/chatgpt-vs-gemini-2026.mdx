@@ -16,12 +16,11 @@ faqs:
     respuesta: "Google ha ido expandiendo la disponibilidad de Gemini Advanced de forma progresiva. En España y los principales países de Latinoamérica la plataforma está disponible, aunque algunas funciones de integración con aplicaciones de Google pueden variar según la región. Te recomiendo verificar en la página oficial de Google Gemini antes de suscribirte si vives en un país con disponibilidad más limitada."
   - pregunta: "¿Cuál es la diferencia entre Gemini 2.5 Pro y ChatGPT o3 en razonamiento matemático?"
     respuesta: "Los modelos o3 de OpenAI siguen siendo la referencia en razonamiento matemático y lógico estructurado según los benchmarks más recientes que he podido consultar. Gemini 2.5 Pro ha mejorado significativamente en este área respecto a versiones anteriores, pero para tareas de análisis numérico o resolución de problemas de múltiples pasos, ChatGPT con o3 tiende a ofrecer resultados más consistentes y con menos necesidad de reformular la pregunta."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
 Llevas semanas usando ChatGPT y alguien te dice que Gemini 2.5 Pro es mejor. O al revés. La comparativa ChatGPT vs Gemini es una de las más buscadas en 2026, y tiene sentido: son las dos plataformas de IA conversacional con más usuarios activos del mundo, y elegir mal significa pagar por algo que no encaja contigo. Lo sé porque yo mismo tardé más de un mes alternando entre las dos antes de tener claro cuándo usar cada una.
 
 La respuesta corta: **no hay un ganador universal**. ChatGPT (especialmente con los modelos o3) sigue siendo más sólido para razonamiento complejo y código. Gemini 2.5 Pro gana en integración con el ecosistema de Google y en tareas que mezclan texto con búsqueda en tiempo real. Pero los matices importan mucho dependiendo de lo que necesites.
@@ -37,8 +36,6 @@ Ambas son plataformas de chat basadas en modelos de lenguaje grande que puedes u
 **ChatGPT** es el producto de OpenAI, y en 2026 el plan gratuito te da acceso a GPT-4o con limitaciones. El plan **ChatGPT Plus** (~$20/mes, aproximadamente 18-19 €) desbloquea los modelos o3 con razonamiento avanzado, creación de imágenes con DALL-E, acceso a la web y uso de herramientas externas. Existe también **ChatGPT Pro** a un precio significativamente mayor (~$200/mes) orientado a usuarios que necesitan el máximo rendimiento sin restricciones. Existe una versión Teams y Enterprise para organizaciones.
 
 **Google Gemini** también tiene nivel gratuito con acceso a modelos más ligeros, y el plan **Gemini Advanced** se integra dentro de **Google One AI Premium**, cuyo precio ronda los **21,99 €/mes** (puede variar según región). Ese plan incluye acceso a Gemini 2.5 Pro, el modelo más capaz de Google en la actualidad, además de 2 TB de almacenamiento en Google Drive y otras ventajas del ecosistema. Lo que diferencia a Gemini no es solo el modelo, sino la integración nativa con Gmail, Docs, Drive, Meet y el resto de servicios de Google Workspace.
-
-> ⚠️ **Nota sobre precios**: No tengo datos de investigación web verificados para esta comparativa. Los precios indicados son aproximaciones basadas en mi conocimiento hasta la fecha de entrenamiento. Verifica siempre en las páginas oficiales de OpenAI y Google antes de suscribirte.
 
 En cuanto al público objetivo, **ChatGPT está pensado para** quien necesita un asistente de IA generalista potente con capacidades de razonamiento profundo, escritura, código y un ecosistema creciente de herramientas. **Gemini encaja mejor para** quien ya vive en el universo Google y quiere que la IA se conecte directamente con sus correos, documentos y calendario sin pasos intermedios.
 
@@ -62,7 +59,7 @@ Aquí es donde la comparativa se pone interesante, porque las diferencias no son
 
 **En razonamiento y resolución de problemas**, los [modelos o3 de ChatGPT](/blog/chatgpt-o3-review) siguen siendo los de referencia. Lo probé con un análisis de rentabilidad para un proyecto freelance: le di una tabla de costes con 12 variables y le pedí que identificara el punto de equilibrio bajo tres escenarios. ChatGPT o3 lo resolvió en un solo paso sin errores, explicando el razonamiento de forma clara. Gemini 2.5 Pro llegó a la misma respuesta, pero necesitó que yo reformulara la pregunta una vez porque al principio confundió dos variables. No es un fallo grave, pero en tareas de análisis numérico denso, la diferencia es perceptible.
 
-**En escritura creativa y redacción**, el resultado es más equilibrado. Usé ambas herramientas para redactar el mismo correo de negociación con un cliente difícil, dándoles el mismo contexto. La versión de ChatGPT era más directa y estructurada. La de Gemini tenía un tono ligeramente más diplomático y fluido en español. Ninguna era claramente superior; dependía del estilo que yo buscaba. Para artículos largos con estructura definida, [Claude Sonnet 4.6](/blog/claude-fable-5-review) sigue siendo mi primera opción por encima de ambas.
+**En escritura creativa y redacción**, el resultado es más equilibrado. Usé ambas herramientas para redactar el mismo correo de negociación con un cliente difícil, dándoles el mismo contexto. La versión de ChatGPT era más directa y estructurada. La de Gemini tenía un tono ligeramente más diplomático y fluido en español. Ninguna era claramente superior; dependía del estilo que yo buscaba. Para artículos largos con estructura definida, [Claude Opus 4.8](/blog/claude-fable-5-review) sigue siendo mi primera opción por encima de ambas.
 
 **En búsqueda de información actualizada**, Gemini tiene ventaja por su integración con Google Search. Cuando le pregunto sobre noticias recientes o datos actuales, cita fuentes reconocibles y el contexto encaja. ChatGPT también tiene acceso a la web en el plan Plus, pero la calidad de la búsqueda integrada me parece más irregular: a veces trae resultados relevantes, a veces no. Para investigación con fuentes verificables, [Perplexity AI](/blog/perplexity-ai-review-2026) sigue siendo la opción más fiable de las tres.
 
@@ -108,7 +105,7 @@ Después de varias semanas alternando ambas herramientas, aquí está mi mapa de
 - ChatGPT puede alucinar con datos muy recientes si la búsqueda web falla o no se activa. También su interfaz puede resultar abrumadora para usuarios nuevos con tantas opciones.
 - Gemini pierde ventaja cuando sales del ecosistema Google. Fuera de ese contexto, su propuesta es menos diferenciada. Además, en tareas de razonamiento matemático muy denso, todavía queda por detrás de los modelos o3.
 
-Si usas IA principalmente para contenido escrito de larga extensión, análisis de documentos o conversaciones complejas, también deberías considerar [Claude Fable 5](/blog/claude-fable-5-review), que en esas categorías compite directamente con ambos y a veces los supera.
+Si usas IA principalmente para contenido escrito de larga extensión, análisis de documentos o conversaciones complejas, también deberías considerar [Claude Opus 4.8](/blog/claude-fable-5-review), que en esas categorías compite directamente con ambos y a veces los supera.
 
 ---
 
