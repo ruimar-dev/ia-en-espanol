@@ -17,6 +17,7 @@ export async function getStaticPaths() {
   const BRAND_WORDS = new Set(['google', 'openai', 'microsoft', 'anthropic', 'adobe', 'meta', 'ai', 'the']);
 
   const norm = (s: string) => s.toLowerCase().trim().replace(/\s+/g, ' ');
+  const allNombres = new Set(herramientas.map((h) => norm(h.nombre)));
 
   const subseqIndex = (hay: string[], needle: string[]): number => {
     if (needle.length === 0 || needle.length > hay.length) return -1;
@@ -39,6 +40,9 @@ export async function getStaticPaths() {
       const extra = ht.filter((_, i) => i < idx || i >= idx + nt.length);
       return extra.every((t) => !TIER_WORDS.has(t) && (BRAND_WORDS.has(t) || /\d/.test(t)));
     }
+    // Si el tag coincide exactamente con el nombre de OTRA herramienta del catálogo, es un
+    // producto distinto (p. ej. "Claude" vs "Claude Code") y no debe caer en el caso inverso.
+    if (allNombres.has(h)) return false;
     // Caso inverso: el nombre de la herramienta contiene el tag (Runway ⊂ RunwayML).
     return h.length >= 4 && n.includes(h);
   };
