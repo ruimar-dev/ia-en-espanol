@@ -1,0 +1,166 @@
+---
+title: "Claude Code review: el asistente de programación en terminal 2026"
+description: "Review honesta de Claude Code, el asistente de programación en terminal de Anthropic. Precios, comparativa con GitHub Copilot y Cursor, y veredicto real."
+date: 2026-07-02
+category: codigo
+herramientas: ["Claude Code", "Anthropic"]
+imagen: "/images/claude-code-review.svg"
+ratings:
+  - label: "Capacidad de ejecución autónoma"
+    score: 8.7
+  - label: "Facilidad de uso"
+    score: 6.2
+  - label: "Relación calidad-precio"
+    score: 6.8
+  - label: "Integración en flujo de trabajo"
+    score: 6.9
+  - label: "Versatilidad según tipo de desarrollo"
+    score: 7.1
+faqs:
+  - pregunta: "¿Claude Code es gratuito o de pago?"
+    respuesta: "Claude Code en sí es gratuito de instalar, pero para usarlo necesitas una API key de Anthropic con créditos o una suscripción Claude Max activa. El coste real depende del volumen de uso y del modelo que tengas configurado. Sin un plan Max, el consumo de API puede acumularse rápido en sesiones intensas, así que conviene monitorizar el gasto desde el dashboard de Anthropic."
+  - pregunta: "¿En qué se diferencia Claude Code de Cursor IDE?"
+    respuesta: "Cursor es un IDE completo con interfaz visual, autocompletado inline y diff gráfico de cambios. Claude Code es un agente de terminal sin interfaz visual, pero con mayor capacidad de ejecución autónoma de comandos y mejor portabilidad hacia entornos de servidor. Cursor gana en experiencia de usuario diaria; Claude Code gana en flexibilidad de entornos y en tareas de múltiples pasos sin intervención manual. Puedes ver la comparativa detallada en la [review de Cursor IDE](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad)."
+  - pregunta: "¿Funciona Claude Code en Windows?"
+    respuesta: "De forma oficial, Claude Code requiere macOS o Linux. En Windows es posible usarlo a través de WSL (Windows Subsystem for Linux), pero no hay soporte nativo para PowerShell o CMD. Si usas Windows sin WSL configurado, la barrera de entrada es significativa y probablemente Cursor o GitHub Copilot sean opciones más inmediatas."
+  - pregunta: "¿Qué modelo de IA usa Claude Code por defecto?"
+    respuesta: "Por defecto, Claude Code utiliza Claude Sonnet 4.6, el modelo intermedio de Anthropic que equilibra capacidad y coste. Puedes cambiarlo manualmente a Claude Opus 4.8 o Claude Fable 5 para tareas más complejas, pero ten en cuenta que esos modelos consumen más tokens por sesión y el coste aumenta proporcionalmente."
+  - pregunta: "¿Es Claude Code mejor que GitHub Copilot para programar en 2026?"
+    respuesta: "Depende del caso de uso. GitHub Copilot sigue siendo superior para autocompletado inline y flujos centrados en VS Code o JetBrains, con una integración más fluida en el editor. Claude Code es mejor para tareas agénticas de múltiples pasos, comprensión de repositorios completos y uso en terminal o servidores remotos. Si tienes que elegir uno solo para trabajo diario en frontend, Copilot probablemente gane. Para backend complejo o DevOps, Claude Code tiene ventajas claras."
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+
+Claude Code es la apuesta de Anthropic por meterse en el flujo de trabajo del desarrollador desde el lado más incómodo: la terminal. Sin GUI, sin extensión de VS Code, sin interfaz bonita. Solo tú, tu shell y un agente que lee tu código, propone cambios y los ejecuta. Lo probé durante varias semanas en proyectos reales y el resultado es más interesante —y más polarizante— de lo que esperaba.
+
+El problema que intenta resolver es concreto: los asistentes de código tradicionales te sugieren líneas dentro de tu editor, pero Claude Code actúa como un **agente autónomo** que puede navegar repositorios enteros, ejecutar comandos, leer errores de compilación y corregirlos sin que tú tengas que copiar y pegar nada. Es una filosofía diferente a la de Cursor o GitHub Copilot, y eso tiene implicaciones enormes en cómo se integra —o no— en tu día a día.
+
+Mi veredicto adelantado: si trabajas mucho en terminal, haces código de backend o quieres delegar tareas completas (no solo completar líneas), Claude Code es genuinamente útil. Si eres frontend con un flujo centrado en VS Code y quieres autocompletado fluido, probablemente Cursor o GitHub Copilot te sirvan mejor. La herramienta no es para todo el mundo, y eso está bien.
+
+## ¿Qué es Claude Code y cuánto cuesta?
+
+Claude Code es una herramienta de línea de comandos desarrollada por Anthropic que permite interactuar con un agente de IA directamente desde la terminal. Se instala vía `npm` y, una vez dentro de un directorio de proyecto, puedes pedirle que entienda la estructura, escriba código, corrija bugs, refactorice funciones o ejecute tareas complejas que impliquen múltiples archivos.
+
+Un punto importante: **Claude Code no es lo mismo que usar Claude.ai en el navegador**. Es una herramienta separada, diseñada específicamente para flujos de trabajo de desarrollo, con permisos para leer y escribir archivos en tu sistema y ejecutar comandos de shell (con confirmación tuya, o en modo automático si así lo configuras).
+
+En cuanto a precios, Claude Code no tiene un precio fijo mensual propio: **consume créditos de la API de Anthropic**. Esto significa que el coste depende directamente de cuánto lo uses y del modelo que tengas configurado. Por defecto utiliza Claude Sonnet 4.6, que es el punto medio entre capacidad y coste. Si lo cambias a Claude Opus 4.8 o Claude Fable 5, las sesiones intensas pueden ser significativamente más caras.
+
+Lo que sí existe es el plan **Claude Max**, la suscripción premium de Anthropic orientada a usuarios intensivos, que incluye acceso a Claude Code con un límite de uso generoso. Sin embargo, **no tengo datos verificados del precio actual de Claude Max en euros** para 2026, por lo que te recomiendo consultar directamente la página de precios de Anthropic antes de suscribirte. Los precios de API en dólares cambian con frecuencia y publicar cifras desactualizadas aquí sería hacerte un flaco favor.
+
+Lo que sí puedo confirmar con certeza:
+
+- **Instalación**: `npm install -g @anthropic-ai/claude-code`
+- **Requiere**: una API key de Anthropic o un plan Max activo
+- **Modelos disponibles**: Claude Sonnet 4.6 (por defecto), Claude Opus 4.8, Claude Fable 5
+- **Sistema operativo**: macOS y Linux de forma nativa; Windows con WSL
+- **Modo de uso**: interactivo en terminal o modo no interactivo para scripts
+
+<TablaComparativa
+  titulo="Claude Code vs otros asistentes de programación en 2026"
+  herramientas={[
+    { nombre: "Claude Code", precio: "Pago por uso (API)", puntuacion: 4.3, idealPara: "Agentes autónomos en terminal, proyectos de backend complejos" },
+    { nombre: "Cursor IDE", precio: "Desde ~$20/mes", puntuacion: 4.6, idealPara: "Desarrolladores que quieren IA integrada en su editor visual" },
+    { nombre: "GitHub Copilot", precio: "Desde ~$10/mes", puntuacion: 4.2, idealPara: "Autocompletado fluido integrado en VS Code y JetBrains" },
+    { nombre: "Windsurf", precio: "Freemium / desde ~$15/mes", puntuacion: 4.1, idealPara: "Alternativa a Cursor con interfaz propia y buen contexto de repo" },
+  ]}
+/>
+
+## ¿Qué hace mejor Claude Code que sus rivales?
+
+### Comprensión profunda del repositorio completo
+
+La diferencia más notable que noté en las primeras horas de uso es la capacidad de Claude Code para **razonar sobre un proyecto entero**, no solo sobre el archivo abierto. Cuando le dije "hay un bug que hace que la autenticación falle en producción pero no en local", no solo miró el archivo de auth. Navegó por los middlewares, leyó los archivos de configuración de entorno, localizó una variable que se comportaba distinto según el contexto y propuso el fix con contexto completo.
+
+Con GitHub Copilot, ese mismo proceso me habría llevado a copiar y pegar manualmente fragmentos en el chat. Con Cursor es más fluido gracias a `@codebase`, pero sigue dependiendo de que tú inicies la búsqueda. Claude Code fue directamente al núcleo del problema sin que yo le dijera dónde mirar.
+
+### Ejecución de tareas de múltiples pasos
+
+Este es el diferenciador real. Claude Code no solo sugiere código: **lo ejecuta**. En mi flujo de trabajo habitual, le pedí que añadiera tests unitarios a un módulo de utilidades que no los tenía. Lo que hizo:
+
+1. Analizó el módulo y entendió qué hacía cada función
+2. Escribió los tests en el framework que ya usaba el proyecto (detectó Jest automáticamente)
+3. Ejecutó los tests con `npm test`
+4. Vio que dos fallaban por una edge case que no había considerado
+5. Corrigió los tests y los volvió a ejecutar hasta que pasaron
+
+Todo eso en una sola sesión, sin que yo interviniera. **Tardé menos de 8 minutos en tener cobertura de tests donde antes no había nada**, y yo solo supervisé. Eso es cualitativamente distinto a un asistente que te propone código y te deja a ti hacer el trabajo.
+
+### Calidad del razonamiento con modelos tope de gama
+
+Cuando el problema es complejo —refactorización de arquitectura, detección de race conditions, análisis de seguridad— Claude Code con [Claude Fable 5](/blog/claude-fable-5-review) o Claude Opus 4.8 muestra una capacidad analítica que, en mi experiencia, supera lo que obtengo con los modelos de OpenAI en tareas similares de código.
+
+## El flujo de trabajo en terminal: ¿ventaja o limitación?
+
+Aquí es donde Claude Code divide opiniones. Trabajar en terminal tiene sus propias ventajas que no son obvias hasta que las experimentas.
+
+**La portabilidad es real.** Puedo conectarme por SSH a un servidor de producción, instalar Claude Code en segundos y tener el mismo asistente trabajando en el entorno real, con acceso a los logs, a la configuración del sistema y a los archivos de verdad. Ningún IDE con interfaz gráfica te da eso.
+
+**El modo no interactivo abre posibilidades interesantes.** Puedes integrar Claude Code en pipelines de CI/CD, en scripts de automatización o en hooks de git. Por ejemplo, configuré un pre-commit hook que le pide a Claude Code que revise los cambios en busca de posibles problemas de seguridad antes de hacer el commit. No es perfecto, pero añade una capa de revisión automática que no tenía antes.
+
+**Sin embargo, la curva de aprendizaje es real.** Si estás acostumbrado a los IDEs visuales, al principio te sientes desnudo. No hay resaltado de sintaxis en las sugerencias, no ves el diff de forma visual a menos que uses otras herramientas en paralelo, y configurar los permisos correctamente para que el agente pueda hacer lo que necesitas requiere algo de tiempo.
+
+También hay que hablar del **contexto de ventana**. En sesiones largas o proyectos muy grandes, Claude Code puede perder el hilo de lo que estaba haciendo. He tenido que reiniciar sesiones a mitad de una tarea compleja porque el modelo empezaba a contradecirse o a repetir trabajo ya hecho. Esto mejora con los modelos de mayor ventana de contexto, pero tiene un coste.
+
+Si te interesa comparar este enfoque con una solución más visual, tengo una [review completa de Cursor IDE](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) y también una [comparativa entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) que pueden ayudarte a decidir qué encaja mejor en tu flujo.
+
+## Limitaciones y puntos débiles de Claude Code
+
+Ser honesto aquí es importante porque Claude Code tiene fans muy vocales que tienden a omitir los problemas reales.
+
+**El coste puede dispararse sin que te des cuenta.** Esta es mi principal queja. Al funcionar por consumo de API, una sesión intensa en la que el modelo tiene que leer muchos archivos, ejecutar comandos, revisar resultados y volver a intentarlo puede consumir una cantidad de tokens considerable. Si usas Claude Opus 4.8 o Claude Fable 5, el coste por sesión puede ser notablemente alto. Sin el plan Max, es fácil llevarse una sorpresa en la factura si no monitorizas el uso.
+
+**No hay autocompletado en tiempo real.** Claude Code es un agente conversacional, no un sistema de autocompletado inline. Si lo que necesitas es que aparezcan sugerencias mientras escribes código, esta herramienta no hace eso. Para eso siguen siendo superiores GitHub Copilot y Cursor.
+
+**La integración con el editor es limitada.** Puedes tener el terminal abierto junto a tu editor, pero no hay sincronización nativa. Cuando Claude Code modifica un archivo, tienes que recargar tu editor manualmente. Es un flujo de trabajo que se puede adaptar, pero en comparación con cómo Cursor aplica los cambios directamente en el editor con un diff visual, la experiencia es menos pulida.
+
+**Disponibilidad y latencia variables.** Como depende de la API de Anthropic, en momentos de alta demanda puedes notar latencias altas o errores. En un flujo de trabajo donde el agente está ejecutando pasos secuenciales, una respuesta lenta puede hacer que la sesión se vuelva frustrante.
+
+**Windows requiere WSL.** Si trabajas en Windows sin el Subsistema de Linux, de momento no es una opción directa. Para muchos desarrolladores de backend esto no es un problema, pero para el ecosistema frontend puede ser una barrera.
+
+## ¿Vale la pena pagar por Claude Code en 2026?
+
+**Sí vale la pena si...**
+
+- Trabajas principalmente en terminal o en entornos de servidor donde no tienes acceso a un IDE visual
+- Haces tareas de backend, DevOps o scripting donde el agente puede ejecutar comandos de verdad
+- Necesitas que el asistente entienda proyectos grandes con múltiples archivos interdependientes
+- Valoras la capacidad de delegar tareas completas más que el autocompletado línea a línea
+- Ya usas la API de Anthropic y quieres sacarle más partido
+- Tienes acceso al plan Max de Anthropic, que hace el coste más predecible
+
+**Probablemente no vale la pena si...**
+
+- Tu flujo de trabajo es principalmente frontend y centrado en VS Code o JetBrains
+- El autocompletado en tiempo real es tu prioridad número uno
+- Estás empezando a programar y necesitas una interfaz más guiada
+- Tienes presupuesto ajustado y no puedes asumir costes variables de API
+- Trabajas en Windows sin WSL configurado
+- Lo que buscas es básicamente un chat donde pegar código y pedir ayuda — para eso Claude.ai directamente es más barato
+
+Mi recomendación directa: **prueba el plan de pago por uso con un presupuesto controlado antes de comprometerte**. Pon un límite de gasto en el dashboard de Anthropic, pásalo por un proyecto real durante una semana y evalúa si la ganancia de productividad justifica el coste en tu caso específico. Si trabajas en proyectos de backend de mediana-alta complejidad, es probable que sí.
+
+## Preguntas frecuentes sobre Claude Code
+
+**¿Claude Code es gratuito o de pago?**
+Claude Code en sí es gratuito de instalar, pero para usarlo necesitas una API key de Anthropic con créditos o una suscripción Claude Max activa. El coste real depende del volumen de uso y del modelo que tengas configurado. Sin un plan Max, el consumo de API puede acumularse rápido en sesiones intensas, así que conviene monitorizar el gasto desde el dashboard de Anthropic.
+
+**¿En qué se diferencia Claude Code de Cursor IDE?**
+Cursor es un IDE completo con interfaz visual, autocompletado inline y diff gráfico de cambios. Claude Code es un agente de terminal sin interfaz visual, pero con mayor capacidad de ejecución autónoma de comandos y mejor portabilidad hacia entornos de servidor. Cursor gana en experiencia de usuario diaria; Claude Code gana en flexibilidad de entornos y en tareas de múltiples pasos sin intervención manual. Puedes ver la comparativa detallada en la [review de Cursor IDE](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad).
+
+**¿Funciona Claude Code en Windows?**
+De forma oficial, Claude Code requiere macOS o Linux. En Windows es posible usarlo a través de WSL (Windows Subsystem for Linux), pero no hay soporte nativo para PowerShell o CMD. Si usas Windows sin WSL configurado, la barrera de entrada es significativa y probablemente Cursor o GitHub Copilot sean opciones más inmediatas.
+
+**¿Qué modelo de IA usa Claude Code por defecto?**
+Por defecto, Claude Code utiliza Claude Sonnet 4.6, el modelo intermedio de Anthropic que equilibra capacidad y coste. Puedes cambiarlo manualmente a Claude Opus 4.8 o Claude Fable 5 para tareas más complejas, pero ten en cuenta que esos modelos consumen más tokens por sesión y el coste aumenta proporcionalmente.
+
+**¿Es Claude Code mejor que GitHub Copilot para programar en 2026?**
+Depende del caso de uso. GitHub Copilot sigue siendo superior para autocompletado inline y flujos centrados en VS Code o JetBrains, con una integración más fluida en el editor. Claude Code es mejor para tareas agénticas de múltiples pasos, comprensión de repositorios completos y uso en terminal o servidores remotos. Si tienes que elegir uno solo para trabajo diario en frontend, Copilot probablemente gane. Para backend complejo o DevOps, Claude Code tiene ventajas claras.
+
+## Conclusión
+
+Claude Code es una herramienta genuinamente útil para un perfil de desarrollador específico: alguien que vive en la terminal, trabaja en proyectos de backend con complejidad real y quiere un agente que haga trabajo completo, no solo sugerencias. La capacidad de ejecutar comandos, leer resultados, corregir errores y volver a intentarlo sin que tú tengas que intervenir en cada paso es cualitativamente diferente a lo que ofrecen los asistentes de código tradicionales.
+
+Dicho esto, las limitaciones son reales. El coste variable es el mayor freno para uso intensivo sin el plan Max, y la ausencia de interfaz gráfica hace que la curva de adopción sea más pronunciada que con alternativas como [Cursor o Windsurf](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad). Para el desarrollador que ya tiene un flujo muy establecido en un IDE visual, el beneficio marginal probablemente no justifique el cambio. Si quieres más contexto sobre el ecosistema de Claude, la [review de Claude Fable 5](/blog/claude-fable-5-review) te dará una perspectiva más amplia sobre los modelos disponibles.
+
+En resumen: Claude Code no es para todos, y Anthropic parece haberlo diseñado así a propósito. Pero si encaja con tu forma de trabajar, tiene cosas que ningún otro asistente de código ofrece hoy de la misma manera.
