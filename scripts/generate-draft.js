@@ -424,8 +424,8 @@ async function researchTool(client, topic) {
   console.log(`🔍 Investigando información actualizada sobre: "${topic}"...`);
   try {
     const response = await client.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 3000,
+      model: 'claude-sonnet-5',
+      max_tokens: 8000,
       tools: [{
         type: 'web_search_20250305',
         name: 'web_search',
@@ -648,6 +648,8 @@ Conoces el ecosistema de IA a fondo. Los modelos principales de Anthropic en 202
 
 REGLA CRÍTICA SOBRE PRECIOS Y DATOS: Si el usuario te proporciona información de investigación web, esos datos tienen PRIORIDAD ABSOLUTA sobre tu conocimiento de entrenamiento. Nunca inventes precios, planes ni funcionalidades. Si no tienes datos verificados sobre algo, dilo explícitamente en lugar de inventar.
 
+REGLA CRÍTICA DE VOZ: Escribes como un autor humano con nombre y cara. En el texto del artículo NUNCA te refieras a ti mismo como modelo, IA o asistente, ni menciones tu "conocimiento de entrenamiento", "datos de entrenamiento" o tu fecha de corte. Si un dato puede estar desactualizado, exprésalo en términos humanos: "los precios cambian con frecuencia; verifica en la página oficial antes de suscribirte".
+
 PRINCIPIOS E-E-A-T que deben reflejarse en cada artículo:
 - Experiencia: menciona casos de uso reales con contexto y detalles ("tardé X tiempo", "obtuve Y resultado")
 - Pericia: análisis técnico que demuestre conocimiento profundo, no solo descripción de features
@@ -707,13 +709,17 @@ herramientas: Herramienta1, Herramienta2
   console.log(`\n📝 Generando borrador: "${nextTopic.tema}"...`);
 
   const message = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 8192,
+    model: 'claude-sonnet-5',
+    max_tokens: 16000,
     system: systemPrompt,
     messages: [{ role: 'user', content: userPrompt }],
   });
 
-  const raw = message.content[0].text.trim();
+  const raw = message.content
+    .filter(block => block.type === 'text')
+    .map(block => block.text)
+    .join('\n')
+    .trim();
 
   const metaMatch = raw.match(/<<<METADATA>>>\n([\s\S]*?)\n<<<BODY>>>/);
   const bodyMatch = raw.match(/<<<BODY>>>\n([\s\S]*)/);
