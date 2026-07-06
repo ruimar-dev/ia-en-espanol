@@ -28,9 +28,9 @@ const comparativas = [
   {
     id: 'llm',
     titulo: 'Mejores IAs de texto en 2026',
-    descripcion: 'Los asistentes y modelos de lenguaje más potentes del mercado, actualizados a junio de 2026.',
+    descripcion: 'Los asistentes y modelos de lenguaje más potentes del mercado, actualizados a julio de 2026.',
     herramientas: [
-      { nombre: 'Claude Opus 4.8', precio: '$20/mes (Pro)', puntuacion: 4.8, idealPara: 'Programación, razonamiento, documentos largos', badge: 'Recomendado' },
+      { nombre: 'Claude Fable 5', precio: '$20/mes (Pro)', puntuacion: 4.8, idealPara: 'Programación, razonamiento, documentos largos', badge: 'Recomendado' },
       { nombre: 'ChatGPT (GPT-5.5)', precio: '$20/mes (Plus)', puntuacion: 4.7, idealPara: 'Uso general, memoria en tiempo real, plugins', badge: 'Más popular' },
       { nombre: 'Google AI Pro', precio: '$19,99/mes', puntuacion: 4.5, idealPara: 'Integración con Gmail, Docs y Google Workspace' },
       { nombre: 'Jasper', precio: '$39/mes', puntuacion: 4.4, idealPara: 'Redacción de marketing y contenido', enlaceAfiliado: 'https://www.jasper.ai' },
@@ -43,8 +43,9 @@ const comparativas = [
     titulo: 'Mejores generadores de imagen IA',
     descripcion: 'Comparativa de las herramientas de generación de imagen más populares en 2026.',
     herramientas: [
-      { nombre: 'Midjourney v8', precio: '$10–$60/mes', puntuacion: 4.9, idealPara: 'Arte, calidad máxima, consistencia de personajes', badge: 'Recomendado' },
+      { nombre: 'Midjourney v8.1', precio: '$10–$60/mes', puntuacion: 4.9, idealPara: 'Arte, calidad máxima, consistencia de personajes', badge: 'Recomendado' },
       { nombre: 'Flux', precio: 'Gratis (local)', puntuacion: 4.6, idealPara: 'Open source sin costes, calidad comparable a MJ', badge: 'Gratis' },
+      { nombre: 'Nano Banana 2', precio: 'Gratis / Google AI Pro', puntuacion: 4.5, idealPara: 'Edición conversacional, texto legible; versión Lite más rápida y barata' },
       { nombre: 'Leonardo.ai', precio: 'Freemium', puntuacion: 4.5, idealPara: 'Concept art, videojuegos, plan gratuito generoso', enlaceAfiliado: 'https://leonardo.ai' },
       { nombre: 'Adobe Firefly', precio: 'Con Creative Cloud', puntuacion: 4.4, idealPara: 'Uso comercial 100% seguro, integrado en Photoshop', enlaceAfiliado: 'https://www.adobe.com/es/products/firefly.html' },
     ],
@@ -56,6 +57,7 @@ const comparativas = [
     herramientas: [
       { nombre: 'Cursor', precio: '$20/mes', puntuacion: 4.8, idealPara: 'IDE completo con IA, ediciones multi-fichero', badge: 'Recomendado' },
       { nombre: 'Windsurf', precio: '$20/mes (Pro)', puntuacion: 4.6, idealPara: 'IDE con IA, comprensión del contexto completo' },
+      { nombre: 'Claude Code', precio: 'Incluido en Claude Pro ($20/mes)', puntuacion: 4.3, idealPara: 'Agente de código en terminal, tareas autónomas multi-fichero' },
       { nombre: 'GitHub Copilot', precio: 'Desde $10/mes*', puntuacion: 4.5, idealPara: 'Plugin en tu IDE actual, estándar en empresas' },
       { nombre: 'Codeium', precio: 'Gratis', puntuacion: 4.2, idealPara: 'Alternativa gratuita a Copilot', badge: 'Gratis' },
     ],
@@ -76,10 +78,11 @@ const comparativas = [
     titulo: 'Mejores generadores de vídeo IA',
     descripcion: 'Herramientas de generación y edición de vídeo con inteligencia artificial en 2026.',
     herramientas: [
-      { nombre: 'RunwayML', precio: 'Desde $15/mes', puntuacion: 4.6, idealPara: 'Suite profesional, control de cámara, integración MCP', badge: 'Recomendado' },
-      { nombre: 'Kling 2.0', precio: 'Desde $10/mes', puntuacion: 4.5, idealPara: 'Mejor relación calidad-precio, vídeos de hasta 3 min', badge: 'Mejor precio' },
-      { nombre: 'Sora 2', precio: 'ChatGPT Pro / Perplexity Max', puntuacion: 4.5, idealPara: 'Física realista, calidad OpenAI, nueva en 2026' },
+      { nombre: 'RunwayML', precio: 'Desde $15/mes', puntuacion: 4.6, idealPara: 'Suite profesional, control de cámara, acceso a Veo integrado', badge: 'Recomendado' },
+      { nombre: 'Google Veo 3', precio: 'Con Google AI Pro ($19,99/mes)', puntuacion: 4.6, idealPara: 'Vídeo con audio y diálogos integrados, calidad cinematográfica' },
+      { nombre: 'Kling 3.0', precio: 'Gratis / Pro $8/mes', puntuacion: 4.5, idealPara: 'Mejor relación calidad-precio, secuencias multi-plano con audio', badge: 'Mejor precio' },
       { nombre: 'HeyGen', precio: 'Desde $29/mes', puntuacion: 4.5, idealPara: 'Avatares IA, doblaje automático, vídeos corporativos' },
+      { nombre: 'Midjourney Video V1', precio: 'Desde $10/mes', puntuacion: 4.3, idealPara: 'Animar tus imágenes de Midjourney en clips de 5s a coste mínimo' },
     ],
   },
   {
@@ -100,7 +103,7 @@ const totalHerramientas = comparativas.reduce((sum, c) => sum + c.herramientas.l
 
 <Layout
   title="Comparativas de herramientas IA 2026 — Tablas actualizadas"
-  description="Compara las mejores herramientas de inteligencia artificial por categoría. Tablas actualizadas a junio de 2026 con precios, puntuaciones y comparador interactivo."
+  description="Compara las mejores herramientas de inteligencia artificial por categoría. Tablas actualizadas a julio de 2026 con precios, puntuaciones y comparador interactivo."
 >
 
   <!-- ══ HERO ══════════════════════════════════════════ -->
@@ -109,7 +112,7 @@ const totalHerramientas = comparativas.reduce((sum, c) => sum + c.herramientas.l
 
       <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:22px;">
         <span style="width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0;"></span>
-        <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink2);">Comparativas · Junio 2026</span>
+        <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink2);">Comparativas · Julio 2026</span>
       </div>
 
       <h1 style="margin:0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.05; letter-spacing:-0.025em; color:var(--ink);">
@@ -188,7 +191,7 @@ const totalHerramientas = comparativas.reduce((sum, c) => sum + c.herramientas.l
               <h2 class="comp-section-title">{titulo}</h2>
               <p class="comp-section-desc">{descripcion}</p>
               <span class="comp-section-meta">
-                {herramientas.length} herramientas · Actualizado junio 2026
+                {herramientas.length} herramientas · Actualizado julio 2026
               </span>
             </div>
 
