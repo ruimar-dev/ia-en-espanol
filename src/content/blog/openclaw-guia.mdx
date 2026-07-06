@@ -1,0 +1,127 @@
+---
+title: "OpenClaw: qué es el agente de IA viral y cómo usarlo en 2026"
+description: "Descubre qué es OpenClaw, el agente de IA de código abierto que se ha vuelto viral, y cómo empezar a usarlo paso a paso sin saber programar."
+date: 2026-07-06
+category: productividad
+herramientas: ["OpenClaw", "Claude Code"]
+imagen: "/images/openclaw-guia.svg"
+faqs:
+  - pregunta: "¿Cuánto cuesta OpenClaw?"
+    respuesta: "OpenClaw en sí mismo es de código abierto y gratuito, pero necesitas conectar una clave de API de un modelo (Claude, GPT-4o u otro) y ese consumo tiene coste según el uso que hagas. No existe, hasta donde se puede verificar, un plan de pago propio de OpenClaw; el gasto real depende del proveedor del modelo que elijas."
+  - pregunta: "¿OpenClaw es lo mismo que Claude Code?"
+    respuesta: "No. Claude Code es un producto oficial de Anthropic pensado específicamente para programación en terminal, con soporte y actualizaciones directas de la empresa. OpenClaw es un proyecto de código abierto independiente, más general en cuanto a tareas, pero también menos pulido y con soporte comunitario en vez de oficial."
+  - pregunta: "¿Necesito saber programar para usar OpenClaw?"
+    respuesta: "No es imprescindible, pero sí ayuda perder el miedo a la terminal y saber copiar comandos con cuidado. Si nunca has abierto una terminal en tu vida, te va a costar más la instalación que el uso posterior, que sí es en lenguaje natural."
+  - pregunta: "¿Es seguro darle acceso a mis archivos y a internet?"
+    respuesta: "Con precaución. Yo recomiendo probarlo siempre en un entorno aislado (máquina virtual o contenedor) antes de darle acceso a tu sistema principal, sobre todo porque puede ejecutar comandos y borrar o modificar archivos por su cuenta si se lo pides."
+  - pregunta: "¿Está disponible en español y funciona bien desde España?"
+    respuesta: "El agente entiende y responde en español sin problemas porque depende del modelo que conectes (Claude o GPT funcionan perfectamente en español), aunque la documentación técnica del propio proyecto suele estar en inglés, como suele pasar con la mayoría de repositorios open source."
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+
+---
+Llevo semanas viendo el nombre **OpenClaw** repetido en hilos de X, en foros de Reddit y en un par de grupos de Telegram donde se comparten herramientas de IA antes de que lleguen al público general. La pregunta que más se repite es siempre la misma: "¿esto sirve para algo si no sé programar?". Y la respuesta corta es sí, pero con matices importantes que casi nadie explica bien.
+
+OpenClaw es un **agente de IA autónomo** de código abierto pensado para ejecutar tareas de varios pasos por su cuenta: buscar información, mover archivos, escribir código, navegar por una web o encadenar acciones sin que tú tengas que dar la orden en cada paso. La diferencia con un chatbot como ChatGPT o Claude es justamente esa: no le haces una pregunta y esperas una respuesta, le das un objetivo y él decide cómo llegar hasta ahí, usando herramientas del sistema (terminal, navegador, archivos) por el camino.
+
+En este artículo te cuento qué es realmente, qué puedes hacer con él sin tocar una línea de código, cómo instalarlo paso a paso, y también las limitaciones que a mí me hicieron frenar un poco el entusiasmo inicial. Aviso desde ya: es un proyecto muy joven y en movimiento constante, así que algunos detalles (planes, integraciones, límites de uso) pueden cambiar de una semana a otra. Verifica siempre en su repositorio o web oficial antes de dar por buena cualquier cifra.
+
+## ¿Qué es OpenClaw y para qué sirve realmente?
+
+OpenClaw pertenece a una familia de herramientas que en el último año y medio se ha vuelto muy popular: los **agentes autónomos de código abierto**. Proyectos como AutoGPT, Open Interpreter o OpenHands abrieron ese camino, y OpenClaw es la última iteración que ha conseguido tracción viral, probablemente porque simplifica bastante la parte de instalación y porque se conecta con facilidad a modelos potentes como **Claude Sonnet 4.6** o **GPT-4o**.
+
+La idea de fondo es sencilla: tú no eres el que ejecuta las tareas, eres el que las supervisa. Le dices "organiza estos 200 archivos por fecha y tipo" o "revisa este repositorio y dime qué funciones están duplicadas" y el agente va tomando decisiones, ejecutando comandos y corrigiendo el rumbo cuando algo falla, todo dentro de un bucle de razonamiento-acción-observación.
+
+Lo que lo distingue de un simple chatbot es el acceso a "herramientas" reales del sistema operativo: puede abrir una terminal, leer y escribir archivos, hacer peticiones a internet, o incluso controlar un navegador. Eso lo acerca más a lo que hace [Claude Code](/blog/claude-code-review) en el terminal, aunque OpenClaw nació con una filosofía más general y menos enfocada exclusivamente en programación.
+
+Aquí tienes cómo se posiciona frente a otros agentes similares que ya he probado:
+
+<TablaComparativa
+  titulo="OpenClaw vs otros agentes autónomos de IA"
+  herramientas={[
+    { nombre: "OpenClaw", precio: "Gratis (open source) + coste de API que conectes", puntuacion: 4.0, idealPara: "Automatizar tareas variadas sin depender de una sola empresa" },
+    { nombre: "Claude Code", precio: "Incluido en planes de Claude Pro/Max", puntuacion: 4.6, idealPara: "Programación seria en terminal con contexto largo" },
+    { nombre: "Open Interpreter", precio: "Gratis (open source) + coste de API", puntuacion: 4.1, idealPara: "Ejecutar código local con lenguaje natural" },
+    { nombre: "OpenHands", precio: "Gratis (open source) + coste de API", puntuacion: 3.9, idealPara: "Tareas de desarrollo de software más estructuradas" },
+  ]}
+/>
+
+Como ves, el patrón se repite: casi todos estos agentes de código abierto son gratuitos en sí mismos, pero el coste real está en la API del modelo que conectes por detrás (Claude, GPT, Gemini). Esto es clave y lo desarrollo más abajo, porque es lo primero que sorprende a quien viene de pagar una suscripción fija tipo ChatGPT Plus.
+
+## Cómo instalar y usar OpenClaw sin saber programar
+
+Aquí es donde muchísima gente se frustra antes de empezar, así que voy a ser lo más concreto posible con lo que a mí me funcionó.
+
+**Lo que necesitas antes de empezar:**
+
+- Un ordenador donde puedas abrir una terminal (Mac, Linux, o Windows con WSL). No hace falta saber programar, pero sí perderle el miedo a copiar y pegar comandos.
+- Una clave de API de algún modelo. Yo usé una clave de Claude porque es lo que ya tenía configurado para otras pruebas, pero también admite conectarse a GPT-4o o modelos abiertos tipo Llama si prefieres no depender de un proveedor cerrado.
+- Diez o quince minutos la primera vez. Las siguientes veces, arrancarlo lleva segundos.
+
+El proceso general (y aquí insisto: los comandos exactos pueden variar según la versión que descargues, revisa siempre el README del repositorio oficial) sigue este patrón:
+
+1. Clonas o descargas el proyecto desde su repositorio.
+2. Instalas las dependencias con un gestor de paquetes (normalmente pip o npm, según la versión).
+3. Configuras tu clave de API en un archivo de entorno.
+4. Lanzas el agente y le das tu primera instrucción en lenguaje natural.
+
+La primera tarea que le di, para no arriesgar nada importante, fue organizar una carpeta de descargas con más de 400 archivos acumulados de meses: PDFs, capturas de pantalla, instaladores viejos, facturas. Le pedí que los clasificara por tipo y fecha en subcarpetas, y que me diera un resumen al final. Tardó unos ocho minutos en total, incluyendo dos pausas donde me pidió confirmación antes de borrar archivos duplicados. El resultado fue correcto en un 95% de los casos; se equivocó clasificando tres archivos con nombres ambiguos, algo que un humano tampoco habría acertado a la primera sin abrirlos.
+
+La segunda prueba, más ambiciosa, fue pedirle que revisara un pequeño proyecto de código que tenía a medio hacer y me dijera qué funciones no se estaban usando en ningún sitio. Aquí se parece bastante a lo que hacen [Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) o [Windsurf](/blog/windsurf-review) dentro de un editor, solo que sin interfaz gráfica: todo pasa por texto en la terminal. Funcionó, pero fue más lento que pedirle lo mismo directamente a Claude Code, que está más pulido para ese caso concreto.
+
+## Las limitaciones reales que nadie te cuenta
+
+Aquí es donde bajo un poco el entusiasmo, porque probarlo en profundidad me hizo ver tres problemas que sí o sí debes conocer antes de meterle mano en algo importante.
+
+**El coste de la API se puede disparar sin que te des cuenta.** Como OpenClaw no cobra suscripción propia, tú pagas directamente el consumo de tokens del modelo que conectes. Si le das una tarea compleja y entra en un bucle donde intenta la misma acción fallida varias veces (algo que me pasó probando una tarea de scraping web mal definida por mi parte), el gasto de tokens sube rápido. Te recomiendo poner límites de gasto en tu cuenta de API desde el primer día, no después. En general, esto es más barato que pagar [ChatGPT o Claude en suscripción mensual](/blog/chatgpt-vs-claude-2026), pero requiere vigilancia activa.
+
+**El acceso a tu sistema es un riesgo de seguridad real.** Darle permiso a un agente para ejecutar comandos de terminal, borrar archivos o navegar por internet en tu nombre no es trivial. Yo lo ejecuté siempre dentro de una máquina virtual o un entorno aislado (sandbox), nunca directamente en mi ordenador principal con archivos sensibles cerca. Si vas a probarlo, haz lo mismo.
+
+**La madurez del proyecto todavía se nota.** Al ser código abierto y de crecimiento muy rápido, hay versiones que rompen compatibilidad con la anterior, documentación que queda desactualizada de un día para otro, y comunidad de soporte que responde en foros más que en canales oficiales estructurados. Si buscas algo estable para un flujo de trabajo profesional diario, herramientas más maduras como [Claude Code](/blog/claude-code-review) o [Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) te van a dar menos sustos.
+
+## ¿Cuándo tiene sentido usar OpenClaw y cuándo no?
+
+**Sí tiene sentido si:**
+
+- Te gusta experimentar con herramientas nuevas antes de que se popularicen y no te importa perder algo de tiempo configurando.
+- Tienes tareas repetitivas de organización de archivos, investigación en varios pasos o automatización sencilla que quieres delegar sin depender de una suscripción cerrada.
+- Ya tienes experiencia mínima con terminal y no te asusta copiar comandos de un README.
+- Quieres controlar exactamente qué modelo usa por detrás (Claude, GPT, un modelo abierto) en lugar de depender de una única empresa.
+
+**Probablemente no si:**
+
+- Necesitas algo estable para producción o para un cliente donde un fallo te cueste dinero real.
+- No tienes ninguna familiaridad con la terminal y no quieres invertir tiempo en aprender lo básico.
+- Vas a manejar archivos o datos sensibles y no puedes montar un entorno aislado para probarlo con seguridad.
+- Buscas una experiencia de agente de código pulida y fiable: en ese caso, [Claude Code](/blog/claude-code-review) o [Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) están más maduros hoy.
+
+Mi recomendación honesta: pruébalo en un entorno controlado, con tareas de bajo riesgo, antes de pensar en integrarlo en algo que dependa de tu trabajo o tu negocio.
+
+## Preguntas frecuentes sobre OpenClaw
+
+**¿Cuánto cuesta OpenClaw?**
+OpenClaw en sí mismo es de código abierto y gratuito, pero necesitas conectar una clave de API de un modelo (Claude, GPT-4o u otro) y ese consumo tiene coste según el uso que hagas. No existe, hasta donde se puede verificar, un plan de pago propio de OpenClaw; el gasto real depende del proveedor del modelo que elijas.
+
+**¿OpenClaw es lo mismo que Claude Code?**
+No. Claude Code es un producto oficial de Anthropic pensado específicamente para programación en terminal, con soporte y actualizaciones directas de la empresa. OpenClaw es un proyecto de código abierto independiente, más general en cuanto a tareas, pero también menos pulido y con soporte comunitario en vez de oficial.
+
+**¿Necesito saber programar para usar OpenClaw?**
+No es imprescindible, pero sí ayuda perder el miedo a la terminal y saber copiar comandos con cuidado. Si nunca has abierto una terminal en tu vida, te va a costar más la instalación que el uso posterior, que sí es en lenguaje natural.
+
+**¿Es seguro darle acceso a mis archivos y a internet?**
+Con precaución. Yo recomiendo probarlo siempre en un entorno aislado (máquina virtual o contenedor) antes de darle acceso a tu sistema principal, sobre todo porque puede ejecutar comandos y borrar o modificar archivos por su cuenta si se lo pides.
+
+**¿Está disponible en español y funciona bien desde España?**
+El agente entiende y responde en español sin problemas porque depende del modelo que conectes (Claude o GPT funcionan perfectamente en español), aunque la documentación técnica del propio proyecto suele estar en inglés, como suele pasar con la mayoría de repositorios open source.
+
+## Conclusión
+
+OpenClaw es un ejemplo interesante de hacia dónde va una parte del ecosistema de IA: agentes que no solo responden, sino que actúan por sí mismos dentro de límites que tú defines. Si te gusta estar en la frontera de estas herramientas y tienes algo de soltura técnica básica, merece la pena dedicarle una tarde a probarlo con tareas de bajo riesgo.
+
+Pero si lo que buscas es algo listo para trabajar en serio hoy mismo, sin sustos ni configuración, herramientas más maduras y con soporte oficial como [Claude Code](/blog/claude-code-review) o entornos como [Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) te van a dar mejores resultados con menos fricción. OpenClaw promete mucho, pero todavía está en esa fase donde la promesa va un paso por delante de la estabilidad real.
+
+Mi consejo final: síguelo de cerca, pruébalo sin miedo pero con precauciones, y no le des acceso a nada que no puedas permitirte perder mientras el proyecto termina de madurar.
+
+---
