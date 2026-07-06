@@ -52,4 +52,5 @@ export const herramientas: Herramienta[] = [
   { slug: 'notion-ai', nombre: 'Notion AI', descripcion: 'IA integrada en Notion para resumir, generar y editar contenido en tus documentos y bases de datos.', categoria: 'productividad', rating: 4.3, logo: '/images/logos/notion.svg', url: 'https://notion.so' },
   { slug: 'gamma', nombre: 'Gamma', descripcion: 'Crea presentaciones, documentos y páginas web con IA en segundos. Alternativa a PowerPoint impulsada por IA.', categoria: 'productividad', rating: 4.4, logo: '/images/logos/gamma.svg', url: 'https://gamma.app' },
   { slug: 'otterai', nombre: 'Otter.ai', descripcion: 'Transcripción automática de reuniones con resúmenes, puntos clave y búsqueda.', categoria: 'productividad', rating: 4.4, logo: '/images/logos/otter.svg', url: 'https://otter.ai' },
+  { slug: 'openclaw', nombre: 'OpenClaw', descripcion: 'Agente de IA personal open source y autoalojado. Le hablas desde WhatsApp, Telegram o Discord y ejecuta tareas reales en tu ordenador: archivos, correo, calendario y código.', categoria: 'productividad', rating: 4.0, logo: '/images/logos/openclaw.svg', url: 'https://openclaw.ai' },
 ];
