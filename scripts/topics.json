@@ -136,7 +136,15 @@
     "usado": true
   },
   {
+    "tema": "OpenClaw: qué es el agente de IA viral y cómo empezar a usarlo sin ser programador",
+    "usado": false
+  },
+  {
     "tema": "Flux review: el generador de imágenes gratuito que compite con Midjourney",
+    "usado": false
+  },
+  {
+    "tema": "Claude Sonnet 5 review: el nuevo modelo de Anthropic que abarata los agentes de IA",
     "usado": false
   },
   {
@@ -148,7 +156,7 @@
     "usado": false
   },
   {
-    "tema": "Grok vs ChatGPT: qué modelo de xAI elegir en 2026",
+    "tema": "Grok vs ChatGPT: cuál elegir en 2026",
     "usado": false
   },
   {
@@ -156,11 +164,11 @@
     "usado": false
   },
   {
-    "tema": "Claude Sonnet 4.6 review: el mejor modelo para el día a día",
+    "tema": "IA para marketing: las mejores herramientas para marketers en 2026",
     "usado": false
   },
   {
-    "tema": "IA para marketing: las mejores herramientas para marketers en 2026",
+    "tema": "Nano Banana 2: cómo funciona el generador de imágenes de Google y qué cambia con la versión Lite",
     "usado": false
   },
   {
@@ -188,7 +196,11 @@
     "usado": false
   },
   {
-    "tema": "Claude Opus 4.8 vs Gemini 3.5 Pro: cuál es mejor en 2026",
+    "tema": "Claude Fable 5 vs Gemini 3.5 Pro: cuál es mejor en 2026",
+    "usado": false
+  },
+  {
+    "tema": "Gemini Spark: qué es el asistente agéntico de Google y qué puede hacer por ti",
     "usado": false
   },
   {
@@ -228,10 +240,6 @@
     "usado": false
   },
   {
-    "tema": "Notion AI vs ChatGPT: cuál es mejor para productividad",
-    "usado": false
-  },
-  {
     "tema": "IA para abogados: qué puede y qué no puede hacer la inteligencia artificial en derecho",
     "usado": false
   },
@@ -252,15 +260,11 @@
     "usado": false
   },
   {
-    "tema": "DALL-E guía completa de prompts: cómo generar imágenes con ChatGPT en 2026",
+    "tema": "Cómo generar imágenes con ChatGPT en 2026: guía completa de prompts",
     "usado": false
   },
   {
     "tema": "IA para recursos humanos: cómo optimizar selección, onboarding y formación",
-    "usado": false
-  },
-  {
-    "tema": "Las mejores herramientas IA para crear vídeos en 2026",
     "usado": false
   },
   {
