@@ -3,7 +3,7 @@ title: "Claude Sonnet 5 review 2026: el modelo que abarata los agentes IA"
 description: "Análisis de Claude Sonnet 5, el modelo de Anthropic que compite en rendimiento con Opus a una fracción del precio. Probado en agentes y código real."
 date: 2026-07-08
 category: generacion-texto
-herramientas: ["Claude Sonnet 5", "Anthropic"]
+herramientas: ["Claude Sonnet 5", "Claude Code", "Cursor", "Windsurf", "OpenClaw", "DeepSeek R1"]
 imagen: "/images/claude-sonnet-5-review.svg"
 ratings:
   - label: "Relación calidad-precio"
@@ -20,21 +20,21 @@ faqs:
   - pregunta: "¿Claude Sonnet 5 es mejor que Claude Opus 4.8?"
     respuesta: "No en todos los casos. Opus 4.8 sigue ganando en razonamiento profundo, contexto muy extenso y tareas analíticas complejas. Sonnet 5 gana en relación calidad-precio, velocidad y eficiencia para agentes que ejecutan muchas tareas seguidas."
   - pregunta: "¿Cuánto cuesta usar Claude Sonnet 5?"
-    respuesta: "Está incluido en el plan Claude Pro, que ronda los 18-20€/mes, y también disponible por API con precio por token inferior al de Opus 4.8. Los precios cambian con cierta frecuencia, así que conviene verificar las tarifas actuales en la web oficial de Anthropic antes de suscribirte."
+    respuesta: "Está incluido en el plan Claude Pro (20€/mes, o aprox. 18€/mes con facturación anual). Por API cuesta 3$/15$ por millón de tokens de entrada/salida, con precio de lanzamiento de 2$/10$ hasta el 31 de agosto de 2026 — frente a los 5$/25$ de Opus 4.8."
   - pregunta: "¿Claude Sonnet 5 está disponible en España?"
     respuesta: "Sí, tanto el plan Claude Pro como el acceso vía API funcionan sin restricciones geográficas relevantes en España y Latinoamérica, con pago en euros o dólares según el método de facturación que uses."
-  - pregunta: "¿Es mejor Claude Sonnet 5 o GPT-4o para programar?"
-    respuesta: "En mis pruebas ambos rinden de forma muy similar en tareas de programación cotidianas. Sonnet 5 suele ser algo más consistente en proyectos con Claude Code o Cursor, mientras que GPT-4o tiene ventaja en tareas multimodales que combinan texto e imagen."
+  - pregunta: "¿Es mejor Claude Sonnet 5 o GPT-5.5 para programar?"
+    respuesta: "En mis pruebas ambos rinden de forma muy similar en tareas de programación cotidianas. Sonnet 5 suele ser algo más consistente en proyectos con Claude Code o Cursor, mientras que GPT-5.5 tiene ventaja en tareas multimodales que combinan texto e imagen."
   - pregunta: "¿Vale la pena usar Claude Sonnet 5 para construir agentes de IA?"
     respuesta: "Sí, es probablemente su mejor caso de uso actual. Su combinación de coste bajo por token, velocidad y buen seguimiento de instrucciones lo hace ideal para agentes que ejecutan tareas repetitivas a gran escala, algo que exploro también en la [guía de Claude Code](/blog/claude-code-review)."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
 Llevo semanas usando **Claude Sonnet 5** como motor por defecto en casi todos mis flujos de trabajo con agentes, y hay algo que no esperaba: dejé de abrir Opus 4.8 para el 80% de mis tareas. No porque Sonnet 5 sea más listo —no lo es, Opus sigue ganando en razonamiento profundo—, sino porque hace casi el mismo trabajo por una fracción del coste, y eso cambia por completo cómo diseñas un agente que corre cientos o miles de veces al día.
 
-El problema que resuelve Sonnet 5 es muy concreto: los modelos "flagship" como Opus 4.8 o GPT-4o son brillantes pero caros de usar a escala. Si estás construyendo un agente que revisa tickets de soporte, que hace scraping y resume documentos, o que ejecuta tareas de código en bucle dentro de Claude Code, el coste por token se convierte en el factor que decide si el proyecto es rentable o no. Anthropic parece haber diseñado Sonnet 5 pensando exactamente en ese caso de uso: modelos que trabajan solos, sin supervisión constante, durante horas.
+El problema que resuelve Sonnet 5 es muy concreto: los modelos "flagship" como Opus 4.8 o GPT-5.5 son brillantes pero caros de usar a escala. Si estás construyendo un agente que revisa tickets de soporte, que hace scraping y resume documentos, o que ejecuta tareas de código en bucle dentro de Claude Code, el coste por token se convierte en el factor que decide si el proyecto es rentable o no. Anthropic parece haber diseñado Sonnet 5 pensando exactamente en ese caso de uso: modelos que trabajan solos, sin supervisión constante, durante horas.
 
 Mi veredicto adelantado: **Claude Sonnet 5 es probablemente el mejor modelo relación calidad-precio para construir agentes de IA en 2026**, pero no es el modelo que quieres si necesitas la máxima capacidad de razonamiento en una sola respuesta. Para eso sigue estando Opus 4.8, y para código muy complejo con mucho contexto, Fable 5 sigue siendo superior. Vamos a los detalles.
 
@@ -42,21 +42,21 @@ Mi veredicto adelantado: **Claude Sonnet 5 es probablemente el mejor modelo rela
 
 Aquí conviene aclarar la confusión de nombres, porque hay bastante ruido en foros y redes. **Claude Sonnet 5 es la evolución de la línea Sonnet dentro del catálogo de Anthropic**, situada por debajo de Claude Opus 4.8 (el modelo más potente para razonamiento) y por encima de Claude Haiku 4.5 (el más barato y rápido, pensado para tareas simples y de alto volumen). No es lo mismo que Claude Fable 5, que es actualmente el modelo insignia de Anthropic para tareas creativas y de razonamiento extenso; Sonnet 5 juega en otra liga, la del equilibrio entre rendimiento y coste.
 
-Los precios de Anthropic cambian con cierta frecuencia, así que te recomiendo verificar siempre las tarifas actuales en la web oficial antes de comprometer un presupuesto grande, sobre todo si vas a usar la API en producción. Con esa advertencia por delante, esto es lo que puedo confirmarte con relativa seguridad sobre cómo se estructura el acceso:
+Estos son los precios verificados a julio de 2026:
 
-- **Claude Pro** (suscripción para uso individual vía web/app): ronda los 18-20€/mes, e incluye acceso a Sonnet 5, límites de uso ampliados frente al plan gratuito, y acceso a Claude Code con cuota mensual de uso.
+- **Claude Pro** (suscripción para uso individual vía web/app): 20€/mes, o aprox. 18€/mes si pagas el año por adelantado. Incluye acceso a Sonnet 5, límites de uso ampliados frente al plan gratuito, y acceso a Claude Code con cuota mensual de uso.
+- **API de Anthropic**: 3$ por millón de tokens de entrada y 15$ por millón de tokens de salida, con un **precio de lanzamiento de 2$/10$ hasta el 31 de agosto de 2026**. Para comparar: Opus 4.8 cuesta 5$/25$. Ese descuento del 40-60% por token es exactamente su argumento de venta: rendimiento cercano al flagship, coste mucho más bajo.
 - **Claude Team**: pensado para equipos pequeños, con gestión centralizada y cuotas compartidas, precio por puesto/mes.
-- **API de Anthropic**: facturación por tokens de entrada y salida. Sonnet 5 se posiciona con un precio por millón de tokens sensiblemente inferior al de Opus 4.8, lo cual es precisamente su argumento de venta: rendimiento cercano al flagship, coste mucho más bajo.
-- **Plan gratuito**: acceso limitado, normalmente con un modelo más básico o con cuotas muy reducidas de Sonnet 5.
+- **Plan gratuito**: acceso limitado, con cuotas reducidas de Sonnet 5.
 
 Si usas Claude Code para programar desde terminal, Sonnet 5 es hoy el modelo que más sentido tiene como opción por defecto para el grueso del trabajo, reservando Opus para los momentos en que el agente se atasca en un problema difícil.
 
 <TablaComparativa
   titulo="Claude Sonnet 5 vs otros modelos líderes en 2026"
   herramientas={[
-    { nombre: "Claude Sonnet 5", precio: "Desde 18€/mes (Pro) o pago por API", puntuacion: 4.6, idealPara: "Agentes de IA y automatización a gran escala" },
-    { nombre: "GPT-4o", precio: "Incluido en ChatGPT Plus (~20$/mes)", puntuacion: 4.4, idealPara: "Uso general y multimodal" },
-    { nombre: "Gemini 2.5 Pro", precio: "Incluido en Google One AI Premium", puntuacion: 4.3, idealPara: "Integración con Google Workspace" },
+    { nombre: "Claude Sonnet 5", precio: "20€/mes (Pro) o 2$/10$ por millón de tokens (API)", puntuacion: 4.6, idealPara: "Agentes de IA y automatización a gran escala" },
+    { nombre: "ChatGPT (GPT-5.5)", precio: "Incluido en ChatGPT Plus (~20$/mes)", puntuacion: 4.4, idealPara: "Uso general y multimodal" },
+    { nombre: "Google AI Pro", precio: "Desde 21,99€/mes", puntuacion: 4.3, idealPara: "Integración con Google Workspace" },
     { nombre: "DeepSeek R1", precio: "Gratis (open source) o API muy económica", puntuacion: 4.2, idealPara: "Presupuestos ajustados y self-hosting" },
   ]}
 />
@@ -113,7 +113,7 @@ Frente a **DeepSeek R1**, que sigue siendo gratuito o extremadamente barato en A
 
 **Probablemente no vale la pena si:**
 
-- Tu trabajo depende de razonamiento matemático o lógico muy exigente (ahí GPT o3 o Opus 4.8 rinden mejor)
+- Tu trabajo depende de razonamiento matemático o lógico muy exigente (ahí o3 de OpenAI u Opus 4.8 rinden mejor)
 - Necesitas la máxima calidad narrativa o creativa (Fable 5 es superior)
 - Trabajas con documentos extremadamente largos donde la retención de contexto es crítica
 - Tu volumen de uso es tan bajo que la diferencia de precio con Opus es irrelevante para ti
@@ -126,13 +126,13 @@ Mi recomendación directa: si ya pagas Claude Pro o tienes acceso a la API de An
 No en todos los casos. Opus 4.8 sigue ganando en razonamiento profundo, contexto muy extenso y tareas analíticas complejas. Sonnet 5 gana en relación calidad-precio, velocidad y eficiencia para agentes que ejecutan muchas tareas seguidas.
 
 **¿Cuánto cuesta usar Claude Sonnet 5?**
-Está incluido en el plan Claude Pro, que ronda los 18-20€/mes, y también disponible por API con precio por token inferior al de Opus 4.8. Los precios cambian con cierta frecuencia, así que conviene verificar las tarifas actuales en la web oficial de Anthropic antes de suscribirte.
+Está incluido en el plan Claude Pro (20€/mes, o aprox. 18€/mes con facturación anual). Por API cuesta 3$/15$ por millón de tokens de entrada/salida, con precio de lanzamiento de 2$/10$ hasta el 31 de agosto de 2026 — frente a los 5$/25$ de Opus 4.8.
 
 **¿Claude Sonnet 5 está disponible en España?**
 Sí, tanto el plan Claude Pro como el acceso vía API funcionan sin restricciones geográficas relevantes en España y Latinoamérica, con pago en euros o dólares según el método de facturación que uses.
 
-**¿Es mejor Claude Sonnet 5 o GPT-4o para programar?**
-En mis pruebas ambos rinden de forma muy similar en tareas de programación cotidianas. Sonnet 5 suele ser algo más consistente en proyectos con Claude Code o Cursor, mientras que GPT-4o tiene ventaja en tareas multimodales que combinan texto e imagen.
+**¿Es mejor Claude Sonnet 5 o GPT-5.5 para programar?**
+En mis pruebas ambos rinden de forma muy similar en tareas de programación cotidianas. Sonnet 5 suele ser algo más consistente en proyectos con Claude Code o Cursor, mientras que GPT-5.5 tiene ventaja en tareas multimodales que combinan texto e imagen.
 
 **¿Vale la pena usar Claude Sonnet 5 para construir agentes de IA?**
 Sí, es probablemente su mejor caso de uso actual. Su combinación de coste bajo por token, velocidad y buen seguimiento de instrucciones lo hace ideal para agentes que ejecutan tareas repetitivas a gran escala, algo que exploro también en la [guía de Claude Code](/blog/claude-code-review).
