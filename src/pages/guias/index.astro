@@ -15,6 +15,24 @@ const schema = {
         "position": 1,
         "url": "https://iaenespanol.es/guias/chatbots-ia",
         "name": "Chatbots de IA en 2026: guía completa para elegir entre ChatGPT, Claude, Gemini y DeepSeek"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://iaenespanol.es/blog/mejores-ia-generacion-imagen-2026",
+        "name": "Las mejores IA para generar imágenes en 2026"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "url": "https://iaenespanol.es/blog/ia-para-emprendedores",
+        "name": "IA para emprendedores: herramientas que sustituyen a un equipo"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "url": "https://iaenespanol.es/blog/github-copilot-vs-cursor-review",
+        "name": "GitHub Copilot vs Cursor: ¿Cuál es el mejor asistente de código en 2026?"
       }
     ]
   }
@@ -28,34 +46,30 @@ const guias = [
     descripcion: 'Todo lo que necesitas saber para elegir entre ChatGPT, Claude, Gemini y DeepSeek. Qué son, cómo han evolucionado, cuál encaja con cada caso de uso y una comparativa completa de precios.',
     stats: ['4 chatbots analizados', '8 artículos de referencia', 'Actualizado junio 2026'],
     colores: ['#10A37F', '#DA7756', '#4285F4', '#4D6AF0'],
-    publicado: true,
   },
   {
-    href: null,
+    href: '/blog/mejores-ia-generacion-imagen-2026',
     categoria: 'Imágenes',
-    titulo: 'Generadores de imágenes con IA',
-    descripcion: 'Midjourney, DALL-E, Stable Diffusion y Flux comparados en detalle. Cuál usar según tu presupuesto, nivel técnico y tipo de imágenes que necesitas.',
-    stats: ['6 herramientas', 'Guía de prompts incluida'],
+    titulo: 'Las mejores IA para generar imágenes',
+    descripcion: 'Midjourney v8, Flux, DALL-E 3, Stable Diffusion y Adobe Firefly analizados a fondo. Cuál usar según tu presupuesto, nivel técnico y el tipo de imágenes que necesitas.',
+    stats: ['7 herramientas analizadas', 'Actualizado junio 2026'],
     colores: ['#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'],
-    publicado: false,
   },
   {
-    href: null,
+    href: '/blog/ia-para-emprendedores',
     categoria: 'Productividad',
-    titulo: 'IA para trabajar más rápido',
-    descripcion: 'Las mejores herramientas de IA para redacción, resumen de documentos, gestión del correo y automatización de tareas repetitivas. Con flujos de trabajo reales.',
-    stats: ['10+ herramientas', 'Casos de uso por profesión'],
+    titulo: 'IA para emprendedores',
+    descripcion: 'Las herramientas de IA que sustituyen a un equipo: marketing, código, diseño y atención al cliente sin contratar a nadie. Con el stack recomendado y su coste mensual real.',
+    stats: ['6 herramientas', 'Casos de uso reales'],
     colores: ['#0EA5E9', '#10B981', '#F97316', '#6366F1'],
-    publicado: false,
   },
   {
-    href: null,
+    href: '/blog/github-copilot-vs-cursor-review',
     categoria: 'Programación',
-    titulo: 'IA para programadores',
-    descripcion: 'GitHub Copilot, Cursor, Claude y las demás herramientas que han cambiado cómo se escribe código en 2026. Comparativa honesta para diferentes perfiles y stacks.',
-    stats: ['8 herramientas', 'Benchmarks por lenguaje'],
+    titulo: 'GitHub Copilot vs Cursor',
+    descripcion: 'Los dos asistentes de código más usados, comparados tras usarlos en proyectos reales: productividad, precio, integración y un veredicto honesto según tu perfil.',
+    stats: ['Probados en proyectos reales', 'Actualizado junio 2026'],
     colores: ['#1D4ED8', '#059669', '#DC2626', '#7C3AED'],
-    publicado: false,
   },
 ];
 ---
@@ -81,7 +95,7 @@ const guias = [
   <!-- GRID DE GUÍAS -->
   <section class="wrap guides-section">
     <div class="guides-grid">
-      {guias.map(g => g.publicado ? (
+      {guias.map(g => (
         <a href={g.href} class="guide-card">
           <div class="guide-visual">
             <div class="guide-dots" aria-hidden="true">
@@ -100,27 +114,6 @@ const guias = [
             <span class="guide-cta">Leer la guía →</span>
           </div>
         </a>
-      ) : (
-        <div class="guide-card guide-card--soon">
-          <div class="guide-visual">
-            <div class="guide-dots" aria-hidden="true">
-              {g.colores.map(c => (
-                <span class="guide-dot" style={`background:${c}`}></span>
-              ))}
-            </div>
-          </div>
-          <div class="guide-body">
-            <div class="guide-cat-row">
-              <span class="guide-cat">{g.categoria}</span>
-              <span class="guide-soon-badge">Próximamente</span>
-            </div>
-            <h2 class="guide-title">{g.titulo}</h2>
-            <p class="guide-desc">{g.descripcion}</p>
-            <ul class="guide-stats">
-              {g.stats.map(s => <li>{s}</li>)}
-            </ul>
-          </div>
-        </div>
       ))}
     </div>
   </section>
@@ -292,35 +285,4 @@ const guias = [
     transition: gap 0.2s ease;
   }
   .guide-card:hover .guide-cta { gap: 9px; }
-
-  /* ── PLACEHOLDER ── */
-  .guide-card--soon {
-    opacity: 0.55;
-    cursor: default;
-    pointer-events: none;
-  }
-  .guide-card--soon .guide-visual {
-    filter: grayscale(0.4);
-  }
-  .guide-card--soon .guide-dot {
-    opacity: 0.5;
-  }
-  .guide-cat-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .guide-soon-badge {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink3);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 3px 9px;
-    border-radius: 6px;
-  }
 </style>
