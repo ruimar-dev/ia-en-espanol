@@ -4,6 +4,11 @@
       "source": "/blog/midjourney-v6-guia-completa-para-principiantes",
       "destination": "/blog/midjourney-v8-guia-principiantes",
       "permanent": true
+    },
+    {
+      "source": "/herramientas/(neuronwriter|writesonic|suno|udio|gamma|otterai)",
+      "destination": "/herramientas",
+      "permanent": true
     }
   ],
   "headers": [

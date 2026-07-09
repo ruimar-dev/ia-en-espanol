@@ -3,17 +3,28 @@ import Layout from '../../layouts/Layout.astro';
 import { CATEGORIA_LABELS, CATEGORIAS } from '../../content/config';
 import type { Categoria } from '../../content/config';
 import { herramientas } from '../../data/herramientas';
+import { tagMatchesTool } from '../../data/hubMatching';
+import { getCollection } from 'astro:content';
+
+// Mismo criterio que getStaticPaths de [slug].astro: solo tienen hub las herramientas
+// con al menos un artículo publicado. Las demás enlazan a su web oficial.
+const articulos = await getCollection('blog', ({ data }) => !data.draft);
+const conHub = new Set(
+  herramientas
+    .filter((h) => articulos.some((a) => a.data.herramientas.some((t) => tagMatchesTool(t, h.nombre))))
+    .map((h) => h.slug)
+);
 ---
 
 <Layout
   title="Directorio de herramientas IA — IA en Español"
-  description="El catálogo completo de herramientas de IA que hemos probado, con su nota y enlace a la review. Filtra por categoría."
+  description="El catálogo completo de herramientas de IA que hemos probado, con su nota y enlace a la review o a su web oficial. Filtra por categoría."
 >
   <!-- Cabecera -->
   <section class="wrap" style="padding-top:64px;">
     <span style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink3);">{herramientas.length} herramientas analizadas</span>
     <h1 style="margin:10px 0 0; font-family:'Newsreader',serif; font-weight:500; font-size:clamp(2.5rem,5vw,3.375rem); line-height:1.02; letter-spacing:-0.025em; color:var(--ink);">Herramientas</h1>
-    <p style="margin:18px 0 0; font-size:19px; line-height:1.55; color:var(--ink2); max-width:560px;">El catálogo completo de herramientas que hemos probado, con su nota y enlace a la review. Filtra por categoría.</p>
+    <p style="margin:18px 0 0; font-size:19px; line-height:1.55; color:var(--ink2); max-width:560px;">El catálogo completo de herramientas que hemos probado, con su nota y enlace a la review o a su web oficial. Filtra por categoría.</p>
 
     <!-- Filtros -->
     <div style="display:flex; flex-wrap:wrap; gap:9px; margin-top:36px;" role="group" aria-label="Filtrar por categoría">
@@ -35,9 +46,11 @@ import { herramientas } from '../../data/herramientas';
   <!-- Grid -->
   <section class="wrap" style="padding-top:36px; padding-bottom:80px;">
     <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px;">
-      {herramientas.map(h => (
+      {herramientas.map(h => { const tieneHub = conHub.has(h.slug); return (
         <a
-          href={`/herramientas/${h.slug}`}
+          href={tieneHub ? `/herramientas/${h.slug}` : h.url}
+          target={tieneHub ? undefined : '_blank'}
+          rel={tieneHub ? undefined : (h.afiliado ? 'sponsored noopener noreferrer' : 'noopener noreferrer')}
           style="display:block; text-decoration:none;"
           class="herramienta-item"
           data-category={h.categoria}
@@ -63,11 +76,11 @@ import { herramientas } from '../../data/herramientas';
             <span style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--muted); margin-top:4px;">{CATEGORIA_LABELS[h.categoria]}</span>
             <p style="margin:12px 0 0; font-size:14px; line-height:1.5; color:var(--ink3); flex:1;">{h.descripcion}</p>
             <span style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:var(--ink);">
-              Ver review <span style="color:var(--accent);">→</span>
+              {tieneHub ? 'Ver review' : 'Visitar web'} <span style="color:var(--accent);">{tieneHub ? '→' : '↗'}</span>
             </span>
           </article>
         </a>
-      ))}
+      ); })}
     </div>
   </section>
 </Layout>
