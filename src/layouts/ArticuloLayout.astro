@@ -526,6 +526,20 @@ const relacionados = todos
     display: block;
   }
 
+  /* Capturas con pie de foto */
+  :global(.article-prose figure) {
+    margin: 8px 0 28px;
+  }
+  :global(.article-prose figure img) {
+    margin: 0 0 10px;
+  }
+  :global(.article-prose figcaption) {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ink3);
+  }
+
   /* Tables */
   :global(.article-prose table) {
     width: 100%;
