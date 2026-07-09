@@ -3,20 +3,20 @@ title: "Cursor vs Windsurf: qué IDE con IA elegir en 2026"
 description: "Comparo Cursor y Windsurf a fondo: rendimiento, precios, modelos disponibles y casos de uso reales para que elijas el IDE con IA que mejor encaja en tu flujo de trabajo."
 date: 2026-07-09
 category: codigo
-herramientas: ["Cursor", "Windsurf"]
+herramientas: ["Cursor", "Windsurf", "GitHub Copilot", "Claude Code"]
 imagen: "/images/cursor-vs-windsurf.svg"
 faqs:
   - pregunta: "¿Cursor o Windsurf, cuál es mejor para principiantes que están aprendiendo a programar?"
     respuesta: "Windsurf suele resultar algo más amigable al principio porque Cascade automatiza más pasos y da menos sensación de \"editor técnico complejo\". Sin embargo, para aprender de verdad conviene revisar cada cambio con calma, así que Cursor con su sistema de diffs explícitos también es una buena opción si estás dispuesto a leer el código que se genera."
   - pregunta: "¿Cursor y Windsurf tienen plan gratuito disponible en España?"
-    respuesta: "Sí, ambos ofrecen un plan gratuito con funcionalidad limitada (menos solicitudes o créditos de IA al mes) disponible desde cualquier país, incluida España. Es suficiente para probar el flujo de trabajo, pero se queda corto rápidamente si programas a diario con tareas complejas."
+    respuesta: "Sí, ambos ofrecen un plan gratuito con funcionalidad limitada (cuotas de uso de IA reducidas) disponible desde cualquier país, incluida España. Es suficiente para probar el flujo de trabajo, pero se queda corto rápidamente si programas a diario con tareas complejas."
   - pregunta: "¿Vale la pena pagar por Cursor o Windsurf si ya tengo GitHub Copilot?"
     respuesta: "Depende de qué necesites: Copilot destaca por su integración nativa con GitHub y su autocompletado sólido, pero tanto Cursor como Windsurf ofrecen modos agente más potentes para tareas multiarchivo. Muchos desarrolladores usan Copilot para código diario simple y Cursor o Windsurf para tareas grandes de refactorización o features completas."
   - pregunta: "¿Qué modelos de IA puedo usar dentro de Cursor y Windsurf?"
-    respuesta: "Ambos permiten elegir entre varios modelos según tu plan, normalmente incluyendo opciones de Anthropic como Claude Sonnet 4.6 o Claude Opus 4.8, modelos de la familia o3 de OpenAI, y en ocasiones Gemini 2.5 Pro de Google. La disponibilidad exacta cambia con el tiempo, así que conviene revisar el selector de modelos dentro de cada app."
+    respuesta: "Ambos permiten elegir entre varios modelos según tu plan: opciones de Anthropic como Claude Sonnet 5, Claude Fable 5 o Claude Opus 4.8, GPT-5.5 y GPT-5.3 Codex de OpenAI, y Gemini 3.1 Pro de Google. Además, Cursor suma modelos propios como Composer 2.5, y Windsurf su modelo SWE-1.5. La disponibilidad exacta cambia con el tiempo, así que conviene revisar el selector de modelos dentro de cada app."
   - pregunta: "¿Cursor o Windsurf funcionan bien con proyectos grandes en producción?"
     respuesta: "Cursor tiende a ser la opción más segura para producción por su sistema de revisión de diffs paso a paso, que reduce el riesgo de cambios no auditados. Windsurf puede funcionar igual de bien si complementas su flujo autónomo con una suite de tests sólida que valide cada cambio antes de hacer merge."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
@@ -31,23 +31,23 @@ El spoiler: **Cursor sigue siendo el más completo y potente para quien quiere c
 
 Los dos parten de la misma base: **Visual Studio Code**, así que si ya usas extensiones, temas o atajos de VS Code, la curva de adaptación es mínima. Ambos permiten chatear con un modelo sobre tu código, generar funciones completas, refactorizar archivos enteros y ejecutar cambios multiarchivo mediante un "modo agente".
 
-**Cursor**, desarrollado por Anysphere, nació como una capa de IA muy pulida sobre el editor clásico. Su punto fuerte histórico ha sido el autocompletado predictivo (Tab) que no solo sugiere la siguiente línea, sino que anticipa ediciones en varios puntos del archivo a la vez. Con el tiempo sumó un modo Composer/Agent que permite pedirle tareas completas ("añade autenticación con JWT a este backend") y que el propio Cursor decida qué archivos tocar.
+**Cursor**, desarrollado por Anysphere —adquirida por SpaceX en junio de 2026 por unos 60.000 millones de dólares, un movimiento que ha abierto debate sobre si mantendrá su neutralidad ofreciendo modelos de Anthropic, OpenAI y Google a la vez—, nació como una capa de IA muy pulida sobre el editor clásico. Su punto fuerte histórico ha sido el autocompletado predictivo (Tab) que no solo sugiere la siguiente línea, sino que anticipa ediciones en varios puntos del archivo a la vez. Con el tiempo sumó un modo Composer/Agent que permite pedirle tareas completas ("añade autenticación con JWT a este backend") y que el propio Cursor decida qué archivos tocar. Le dediqué una [review completa a Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) si quieres el análisis en profundidad.
 
-**Windsurf**, creado por el equipo detrás de Codeium, apostó desde el principio por un asistente llamado **Cascade**, diseñado para trabajar de forma más autónoma dentro del repositorio: entiende el contexto del proyecto completo, ejecuta comandos de terminal, corre tests y va iterando sin que tengas que microgestionar cada paso. La idea de Windsurf es que te sientas menos "programando con ayuda" y más "supervisando a un compañero junior que trabaja rápido".
+**Windsurf**, nacido del equipo de Codeium y propiedad de **Cognition** (los creadores del agente Devin) desde 2025, apostó desde el principio por un asistente llamado **Cascade**, diseñado para trabajar de forma más autónoma dentro del repositorio: entiende el contexto del proyecto completo, ejecuta comandos de terminal, corre tests y va iterando sin que tengas que microgestionar cada paso. La idea de Windsurf es que te sientas menos "programando con ayuda" y más "supervisando a un compañero junior que trabaja rápido". También le dediqué su propia [review de Windsurf](/blog/windsurf-review) con varias semanas de uso.
 
-En cuanto a modelos, ambos te dejan elegir entre varias familias: normalmente puedes usar **Claude Sonnet 4.6** o **Claude Opus 4.8** de Anthropic, modelos de la familia **o3** de OpenAI, y en algunos planes acceso a **Gemini 2.5 Pro** de Google. Esto es relevante porque el rendimiento real no depende solo del IDE, sino de qué modelo tienes seleccionado en cada momento.
+En cuanto a modelos, ambos te dejan elegir entre varias familias: **Claude Sonnet 5**, **Claude Fable 5** y **Claude Opus 4.8** de Anthropic, **GPT-5.5** y **GPT-5.3 Codex** de OpenAI, y **Gemini 3.1 Pro** de Google. Además, cada uno tiene modelos propios: Cursor con **Composer 2.5** y Windsurf con **SWE-1.5**, desarrollado tras la llegada del equipo de Devin. Esto es relevante porque el rendimiento real no depende solo del IDE, sino de qué modelo tienes seleccionado en cada momento.
 
-Sobre precios: **los planes cambian con cierta frecuencia en ambas plataformas**, así que trátalos como referencia y confirma en las webs oficiales antes de suscribirte. En el momento de escribir esto, Cursor mantiene un plan gratuito limitado, un plan Pro de pago mensual pensado para uso individual intensivo, y planes de equipo con gestión centralizada de facturación y políticas de privacidad de código. Windsurf sigue una estructura parecida: plan gratuito con cuota reducida de "créditos" de IA, plan Pro individual y planes de equipo/empresa con controles adicionales. Ninguno de los dos es gratis si lo usas a diario en serio: en algún momento vas a pagar por capacidad de cómputo con los modelos más potentes.
+Sobre precios, la noticia de 2026 es la paridad: **ambos cuestan 20 $/mes en su plan Pro**. Cursor ofrece un plan Hobby gratuito, Pro a 20 $/mes (16 $/mes si pagas anual), Pro+ a 60 $ y Ultra a 200 $ para uso muy intensivo. Windsurf, que durante un tiempo fue la opción barata a 15 $, subió a 20 $/mes en marzo de 2026, cuando retiró su sistema de créditos y lo sustituyó por cuotas diarias y semanales de uso; completa la gama con un plan Max de 200 $ y Teams a 40 $ por usuario. Ninguno de los dos es gratis si lo usas a diario en serio: en algún momento vas a pagar por capacidad de cómputo con los modelos más potentes.
 
 Si vienes de comparar con otras opciones del mercado, te puede interesar también leer [nuestra comparativa de GitHub Copilot frente a Cursor](/blog/github-copilot-vs-cursor-review), porque Copilot sigue siendo el tercer actor relevante en esta conversación, especialmente si ya vives dentro del ecosistema de GitHub.
 
 <TablaComparativa
   titulo="Cursor vs Windsurf vs otras alternativas de IDE con IA"
   herramientas={[
-    { nombre: "Cursor", precio: "Gratis limitado / Pro de pago mensual", puntuacion: 4.7, idealPara: "Desarrolladores que quieren control fino y el mejor autocompletado" },
-    { nombre: "Windsurf", precio: "Gratis limitado / Pro de pago mensual", puntuacion: 4.5, idealPara: "Equipos que priorizan flujo autónomo tipo agente" },
-    { nombre: "GitHub Copilot", precio: "Plan individual y business de pago mensual", puntuacion: 4.3, idealPara: "Quien ya vive en el ecosistema GitHub y quiere integración nativa" },
-    { nombre: "Claude Code", precio: "Incluido según plan de Claude / uso por API", puntuacion: 4.6, idealPara: "Desarrolladores que prefieren trabajar desde terminal" },
+    { nombre: "Cursor", precio: "Gratis limitado / Pro ~20$ al mes", puntuacion: 4.7, idealPara: "Desarrolladores que quieren control fino y el mejor autocompletado" },
+    { nombre: "Windsurf", precio: "Gratis limitado / Pro ~20$ al mes", puntuacion: 4.5, idealPara: "Equipos que priorizan flujo autónomo tipo agente" },
+    { nombre: "GitHub Copilot", precio: "Gratis limitado / Pro ~10$ al mes", puntuacion: 4.3, idealPara: "Quien ya vive en el ecosistema GitHub y quiere integración nativa" },
+    { nombre: "Claude Code", precio: "Incluido en Claude Pro (20 €/mes) / uso por API", puntuacion: 4.3, idealPara: "Desarrolladores que prefieren trabajar desde terminal" },
   ]}
 />
 
@@ -55,7 +55,7 @@ Si vienes de comparar con otras opciones del mercado, te puede interesar tambié
 
 Aquí es donde de verdad se nota la diferencia de filosofía. Probé ambos en un proyecto real: una API en Node.js con TypeScript, unos 40 archivos, tests con Jest y una base de datos PostgreSQL con Prisma. La tarea: añadir un sistema de rate limiting por usuario y adaptar los tests existentes.
 
-Con **Cursor**, usando Claude Sonnet 4.6 en modo Agent, tardé unos **12 minutos** en tener el rate limiting funcionando: el modelo identificó correctamente el middleware existente, propuso los cambios archivo por archivo y me dejó revisar cada diff antes de aplicarlo. Eso es clave: Cursor te muestra los cambios propuestos como un diff que puedes aceptar, rechazar o editar línea por línea. Para código en producción, esa granularidad de control vale oro.
+Con **Cursor**, usando Claude Sonnet 5 en modo Agent, tardé unos **12 minutos** en tener el rate limiting funcionando: el modelo identificó correctamente el middleware existente, propuso los cambios archivo por archivo y me dejó revisar cada diff antes de aplicarlo. Eso es clave: Cursor te muestra los cambios propuestos como un diff que puedes aceptar, rechazar o editar línea por línea. Para código en producción, esa granularidad de control vale oro.
 
 Con **Windsurf**, la misma tarea con Cascade tardó **8 minutos**, más rápido porque el agente ejecutó varios pasos seguidos sin pedirme confirmación en cada uno: creó el middleware, lo integró, corrió los tests, detectó que dos fallaban, los corrigió y volvió a correr todo. El resultado final fue correcto, pero tuve menos visibilidad de qué había tocado exactamente hasta que revisé el diff acumulado al final. Para prototipar rápido, esto es una ventaja real. Para código sensible donde necesitas auditar cada cambio antes de que ocurra, lo sentí más arriesgado.
 
@@ -65,13 +65,13 @@ También noté diferencias en la comprensión de contexto de proyectos monorepo.
 
 ## Precio y relación calidad-precio: ¿cuál da más por tu dinero?
 
-Ninguno de los dos es la opción barata del mercado si lo comparas con simplemente usar ChatGPT o Claude de forma manual copiando y pegando código, pero ambos te ahorran tanto tiempo que la diferencia de precio entre ellos casi no importa comparada con el tiempo que ganas.
+Ninguno de los dos es la opción barata del mercado si lo comparas con simplemente usar ChatGPT o Claude de forma manual copiando y pegando código, pero desde marzo de 2026 la pregunta del precio tiene respuesta corta: **los dos cuestan lo mismo, 20 $/mes en su plan individual**. La decisión ya no va de dinero, sino de qué te da cada uno a cambio.
 
-Con **Cursor Pro**, lo que pagas incluye un volumen generoso de solicitudes rápidas al modelo más potente disponible y solicitudes "lentas" ilimitadas cuando se agota tu cuota rápida. En la práctica, para un desarrollador que trabaja 6-8 horas al día con el modo Agent activo, es fácil acercarse al límite de solicitudes rápidas antes de fin de mes si el proyecto es grande.
+Con **Cursor Pro (20 $/mes, 16 $/mes si pagas anual)**, lo que pagas incluye autocompletado Tab ilimitado, el modo Auto sin límites (Cursor elige por ti un modelo eficiente) y una bolsa de unos 20 $ al mes de uso de modelos frontier seleccionados a mano. En la práctica, para un desarrollador que trabaja 6-8 horas al día con el modo Agent activo y modelos potentes, es fácil agotar esa bolsa antes de fin de mes si el proyecto es grande — ahí es donde Anysphere te empuja hacia Pro+ (60 $) o Ultra (200 $).
 
-Con **Windsurf Pro**, el sistema de créditos por acción de IA (cada "flow action" consume créditos) puede sentirse más restrictivo en proyectos donde Cascade ejecuta muchos pasos automáticos en cadena, porque cada paso —crear archivo, correr comando, editar— puede contar como una acción. En mi experiencia, en semanas de trabajo intenso con tareas multiarchivo constantes, agoté los créditos del plan Pro antes que la cuota equivalente de Cursor.
+Con **Windsurf Pro (20 $/mes)**, el antiguo sistema de créditos por acción —que penalizaba justo el punto fuerte de Cascade, las cadenas largas de pasos automáticos— desapareció en marzo de 2026. Ahora funciona con cuotas diarias y semanales de uso, un esquema más predecible: sabes cuánto puedes pedirle al agente cada día sin llevar contabilidad de créditos. En semanas de trabajo intenso con tareas multiarchivo constantes he llegado a tocar techo de la cuota semanal, pero se gestiona mejor que el sistema anterior. Para uso extremo existe el plan Max (200 $), equivalente al Ultra de Cursor.
 
-Dicho esto, **los modelos de precios de ambas empresas cambian con relativa frecuencia** —Cursor y Windsurf han ajustado sus políticas de créditos y cuotas más de una vez en los últimos meses— así que no tomes estas cifras como definitivas. Antes de suscribirte, revisa la página de precios oficial de cada una y, si puedes, prueba el plan gratuito una semana con tu proyecto real antes de decidir.
+Dicho esto, ambas empresas han ajustado sus planes más de una vez en el último año —el cambio de créditos a cuotas de Windsurf es el ejemplo reciente—, así que antes de suscribirte echa un vistazo a la página de precios oficial y, si puedes, prueba el plan gratuito una semana con tu proyecto real.
 
 Si tu presupuesto es ajustado y programas sobre todo desde terminal sin necesidad de un IDE gráfico completo, también vale la pena que mires [Claude Code, el asistente de programación en terminal](/blog/claude-code-review), que factura por uso de API y puede salir más barato en proyectos pequeños o tareas puntuales.
 
@@ -116,13 +116,13 @@ Donde ambos fallan de forma parecida: en proyectos con lenguajes muy nicho o fra
 Windsurf suele resultar algo más amigable al principio porque Cascade automatiza más pasos y da menos sensación de "editor técnico complejo". Sin embargo, para aprender de verdad conviene revisar cada cambio con calma, así que Cursor con su sistema de diffs explícitos también es una buena opción si estás dispuesto a leer el código que se genera.
 
 **¿Cursor y Windsurf tienen plan gratuito disponible en España?**
-Sí, ambos ofrecen un plan gratuito con funcionalidad limitada (menos solicitudes o créditos de IA al mes) disponible desde cualquier país, incluida España. Es suficiente para probar el flujo de trabajo, pero se queda corto rápidamente si programas a diario con tareas complejas.
+Sí, ambos ofrecen un plan gratuito con funcionalidad limitada (cuotas de uso de IA reducidas) disponible desde cualquier país, incluida España. Es suficiente para probar el flujo de trabajo, pero se queda corto rápidamente si programas a diario con tareas complejas.
 
 **¿Vale la pena pagar por Cursor o Windsurf si ya tengo GitHub Copilot?**
 Depende de qué necesites: Copilot destaca por su integración nativa con GitHub y su autocompletado sólido, pero tanto Cursor como Windsurf ofrecen modos agente más potentes para tareas multiarchivo. Muchos desarrolladores usan Copilot para código diario simple y Cursor o Windsurf para tareas grandes de refactorización o features completas.
 
 **¿Qué modelos de IA puedo usar dentro de Cursor y Windsurf?**
-Ambos permiten elegir entre varios modelos según tu plan, normalmente incluyendo opciones de Anthropic como Claude Sonnet 4.6 o Claude Opus 4.8, modelos de la familia o3 de OpenAI, y en ocasiones Gemini 2.5 Pro de Google. La disponibilidad exacta cambia con el tiempo, así que conviene revisar el selector de modelos dentro de cada app.
+Ambos permiten elegir entre varios modelos según tu plan: opciones de Anthropic como Claude Sonnet 5, Claude Fable 5 o Claude Opus 4.8, GPT-5.5 y GPT-5.3 Codex de OpenAI, y Gemini 3.1 Pro de Google. Además, Cursor suma modelos propios como Composer 2.5, y Windsurf su modelo SWE-1.5. La disponibilidad exacta cambia con el tiempo, así que conviene revisar el selector de modelos dentro de cada app.
 
 **¿Cursor o Windsurf funcionan bien con proyectos grandes en producción?**
 Cursor tiende a ser la opción más segura para producción por su sistema de revisión de diffs paso a paso, que reduce el riesgo de cambios no auditados. Windsurf puede funcionar igual de bien si complementas su flujo autónomo con una suite de tests sólida que valide cada cambio antes de hacer merge.
