@@ -17,13 +17,13 @@ faqs:
     respuesta: "Solo si realmente usas cada herramienta para tareas distintas y las agotas mensualmente. Es habitual acumular suscripciones que apenas se usan; te recomiendo revisar cada tres meses cuáles utilizas de verdad y cancelar el resto."
   - pregunta: "¿Se nota si un cliente recibe un texto escrito con IA sin revisar?"
     respuesta: "Sí, casi siempre. Los clientes que ya te conocen detectan cambios de tono o frases genéricas. La clave está en usar la IA para el primer borrador y siempre revisar, ajustar y añadir tu voz antes de enviar cualquier comunicación, especialmente en momentos delicados como negociaciones o quejas."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
-Llevo cuatro años facturando como freelance (copywriting y consultoría de contenido) y hace dos que mi facturación mensual no ha bajado, pero mis horas frente al teclado sí. La diferencia no es que trabaje menos duro: es que uso **IA para freelancers** en cada parte del proceso que antes me robaba tiempo sin generar ingresos directos — presupuestos, emails de seguimiento, investigación previa, primeros borradores.
+Llevo años trabajando por cuenta propia en proyectos digitales —contenido, análisis de herramientas de IA, desarrollo web— y desde hace tiempo mi facturación mensual no baja, pero mis horas frente al teclado sí. La diferencia no es que trabaje menos duro: es que uso **IA para freelancers** en cada parte del proceso que antes me robaba tiempo sin generar ingresos directos — presupuestos, emails de seguimiento, investigación previa, primeros borradores.
 
 Esto no es un artículo sobre "la IA te hará rico sin esfuerzo". Es lo contrario: es sobre identificar las horas muertas de tu negocio (las que no facturas pero que tampoco puedes evitar) y automatizarlas con herramientas concretas, para que las horas que sí facturas rindan más. Si eres autónomo, freelance o llevas tu propio estudio, esto te afecta directamente al bolsillo.
 
@@ -42,7 +42,7 @@ Las herramientas que uso no son exóticas ni caras. Son las mismas que probablem
   herramientas={[
     { nombre: "ChatGPT (Plus)", precio: "~20$/mes", puntuacion: 4.6, idealPara: "Borradores, brainstorming y respuestas rápidas a clientes" },
     { nombre: "Claude (Pro)", precio: "~20$/mes", puntuacion: 4.7, idealPara: "Documentos largos, contratos y análisis de briefings" },
-    { nombre: "Notion AI", precio: "Incluido en planes de pago de Notion", puntuacion: 4.3, idealPara: "Organización de proyectos, notas y bases de clientes" },
+    { nombre: "Notion AI", precio: "Incluido en plan Business (20 US$/usuario/mes)", puntuacion: 4.3, idealPara: "Organización de proyectos, notas y bases de clientes" },
     { nombre: "Perplexity AI", precio: "Gratis / Pro ~20$/mes", puntuacion: 4.5, idealPara: "Investigación rápida sobre clientes y sectores" },
   ]}
 />
@@ -55,9 +55,17 @@ Aquí es donde la teoría se vuelve útil o no. Te cuento tres flujos concretos 
 
 **Propuestas comerciales en 15 minutos en vez de 90.** Cuando un cliente potencial me escribe describiendo su proyecto, antes tardaba entre hora y media y dos horas en redactar una propuesta personalizada: entender el brief, estructurar el alcance, definir precios, redactar con un tono profesional pero cercano. Ahora le paso el brief completo a Claude (uso [Claude Fable 5](/blog/claude-fable-5-review) para esto porque maneja mejor documentos largos y mantiene coherencia en textos extensos) con un prompt que incluye mi estructura habitual de propuestas y mis tarifas base. Obtengo un primer borrador en dos minutos que reviso, ajusto tono y cifras, y lo envío. Todo el proceso: 15-20 minutos. La calidad no ha bajado porque yo sigo poniendo el criterio final, solo que ya no parto de una página en blanco.
 
-**Investigación de clientes antes de una llamada.** Antes de cualquier llamada comercial, uso Perplexity para investigar la empresa, su sector, noticias recientes y posibles puntos de dolor. Lo que antes me llevaba 30-40 minutos de búsquedas dispersas en Google ahora son 8-10 minutos con fuentes citadas que puedo verificar. Esto me ha permitido llegar a llamadas con preguntas más afiladas, lo cual se nota directamente en la tasa de conversión de propuestas: de un 30% aproximado hace dos años a un 45% actual (aunque aquí también influyen otros factores, no solo la IA).
+**Investigación de clientes antes de una llamada.** Antes de cualquier llamada comercial, uso Perplexity para investigar la empresa, su sector, noticias recientes y posibles puntos de dolor. Lo que antes me llevaba 30-40 minutos de búsquedas dispersas en Google ahora son 8-10 minutos con fuentes citadas que puedo verificar. Esto me ha permitido llegar a llamadas con preguntas más afiladas, lo cual se nota directamente en la tasa de conversión de propuestas (aunque aquí también influyen otros factores, no solo la IA).
 
 **Gestión de seguimientos y recordatorios.** Uso Notion con su función de IA integrada para llevar el pipeline de clientes: quién me debe respuesta, cuándo hice el último follow-up, qué se acordó en cada reunión. Le pido resúmenes automáticos de mis notas de llamadas y genera recordatorios de seguimiento. No es la parte más "impresionante" del flujo, pero es la que más dinero me ha hecho recuperar: proyectos que se me habían quedado en el limbo por no dar seguimiento a tiempo.
+
+<BannerAfiliado
+  titulo="Notion AI — Tu pipeline de clientes en orden"
+  descripcion="Centraliza propuestas, seguimientos y notas de reuniones. La IA de Notion resume tus llamadas, rellena informes y te recuerda a quién debes responder."
+  cta="Probar Notion AI"
+  url="https://notion.so"
+  badge="Afiliado"
+/>
 
 Si escribes contenido para redes sociales como parte de tus servicios, te recomiendo revisar también [cómo crear contenido para redes sociales con IA](/blog/crear-contenido-redes-sociales-ia), porque muchos de esos flujos son directamente aplicables a la parte comercial de tu freelance.
 
@@ -69,7 +77,7 @@ Aquí toca ser honesto, porque venderte esto como una solución sin fisuras ser�
 
 **Los primeros borradores necesitan tu voz, siempre.** Si envías directamente lo que genera la IA sin pasar tu propio filtro, se nota. Los clientes que llevan tiempo trabajando contigo notan cuando un email "no suena a ti". Yo uso la IA para estructurar y para el primer 70% del texto, pero el cierre, los matices y cualquier cosa delicada (un rechazo, una subida de tarifas, una queja) la escribo yo entero.
 
-**El coste se acumula si no controlas las suscripciones.** Es tentador suscribirte a cinco herramientas porque "cada una hace algo distinto". Yo caí en esa trampa el primer año: llegué a pagar por ChatGPT Plus, Claude Pro, Notion AI, Perplexity Pro y una herramienta de generación de imágenes que apenas usaba. Eso son fácilmente 70-80 dólares al mes en suscripciones para un freelance que factura de forma irregular. Hice limpieza y me quedé con dos herramientas core. Si trabajas con programación además de gestión de negocio, te puede interesar [comparar opciones en Cursor vs Windsurf](/blog/cursor-vs-windsurf) para no duplicar gasto en asistentes de código que hacen lo mismo.
+**El coste se acumula si no controlas las suscripciones.** Es tentador suscribirte a cinco herramientas porque "cada una hace algo distinto". Yo caí en esa trampa al principio: llegué a pagar por ChatGPT Plus, Claude Pro, Notion AI, Perplexity Pro y una herramienta de generación de imágenes que apenas usaba. Eso son fácilmente 70-80 dólares al mes en suscripciones para un freelance que factura de forma irregular. Hice limpieza y me quedé con dos herramientas core. Si trabajas con programación además de gestión de negocio, te puede interesar [comparar opciones en Cursor vs Windsurf](/blog/cursor-vs-windsurf) para no duplicar gasto en asistentes de código que hacen lo mismo.
 
 **No sustituye la relación humana con el cliente.** Un cliente que lleva contigo tres años no quiere sentir que le respondes con plantillas de IA. Reservo el uso más intensivo de estas herramientas para prospección y clientes nuevos, no para las relaciones ya consolidadas.
 
