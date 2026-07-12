@@ -3,46 +3,45 @@ title: "Cómo crear un currículum con IA que sí llame la atención (2026)"
 description: "Guía práctica para crear un currículum con IA usando ChatGPT, Claude y Gemini. Ejemplos reales, errores comunes y cómo pasar los filtros ATS en 2026."
 date: 2026-07-12
 category: productividad
-herramientas: ["ChatGPT", "Claude"]
+herramientas: ["ChatGPT", "Claude", "Gemini", "Notion AI"]
 imagen: "/images/crear-curriculum-ia.svg"
 faqs:
   - pregunta: "¿Es gratis crear un currículum con IA?"
-    respuesta: "Sí, puedes hacerlo con las versiones gratuitas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para redactar y adaptar un CV completo en una sesión. Las versiones de pago (alrededor de 20€-20$ al mes según la herramienta) aportan más contexto y menos límites, útil si estás aplicando a muchas ofertas distintas a la vez."
+    respuesta: "Sí, puedes hacerlo con las versiones gratuitas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para redactar y adaptar un CV completo en una sesión. Las versiones de pago (entre 20 y 22 € al mes según la herramienta) aportan más contexto y menos límites, útil si estás aplicando a muchas ofertas distintas a la vez."
   - pregunta: "¿ChatGPT o Claude es mejor para redactar un currículum?"
-    respuesta: "En mi experiencia, Claude tiende a mantener un tono más natural y menos \"corporativo\" en bullets largos, mientras que ChatGPT con o3 es más estricto ajustando límites exactos de longitud y formato. Puedes leer la [comparativa completa entre ChatGPT y Claude en 2026](/blog/chatgpt-vs-claude-2026) para decidir según tu caso."
+    respuesta: "En mi experiencia, Claude tiende a mantener un tono más natural y menos \"corporativo\" en bullets largos, mientras que ChatGPT con GPT-5.6 Thinking es más estricto ajustando límites exactos de longitud y formato. Puedes leer la [comparativa completa entre ChatGPT y Claude en 2026](/blog/chatgpt-vs-claude-2026) para decidir según tu caso."
   - pregunta: "¿Un currículum hecho con IA pasa los filtros ATS de las empresas?"
     respuesta: "Puede pasarlos si incluyes las palabras clave correctas de la oferta y evitas formatos complejos como tablas o columnas múltiples que algunos sistemas ATS no leen bien. La IA ayuda a identificar esas palabras clave, pero el formato final del documento (PDF simple, sin gráficos) también influye mucho."
   - pregunta: "¿Los reclutadores notan si un CV está escrito con IA?"
     respuesta: "Muchos reclutadores experimentados reconocen frases y estructuras repetitivas típicas de prompts genéricos, sobre todo cuando varios candidatos usan las mismas expresiones. Por eso recomiendo reescribir a mano al menos un tercio del texto generado para que suene a tu voz y no a una plantilla."
   - pregunta: "¿Puedo usar IA para adaptar mi currículum a cada oferta de trabajo distinta?"
     respuesta: "Sí, y es probablemente el mejor uso que le puedes dar: pegar la descripción completa de la oferta y pedirle al modelo que reordene o reformule (sin inventar) tus bullets existentes para incluir las palabras clave relevantes de esa oferta específica."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
-Llevo dos años ayudando a gente de mi entorno a reescribir su currículum con IA, y el patrón se repite siempre: la primera versión que sale del chatbot suena genérica, plana y llena de frases como "profesional proactivo orientado a resultados". Crear un currículum con IA no significa pegarle un prompt de una línea y copiar lo que te devuelve. Significa usar la herramienta correcta, con el input correcto, para producir algo que un reclutador humano lea en 7 segundos y decida seguir leyendo.
+He ayudado a varias personas de mi entorno a reescribir su currículum con IA, y el patrón se repite siempre: la primera versión que sale del chatbot suena genérica, plana y llena de frases como "profesional proactivo orientado a resultados". Crear un currículum con IA no significa pegarle un prompt de una línea y copiar lo que te devuelve. Significa usar la herramienta correcta, con el input correcto, para producir algo que un reclutador humano lea en 7 segundos y decida seguir leyendo.
 
 Ese es el problema real: según varios estudios de reclutamiento (los números varían, pero el orden de magnitud se mantiene), un reclutador dedica entre 6 y 8 segundos a la primera pasada de un CV. Si a eso le sumas que muchas empresas medianas y grandes filtran candidaturas con sistemas ATS antes de que un humano vea nada, el currículum tiene que superar dos filtros distintos: uno de máquina y uno de persona. La IA generativa ayuda muchísimo en ambos, pero solo si sabes qué pedirle.
 
-En este artículo te cuento cómo lo hago yo, qué herramientas uso para cada fase (no es la misma para redactar que para depurar el formato), y los errores que he visto cometer una y otra vez —incluido uno mío, hace un año, que casi me costó una entrevista.
+En este artículo te cuento cómo lo hago yo, qué herramientas uso para cada fase (no es la misma para redactar que para depurar el formato), y los errores que he visto cometer una y otra vez —incluido el más peligroso: la cifra inflada que se cae en la primera pregunta de entrevista.
 
 ## ¿Qué significa realmente crear un currículum con IA (y qué no hace por ti)?
 
 Crear un currículum con inteligencia artificial no es "generar un CV desde cero" como si fuera magia. Es un proceso de tres capas: extracción de información relevante, redacción orientada a resultados, y adaptación al puesto concreto. La IA es extraordinaria en las dos últimas y bastante mala en la primera si no le das buen material.
 
-Lo que no hace bien ninguna IA generativa por sí sola es inventarse logros que no tuviste. Y aquí va mi primer aviso serio: he visto currículums generados con ChatGPT donde el modelo "rellena" cifras de impacto ("aumenté las ventas un 30%") porque el usuario no le dio datos reales y el modelo, para sonar convincente, inventa un número. Eso es mentir en un documento legal y además se nota en la entrevista cuando te preguntan "¿cómo mediste ese 30%?" y no tienes respuesta.
+Lo que no hace bien ninguna IA generativa por sí sola es inventarse logros que no tuviste. Y aquí va mi primer aviso serio: he visto currículums generados con ChatGPT donde el modelo "rellena" cifras de impacto ("aumenté las ventas un 30%") porque el usuario no le dio datos reales y el modelo, para sonar convincente, inventa un número. Eso es mentir en un proceso de selección y además se nota en la entrevista cuando te preguntan "¿cómo mediste ese 30%?" y no tienes respuesta.
 
 Para la parte de redacción y adaptación, estas son las herramientas que uso y cómo las comparo:
 
 <TablaComparativa
   titulo="Herramientas de IA para crear o mejorar tu currículum"
   herramientas={[
-    { nombre: "ChatGPT (GPT-4o / o3)", precio: "Gratis con límites, Plus ~20$/mes", puntuacion: 4.6, idealPara: "Redactar y reestructurar bullets, adaptar a ofertas concretas" },
-    { nombre: "Claude (Sonnet 4.6 / Fable 5)", precio: "Gratis con límites, Pro ~20$/mes", puntuacion: 4.7, idealPara: "Tono profesional matizado, currículums para perfiles senior" },
-    { nombre: "Gemini 2.5 Pro", precio: "Gratis con límites, Google One AI Premium desde ~20€/mes", puntuacion: 4.4, idealPara: "Integración con Google Docs y Drive" },
-    { nombre: "Notion AI", precio: "Incluido en planes de pago de Notion, desde ~10$/mes", puntuacion: 4.2, idealPara: "Quien ya organiza su búsqueda de empleo en Notion" },
+    { nombre: "ChatGPT (GPT-5.5 / GPT-5.6)", precio: "Gratis con límites, Plus 20$/mes (~23€ con IVA)", puntuacion: 4.6, idealPara: "Redactar y reestructurar bullets, adaptar a ofertas concretas" },
+    { nombre: "Claude (Sonnet 5 / Fable 5)", precio: "Gratis con límites, Pro 20€/mes", puntuacion: 4.7, idealPara: "Tono profesional matizado, currículums para perfiles senior" },
+    { nombre: "Gemini (Google AI Pro)", precio: "Gratis con límites, Google AI Pro 21,99€/mes", puntuacion: 4.4, idealPara: "Integración con Google Docs y Drive" },
+    { nombre: "Notion AI", precio: "Incluido en Notion Business (20$/usuario/mes)", puntuacion: 4.2, idealPara: "Quien ya organiza su búsqueda de empleo en Notion" },
   ]}
 />
 
@@ -50,17 +49,17 @@ Los precios de suscripción cambian con cierta frecuencia y varían según regi�
 
 ## Cómo estructuro el proceso paso a paso (con lo que realmente funciona)
 
-Cuando ayudé a un amigo a reescribir su CV para pasar de un puesto de analista junior a uno de product analyst, tardamos cerca de 90 minutos en total repartidos en tres sesiones. No fue "pega tu CV y dame uno mejor". Fue esto:
+El proceso completo, bien hecho, lleva en torno a 90 minutos repartidos en dos o tres sesiones. No es "pega tu CV y dame uno mejor". Es esto:
 
-**Paso 1: volcar información en bruto, sin formato.** Le pedí que escribiera, sin preocuparse por redacción, todo lo que había hecho en cada puesto: proyectos, herramientas usadas, cifras que recordara (aunque fueran aproximadas), problemas que resolvió. Esto se lo di a Claude porque en mi experiencia mantiene mejor el contexto largo sin perder matices cuando le pasas párrafos desordenados.
+**Paso 1: volcar información en bruto, sin formato.** Escribe, sin preocuparte por la redacción, todo lo que has hecho en cada puesto: proyectos, herramientas usadas, cifras que recuerdes (aunque sean aproximadas), problemas que resolviste. Ese material en bruto se lo paso a Claude porque, en mis pruebas, es el que mejor mantiene el contexto largo sin perder matices cuando le pasas párrafos desordenados.
 
 **Paso 2: pedir bullets orientados a impacto, no a tareas.** El prompt que uso literalmente dice algo así: "Convierte esta descripción en 3-4 bullets de currículum. Cada bullet debe seguir la estructura [verbo de acción] + [qué hiciste] + [resultado medible o impacto]. No inventes cifras que no te he dado; si no hay una cifra, describe el impacto de forma cualitativa." Esa última frase es la que evita que el modelo invente datos. Si quieres aprender más sobre cómo estructurar instrucciones efectivas, consulta nuestra guía sobre [cómo escribir prompts perfectos para ChatGPT](/blog/prompts-perfectos-chatgpt-guia).
 
 **Paso 3: adaptar a la oferta concreta.** Aquí es donde la IA realmente marca diferencia frente a escribir un CV genérico. Le paso la descripción completa de la oferta de trabajo y le pido que identifique las 5-6 palabras clave que probablemente busca el ATS (herramientas, metodologías, certificaciones) y que reordene o reformule los bullets existentes para incluir esas palabras de forma natural, sin falsear la experiencia.
 
-En el caso de mi amigo, el resultado fue un CV que pasó el filtro automático de una empresa que usa Workday (uno de los ATS más comunes) y llegó a entrevista en dos de tres candidaturas enviadas con esa versión, frente a cero respuestas con la versión anterior genérica. No es una muestra estadística, pero el cambio de comportamiento fue claro.
+¿Funciona? No te voy a prometer porcentajes de éxito —eso depende de tu experiencia real y del mercado—, pero la lógica del filtro previo es implacable: los ATS más comunes (Workday, Greenhouse, Lever) descartan currículums que no contienen las palabras clave de la oferta antes de que ningún humano los lea. Un CV genérico compite contra ese filtro a ciegas; uno adaptado con este proceso entra con las palabras correctas puestas. No garantiza la entrevista, pero elimina la forma más tonta de quedar fuera.
 
-**Paso 4: revisión de tono y longitud.** Aquí uso ChatGPT con o3 porque en mi experiencia es más estricto ajustando a límites exactos ("que quepa en una página", "máximo 15 palabras por bullet"). Le pido explícitamente que recorte sin perder verbos de acción ni cifras.
+**Paso 4: revisión de tono y longitud.** Aquí uso ChatGPT con GPT-5.6 Thinking porque en mi experiencia es más estricto ajustando a límites exactos ("que quepa en una página", "máximo 15 palabras por bullet"). Le pido explícitamente que recorte sin perder verbos de acción ni cifras.
 
 Un detalle que me ha ahorrado disgustos: nunca dejo que la IA elija el formato visual final. Para maquetación uso plantillas de Canva o de Google Docs y solo pego el texto ya trabajado. Pedirle a un chatbot de texto que "diseñe" un CV en formato tabla suele generar líneas rotas que solo se ven bien en la ventana de chat, no en un PDF exportado.
 
@@ -72,9 +71,9 @@ Mi solución práctica: después de generar los bullets, los reescribo a mano ca
 
 Otro límite real: la IA no conoce el contexto cultural del mercado laboral al que te diriges. Un CV para España suele incluir foto y datos personales que en Estados Unidos serían ilegales de pedir (edad, estado civil). Si le pides a ChatGPT o Claude un CV "estilo americano" y lo mandas a una empresa española tradicional, puede sonar raro por exceso de auto-promoción, algo que en el mercado anglosajón es normal y en el hispanohablante a veces se percibe como arrogante. Yo siempre especifico en el prompt el país y el tipo de empresa (startup vs. corporación tradicional) porque el tono cambia bastante.
 
-El error que cometí yo mismo: hace un año le pedí a un modelo que "hiciera más impactante" mi experiencia como freelance y el resultado incluyó la frase "gestioné un equipo de 12 personas" cuando en realidad había coordinado a 3 colaboradores puntuales en un proyecto. No me di cuenta hasta que en la entrevista me preguntaron sobre gestión de equipos y tuve que corregir en directo, lo cual fue incómodo y probablemente restó puntos. Desde entonces reviso cada cifra y cada verbo de "gestión" o "liderazgo" línea por línea antes de enviar nada.
+Un caso real de mis pruebas: le pedí a un modelo que "hiciera más impactante" una experiencia de coordinación de tres colaboradores puntuales y el resultado fue "gestioné un equipo de 12 personas". Ese tipo de inflación no es un matiz de estilo: es una mentira que se cae en la primera pregunta de entrevista ("¿cómo gestionabas a ese equipo?"). Por eso mi regla es revisar cada cifra y cada verbo de "gestión" o "liderazgo" línea por línea antes de dar un CV por terminado.
 
-Sobre herramientas especializadas en CV (Kickresume, Rezi, Teal, Enhancv y similares): existen y muchas incorporan IA generativa integrada con plantillas ATS-friendly ya optimizadas. No tengo datos actualizados y verificados sobre sus precios exactos en 2026 como para afirmarlos aquí con seguridad, así que si las consideras, revisa directamente en su web los planes vigentes antes de suscribirte. Lo que sí puedo decir por experiencia comparando resultados: para la parte de redacción pura, [un chatbot generalista bien usado con buenos prompts iguala o supera](/blog/chatgpt-vs-claude-2026) a la mayoría de estas herramientas especializadas, que suelen aportar más valor en la plantilla visual y en el análisis automático de compatibilidad ATS que en la calidad del texto en sí.
+Sobre herramientas especializadas en CV (Kickresume, Rezi, Teal, Enhancv y similares): existen y muchas incorporan IA generativa integrada con plantillas ATS-friendly ya optimizadas. Sus precios cambian a menudo y varían mucho entre planes, así que si las consideras, revisa directamente en su web los planes vigentes antes de suscribirte. Lo que sí puedo decir por experiencia comparando resultados: para la parte de redacción pura, [un chatbot generalista bien usado con buenos prompts iguala o supera](/blog/chatgpt-vs-claude-2026) a la mayoría de estas herramientas especializadas, que suelen aportar más valor en la plantilla visual y en el análisis automático de compatibilidad ATS que en la calidad del texto en sí.
 
 ## ¿Cuándo tiene sentido usar IA para tu currículum y cuándo no?
 
@@ -95,10 +94,10 @@ Mi recomendación directa: usa la IA para la fase de estructura, bullets e ident
 ## Preguntas frecuentes sobre crear un currículum con IA
 
 **¿Es gratis crear un currículum con IA?**
-Sí, puedes hacerlo con las versiones gratuitas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para redactar y adaptar un CV completo en una sesión. Las versiones de pago (alrededor de 20€-20$ al mes según la herramienta) aportan más contexto y menos límites, útil si estás aplicando a muchas ofertas distintas a la vez.
+Sí, puedes hacerlo con las versiones gratuitas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para redactar y adaptar un CV completo en una sesión. Las versiones de pago (entre 20 y 22 € al mes según la herramienta) aportan más contexto y menos límites, útil si estás aplicando a muchas ofertas distintas a la vez.
 
 **¿ChatGPT o Claude es mejor para redactar un currículum?**
-En mi experiencia, Claude tiende a mantener un tono más natural y menos "corporativo" en bullets largos, mientras que ChatGPT con o3 es más estricto ajustando límites exactos de longitud y formato. Puedes leer la [comparativa completa entre ChatGPT y Claude en 2026](/blog/chatgpt-vs-claude-2026) para decidir según tu caso.
+En mi experiencia, Claude tiende a mantener un tono más natural y menos "corporativo" en bullets largos, mientras que ChatGPT con GPT-5.6 Thinking es más estricto ajustando límites exactos de longitud y formato. Puedes leer la [comparativa completa entre ChatGPT y Claude en 2026](/blog/chatgpt-vs-claude-2026) para decidir según tu caso.
 
 **¿Un currículum hecho con IA pasa los filtros ATS de las empresas?**
 Puede pasarlos si incluyes las palabras clave correctas de la oferta y evitas formatos complejos como tablas o columnas múltiples que algunos sistemas ATS no leen bien. La IA ayuda a identificar esas palabras clave, pero el formato final del documento (PDF simple, sin gráficos) también influye mucho.
@@ -116,5 +115,3 @@ Crear un currículum con IA funciona bien cuando lo tratas como una herramienta 
 Si tienes que elegir una sola herramienta para empezar, cualquiera de las gratuitas —ChatGPT, Claude o Gemini— te sirve perfectamente para una primera versión sólida. La inversión de tiempo real está en dar buen contexto de entrada y revisar con cuidado lo que sale, no en pagar por la herramienta más cara del mercado.
 
 Al final, un currículum es un documento de confianza: le está diciendo a un desconocido que puede confiar en ti para un trabajo. La IA puede ayudarte a decirlo mejor, con más claridad y mejor estructurado, pero lo que dice tiene que seguir siendo verdad.
-
----
