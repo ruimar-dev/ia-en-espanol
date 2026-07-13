@@ -3,11 +3,11 @@ title: "IA para marketing: las mejores herramientas para marketers 2026"
 description: "Descubre las mejores herramientas de IA para marketing en 2026: contenido, análisis, vídeo y voz. Comparativa honesta con precios y casos reales."
 date: 2026-07-13
 category: productividad
-herramientas: ["ChatGPT", "Claude"]
+herramientas: ["ChatGPT", "Claude", "Notion AI", "HeyGen", "Perplexity AI"]
 imagen: "/images/ia-para-marketing-mejores-herramientas.svg"
 faqs:
   - pregunta: "¿Cuánto cuesta implementar IA en un equipo de marketing pequeño?"
-    respuesta: "Depende del stack, pero un equipo de 2-3 personas puede empezar con [un plan de ChatGPT Plus o Claude Pro (ambos rondan los 20 USD al mes por usuario)](/blog/chatgpt-vs-claude-2026) más una herramienta de organización como Notion AI. Con 60-100 USD mensuales entre dos o tres herramientas ya cubres la mayoría de necesidades básicas de producción de contenido."
+    respuesta: "Depende del stack, pero un equipo de 2-3 personas puede empezar con [un plan de ChatGPT Plus (20 US$/mes, unos 23€ con IVA) o Claude Pro (20€/mes)](/blog/chatgpt-vs-claude-2026) más una herramienta de organización como Notion, que ya incluye su IA en el plan Business (20 US$/usuario/mes). Con 60-100 US$ mensuales entre dos o tres herramientas ya cubres la mayoría de necesidades básicas de producción de contenido."
   - pregunta: "¿ChatGPT o Claude es mejor para marketing?"
     respuesta: "Depende de la tarea: Claude tiende a dar mejores resultados en textos largos con matices y research profundo, mientras que ChatGPT es muy sólido para brainstorming rápido y generación de variaciones. Tengo una comparativa detallada en [ChatGPT vs Claude 2026](/blog/chatgpt-vs-claude-2026) donde entro en más detalle sobre casos de uso concretos."
   - pregunta: "¿La IA puede reemplazar a un community manager o copywriter?"
@@ -16,12 +16,13 @@ faqs:
     respuesta: "Para vídeos con presentador virtual, HeyGen es de las opciones más prácticas que he probado. Si necesitas vídeo más cinematográfico o creativo sin avatar humano, vale la pena revisar [las mejores IA para crear vídeos en 2026](/blog/mejores-ia-generacion-video-2026), donde comparo Runway, Pika, Kling y otras alternativas."
   - pregunta: "¿Vale la pena pagar por herramientas de IA de marketing o basta con las versiones gratuitas?"
     respuesta: "Las versiones gratuitas suelen tener límites de uso y modelos menos potentes que se notan rápido en trabajo profesional serio. Si generas contenido con regularidad para clientes o tu propia marca, el plan de pago se amortiza rápido en tiempo ahorrado; si es un uso muy ocasional, la versión gratuita puede ser suficiente durante un tiempo."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
+import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
-Llevo dos años usando IA en mi trabajo de marketing y todavía me sorprende la cantidad de gente que sigue haciendo calendarios de contenido, copys de anuncios o informes de campaña completamente a mano. La **IA para marketing** ya no es una promesa futurista: es la diferencia entre que un equipo de dos personas produzca lo que antes necesitaba cinco, o entre entregar un briefing en dos horas en lugar de dos días.
+Me paso el día analizando herramientas de IA y usándolas para el marketing de mis propios proyectos digitales —este sitio, su newsletter, mis productos descargables— y todavía me sorprende la cantidad de gente que sigue haciendo calendarios de contenido, copys de anuncios o informes de campaña completamente a mano. La **IA para marketing** ya no es una promesa futurista: es la diferencia entre que un equipo de dos personas produzca lo que antes necesitaba cinco, o entre entregar un briefing en dos horas en lugar de dos días.
 
 El problema es que el ecosistema se ha llenado de herramientas que prometen "revolucionar tu estrategia de marketing" y la mayoría son wrappers sobre el mismo modelo de lenguaje con una interfaz bonita. Yo he probado más de una docena en los últimos meses —desde asistentes de texto hasta generadores de vídeo y voz— y en este artículo te cuento cuáles realmente merecen un hueco en tu flujo de trabajo, cuáles son redundantes y cuánto vas a pagar por cada una.
 
@@ -33,29 +34,37 @@ Cuando hablo de IA aplicada al marketing no me refiero solo a "pedirle a ChatGPT
 
 Cada uno de estos frentes tiene herramientas distintas, y aquí está el primer error que veo cometer a muchos equipos: intentar que una sola herramienta lo haga todo. **ChatGPT** y **Claude** son excelentes para texto y estrategia, pero no generan vídeo. **HeyGen** genera vídeos con avatar pero no te ayuda a definir tu buyer persona. Mezclar herramientas especializadas suele dar mejores resultados que buscar una "solución todo en uno".
 
-En mi caso, para una campaña de lanzamiento de un producto SaaS que gestioné el trimestre pasado, combiné cuatro herramientas distintas: usé Claude para el research inicial y la estructura del mensaje, ChatGPT para generar variaciones de copy para A/B testing, HeyGen para un vídeo explicativo con avatar (evitando contratar cámara y estudio) y Notion AI para mantener organizado el calendario editorial. El resultado: reduje el tiempo de producción de contenido de unas 25 horas semanales a cerca de 10.
+En mi caso, para el lanzamiento de mi propio producto digital (un pack de 50 prompts para autónomos y pymes), combiné varias herramientas: usé Claude para el research inicial y la estructura del mensaje, ChatGPT para generar variaciones de copy de la página de venta y los emails, y Notion para mantener organizado el calendario de publicaciones. El resultado: el tiempo de producción de contenido de la campaña se quedó en menos de la mitad de lo que me habría llevado a mano.
 
 <TablaComparativa
   titulo="Herramientas de IA para marketing: comparativa 2026"
   herramientas={[
-    { nombre: "ChatGPT Plus", precio: "~20 USD/mes", puntuacion: 4.6, idealPara: "Copywriting, brainstorming y variaciones rápidas de contenido" },
-    { nombre: "Claude (Fable 5 / Sonnet 4.6)", precio: "~20 USD/mes (plan Pro)", puntuacion: 4.7, idealPara: "Research profundo, estrategia y textos largos con matices" },
-    { nombre: "Notion AI", precio: "Add-on sobre plan Notion, varía según equipo", puntuacion: 4.3, idealPara: "Organizar calendarios editoriales y documentación de campañas" },
-    { nombre: "HeyGen", precio: "Desde plan gratuito limitado, planes pagos mensuales", puntuacion: 4.4, idealPara: "Vídeos con avatar para anuncios o explicativos sin cámara" },
+    { nombre: "ChatGPT Plus", precio: "20 US$/mes (~23€ con IVA)", puntuacion: 4.6, idealPara: "Copywriting, brainstorming y variaciones rápidas de contenido" },
+    { nombre: "Claude (Fable 5 / Sonnet 5)", precio: "20€/mes (plan Pro)", puntuacion: 4.7, idealPara: "Research profundo, estrategia y textos largos con matices" },
+    { nombre: "Notion AI", precio: "Incluida en plan Business (20 US$/usuario/mes)", puntuacion: 4.3, idealPara: "Organizar calendarios editoriales y documentación de campañas" },
+    { nombre: "HeyGen", precio: "Gratis (3 vídeos/mes) · Creator 29 US$/mes", puntuacion: 4.4, idealPara: "Vídeos con avatar para anuncios o explicativos sin cámara" },
   ]}
 />
 
-Los precios que ves arriba son orientativos y cambian con frecuencia —te recomiendo verificar siempre en la web oficial de cada herramienta antes de suscribirte, porque tanto OpenAI como Anthropic han ajustado tarifas y límites de uso más de una vez en el último año.
+Los precios son de julio de 2026. Dos matices que conviene saber antes de suscribirte: la IA de Notion ya no se vende como add-on aparte (aquel plan de 10 US$/mes se retiró) sino que va incluida en el plan Business, y en HeyGen el plan Creator baja a 24 US$/mes si pagas anual, aunque los vídeos con avatar premium consumen créditos rápido y puede que necesites packs adicionales.
+
+<BannerAfiliado
+  titulo="Notion AI — Tu calendario editorial en orden"
+  descripcion="Centraliza briefs, calendarios de contenido y documentación de campañas. La IA de Notion resume reuniones, rellena informes y redacta borradores sin salir de tu espacio de trabajo."
+  cta="Probar Notion AI"
+  url="https://notion.so"
+  badge="Afiliado"
+/>
 
 ## ¿Cómo usar IA para crear contenido de marketing que no suene a IA?
 
-Esta es la pregunta que más me hacen colegas de agencia: "¿cómo evito que mi contenido parezca escrito por un robot?". La respuesta corta es que no delegas la voz de marca a la IA, delegas la velocidad de producción.
+Esta es la pregunta que más me hacen los lectores que trabajan en marketing: "¿cómo evito que mi contenido parezca escrito por un robot?". La respuesta corta es que no delegas la voz de marca a la IA, delegas la velocidad de producción.
 
 Mi flujo real para escribir copy de anuncios es este: primero le doy a **Claude** todo el contexto de la marca —tono, público objetivo, ejemplos de piezas anteriores que funcionaron— y le pido que extraiga un "manual de voz" en forma de bullet points. Ese documento lo reutilizo en cada prompt posterior. Cuando necesito diez variaciones de un titular para Meta Ads, no le pido a la IA que "sea creativa": le doy el manual de voz, tres ejemplos de titulares que ya funcionaron y le pido variaciones sobre esa estructura. La diferencia entre este enfoque y pedir "escribe un titular llamativo" es abismal.
 
 Para redes sociales específicamente, ya escribí una guía completa sobre [cómo crear contenido para redes sociales con IA](/blog/crear-contenido-redes-sociales-ia) donde detallo plantillas de prompts que uso semana a semana. Y si trabajas con equipos que necesitan escribir mejor los prompts en general, la [guía de prompts perfectos para ChatGPT](/blog/prompts-perfectos-chatgpt-guia) te ahorra bastante prueba y error.
 
-Un ejemplo concreto: para una newsletter B2B que gestiono, pasé de tardar 3 horas en redactar cada edición a 45 minutos. El truco no fue "que la IA escriba todo", sino que yo genero el esqueleto y los puntos clave, Claude expande cada sección con el tono correcto, y yo edito el 20-30% final para meter anécdotas reales y matices que un modelo no puede inventar porque no vivió la experiencia. Ese 20-30% de edición humana es innegociable si quieres que el contenido tenga alma.
+Un ejemplo concreto: con la newsletter de este sitio, redactar cada edición me lleva ahora bastante menos de la mitad de tiempo que cuando lo hacía todo a mano. El truco no fue "que la IA escriba todo", sino que yo genero el esqueleto y los puntos clave, Claude expande cada sección con el tono correcto, y yo edito el 20-30% final para meter anécdotas reales y matices que un modelo no puede inventar porque no vivió la experiencia. Ese 20-30% de edición humana es innegociable si quieres que el contenido tenga alma.
 
 Para investigación de mercado y competencia, uso **Perplexity** en lugar de ChatGPT o Claude porque cita fuentes y da resultados más actualizados sobre tendencias recientes. Si no lo conoces, tengo una [review completa de Perplexity AI](/blog/perplexity-ai-review-2026) donde explico por qué se ha convertido en mi buscador por defecto para research de marketing.
 
@@ -65,9 +74,9 @@ Aquí es donde quiero ser honesto, porque la mayoría de artículos sobre este t
 
 **Primera limitación real: la IA no entiende contexto de marca a largo plazo.** Cada conversación con ChatGPT o Claude empieza casi de cero salvo que uses proyectos o documentos persistentes. Esto significa que si tu equipo cambia de persona usando la herramienta, la consistencia de tono se resiente si no hay un documento de referencia bien mantenido. He visto equipos publicar contenido con tonos completamente distintos en la misma semana por este motivo.
 
-**Segunda limitación: los generadores de vídeo e imagen todavía fallan en detalles de marca.** Probé generar imágenes de producto con **Midjourney** para una campaña de e-commerce y, aunque el resultado visual era impresionante, reproducir el logo exacto o los colores corporativos de forma consistente en múltiples generaciones fue frustrante. Terminé usando las imágenes generadas solo como base y retocando en Photoshop. Si generación de imágenes es tu foco principal, te recomiendo revisar [las mejores IA para generar imágenes en 2026](/blog/mejores-ia-generacion-imagen-2026) antes de comprometerte con una sola herramienta.
+**Segunda limitación: los generadores de vídeo e imagen todavía fallan en detalles de marca.** He probado a generar imágenes de producto y material de marca con **Midjourney** y, aunque el resultado visual era impresionante, reproducir un logo exacto o los colores corporativos de forma consistente en múltiples generaciones fue frustrante. Terminé usando las imágenes generadas solo como base y retocando en Photoshop. Si generación de imágenes es tu foco principal, te recomiendo revisar [las mejores IA para generar imágenes en 2026](/blog/mejores-ia-generacion-imagen-2026) antes de comprometerte con una sola herramienta.
 
-**Tercera limitación: el coste se dispara si escalas mal.** Un error común es usar el modelo más caro (por ejemplo Claude Opus 4.8 o la familia o3 de OpenAI) para tareas simples como generar diez variaciones de un hashtag. Para tareas de bajo esfuerzo, modelos más ligeros como **Claude Haiku 4.5** o **GPT-4o** son suficientes y muchísimo más baratos por token. Reservar los modelos de razonamiento avanzado para estrategia y análisis complejo, y usar los modelos rápidos para volumen, es la diferencia entre una factura razonable y una sorpresa desagradable a fin de mes.
+**Tercera limitación: el coste se dispara si escalas mal.** Un error común es usar el modelo más caro (por ejemplo Claude Opus 4.8 o GPT-5.6 Thinking) para tareas simples como generar diez variaciones de un hashtag. Para tareas de bajo esfuerzo, modelos más ligeros como **Claude Haiku 4.5** o **GPT-5.5 Instant** son suficientes y muchísimo más baratos por token. Reservar los modelos de razonamiento avanzado para estrategia y análisis complejo, y usar los modelos rápidos para volumen, es la diferencia entre una factura razonable y una sorpresa desagradable a fin de mes.
 
 **Cuarta limitación, y esta es importante: la IA no sustituye el criterio de negocio.** Le puedes pedir a cualquier modelo que te genere una "estrategia de marketing de contenidos para 2026" y te dará algo genérico y correcto, pero sin el conocimiento real de tu mercado, tu presupuesto y tus recursos, es papel mojado. Uso la IA para ejecutar más rápido decisiones que yo ya he tomado, no para que tome las decisiones por mí.
 
@@ -95,7 +104,7 @@ Mi recomendación honesta: si haces marketing de contenidos, redes sociales o ca
 ## Preguntas frecuentes sobre IA para marketing
 
 **¿Cuánto cuesta implementar IA en un equipo de marketing pequeño?**
-Depende del stack, pero un equipo de 2-3 personas puede empezar con [un plan de ChatGPT Plus o Claude Pro (ambos rondan los 20 USD al mes por usuario)](/blog/chatgpt-vs-claude-2026) más una herramienta de organización como Notion AI. Con 60-100 USD mensuales entre dos o tres herramientas ya cubres la mayoría de necesidades básicas de producción de contenido.
+Depende del stack, pero un equipo de 2-3 personas puede empezar con [un plan de ChatGPT Plus (20 US$/mes, unos 23€ con IVA) o Claude Pro (20€/mes)](/blog/chatgpt-vs-claude-2026) más una herramienta de organización como Notion, que ya incluye su IA en el plan Business (20 US$/usuario/mes). Con 60-100 US$ mensuales entre dos o tres herramientas ya cubres la mayoría de necesidades básicas de producción de contenido.
 
 **¿ChatGPT o Claude es mejor para marketing?**
 Depende de la tarea: Claude tiende a dar mejores resultados en textos largos con matices y research profundo, mientras que ChatGPT es muy sólido para brainstorming rápido y generación de variaciones. Tengo una comparativa detallada en [ChatGPT vs Claude 2026](/blog/chatgpt-vs-claude-2026) donde entro en más detalle sobre casos de uso concretos.
