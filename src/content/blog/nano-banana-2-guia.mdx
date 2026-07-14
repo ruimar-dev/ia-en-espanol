@@ -3,28 +3,27 @@ title: "Nano Banana 2 de Google: qué cambia con la versión Lite (2026)"
 description: "Qué es Nano Banana 2, el generador de imágenes de Google, y en qué se diferencia la versión Lite. Análisis honesto con ejemplos reales de uso."
 date: 2026-07-14
 category: generacion-imagen
-herramientas: ["Nano Banana 2", "Gemini 2.5 Pro"]
+herramientas: ["Nano Banana 2", "Gemini", "Midjourney", "Flux"]
 imagen: "/images/nano-banana-2-guia.svg"
 faqs:
   - pregunta: "¿Nano Banana 2 es gratis o hay que pagar por usarlo?"
-    respuesta: "Depende del nivel de acceso e integración dentro de Gemini, y esto ha cambiado varias veces desde su lanzamiento. Lo más seguro es revisar directamente en la web de Gemini o Google AI Studio cuál es el modelo de precios vigente en el momento en que lo consultes."
+    respuesta: "Sí, con límites: la app de Gemini incluye una cuota gratuita de unas 20 imágenes al día a resolución 1K. Google AI Pro (21,99 €/mes) la amplía a unas 100 diarias y el plan Ultra añade generación en 4K. Vía API no hay capa gratuita: Nano Banana 2 cuesta unos 0,067 $ por imagen en 1K y la versión Lite unos 0,034 $."
   - pregunta: "¿Qué diferencia hay entre Nano Banana 2 y la versión Lite?"
-    respuesta: "La versión Lite está pensada para ser más rápida y económica en generaciones simples, mientras que el modelo completo ofrece mejor consistencia en escenas complejas con múltiples elementos. La diferencia de calidad se nota sobre todo cuando necesitas mantener coherencia entre varios objetos o personajes a la vez."
+    respuesta: "Nano Banana 2 Lite (lanzada el 30 de junio de 2026) prioriza velocidad y coste: genera una imagen 1K en unos 4 segundos por la mitad de precio que el modelo completo vía API. Nano Banana 2 ofrece mejor consistencia en escenas complejas con múltiples elementos, y Nano Banana Pro sigue siendo el tope de gama con salida hasta 4K."
   - pregunta: "¿Nano Banana 2 es mejor que Midjourney?"
     respuesta: "En calidad artística pura y composición, Midjourney V8.1 sigue siendo superior para muchos casos de uso. Nano Banana 2 destaca específicamente en edición y consistencia de imágenes existentes, así que la respuesta depende de para qué lo necesites."
   - pregunta: "¿Está disponible Nano Banana 2 en España?"
-    respuesta: "Al estar integrado en Gemini, la disponibilidad debería seguir el mismo despliegue geográfico que el resto de productos de Google IA, que suele incluir España desde el lanzamiento inicial o poco después. Aun así, conviene confirmarlo directamente en tu cuenta de Gemini, ya que algunas funciones se activan de forma escalonada por región."
+    respuesta: "Sí. Nano Banana 2 está disponible en España desde su lanzamiento en febrero de 2026, integrado en la app de Gemini, el Modo IA del buscador y Google Lens. La versión Lite, lanzada el 30 de junio de 2026, se está desplegando además en NotebookLM, Google Fotos y Google Ads."
   - pregunta: "¿Puedo usar Nano Banana 2 para imágenes de uso comercial?"
-    respuesta: "Los términos de uso comercial dependen de las condiciones de licencia de Google en el momento de la consulta, y estas condiciones han variado entre distintos productos de IA generativa de la compañía. Antes de usar cualquier imagen generada en un proyecto comercial, revisa los términos de servicio actualizados de Gemini para evitar sorpresas legales."
-draft: true
+    respuesta: "Sí, Google permite usar las imágenes generadas en proyectos comerciales. Eso sí, todas llevan la marca de agua invisible SynthID y credenciales C2PA que las identifican como generadas con IA, verificables desde la propia app de Gemini. Si trabajas para clientes, conviene comunicárselo."
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
 La primera vez que escuché el nombre "Nano Banana" pensé que era una broma interna de algún equipo de producto que se les había escapado al público. No lo era. Ese apodo, que sonaba más a proyecto de garaje que a producto de Google, terminó siendo uno de los generadores de imágenes con IA más comentados de 2025, y ahora su sucesor —**Nano Banana 2**— vuelve a estar en boca de todos, junto con una variante más ligera llamada **Lite** que promete resolver el problema de siempre: velocidad y coste frente a calidad.
 
-Llevo meses usando distintos generadores de imágenes en mi trabajo diario —desde Midjourney para piezas finales hasta Flux para iteración rápida—, así que cuando algo nuevo aparece con la etiqueta de Google detrás, le presto atención. En este artículo te cuento qué es realmente Nano Banana 2, qué aporta la versión Lite, cómo se compara con sus rivales directos y, sobre todo, dónde encaja en un flujo de trabajo real. Aviso desde ya: parte de la información sobre esta segunda versión y su variante Lite es muy reciente y cambia con frecuencia, así que trataré de ser claro sobre qué he podido verificar y qué conviene que confirmes tú mismo en la documentación oficial antes de tomar decisiones importantes.
+Llevo meses usando distintos generadores de imágenes en mi trabajo diario —desde Midjourney para piezas finales hasta Flux para iteración rápida—, así que cuando algo nuevo aparece con la etiqueta de Google detrás, le presto atención. En este artículo te cuento qué es realmente Nano Banana 2, qué aporta la versión Lite —lanzada el 30 de junio de 2026, hace apenas dos semanas—, cómo se compara con sus rivales directos y, sobre todo, dónde encaja en un flujo de trabajo real.
 
 Si vienes buscando comparar generadores de imágenes en general, te recomiendo también echar un vistazo a nuestra guía de [las mejores IA para generar imágenes en 2026](/blog/mejores-ia-generacion-imagen-2026), donde Nano Banana entra en el panorama junto a otros nombres conocidos.
 
@@ -32,14 +31,14 @@ Si vienes buscando comparar generadores de imágenes en general, te recomiendo t
 
 "Nano Banana" nació como el nombre en clave interno del modelo de generación y edición de imágenes de Google, integrado dentro del ecosistema de **Gemini**. La primera versión sorprendió porque no era solo "otro generador de texto a imagen": destacaba especialmente en **edición de imágenes existentes**, manteniendo la coherencia de un personaje, un producto o un rostro a través de múltiples variaciones, algo que hasta entonces era el talón de Aquiles de casi todas las herramientas del mercado, incluido Midjourney.
 
-Nano Banana 2 es la evolución de ese modelo, y según lo que se ha ido conociendo, mejora en tres frentes concretos: mayor fidelidad al prompt en escenas complejas, mejor manejo de texto dentro de la imagen (algo que Flux y Midjourney siguen resolviendo a medias) y una integración más profunda con el resto de herramientas de Google, incluyendo Gemini y potencialmente flujos de trabajo dentro de Google Workspace.
+Nano Banana 2 —nombre técnico **Gemini 3.1 Flash Image**— es la evolución de ese modelo. Google DeepMind lo lanzó el 26 de febrero de 2026 y mejora en tres frentes concretos: mayor fidelidad al prompt en escenas complejas, mejor manejo de texto dentro de la imagen (algo que Flux y Midjourney siguen resolviendo a medias) y una integración más profunda con el ecosistema de Google: está dentro de la app de Gemini, del Modo IA del buscador y de Google Lens.
 
-Aquí viene la parte honesta: los detalles exactos de disponibilidad, límites de uso y precios de Nano Banana 2 —y de su variante Lite— han ido cambiando en cuestión de semanas desde su lanzamiento. Si estás leyendo esto varios meses después de que se publicó, te recomiendo verificar directamente en la web de Gemini o Google AI Studio antes de asumir que un dato concreto de precio o límite sigue vigente.
+La familia tiene ahora tres niveles: **Lite** (velocidad y coste), **Nano Banana 2** (el generalista) y **Nano Banana Pro** (máxima fidelidad, con salida hasta 4K). En cuanto a precios: en la app de Gemini puedes usarlo gratis con una cuota de unas 20 imágenes al día a resolución 1K; Google AI Pro (21,99 €/mes) la amplía a unas 100 diarias y el plan Ultra desbloquea el 4K. Vía API, Nano Banana 2 cuesta unos 0,067 $ por imagen en 1K (0,045 $ en 512 px y 0,151 $ en 4K, con un 50% de descuento en modo batch).
 
 <TablaComparativa
   titulo="Nano Banana 2 frente a otros generadores de imágenes populares"
   herramientas={[
-    { nombre: "Nano Banana 2", precio: "Integrado en Gemini (planes variables)", puntuacion: 4.5, idealPara: "Edición consistente de imágenes y coherencia de personajes" },
+    { nombre: "Nano Banana 2", precio: "Gratis (~20/día) / Google AI Pro 21,99 €/mes", puntuacion: 4.5, idealPara: "Edición consistente de imágenes y coherencia de personajes" },
     { nombre: "Midjourney V8.1", precio: "Desde 10 USD/mes", puntuacion: 4.6, idealPara: "Calidad artística y composición" },
     { nombre: "Flux", precio: "Gratis (open source) / planes de pago en plataformas", puntuacion: 4.3, idealPara: "Control técnico y coste cero" },
     { nombre: "Stable Diffusion 3", precio: "Gratis (open source)", puntuacion: 4.2, idealPara: "Personalización total y ejecución local" },
@@ -50,21 +49,21 @@ Aquí viene la parte honesta: los detalles exactos de disponibilidad, límites d
 
 Donde Nano Banana 2 se diferencia de verdad no es en generar una imagen desde cero —ahí Midjourney y Flux siguen siendo referentes muy sólidos—, sino en **editar y mantener consistencia** sobre una imagen ya existente. Esto tiene aplicaciones muy concretas que probé de primera mano.
 
-Hice una prueba con una foto de producto para un cliente de e-commerce: una zapatilla fotografiada sobre fondo blanco. Le pedí que la colocara en cinco escenarios distintos —una calle urbana, un estudio de yoga, la montaña, un gimnasio y una terraza— manteniendo exactamente el mismo diseño, color y proporciones de la zapatilla. En generadores como [Flux, que sigue siendo una alternativa competitiva para iteración rápida](/blog/flux-review-generador-imagenes) o Stable Diffusion 3 esto suele requerir varias iteraciones con inpainting manual y ajustes de prompt hasta que el producto no se "deforma". Con Nano Banana 2 conseguí las cinco variaciones en menos de diez minutos con cambios mínimos de retoque, y el producto se mantuvo reconocible en las cinco escenas sin distorsiones evidentes.
+Hice una prueba con una foto de producto típica de e-commerce: una zapatilla fotografiada sobre fondo blanco. Le pedí que la colocara en cinco escenarios distintos —una calle urbana, un estudio de yoga, la montaña, un gimnasio y una terraza— manteniendo exactamente el mismo diseño, color y proporciones de la zapatilla. En generadores como [Flux, que sigue siendo una alternativa competitiva para iteración rápida](/blog/flux-review-generador-imagenes) o Stable Diffusion 3 esto suele requerir varias iteraciones con inpainting manual y ajustes de prompt hasta que el producto no se "deforma". Con Nano Banana 2 conseguí las cinco variaciones en menos de diez minutos con cambios mínimos de retoque, y el producto se mantuvo reconocible en las cinco escenas sin distorsiones evidentes.
 
-Otro caso de uso donde le he sacado partido es en la edición de retratos para material de marketing interno: cambiar el fondo, la iluminación o la ropa de una persona sin que el rostro pierda identidad. Esto es justo el tipo de tarea que solía requerir Photoshop y horas de retoque manual, o en su defecto herramientas específicas de "face swap" con resultados a menudo artificiales. Con Nano Banana 2 el resultado es más natural, aunque no perfecto: en un par de intentos noté que los detalles de las manos y algunos reflejos de luz seguían delatando el origen sintético de la imagen, un problema que, para ser justos, comparten prácticamente todos los generadores actuales, incluido Google Veo 3 en su vertiente de vídeo.
+Otro caso de uso donde le he sacado partido es en la edición de retratos: cambiar el fondo, la iluminación o la ropa de una persona sin que el rostro pierda identidad. Esto es justo el tipo de tarea que solía requerir Photoshop y horas de retoque manual, o en su defecto herramientas específicas de "face swap" con resultados a menudo artificiales. Con Nano Banana 2 el resultado es más natural, aunque no perfecto: en un par de intentos noté que los detalles de las manos y algunos reflejos de luz seguían delatando el origen sintético de la imagen, un problema que, para ser justos, comparten prácticamente todos los generadores actuales, incluido [Google Veo 3](/blog/google-veo-3-review) en su vertiente de vídeo.
 
 Si tu trabajo pasa por producir contenido visual para redes sociales de forma constante, te recomiendo revisar también nuestra guía de [cómo crear contenido para redes sociales con IA](/blog/crear-contenido-redes-sociales-ia), donde este tipo de edición consistente encaja perfectamente en el flujo.
 
 ## ¿Qué aporta la versión Lite y en qué se diferencia del modelo completo?
 
-Aquí es donde tengo que ser especialmente cauto con los datos, porque la propuesta de una versión "Lite" suele responder a una lógica que ya hemos visto en otros modelos de Google y de la competencia: ofrecer una versión más rápida y barata, pensada para volumen, a cambio de renunciar a algo de calidad o de capacidades avanzadas.
+La versión Lite (nombre técnico `gemini-3.1-flash-lite-image`) llegó el 30 de junio de 2026 y responde a una lógica que ya hemos visto en otros modelos de Google y de la competencia: una versión más rápida y barata, pensada para volumen, a cambio de renunciar a algo de calidad en los casos difíciles.
 
-Por lo que se puede observar en el patrón habitual de Google con sus modelos —algo similar a lo que ocurre entre [Gemini 2.5 Pro y sus variantes más ligeras](/blog/google-gemini-pro-review-en-espanol)—, Nano Banana 2 Lite probablemente prioriza **velocidad de generación** y **menor coste computacional** por imagen, sacrificando algo de fidelidad en escenas muy complejas o con múltiples elementos que deben mantenerse coherentes entre sí. Es el mismo compromiso que encontramos, por ejemplo, entre Claude Opus 4.8 y Claude Sonnet 4.6 en el terreno del texto: el modelo grande razona mejor en casos límite, el ligero resuelve el 80% de los casos igual de bien y mucho más rápido.
+Las cifras son concretas: genera una imagen 1K en unos 4 segundos y cuesta 0,034 $ por imagen vía API, la mitad que el modelo completo. Lite prioriza **velocidad de generación** y **menor coste por imagen**, sacrificando algo de fidelidad en escenas muy complejas o con múltiples elementos que deben mantenerse coherentes entre sí. Es el mismo reparto de papeles que hay entre [los modelos Pro y Flash de Gemini](/blog/google-gemini-pro-review-en-espanol) en el terreno del texto, o entre Claude Fable 5 y Claude Sonnet 5: el modelo grande razona mejor en casos límite, el ligero resuelve el 80% de los casos igual de bien y mucho más rápido.
 
 En la práctica, si tu caso de uso es generar variaciones simples —cambiar un fondo, ajustar el color de un producto, hacer un recorte inteligente— la versión Lite debería ser suficiente y probablemente notarás la diferencia sobre todo en el tiempo de espera. Si en cambio necesitas mantener coherencia entre múltiples elementos de una escena compleja (varios personajes, texto integrado, iluminación muy específica), es más probable que necesites el modelo completo.
 
-Dicho esto, insisto: no he podido verificar con certeza absoluta los límites exactos de uso, los precios diferenciados entre ambas versiones ni si Lite está disponible de forma independiente o solo integrada dentro de ciertos planes de Gemini. Esta es información que cambia con bastante frecuencia según la fase de lanzamiento en la que se encuentre el producto, así que antes de planificar un flujo de trabajo profesional alrededor de Nano Banana 2 Lite, te recomiendo confirmar en la documentación oficial de Google AI o Gemini cuál es el estado actual.
+¿Dónde está el límite real? En la resolución: Lite genera a 1K, mientras que para 2K o 4K necesitas el modelo completo o Nano Banana Pro. Lite está disponible desde el día del lanzamiento en Google AI Studio y la API de Gemini, y se está desplegando en la app de Gemini, NotebookLM, Google Fotos y Google Ads. De hecho, Google la recomienda como sustituto directo para quien todavía usaba la primera versión de Nano Banana: mejor calidad, más velocidad y menor coste.
 
 ## ¿Cuándo tiene sentido usar Nano Banana 2 y cuándo no?
 
@@ -79,34 +78,32 @@ Dicho esto, insisto: no he podido verificar con certeza absoluta los límites ex
 
 - Buscas la máxima calidad artística o estilística desde cero: ahí Midjourney V8.1 sigue teniendo una ventaja notable en composición y estética.
 - Necesitas control técnico total y ejecución local sin depender de servidores externos: Stable Diffusion 3 o Flux, al ser open source, te dan esa libertad.
-- Tu presupuesto es cero y necesitas algo gratuito y sin restricciones de uso comercial claras: revisa bien la letra pequeña antes de asumir que Nano Banana 2 encaja en ese escenario.
-- Trabajas en un sector donde la procedencia y trazabilidad exacta del modelo es crítica (legal, salud, sectores muy regulados) y necesitas total certeza sobre licencias y términos de uso, que en este caso conviene confirmar directamente con Google.
+- Tu presupuesto es cero y necesitas volumen: la cuota gratuita (unas 20 imágenes al día a 1K) se queda corta enseguida, y ahí Flux —con su variante klein de licencia Apache— o Stable Diffusion en local siguen siendo imbatibles en coste.
+- Te incomoda que las imágenes lleven marcado de origen: todas las salidas incorporan la marca de agua invisible SynthID y credenciales C2PA que las identifican como generadas con IA.
 
-Mi recomendación honesta: si ya usas Gemini para otras tareas y tu necesidad principal es edición consistente de imágenes, pruébalo, probablemente tengas acceso a alguna versión gratuita o de prueba. Si tu prioridad es la calidad artística pura o el control técnico, sigue con Midjourney o Flux como primera opción y usa Nano Banana 2 como complemento para tareas de edición puntual.
+Mi recomendación honesta: si ya usas Gemini para otras tareas y tu necesidad principal es edición consistente de imágenes, pruébalo — la cuota gratuita de la app (unas 20 imágenes al día) da de sobra para una primera toma de contacto. Si tu prioridad es la calidad artística pura o el control técnico, sigue con Midjourney o Flux como primera opción y usa Nano Banana 2 como complemento para tareas de edición puntual.
 
 ## Preguntas frecuentes sobre Nano Banana 2
 
 **¿Nano Banana 2 es gratis o hay que pagar por usarlo?**
-Depende del nivel de acceso e integración dentro de Gemini, y esto ha cambiado varias veces desde su lanzamiento. Lo más seguro es revisar directamente en la web de Gemini o Google AI Studio cuál es el modelo de precios vigente en el momento en que lo consultes.
+Sí, con límites: la app de Gemini incluye una cuota gratuita de unas 20 imágenes al día a resolución 1K. Google AI Pro (21,99 €/mes) la amplía a unas 100 diarias y el plan Ultra añade generación en 4K. Vía API no hay capa gratuita: Nano Banana 2 cuesta unos 0,067 $ por imagen en 1K y la versión Lite unos 0,034 $.
 
 **¿Qué diferencia hay entre Nano Banana 2 y la versión Lite?**
-La versión Lite está pensada para ser más rápida y económica en generaciones simples, mientras que el modelo completo ofrece mejor consistencia en escenas complejas con múltiples elementos. La diferencia de calidad se nota sobre todo cuando necesitas mantener coherencia entre varios objetos o personajes a la vez.
+Nano Banana 2 Lite (lanzada el 30 de junio de 2026) prioriza velocidad y coste: genera una imagen 1K en unos 4 segundos por la mitad de precio que el modelo completo vía API. Nano Banana 2 ofrece mejor consistencia en escenas complejas con múltiples elementos, y Nano Banana Pro sigue siendo el tope de gama con salida hasta 4K.
 
 **¿Nano Banana 2 es mejor que Midjourney?**
 En calidad artística pura y composición, Midjourney V8.1 sigue siendo superior para muchos casos de uso. Nano Banana 2 destaca específicamente en edición y consistencia de imágenes existentes, así que la respuesta depende de para qué lo necesites.
 
 **¿Está disponible Nano Banana 2 en España?**
-Al estar integrado en Gemini, la disponibilidad debería seguir el mismo despliegue geográfico que el resto de productos de Google IA, que suele incluir España desde el lanzamiento inicial o poco después. Aun así, conviene confirmarlo directamente en tu cuenta de Gemini, ya que algunas funciones se activan de forma escalonada por región.
+Sí. Nano Banana 2 está disponible en España desde su lanzamiento en febrero de 2026, integrado en la app de Gemini, el Modo IA del buscador y Google Lens. La versión Lite, lanzada el 30 de junio de 2026, se está desplegando además en NotebookLM, Google Fotos y Google Ads.
 
 **¿Puedo usar Nano Banana 2 para imágenes de uso comercial?**
-Los términos de uso comercial dependen de las condiciones de licencia de Google en el momento de la consulta, y estas condiciones han variado entre distintos productos de IA generativa de la compañía. Antes de usar cualquier imagen generada en un proyecto comercial, revisa los términos de servicio actualizados de Gemini para evitar sorpresas legales.
+Sí, Google permite usar las imágenes generadas en proyectos comerciales. Eso sí, todas llevan la marca de agua invisible SynthID y credenciales C2PA que las identifican como generadas con IA, verificables desde la propia app de Gemini. Si trabajas para clientes, conviene comunicárselo.
 
 ## Conclusión
 
-Nano Banana 2 no compite de tú a tú con Midjourney en el terreno de la generación artística pura, y tampoco pretende hacerlo. Su valor real está en resolver un problema muy concreto y muy práctico: editar imágenes manteniendo consistencia, algo que durante años ha sido más complicado de lo que debería en casi todas las herramientas del mercado. La versión Lite, en la medida en que he podido probarla y entender su propuesta, añade una capa de velocidad y coste reducido que tiene sentido para quien necesita volumen antes que perfección en cada detalle.
+Nano Banana 2 no compite de tú a tú con Midjourney en el terreno de la generación artística pura, y tampoco pretende hacerlo. Su valor real está en resolver un problema muy concreto y muy práctico: editar imágenes manteniendo consistencia, algo que durante años ha sido más complicado de lo que debería en casi todas las herramientas del mercado. La versión Lite añade una capa de velocidad y coste reducido que tiene sentido para quien necesita volumen antes que perfección en cada detalle.
 
 Si tu trabajo diario incluye generar variaciones de producto, retocar retratos o mantener coherencia visual en campañas con múltiples piezas, merece la pena que le dediques una tarde a probarlo dentro de Gemini. Si en cambio buscas la pieza final más pulida para un proyecto artístico o de marca, sigue mirando primero a Midjourney o Flux, y usa Nano Banana 2 como la herramienta de edición rápida que completa el flujo, no la que lo sustituye por completo.
 
 Como con casi todo en este terreno, la foto cambia cada pocos meses. Lo que hoy es una función exclusiva de la versión completa, mañana puede estar disponible en Lite, y viceversa. Mi consejo de siempre: prueba, compara con lo que ya usas y no dejes que el nombre llamativo —por muy pegadizo que sea "Nano Banana"— decida por ti qué herramienta encaja mejor en tu flujo de trabajo real.
-
----
