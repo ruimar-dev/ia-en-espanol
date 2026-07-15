@@ -6,7 +6,7 @@
       "permanent": true
     },
     {
-      "source": "/herramientas/(neuronwriter|writesonic|suno|udio|gamma|otterai)",
+      "source": "/herramientas/(neuronwriter|writesonic|gamma|otterai)",
       "destination": "/herramientas",
       "permanent": true
     }
