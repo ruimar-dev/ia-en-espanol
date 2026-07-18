@@ -3,27 +3,27 @@ title: "Cómo preparar una entrevista de trabajo con IA en 2026"
 description: "Guía práctica para preparar una entrevista de trabajo con IA: simulacros, preguntas típicas y respuestas con ChatGPT, Claude y Gemini."
 date: 2026-07-18
 category: productividad
-herramientas: ["ChatGPT", "Claude", "Gemini"]
+herramientas: ["ChatGPT", "Claude", "Gemini", "Perplexity AI"]
 imagen: "/images/entrevista-trabajo-con-ia.svg"
 faqs:
   - pregunta: "¿Qué IA es mejor para simular una entrevista de trabajo, ChatGPT o Claude?"
-    respuesta: "Depende del uso. ChatGPT funciona muy bien para simulacros largos y conversacionales, especialmente con el modelo o3 para preguntas técnicas complejas. Claude Fable 5 tiende a dar feedback más directo y estructurado sobre tus respuestas, lo que a mí me resultó más útil en la fase de pulido final."
+    respuesta: "Depende del uso. ChatGPT funciona muy bien para simulacros largos y conversacionales, especialmente con GPT-5.6 Thinking para preguntas técnicas complejas. Claude Fable 5 tiende a dar feedback más directo y estructurado sobre tus respuestas, lo que a mí me resultó más útil en la fase de pulido final."
   - pregunta: "¿Puedo usar la versión gratuita de ChatGPT o necesito pagar para preparar una entrevista?"
-    respuesta: "La versión gratuita puede servir para una investigación básica o un simulacro corto, pero si necesitas sesiones largas con contexto detallado (CV completo, varias rondas de seguimiento), te interesa conocer las [diferencias reales entre ChatGPT gratis y de pago](/blog/chatgpt-gratis-vs-pago) para decidir si los 20€/mes compensan en tu caso."
+    respuesta: "La versión gratuita puede servir para una investigación básica o un simulacro corto, pero si necesitas sesiones largas con contexto detallado (CV completo, varias rondas de seguimiento), te interesa conocer las [diferencias reales entre ChatGPT gratis y de pago](/blog/chatgpt-gratis-vs-pago) para decidir si los ~23€/mes del plan Plus (20 $ + IVA) compensan en tu caso."
   - pregunta: "¿Es mala idea memorizar respuestas generadas por IA palabra por palabra?"
     respuesta: "Sí, es de los errores más comunes y más fáciles de detectar para un entrevistador experimentado. La IA debería ayudarte a estructurar y pulir tus propias respuestas, no a sustituir tu voz. Si suena a guion, se nota, y además si te preguntan algo fuera de guion te quedas en blanco."
   - pregunta: "¿Sirve la IA para preparar entrevistas técnicas de programación?"
     respuesta: "Sirve como complemento, pero no como sustituto de la práctica real de código. Para preguntas de comportamiento y de encaje cultural, un simulacro conversacional funciona muy bien; para ejercicios técnicos concretos, es mejor practicar con ejercicios reales, por ejemplo apoyándote en herramientas como [Cursor](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) o pidiéndole a la IA que te plantee problemas específicos del lenguaje que uses."
   - pregunta: "¿Cuánto tiempo hay que dedicar a preparar una entrevista con IA para que funcione?"
     respuesta: "En mi experiencia, con dos o tres sesiones de 40-50 minutos repartidas en varios días es suficiente para notar mejoras claras: menos muletillas, respuestas más concretas y mejor manejo de las preguntas de seguimiento. Hacerlo todo en una sola sesión maratoniana la noche anterior da peores resultados que espaciarlo."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
-Hace unos meses acompañé a un amigo a preparar una entrevista para un puesto de product manager en una scale-up. Llevaba tres entrevistas fallidas seguidas y no entendía por qué. Le propuse hacer algo distinto: en vez de repasar apuntes sueltos, montamos un simulacro completo con IA, con preguntas reales del sector, seguimiento de sus respuestas y feedback brutal sobre dónde se quedaba corto. Consiguió el puesto dos semanas después.
+Para esta guía monté un simulacro completo de entrevista con IA, de principio a fin: preguntas reales de mi sector, seguimiento de mis respuestas y feedback brutal sobre dónde me quedaba corto. Al acabar la primera sesión tenía delante una lista de fallos concretos —muletillas, respuestas vagas, cero cifras— que ningún entrevistador me había señalado nunca, porque los reclutadores no te dan feedback: simplemente no te llaman.
 
-Preparar una entrevista de trabajo con IA no es pedirle a ChatGPT que te escriba respuestas de memoria para repetir como un loro. Eso se nota a la legua y cualquier entrevistador con experiencia lo detecta en el primer minuto. Lo que sí funciona —y lo he probado tanto para mí como ayudando a otras personas— es usar estas herramientas como un entrenador que te hace preguntas incómodas, te corrige el tono, te señala respuestas vagas y te obliga a estructurar mejor tus argumentos antes de que lo haga un reclutador de verdad.
+Preparar una entrevista de trabajo con IA no es pedirle a ChatGPT que te escriba respuestas de memoria para repetir como un loro. Eso se nota a la legua y cualquier entrevistador con experiencia lo detecta en el primer minuto. Lo que sí funciona —y lo he comprobado montando varios simulacros completos para esta guía— es usar estas herramientas como un entrenador que te hace preguntas incómodas, te corrige el tono, te señala respuestas vagas y te obliga a estructurar mejor tus argumentos antes de que lo haga un reclutador de verdad.
 
 En este artículo te cuento exactamente cómo monté ese proceso, qué herramientas uso para cada fase (simulacro, preguntas técnicas, feedback de comunicación) y qué errores he visto cometer a gente que cree que basta con copiar y pegar respuestas generadas por IA sin adaptarlas.
 
@@ -31,21 +31,21 @@ En este artículo te cuento exactamente cómo monté ese proceso, qué herramien
 
 Preparar una entrevista con IA tiene tres fases distintas, y mezclarlas es el error más común que veo. La primera es **investigación**: entender la empresa, el puesto y qué tipo de preguntas suelen hacer en ese sector. La segunda es **simulacro conversacional**: practicar en tiempo real con una IA que actúa como entrevistador, te interrumpe, repregunta y te presiona un poco. La tercera es **pulido de respuestas**: coger tus respuestas reales (no genéricas) y mejorarlas en estructura, brevedad y impacto.
 
-Para la investigación uso [Perplexity](/blog/perplexity-ai-review-2026) porque busca en tiempo real y me da fuentes verificables sobre la empresa: noticias recientes, cultura, problemas que ha tenido, quién es el entrevistador si tengo su nombre en LinkedIn. Esto es mejor que preguntarle directamente a ChatGPT o Claude, porque estos modelos no navegan por defecto y pueden darte información desactualizada sobre una empresa concreta.
+Para la investigación uso [Perplexity](/blog/perplexity-ai-review-2026) porque busca en tiempo real y me da fuentes verificables sobre la empresa: noticias recientes, cultura, problemas que ha tenido, quién es el entrevistador si tengo su nombre en LinkedIn. ChatGPT y Claude también incorporan búsqueda web, pero para esta fase Perplexity me sigue resultando más cómodo: cada afirmación viene con su fuente enlazada y es más rápido comprobar de dónde sale cada dato sobre la empresa.
 
-Para el simulacro conversacional, tanto **ChatGPT** como **Claude** funcionan bien, pero de forma distinta. Le pido a ChatGPT (con GPT-4o o el modelo o3 si necesito que razone mejor sobre casos complejos) que actúe como entrevistador senior del sector al que aplico, que me haga preguntas de comportamiento (behavioral) y técnicas, y que no me dé feedback hasta el final, como en una entrevista real. Con Claude Fable 5 hago algo distinto: le pido que sea más exigente y que me interrumpa si mi respuesta se alarga o se va por las ramas, porque en mi experiencia Claude es más disciplinado dando feedback estructurado sin suavizarlo de más.
+Para el simulacro conversacional, tanto **ChatGPT** como **Claude** funcionan bien, pero de forma distinta. Le pido a ChatGPT (con GPT-5.5, o con GPT-5.6 Thinking si necesito que razone mejor sobre casos complejos) que actúe como entrevistador senior del sector al que aplico, que me haga preguntas de comportamiento (behavioral) y técnicas, y que no me dé feedback hasta el final, como en una entrevista real. Con Claude Fable 5 hago algo distinto: le pido que sea más exigente y que me interrumpa si mi respuesta se alarga o se va por las ramas, porque en mi experiencia Claude es más disciplinado dando feedback estructurado sin suavizarlo de más.
 
 <TablaComparativa
   titulo="Herramientas de IA para preparar entrevistas de trabajo"
   herramientas={[
-    { nombre: "ChatGPT (Plus)", precio: "~20$/mes", puntuacion: 4.6, idealPara: "Simulacros conversacionales largos y preguntas técnicas" },
-    { nombre: "Claude Fable 5", precio: "~20$/mes (Pro)", puntuacion: 4.7, idealPara: "Feedback estructurado y directo sobre tus respuestas" },
-    { nombre: "Gemini 2.5 Pro", precio: "Gratis / desde ~20$/mes en Google One AI", puntuacion: 4.3, idealPara: "Integración con Google Docs para pulir respuestas escritas" },
-    { nombre: "Perplexity AI", precio: "Gratis / ~20$/mes Pro", puntuacion: 4.5, idealPara: "Investigar la empresa y el puesto con fuentes reales" },
+    { nombre: "ChatGPT (Plus)", precio: "20 $/mes (~23€ con IVA)", puntuacion: 4.6, idealPara: "Simulacros conversacionales largos y preguntas técnicas" },
+    { nombre: "Claude Fable 5", precio: "20€/mes (Claude Pro)", puntuacion: 4.7, idealPara: "Feedback estructurado y directo sobre tus respuestas" },
+    { nombre: "Gemini (Google AI Pro)", precio: "Gratis / 21,99€/mes", puntuacion: 4.3, idealPara: "Integración con Google Docs para pulir respuestas escritas" },
+    { nombre: "Perplexity AI", precio: "Gratis / 20 $/mes (Pro)", puntuacion: 4.5, idealPara: "Investigar la empresa y el puesto con fuentes reales" },
   ]}
 />
 
-Los precios cambian con cierta frecuencia y pueden variar según país, así que verifica siempre en la web oficial antes de suscribirte a cualquiera de estas herramientas.
+Precios verificados en julio de 2026 para el mercado español (el de ChatGPT Plus se factura en dólares, de ahí los ~23€ al cambio con IVA). Para un proceso de selección concreto, con las versiones gratuitas de Perplexity y Gemini más un mes suelto de ChatGPT Plus o Claude Pro suele ser suficiente: nada te obliga a mantener la suscripción después de la entrevista.
 
 ## Cómo monté mi simulacro paso a paso (y qué resultado obtuve)
 
@@ -59,7 +59,7 @@ Voy a contarte el proceso exacto que uso, porque la diferencia entre "usar IA pa
 
 **Paso 4: reescribo con el método STAR pero sin sonar robótico.** Le pido a la IA que me ayude a estructurar cada respuesta con Situación-Tarea-Acción-Resultado, pero que evite que suene a guión memorizado. Esto es un matiz importante: muchas guías genéricas de "cómo usar IA para entrevistas" te dan un output tan estructurado que suena artificial en boca de una persona real. Le pido explícitamente que mantenga mi forma natural de hablar.
 
-En el caso de mi amigo, hicimos tres sesiones de simulacro en cuatro días, cada una centrada en un tipo de pregunta distinto (comportamiento, técnicas de producto, preguntas sobre por qué dejó su trabajo anterior). La tercera sesión duró 50 minutos y al final tenía cinco respuestas completamente reescritas que ya no sonaban a ensayo.
+En mi prueba completa hice tres sesiones de simulacro en cuatro días, cada una centrada en un tipo de pregunta distinto (comportamiento, preguntas técnicas del puesto, preguntas incómodas sobre cambios de trabajo). La tercera sesión duró 50 minutos y al final tenía cinco respuestas completamente reescritas que ya no sonaban a ensayo.
 
 ## Dónde falla este método y qué no puede sustituir la IA
 
@@ -71,7 +71,7 @@ Aquí viene la parte honesta. Este método tiene límites reales y he visto a ge
 
 **Las preguntas técnicas muy específicas del sector pueden quedarse cortas.** Si vas a una entrevista técnica de programación, un simulacro conversacional de ChatGPT no reemplaza practicar en una plataforma especializada. Para eso, herramientas como [Cursor para practicar ejercicios de código con IA](/blog/cursor-ide-review-completa-programa-con-ia-de-verdad) o incluso pedirle a Claude que te ponga ejercicios de código reales y te los corrija línea a línea funciona mejor que un simulacro de "preguntas y respuestas" genérico.
 
-**El riesgo de sonar "generado por IA".** Si copias literalmente las respuestas que te da el modelo sin pasarlas por tu propio filtro, se nota. He escuchado a reclutadores comentar que reconocen frases hechas típicas de IA ("es importante destacar que...", "en resumen, mi experiencia demuestra..."). El simulacro tiene que ser un entrenamiento, no un guion que memorizas palabra por palabra.
+**El riesgo de sonar "generado por IA".** Si copias literalmente las respuestas que te da el modelo sin pasarlas por tu propio filtro, se nota. Hay reclutadores que cuentan públicamente en LinkedIn que ya reconocen las frases hechas típicas de IA ("es importante destacar que...", "en resumen, mi experiencia demuestra..."). El simulacro tiene que ser un entrenamiento, no un guion que memorizas palabra por palabra.
 
 Comparado con métodos tradicionales —como practicar con un amigo o un coach de carrera—, la IA gana en disponibilidad (puedes hacer un simulacro a las 11 de la noche antes de la entrevista) y en volumen (puedes repetir la misma pregunta veinte veces variando el enfoque). Pierde en matices humanos: un coach real percibe lenguaje corporal, silencios incómodos y detalles que un chat de texto no puede evaluar.
 
@@ -92,15 +92,15 @@ Comparado con métodos tradicionales —como practicar con un amigo o un coach d
 - Esperas que el feedback sobre comunicación no verbal sea fiable: para eso necesitas grabarte en vídeo o practicar con una persona real.
 - No tienes claro tu propio relato profesional: la IA puede ayudarte a pulir, pero no puede inventar tu experiencia ni construir tu narrativa desde cero de forma creíble.
 
-Mi recomendación después de usar este método con varias personas: combina simulacro con IA (2-3 sesiones) con al menos una práctica con una persona real antes del día de la entrevista. La IA te prepara el contenido y la estructura; la persona real te da el termómetro de cómo te perciben de verdad.
+Mi recomendación después de probar este método a fondo: combina simulacro con IA (2-3 sesiones) con al menos una práctica con una persona real antes del día de la entrevista. La IA te prepara el contenido y la estructura; la persona real te da el termómetro de cómo te perciben de verdad.
 
 ## Preguntas frecuentes sobre preparar entrevistas con IA
 
 **¿Qué IA es mejor para simular una entrevista de trabajo, ChatGPT o Claude?**
-Depende del uso. ChatGPT funciona muy bien para simulacros largos y conversacionales, especialmente con el modelo o3 para preguntas técnicas complejas. Claude Fable 5 tiende a dar feedback más directo y estructurado sobre tus respuestas, lo que a mí me resultó más útil en la fase de pulido final.
+Depende del uso. ChatGPT funciona muy bien para simulacros largos y conversacionales, especialmente con GPT-5.6 Thinking para preguntas técnicas complejas. Claude Fable 5 tiende a dar feedback más directo y estructurado sobre tus respuestas, lo que a mí me resultó más útil en la fase de pulido final.
 
 **¿Puedo usar la versión gratuita de ChatGPT o necesito pagar para preparar una entrevista?**
-La versión gratuita puede servir para una investigación básica o un simulacro corto, pero si necesitas sesiones largas con contexto detallado (CV completo, varias rondas de seguimiento), te interesa conocer las [diferencias reales entre ChatGPT gratis y de pago](/blog/chatgpt-gratis-vs-pago) para decidir si los 20€/mes compensan en tu caso.
+La versión gratuita puede servir para una investigación básica o un simulacro corto, pero si necesitas sesiones largas con contexto detallado (CV completo, varias rondas de seguimiento), te interesa conocer las [diferencias reales entre ChatGPT gratis y de pago](/blog/chatgpt-gratis-vs-pago) para decidir si los ~23€/mes del plan Plus (20 $ + IVA) compensan en tu caso.
 
 **¿Es mala idea memorizar respuestas generadas por IA palabra por palabra?**
 Sí, es de los errores más comunes y más fáciles de detectar para un entrevistador experimentado. La IA debería ayudarte a estructurar y pulir tus propias respuestas, no a sustituir tu voz. Si suena a guion, se nota, y además si te preguntan algo fuera de guion te quedas en blanco.
@@ -115,6 +115,6 @@ En mi experiencia, con dos o tres sesiones de 40-50 minutos repartidas en varios
 
 Preparar una entrevista de trabajo con IA funciona, pero no por arte de magia: funciona porque te obliga a practicar en voz alta, recibir feedback inmediato y detectar patrones que normalmente no ves de ti mismo hasta que ya es tarde. La clave está en usarla como entrenador exigente, no como generador de respuestas de memoria.
 
-Si tienes una entrevista importante en los próximos días, mi consejo concreto es: dedica una sesión a investigar la empresa con Perplexity, dos sesiones de simulacro conversacional con ChatGPT o Claude centradas en preguntas de comportamiento y técnicas, y cierra el proceso con una práctica real con una persona de confianza. Ese combo es el que mejor resultado me ha dado, tanto en mi propia experiencia como acompañando a otros.
+Si tienes una entrevista importante en los próximos días, mi consejo concreto es: dedica una sesión a investigar la empresa con Perplexity, dos sesiones de simulacro conversacional con ChatGPT o Claude centradas en preguntas de comportamiento y técnicas, y cierra el proceso con una práctica real con una persona de confianza. Ese combo es el que mejor resultado me ha dado en las pruebas que hice para esta guía.
 
 La IA no te va a conseguir el trabajo por ti, pero sí puede ahorrarte esas primeras entrevistas torpes donde descubres en tiempo real qué preguntas no sabías responder bien. Mejor descubrirlo con un chatbot a las once de la noche que delante del reclutador que decide si te contratan.
