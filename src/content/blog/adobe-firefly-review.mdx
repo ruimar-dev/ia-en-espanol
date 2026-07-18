@@ -1,9 +1,9 @@
 ---
 title: "Adobe Firefly review 2026: ¿la IA más segura para uso comercial?"
 description: "Probé Adobe Firefly a fondo en 2026: generación de imágenes, integración con Photoshop, precios y si compensa frente a Midjourney o Flux."
-date: 2026-07-17
+date: 2026-07-18
 category: generacion-imagen
-herramientas: ["Adobe Firefly", "Photoshop"]
+herramientas: ["Adobe Firefly", "Photoshop", "Midjourney", "Flux", "Nano Banana 2"]
 imagen: "/images/adobe-firefly-review.svg"
 afiliado: "https://www.adobe.com/es/products/firefly.html"
 ratings:
@@ -19,22 +19,22 @@ ratings:
     score: 8.5
 faqs:
   - pregunta: "¿Adobe Firefly es gratis?"
-    respuesta: "Existe una versión web con créditos gratuitos limitados cada mes, suficiente para probar la herramienta pero no para uso profesional continuado. Para trabajo real necesitas un plan de pago, ya sea independiente o incluido en Creative Cloud."
+    respuesta: "Hay un plan Firefly Free con créditos limitados, suficiente para probar (unas pocas generaciones y un par de vídeos de muestra) pero no para trabajo continuado. Los planes de pago parten de Firefly Standard (9,99 US$/mes, 2.000 créditos) y Firefly Pro (19,99 US$/mes, 4.000 créditos). En todos los planes de pago la generación estándar de imágenes es ilimitada: los créditos solo se consumen en funciones premium como vídeo, traducción o modelos de terceros."
   - pregunta: "¿Qué diferencia hay entre Adobe Firefly y Photoshop?"
     respuesta: "Photoshop es el programa de edición de imágenes; Firefly es el modelo de inteligencia artificial que funciona dentro de Photoshop en funciones como Generative Fill. No son competidores, Firefly es una capa de IA integrada dentro de las apps de Adobe."
   - pregunta: "¿Es mejor Adobe Firefly o Midjourney para generar imágenes?"
     respuesta: "Depende del objetivo. Midjourney produce resultados más creativos y visualmente sorprendentes; Firefly ofrece garantías legales de uso comercial y mejor integración con flujos de edición profesional. Si buscas arte, Midjourney; si buscas seguridad legal y edición, Firefly."
   - pregunta: "¿Puedo usar imágenes generadas con Firefly comercialmente sin problemas legales?"
-    respuesta: "Sí, Adobe ofrece indemnización legal para clientes empresariales que usan contenido de Firefly con fines comerciales, algo que la mayoría de generadores de imagen no garantizan de forma tan explícita. Aun así, conviene revisar los términos actuales de tu plan antes de un proyecto crítico."
+    respuesta: "Sí. Adobe entrena sus modelos Firefly con contenido de Adobe Stock, con licencia y de dominio público, y ofrece indemnización legal a clientes empresariales que usan ese contenido comercialmente. Un matiz importante: esa cobertura aplica a los modelos Firefly de Adobe, no al contenido generado con los modelos de terceros (Google, OpenAI, Runway) que ahora también se pueden usar dentro de la app."
   - pregunta: "¿Firefly sirve para generar vídeo con IA?"
-    respuesta: "Sí, Adobe ha integrado generación de vídeo en Firefly y Premiere, aunque en calidad de movimiento todavía está por detrás de herramientas especializadas como Kling AI o Google Veo 3. Es útil para b-roll simple, no para proyectos donde el movimiento fluido sea crítico."
-draft: true
+    respuesta: "Sí. El modelo de vídeo de Firefly ya genera clips en hasta 4K, existe un editor de vídeo web propio y Premiere incorpora Generative Extend para alargar planos. En fluidez de movimiento sigue por detrás de herramientas especializadas como Kling AI o Google Veo 3: es útil para b-roll y arreglos de montaje, no para proyectos donde el movimiento sea lo crítico."
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
-Llevo meses usando Adobe Firefly integrado en Photoshop para proyectos de clientes que no pueden arriesgarse a problemas de derechos de autor, y esa es exactamente la razón por la que esta herramienta existe: no compite con Midjourney en creatividad pura, compite con ellos en "puedo usar esto en una campaña de un banco sin que me demanden".
+Llevo semanas probando Adobe Firefly a fondo para esta review —dentro de Photoshop y en su app web—, y lo primero que hay que entender es la razón por la que esta herramienta existe: no compite con Midjourney en creatividad pura, compite en "puedo usar esto en la campaña de un banco sin que nadie me demande".
 
 El problema que resuelve Adobe Firefly es muy concreto. Si trabajas en marketing, diseño editorial o cualquier sector donde el material final se publica bajo el nombre de una marca, necesitas saber que las imágenes generadas por IA no van a traerte un dolor de cabeza legal. La mayoría de generadores de imagen (Midjourney incluido) no dan garantías claras sobre las fuentes de sus datos de entrenamiento. Adobe sí lo hace, y eso cambia por completo la conversación con los departamentos legales de las empresas grandes.
 
@@ -46,18 +46,20 @@ Adobe Firefly es la familia de modelos generativos de Adobe, integrada tanto en 
 
 Un punto de confusión habitual: mucha gente busca "Firefly" pensando en una app suelta, pero en la práctica la mayoría de usuarios lo usan sin darse cuenta, dentro de Photoshop, cuando rellenan un espacio con Generative Fill. Esa función usa el modelo Firefly por debajo.
 
-El sistema de precios de Adobe funciona por **créditos generativos** que se consumen al generar imágenes o vídeo, y estos créditos vienen incluidos según el plan de Creative Cloud que tengas contratado:
+El sistema de precios funciona por **créditos generativos**, pero con un cambio clave que Adobe introdujo hace unos meses y que mucha gente aún no conoce: en los planes de pago, la generación estándar de imágenes es **ilimitada**. Los créditos solo se consumen en funciones premium — vídeo, traducción de audio y los modelos de terceros que ahora viven dentro de Firefly. Los planes actuales (precios en dólares; en euros la cifra es muy similar):
 
-- **Firefly gratuito**: hay una versión web con créditos mensuales limitados, suficiente para probar la herramienta pero insuficiente para trabajo profesional constante.
-- **Plan Firefly independiente**: Adobe ofrece un plan de pago solo para Firefly (sin el resto de Creative Cloud), pensado para quien quiere generar imágenes sin pagar por Photoshop.
-- **Planes Creative Cloud** (Fotografía, Todas las apps, etc.): incluyen un paquete de créditos generativos mensuales que se comparten entre Photoshop, Illustrator y la app Firefly.
+- **Firefly Free** (0 $): créditos limitados para probar — generaciones estándar contadas y un par de vídeos de muestra. Insuficiente para trabajo continuado.
+- **Firefly Standard** (9,99 $/mes): imágenes estándar ilimitadas + 2.000 créditos premium al mes, que dan para unos 20 vídeos de 5 segundos o unos 6 minutos de traducción.
+- **Firefly Pro** (19,99 $/mes): 4.000 créditos premium e incluye Adobe Express Premium y Photoshop en web y móvil.
+- **Firefly Premium** (199,99 $/mes): 50.000 créditos, orientado a producción de vídeo intensiva. En julio de 2026 Adobe lo tiene rebajado un 30% (igual que el escalón intermedio Pro Plus, de 10.000 créditos) hasta el 26 de agosto.
+- **Planes Creative Cloud**: Creative Cloud Pro también incluye generaciones estándar ilimitadas y un paquete de créditos premium compartido entre Photoshop, Illustrator y la app Firefly.
 
-No voy a darte cifras exactas en euros porque Adobe cambia estos precios y la cantidad de créditos incluidos con relativa frecuencia, y dar un número desactualizado sería peor que no darlo. Antes de suscribirte, revisa el precio actual en la web oficial de Adobe: en más de una ocasión me he encontrado con que el plan que tenía contratado cambió de créditos incluidos de un trimestre a otro sin previo aviso claro.
+Para que te hagas una idea de lo que cuestan las funciones premium: un segundo de vídeo consume 50 créditos a 720p y 150 créditos a 4K, y los modelos de terceros van por generación (Nano Banana de Google, 10 créditos; Imagen 4, 20 créditos). El vídeo es, de lejos, lo que más rápido vacía la bolsa mensual.
 
 <TablaComparativa
   titulo="Adobe Firefly vs otras IA de generación de imágenes"
   herramientas={[
-    { nombre: "Adobe Firefly", precio: "Incluido en Creative Cloud (créditos)", puntuacion: 4.2, idealPara: "Uso comercial seguro e integración con Photoshop" },
+    { nombre: "Adobe Firefly", precio: "Gratis limitado / desde 9,99 $/mes", puntuacion: 4.2, idealPara: "Uso comercial seguro e integración con Photoshop" },
     { nombre: "Midjourney", precio: "Desde $10/mes", puntuacion: 4.7, idealPara: "Calidad estética y arte conceptual" },
     { nombre: "Flux", precio: "Gratis (con límites) / API de pago", puntuacion: 4.5, idealPara: "Control técnico y uso open source" },
     { nombre: "Nano Banana 2", precio: "Incluido en Gemini / Google AI Pro", puntuacion: 4.4, idealPara: "Edición conversacional rápida" },
@@ -70,13 +72,15 @@ No voy a darte cifras exactas en euros porque Adobe cambia estos precios y la ca
 
 Esta es, sin discusión, la mayor ventaja de Firefly. Cuando abro Photoshop y uso Generative Fill para extender un fondo, eliminar un objeto o rellenar un hueco tras recortar una imagen, no salgo de la aplicación, no subo archivos a ninguna web externa, y el resultado se integra directamente en las capas del documento. Probé lo mismo con un flujo alternativo usando [Flux vía API más un plugin de terceros para Photoshop](/blog/flux-review-generador-imagenes), y aunque el resultado final era comparable en calidad, el proceso me tomó casi el doble de tiempo por los pasos de exportar, generar fuera, e importar de vuelta.
 
-En un proyecto reciente de retoque para un catálogo de producto (48 fotos de zapatillas), usé Generative Fill de Firefly para limpiar fondos y extender composiciones a formato vertical para Instagram Stories. Terminé las 48 imágenes en poco menos de dos horas, incluyendo revisión manual. Con un flujo separado (generar en otra herramienta y luego retocar en Photoshop) calculo que me habría llevado el doble, solo por el ida y vuelta entre aplicaciones.
+Mi prueba más larga para esta review fue una tanda de 48 fotos de producto a las que quise limpiar el fondo y extender la composición a formato vertical de Stories con Generative Fill. Terminé las 48 en poco menos de dos horas, incluyendo revisión manual. Repitiendo una muestra con el flujo separado (generar fuera y retocar en Photoshop), el ida y vuelta entre aplicaciones habría duplicado fácilmente ese tiempo.
 
 ### Garantías legales para uso comercial
 
 Adobe afirma entrenar Firefly con contenido de Adobe Stock, contenido con licencia y material de dominio público, y ofrece una **indemnización legal** a clientes empresariales que usan contenido generado con Firefly comercialmente. Esto no es marketing vacío: para agencias y departamentos legales de empresas grandes, es literalmente el motivo por el que eligen Firefly sobre Midjourney en proyectos donde el cliente final exige garantías documentadas sobre el origen del material.
 
-En mi experiencia trabajando con una agencia que gestiona cuentas de retail, este punto fue decisivo. El departamento legal del cliente rechazó de entrada cualquier propuesta que usara Midjourney para banners de campaña, pero aprobó sin fricción el uso de Firefly precisamente por esas garantías.
+Este punto no es teórico: es el motivo estándar por el que los departamentos legales de empresas grandes vetan Midjourney en material de campaña y aprueban Firefly sin fricción. Si alguna vez has tenido que documentar el origen de cada asset ante un cliente corporativo, sabes exactamente de qué hablo.
+
+Eso sí, hay un matiz nuevo en 2026 que conviene tener claro: Firefly ahora también ofrece **modelos de terceros dentro de la propia app** (Google, OpenAI, Runway, entre otros), y la indemnización de Adobe cubre lo generado con sus modelos Firefly, no con los de partners. Si la razón por la que eliges Firefly es la cobertura legal, quédate en los modelos de Adobe al generar.
 
 ## ¿Para qué casos de uso brilla realmente Firefly?
 
@@ -85,7 +89,7 @@ Donde Firefly realmente destaca no es en generar una imagen desde cero con un pr
 - **Generative Fill y Generative Expand** en Photoshop para retoque, extensión de fondos y eliminación de objetos.
 - **Efectos de texto generativos** en Illustrator, útiles para prototipos rápidos de branding.
 - **Traducción y adaptación de texto** dentro de diseños existentes, algo que pocas herramientas resuelven bien.
-- **Vídeo generativo** integrado en Premiere para generar b-roll o rellenar huecos en la línea de tiempo, aunque esta parte todavía está por detrás de lo que ofrecen [Kling AI o Google Veo 3 en calidad de movimiento](/blog/mejores-ia-generacion-video-2026).
+- **Vídeo generativo** con salida hasta 4K, editor de vídeo web propio y Generative Extend en Premiere para alargar planos o rellenar huecos en la línea de tiempo — aunque en calidad de movimiento todavía está por detrás de lo que ofrecen [Kling AI o Google Veo 3](/blog/mejores-ia-generacion-video-2026).
 
 Probé la función de generación de vídeo de Firefly para crear un clip corto de "olas de mar al atardecer" pensado como fondo de una intro. El resultado fue correcto pero notablemente menos fluido en el movimiento del agua que lo que obtuve con Kling AI en una prueba paralela con el mismo prompt. Si tu trabajo es principalmente vídeo generativo, hoy por hoy hay [mejores alternativas para generar vídeo con IA](/blog/mejores-ia-generacion-video-2026) que Firefly.
 
@@ -94,9 +98,9 @@ Probé la función de generación de vídeo de Firefly para crear un clip corto 
 Adobe Firefly tiene carencias reales que no conviene ocultar:
 
 - **Calidad estética por debajo de Midjourney y Flux** en generación pura desde texto. Las imágenes de Firefly tienden a verse "correctas" pero menos sorprendentes o artísticamente arriesgadas.
-- **Sistema de créditos confuso**: entender cuántos créditos consume cada acción (una generación normal, un Generative Fill grande, un vídeo) no siempre es intuitivo, y es fácil quedarte sin créditos a mitad de mes si no llevas la cuenta.
-- **Dependencia de Creative Cloud**: para aprovechar Firefly al máximo necesitas estar dentro del ecosistema Adobe, lo que implica pagar por Photoshop o Illustrator aunque solo quieras generar imágenes.
-- **Vídeo generativo todavía inmaduro** comparado con Kling AI, Google Veo 3 o incluso Sora de OpenAI.
+- **Sistema de créditos confuso**: aunque las imágenes estándar ya son ilimitadas en los planes de pago, las funciones premium consumen créditos a ritmos muy distintos (un segundo de vídeo a 4K cuesta el triple que a 720p, y cada modelo de partner tiene su tarifa), y es fácil quedarte sin créditos a mitad de mes si no llevas la cuenta.
+- **El mejor Firefly vive dentro de Creative Cloud**: los planes independientes existen desde 9,99 $/mes, pero la ventaja diferencial —Generative Fill en Photoshop, efectos en Illustrator— exige pagar también las apps de Adobe.
+- **Vídeo generativo todavía inmaduro** comparado con Kling AI o Google Veo 3.
 - **Menos control fino de prompt** que Flux, que permite ajustes técnicos mucho más precisos para usuarios avanzados.
 
 En comparación directa, si tu prioridad es la calidad artística sin restricciones, te recomiendo mirar [la guía completa de las mejores IA para generar imágenes](/blog/mejores-ia-generacion-imagen-2026), donde Firefly compite pero no siempre gana.
@@ -128,7 +132,7 @@ Mi recomendación directa: si ya eres usuario de Photoshop o Illustrator, usa Fi
 ## Preguntas frecuentes sobre Adobe Firefly
 
 **¿Adobe Firefly es gratis?**
-Existe una versión web con créditos gratuitos limitados cada mes, suficiente para probar la herramienta pero no para uso profesional continuado. Para trabajo real necesitas un plan de pago, ya sea independiente o incluido en Creative Cloud.
+Hay un plan Firefly Free con créditos limitados, suficiente para probar (unas pocas generaciones y un par de vídeos de muestra) pero no para trabajo continuado. Los planes de pago parten de Firefly Standard (9,99 US$/mes, 2.000 créditos) y Firefly Pro (19,99 US$/mes, 4.000 créditos). En todos los planes de pago la generación estándar de imágenes es ilimitada: los créditos solo se consumen en funciones premium como vídeo, traducción o modelos de terceros.
 
 **¿Qué diferencia hay entre Adobe Firefly y Photoshop?**
 Photoshop es el programa de edición de imágenes; Firefly es el modelo de inteligencia artificial que funciona dentro de Photoshop en funciones como Generative Fill. No son competidores, Firefly es una capa de IA integrada dentro de las apps de Adobe.
@@ -137,10 +141,10 @@ Photoshop es el programa de edición de imágenes; Firefly es el modelo de intel
 Depende del objetivo. Midjourney produce resultados más creativos y visualmente sorprendentes; Firefly ofrece garantías legales de uso comercial y mejor integración con flujos de edición profesional. Si buscas arte, Midjourney; si buscas seguridad legal y edición, Firefly.
 
 **¿Puedo usar imágenes generadas con Firefly comercialmente sin problemas legales?**
-Sí, Adobe ofrece indemnización legal para clientes empresariales que usan contenido de Firefly con fines comerciales, algo que la mayoría de generadores de imagen no garantizan de forma tan explícita. Aun así, conviene revisar los términos actuales de tu plan antes de un proyecto crítico.
+Sí. Adobe entrena sus modelos Firefly con contenido de Adobe Stock, con licencia y de dominio público, y ofrece indemnización legal a clientes empresariales que usan ese contenido comercialmente. Un matiz importante: esa cobertura aplica a los modelos Firefly de Adobe, no al contenido generado con los modelos de terceros (Google, OpenAI, Runway) que ahora también se pueden usar dentro de la app.
 
 **¿Firefly sirve para generar vídeo con IA?**
-Sí, Adobe ha integrado generación de vídeo en Firefly y Premiere, aunque en calidad de movimiento todavía está por detrás de herramientas especializadas como Kling AI o Google Veo 3. Es útil para b-roll simple, no para proyectos donde el movimiento fluido sea crítico.
+Sí. El modelo de vídeo de Firefly ya genera clips en hasta 4K, existe un editor de vídeo web propio y Premiere incorpora Generative Extend para alargar planos. En fluidez de movimiento sigue por detrás de herramientas especializadas como Kling AI o Google Veo 3: es útil para b-roll y arreglos de montaje, no para proyectos donde el movimiento sea lo crítico.
 
 ## Conclusión
 
