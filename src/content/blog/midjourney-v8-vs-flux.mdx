@@ -3,11 +3,11 @@ title: "Midjourney v8.1 vs Flux: qué generador de imágenes elegir 2026"
 description: "Comparativa honesta de Midjourney v8.1 vs Flux en 2026: calidad, precio y casos de uso reales para elegir el generador de imágenes IA que necesitas."
 date: 2026-07-24
 category: generacion-imagen
-herramientas: ["Midjourney v8.1", "Flux"]
+herramientas: ["Midjourney", "Flux"]
 imagen: "/images/midjourney-v8-vs-flux.svg"
 faqs:
   - pregunta: "¿Es Flux completamente gratis o hay que pagar en algún momento?"
-    respuesta: "Depende de la versión. Flux.1 Schnell es gratuita y de pesos abiertos, ideal para pruebas y uso personal. Flux.1 Dev tiene pesos abiertos pero con licencia no comercial. Flux.1 Pro, la versión más potente, se paga por imagen generada a través de API o plataformas de terceros."
+    respuesta: "Depende de la versión. FLUX.2 klein en su variante 4B es gratis, incluso para uso comercial, gracias a su licencia Apache 2.0. FLUX.2 dev es gratis pero solo para uso no comercial. Las versiones pro, flex y max se pagan por uso a través de la API de Black Forest Labs o de plataformas como Fal.ai y Replicate."
   - pregunta: "¿Midjourney v8.1 permite uso comercial de las imágenes generadas?"
     respuesta: "Sí, todos los planes de pago de Midjourney incluyen derechos de uso comercial, con la excepción de que empresas grandes con ingresos anuales elevados deben suscribirse a los planes superiores. Revisa los términos exactos en la web oficial porque pueden actualizarse."
   - pregunta: "¿Cuál genera manos y anatomía con menos errores, Midjourney o Flux?"
@@ -16,13 +16,12 @@ faqs:
     respuesta: "Sí, aunque con menos comodidad que Midjourney. Puedes usar Flux a través de interfaces web de plataformas como Freepik o Replicate sin escribir código, pero para aprovechar todo su potencial (control fino, automatización) sí ayuda tener conocimientos técnicos básicos."
   - pregunta: "¿Cuál es mejor para generar texto legible dentro de una imagen, como carteles o logos?"
     respuesta: "Flux tiene una ventaja clara aquí: renderiza texto dentro de imágenes de forma mucho más consistente y legible que Midjourney, que sigue teniendo dificultades con frases largas o tipografías complejas dentro de la escena."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
-Llevo meses generando imágenes con ambas herramientas para proyectos de cliente, portadas de blog y algún experimento personal que nunca ve la luz, y la pregunta que más me hacen sigue siendo la misma: **Midjourney v8.1 vs Flux, ¿cuál elijo?** No hay una respuesta única, y quien te diga lo contrario probablemente solo ha usado una de las dos.
+Llevo meses generando imágenes con ambas herramientas para portadas de este blog, pruebas propias y algún experimento personal que nunca ve la luz, y la pregunta que más me hacen sigue siendo la misma: **Midjourney v8.1 vs Flux, ¿cuál elijo?** No hay una respuesta única, y quien te diga lo contrario probablemente solo ha usado una de las dos.
 
 La comparación tiene sentido porque representan dos filosofías distintas de generar imágenes con inteligencia artificial. Midjourney lleva años perfeccionando su estética propia, ese acabado "bonito por defecto" que ha hecho que sea la herramienta favorita de diseñadores e ilustradores. Flux, desarrollado por Black Forest Labs (fundada por antiguos ingenieros de Stable Diffusion), apostó por otra cosa: fotorrealismo brutal, mejor manejo de texto dentro de la imagen y, en varias de sus versiones, pesos abiertos que puedes correr en tu propia máquina.
 
@@ -32,15 +31,15 @@ Spoiler antes de entrar en detalle: si buscas resultados artísticos con mínimo
 
 **Midjourney v8.1** es la iteración más reciente del generador de imágenes que popularizó eso de "escribe cuatro palabras y obtén una imagen de portada de revista". Funciona a través de Discord o de su propia web, tiene un estilo visual reconocible incluso sin activar ningún parámetro extra, y está pensado sobre todo para creadores visuales, diseñadores y gente que quiere resultados vistosos sin pelearse con configuraciones técnicas. Si quieres profundizar solo en Midjourney, ya cubrí a fondo la versión anterior en mi [guía de Midjourney v6](/blog/midjourney-v6-guia-completa-para-principiantes) y la actualización más reciente en la [guía de Midjourney v8.1 para principiantes](/blog/midjourney-v8-guia-principiantes).
 
-**Flux**, en cambio, nació con otra vocación: ser el modelo de imagen abierto (o semiabierto, según la versión) que compite de tú a tú con los cerrados. Tiene tres variantes principales: **Flux.1 Schnell** (rápida, gratuita, pesos abiertos), **Flux.1 Dev** (más calidad, uso no comercial en pesos abiertos) y **Flux.1 Pro** (la versión de pago vía API, la más potente). Puedes usarlo desde plataformas como Replicate, fal.ai, o integrado en herramientas de terceros como ComfyUI, ademas de aparecer ya integrado en productos como Freepik. Analicé esto con más detalle en mi [review completa de Flux](/blog/flux-review-generador-imagenes).
+**Flux**, en cambio, nació con otra vocación: ser el modelo de imagen abierto (o semiabierto, según la versión) que compite de tú a tú con los cerrados. La generación actual es **FLUX.2** (lanzada en noviembre de 2025), con varias variantes: **FLUX.2 klein** (rápida y ligera; la versión 4B es gratis incluso para uso comercial gracias a su licencia Apache 2.0), **FLUX.2 dev** (más calidad, pesos abiertos pero solo uso no comercial) y **FLUX.2 pro / flex / max** (las versiones de pago vía API, más potentes — la pro es el buque insignia fotorrealista y la flex está especializada en texto dentro de la imagen). Puedes usarlo desde plataformas como Replicate, Fal.ai, o integrado en herramientas de terceros como ComfyUI, además de aparecer ya integrado en productos como Freepik. Analicé esto con más detalle en mi [review completa de Flux](/blog/flux-review-generador-imagenes).
 
-En cuanto a precios: Midjourney funciona por suscripción mensual, con planes que —según su web oficial en el momento de escribir esto— rondan desde unos **10€/mes** en el plan básico hasta **60-120€/mes** en los planes Pro y Mega para uso intensivo o comercial sin restricciones. Flux, al ser en gran parte open source, tiene un modelo de precios más fragmentado: la versión Schnell es gratuita si la corres tú mismo o la usas en plataformas con cuota gratuita limitada, mientras que Flux.1 Pro se paga por imagen generada a través de API, con costes que suelen rondar unos pocos centavos por generación según el proveedor. Los precios cambian con frecuencia en ambos casos, así que verifica las cifras exactas en las páginas oficiales antes de decidirte.
+En cuanto a precios: Midjourney funciona por suscripción mensual con cuatro planes fijos (verificados julio 2026): **Basic 10$/mes** (~12€ con IVA), **Standard 30$/mes** (~35€), **Pro 60$/mes** (~70€) y **Mega 120$/mes** (~140€), con un 20% de descuento pagando anual. Standard es el primer plan con modo Relax (generación lenta ilimitada); Pro y Mega añaden más horas de GPU rápida y privacidad para uso intensivo o en equipo. Flux, al ser en gran parte open source, tiene un modelo de precios más fragmentado: **FLUX.2 klein 4B** es gratis (incluso corriéndolo en local), mientras que **FLUX.2 pro** cuesta unos 0,03$ por megapíxel vía Fal.ai (unos 3$ cada 100 imágenes) y **FLUX.2 dev** baja a 0,012$/MP. Las tarifas de API varían algo según el proveedor, pero ese es el orden de magnitud.
 
 <TablaComparativa
   titulo="Midjourney v8.1 vs Flux vs otras alternativas de generación de imágenes"
   herramientas={[
-    { nombre: "Midjourney v8.1", precio: "Desde 10€/mes", puntuacion: 4.7, idealPara: "Diseñadores e ilustradores que buscan estética" },
-    { nombre: "Flux.1 (Pro/Dev/Schnell)", precio: "Gratis (open) / pago por imagen en API", puntuacion: 4.5, idealPara: "Desarrolladores y fotorrealismo técnico" },
+    { nombre: "Midjourney v8.1", precio: "Desde 10$/mes (~12€)", puntuacion: 4.7, idealPara: "Diseñadores e ilustradores que buscan estética" },
+    { nombre: "FLUX.2 (klein/dev/pro)", precio: "Gratis (klein 4B) / ~0,03$ por imagen (pro)", puntuacion: 4.6, idealPara: "Desarrolladores y fotorrealismo técnico" },
     { nombre: "Stable Diffusion 3", precio: "Gratis (open source) / variable en la nube", puntuacion: 4.2, idealPara: "Usuarios técnicos que quieren control total" },
     { nombre: "Adobe Firefly", precio: "Incluido en Creative Cloud", puntuacion: 4.3, idealPara: "Equipos que necesitan uso comercial seguro" },
   ]}
@@ -50,7 +49,7 @@ En cuanto a precios: Midjourney funciona por suscripción mensual, con planes qu
 
 Aquí es donde de verdad se nota la diferencia de filosofía. Le pedí a **Midjourney v8.1** un retrato editorial: "portrait of a woman in her 40s, dramatic lighting, editorial fashion photography, shot on medium format film". En menos de 40 segundos tenía cuatro variaciones con una composición, iluminación y color grading que parecían sacadas directamente de una sesión real de Vogue. No tuve que retocar nada del prompt para que se viera bien: Midjourney tiene ese "gusto estético" incorporado que hace que casi cualquier cosa que generes parezca profesional.
 
-Le hice el mismo prompt a **Flux.1 Pro** a través de una plataforma de API. El resultado fue más "correcto" técnicamente —la anatomía de las manos, por ejemplo, salió mejor resuelta que en Midjourney en tres de cuatro intentos— pero visualmente más plano, más "foto de stock" y menos "portada de revista". Donde Flux realmente brilla es en texto dentro de la imagen: le pedí un cartel con la frase "Feria de Otoño 2026" en letras grandes y las renderizó perfectamente legibles a la primera. Midjourney, en cambio, todavía tropieza con texto largo aunque ha mejorado bastante respecto a versiones anteriores.
+Le hice el mismo prompt a **FLUX.2 pro** a través de una plataforma de API. El resultado fue más "correcto" técnicamente —la anatomía de las manos, por ejemplo, salió mejor resuelta que en Midjourney en tres de cuatro intentos— pero visualmente más plano, más "foto de stock" y menos "portada de revista". Donde Flux realmente brilla es en texto dentro de la imagen: le pedí un cartel con la frase "Feria de Otoño 2026" en letras grandes y las renderizó perfectamente legibles a la primera. Midjourney, en cambio, todavía tropieza con texto largo aunque ha mejorado bastante respecto a versiones anteriores.
 
 En mis pruebas de fotorrealismo puro (retratos de producto, texturas de piel, reflejos en metal), Flux gana con claridad. En mis pruebas de dirección de arte y composición con intención estética, Midjourney sigue un peldaño por delante. Si trabajas con imágenes generativas para diseño gráfico, esto coincide con lo que detallo en mi [guía de IA para diseñadores gráficos](/blog/ia-disenadores-graficos): la herramienta correcta depende del tipo de output que necesitas, no de cuál es "objetivamente mejor".
 
@@ -58,11 +57,11 @@ Vale la pena mencionar que ninguna de las dos es la única alternativa seria del
 
 ## Precio y relación calidad-precio: ¿cuál da más por tu dinero?
 
-Aquí depende mucho de cuánto generas y para qué. Con Midjourney, pagando el plan estándar de gama media (que en mi experiencia rondaba los **30€/mes** en el momento de escribir esto, aunque debes confirmarlo en su web porque los planes cambian), obtienes horas de generación rápida ilimitadas o casi ilimitadas dependiendo del plan, acceso a todas las funciones (upscale, variaciones, edición, panorámicas) y derechos de uso comercial siempre que no superes cierto umbral de ingresos como empresa. Es un precio fijo y predecible: sabes exactamente cuánto vas a pagar cada mes generes diez imágenes o mil.
+Aquí depende mucho de cuánto generas y para qué. Con Midjourney, pagando el plan **Standard (30$/mes, ~35€ con IVA)**, obtienes modo Relax con generación lenta ilimitada además de horas de generación rápida, acceso a todas las funciones (upscale, variaciones, edición, panorámicas) y derechos de uso comercial siempre que no superes cierto umbral de ingresos como empresa. Es un precio fijo y predecible: sabes exactamente cuánto vas a pagar cada mes generes diez imágenes o mil.
 
-Flux funciona distinto. Si usas Schnell en local o en plataformas con cuota gratuita, tu coste es cero (aparte de tu tiempo o tu hardware). Si necesitas Flux.1 Pro para trabajo profesional vía API, pagas por imagen generada, lo cual es más barato si generas poco pero se puede disparar si generas en volumen sin controlar el gasto. Para un freelancer que genera 50-100 imágenes al mes, el coste de Flux Pro por API suele quedar por debajo de una suscripción de Midjourney. Para alguien que genera cientos de imágenes al día para un equipo de marketing, la suscripción plana de Midjourney (o de plataformas que empaquetan Flux con cuota fija, como Freepik) suele salir más rentable.
+Flux funciona distinto. Si usas klein 4B en local o en plataformas con cuota gratuita, tu coste es cero (aparte de tu tiempo o tu hardware). Si necesitas FLUX.2 pro para trabajo profesional vía API, pagas por imagen generada (~0,03$/MP en Fal.ai), lo cual es más barato si generas poco pero se puede disparar si generas en volumen sin controlar el gasto. Para un freelancer que genera 50-100 imágenes al mes, el coste de Flux pro por API suele quedar por debajo de una suscripción de Midjourney. Para alguien que genera cientos de imágenes al día para un equipo de marketing, la suscripción plana de Midjourney (o de plataformas que empaquetan Flux con cuota fija, como Freepik) suele salir más rentable.
 
-Mi consejo honesto: si no sabes cuánto vas a generar, empieza con Flux Schnell gratis o con el plan básico de Midjourney, mide tu consumo real durante un mes, y luego decide si te conviene escalar a un plan de pago mayor o cambiar de modelo de precios.
+Mi consejo honesto: si no sabes cuánto vas a generar, empieza con FLUX.2 klein gratis o con el plan Basic de Midjourney (10$/mes), mide tu consumo real durante un mes, y luego decide si te conviene escalar a un plan de pago mayor o cambiar de modelo de precios.
 
 ## Casos de uso: ¿para quién es mejor cada una?
 
@@ -80,7 +79,7 @@ Mi consejo honesto: si no sabes cuánto vas a generar, empieza con Flux Schnell 
 - Cualquiera que necesite texto legible dentro de la imagen (carteles, packaging, mockups con tipografía)
 - Usuarios con conocimientos técnicos que quieren correr el modelo en local con control total y sin límites de suscripción
 
-Donde falla cada una también importa. Midjourney no te da acceso a los pesos del modelo: todo pasa por su plataforma, así que si necesitas automatizar generación masiva por API de forma nativa, no es tu herramienta (aunque existen soluciones no oficiales de terceros, con los riesgos que eso implica). Flux, por su parte, tiene una curva de entrada más alta si quieres aprovechar toda su potencia: la versión gratuita (Schnell) es notablemente más floja que Flux Pro, y montar un flujo con ComfyUI o una API propia requiere más paciencia que simplemente escribir en un chat.
+Donde falla cada una también importa. Midjourney no te da acceso a los pesos del modelo: todo pasa por su plataforma, así que si necesitas automatizar generación masiva por API de forma nativa, no es tu herramienta (aunque existen soluciones no oficiales de terceros, con los riesgos que eso implica). Flux, por su parte, tiene una curva de entrada más alta si quieres aprovechar toda su potencia: la versión gratuita (klein) es notablemente más floja que FLUX.2 pro, y montar un flujo con ComfyUI o una API propia requiere más paciencia que simplemente escribir en un chat.
 
 ## ¿Cuál elegir? Recomendación directa
 
@@ -103,10 +102,10 @@ Mi recomendación final, después de usar ambas en proyectos reales: si tienes q
 ## Preguntas frecuentes sobre Midjourney v8.1 y Flux
 
 **¿Es Flux completamente gratis o hay que pagar en algún momento?**
-Depende de la versión. Flux.1 Schnell es gratuita y de pesos abiertos, ideal para pruebas y uso personal. Flux.1 Dev tiene pesos abiertos pero con licencia no comercial. Flux.1 Pro, la versión más potente, se paga por imagen generada a través de API o plataformas de terceros.
+Depende de la versión. FLUX.2 klein en su variante 4B es gratis, incluso para uso comercial, gracias a su licencia Apache 2.0. FLUX.2 dev es gratis pero solo para uso no comercial. Las versiones pro, flex y max se pagan por uso a través de la API de Black Forest Labs o de plataformas como Fal.ai y Replicate.
 
 **¿Midjourney v8.1 permite uso comercial de las imágenes generadas?**
-Sí, todos los planes de pago de Midjourney incluyen derechos de uso comercial, con la excepción de que empresas grandes con ingresos anuales elevados deben suscribirse a los planes superiores. Revisa los términos exactos en la web oficial porque pueden actualizarse.
+Sí, todos los planes de pago de Midjourney incluyen derechos de uso comercial, con la excepción de que empresas grandes con ingresos anuales elevados deben suscribirse a los planes superiores (Pro o Mega).
 
 **¿Cuál genera manos y anatomía con menos errores, Midjourney o Flux?**
 En mis pruebas, Flux tiende a resolver mejor anatomía compleja como manos y dedos, especialmente en la versión Pro. Midjourney ha mejorado mucho en versiones recientes pero todavía comete más errores anatómicos en poses complicadas.
@@ -122,5 +121,3 @@ Flux tiene una ventaja clara aquí: renderiza texto dentro de imágenes de forma
 Después de meses alternando entre las dos, mi conclusión es que Midjourney v8.1 y Flux no compiten realmente por el mismo trabajo: uno gana en dirección de arte y facilidad de uso, el otro en precisión técnica y flexibilidad de integración. Elegir "el mejor generador de imágenes IA" en abstracto es la pregunta equivocada; la pregunta correcta es qué necesitas resolver esta semana.
 
 Si tu trabajo diario pasa por Instagram, portadas, moodboards o ilustración conceptual, Midjourney v8.1 te va a ahorrar tiempo desde el primer prompt. Si tu trabajo pasa por producto, fotorrealismo o necesitas meter la generación de imágenes dentro de tu propio software, Flux te va a dar más control real sobre el resultado final. Y si tienes presupuesto y necesidad para las dos, úsalas juntas: es lo que hago yo, y sigue siendo la combinación que mejor cubre los huecos que cada una deja sola.
-
----
