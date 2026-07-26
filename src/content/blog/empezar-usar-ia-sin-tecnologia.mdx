@@ -11,21 +11,21 @@ faqs:
   - pregunta: "¿Cuál es mejor para empezar, ChatGPT, Claude o Gemini?"
     respuesta: "Para un principiante absoluto, ChatGPT tiene la ventaja de ser el más conocido y con más tutoriales disponibles en español. Claude suele dar respuestas más naturales en redacción larga, y Gemini es cómodo si ya usas Gmail y Google Docs a diario. Cualquiera de las tres versiones gratuitas es un buen punto de partida."
   - pregunta: "¿Cuánto cuesta empezar a usar IA en 2026?"
-    respuesta: "Puedes empezar completamente gratis con las versiones básicas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para aprender. Si luego necesitas más capacidad o menos restricciones, los planes de pago suelen rondar los 18-20€ al mes, aunque te recomiendo verificar el precio actual en la web oficial antes de suscribirte porque cambian con cierta frecuencia."
+    respuesta: "Puedes empezar completamente gratis con las versiones básicas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para aprender. Si luego necesitas más capacidad o menos restricciones, ChatGPT Plus cuesta 20$ al mes (unos 23€ con IVA incluido en España), Claude Pro cuesta 20€/mes y Google AI Pro (el plan de pago de Gemini) ronda los 21,99€/mes."
   - pregunta: "¿Es seguro compartir información personal con la IA?"
     respuesta: "Debes tratar cualquier chat de IA con el mismo criterio que un formulario online: evita compartir contraseñas, datos bancarios completos o información médica muy sensible. Para uso cotidiano (correos, resúmenes, dudas generales) no hay mayor riesgo, pero siempre lee la política de privacidad de la herramienta que uses."
   - pregunta: "¿Puedo usar la IA desde el móvil sin instalar nada complicado?"
-    respuesta: "Sí, todas las opciones mencionadas (ChatGPT, Claude, Gemini) tienen aplicaciones móviles gratuitas en iOS y Android, y también funcionan directamente desde el navegador sin instalar nada. De hecho, la mayoría de la gente que conozco que empezó de cero lo hizo primero desde el navegador del móvil, sin descargar ninguna app."
-draft: true
+    respuesta: "Sí, todas las opciones mencionadas (ChatGPT, Claude, Gemini) tienen aplicaciones móviles gratuitas en iOS y Android, y también funcionan directamente desde el navegador sin instalar nada. De hecho, la forma más rápida de probarlas por primera vez es abrir directamente la web desde el navegador del móvil, sin descargar ninguna app."
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
-Llevo tres años enseñando a gente que no toca un ordenador más allá del correo y las hojas de Excel a usar inteligencia artificial en su día a día, y siempre me hacen la misma pregunta al principio: "esto es para programadores, ¿no?". No, no lo es. Si estás buscando cómo empezar a usar la IA sin saber nada de tecnología, la buena noticia es que en 2026 estas herramientas están pensadas para escribirles como le escribirías a una persona, no para meter comandos raros en una pantalla negra.
+Es la pregunta que más se repite entre quienes nunca han abierto ChatGPT, Claude o Gemini: "esto es para programadores, ¿no?". No, no lo es. Si estás buscando cómo empezar a usar la IA sin saber nada de tecnología, la buena noticia es que en 2026 estas herramientas están pensadas para escribirles como le escribirías a una persona, no para meter comandos raros en una pantalla negra.
 
-El problema real no es la falta de capacidad técnica, es el miedo a hacer el ridículo o a "romper algo". Le pasó a mi madre, que tiene 61 años y jamás había abierto una app que no fuera WhatsApp, y a un cliente mío que dirige una tienda de electrodomésticos y pensaba que la IA era "cosa de frikis". Ambos terminaron usando ChatGPT o Claude a diario para tareas concretas: redactar respuestas a clientes, resumir documentos, planificar el menú semanal.
+El problema real no es la falta de capacidad técnica, es el miedo a hacer el ridículo o a "romper algo". Es un miedo muy común entre quien jamás ha abierto una app más allá de WhatsApp o el correo, y en la práctica basta con un par de tareas concretas —redactar una respuesta, resumir un documento, planificar algo— para que ese respeto inicial desaparezca.
 
-En este artículo te voy a explicar, sin tecnicismos, qué herramienta elegir según lo que necesites, cómo dar tus primeras instrucciones (lo que se llama "prompts") para que la IA te entienda bien, y qué errores evitar para no frustrarte en la primera semana. Todo con ejemplos reales que he probado yo mismo o con gente cercana, no teoría de manual.
+En este artículo te voy a explicar, sin tecnicismos, qué herramienta elegir según lo que necesites, cómo dar tus primeras instrucciones (lo que se llama "prompts") para que la IA te entienda bien, y qué errores evitar para no frustrarte en la primera semana. Todo con ejemplos reales, no teoría de manual.
 
 ## ¿Qué es la IA y para qué sirve realmente si no tengo ni idea de tecnología?
 
@@ -49,9 +49,9 @@ Aquí tienes una comparativa de las opciones más accesibles para alguien que em
   titulo="Las mejores opciones de IA para empezar sin conocimientos técnicos"
   herramientas={[
     { nombre: "ChatGPT (gratis)", precio: "Gratis con límites", puntuacion: 4.5, idealPara: "Empezar sin pagar nada y probar el chat básico" },
-    { nombre: "ChatGPT Plus", precio: "20€/mes aprox.", puntuacion: 4.6, idealPara: "Uso diario constante, respuestas más rápidas y sin límites molestos" },
-    { nombre: "Claude (Anthropic)", precio: "Gratis / Pro desde ~18€/mes", puntuacion: 4.6, idealPara: "Textos largos, redacción cuidada y tono más natural" },
-    { nombre: "Gemini (Google)", precio: "Gratis / integrado en Google One", puntuacion: 4.3, idealPara: "Quien ya usa Gmail, Docs y Drive todos los días" },
+    { nombre: "ChatGPT Plus", precio: "20$ (~23€ IVA incl.)/mes", puntuacion: 4.6, idealPara: "Uso diario constante, respuestas más rápidas y sin límites molestos" },
+    { nombre: "Claude (Anthropic)", precio: "Gratis / Pro 20€/mes", puntuacion: 4.6, idealPara: "Textos largos, redacción cuidada y tono más natural" },
+    { nombre: "Gemini (Google)", precio: "Gratis / Google AI Pro ~21,99€/mes", puntuacion: 4.3, idealPara: "Quien ya usa Gmail, Docs y Drive todos los días" },
   ]}
 />
 
@@ -61,7 +61,7 @@ Si ya tienes cuenta de Google, Gemini tiene la ventaja de estar integrado direct
 
 Aquí está el 90% de la fricción real que veo en gente que empieza: no saben cómo "hablarle" a la IA. La clave es tratarla como a un becario nuevo muy capaz pero que no sabe nada de tu contexto: si le pides "escribe un correo" a secas, te dará algo genérico. Si le das contexto, el resultado cambia radicalmente.
 
-Te pongo un ejemplo real. Cuando ayudé a mi cliente de la tienda de electrodomésticos, su primer prompt fue literalmente: "escribe un correo a un cliente". El resultado fue una plantilla genérica de manual de ventas, inútil. Le hice reescribirlo así: "Escribe un correo corto y cercano para un cliente que compró una lavadora hace 3 meses y ahora tiene un problema con el desagüe. Quiero ofrecerle una revisión gratuita esta semana. Tono amable, no muy formal, máximo 5 líneas." El resultado fue un correo que usó tal cual, sin tocar una coma. Tardó menos de 2 minutos en escribir el prompt y le ahorró 15 minutos de redacción.
+Te pongo un ejemplo real de esa diferencia. Si le pides a la IA "escribe un correo a un cliente" a secas, el resultado es una plantilla genérica de manual de ventas, prácticamente inservible. Prueba en cambio con algo así: "Escribe un correo corto y cercano para un cliente que compró una lavadora hace 3 meses y ahora tiene un problema con el desagüe. Quiero ofrecerle una revisión gratuita esta semana. Tono amable, no muy formal, máximo 5 líneas." El resultado ya es un correo que podrías enviar tal cual, sin tocar una coma —y el prompt te habrá llevado menos de 2 minutos, frente a los 15 que te habría costado redactarlo desde cero.
 
 La fórmula que suelo recomendar a quien empieza es simple:
 
@@ -117,13 +117,13 @@ No, en absoluto. Estas herramientas funcionan con lenguaje natural: escribes lo 
 Para un principiante absoluto, ChatGPT tiene la ventaja de ser el más conocido y con más tutoriales disponibles en español. Claude suele dar respuestas más naturales en redacción larga, y Gemini es cómodo si ya usas Gmail y Google Docs a diario. Cualquiera de las tres versiones gratuitas es un buen punto de partida.
 
 **¿Cuánto cuesta empezar a usar IA en 2026?**
-Puedes empezar completamente gratis con las versiones básicas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para aprender. Si luego necesitas más capacidad o menos restricciones, los planes de pago suelen rondar los 18-20€ al mes, aunque te recomiendo verificar el precio actual en la web oficial antes de suscribirte porque cambian con cierta frecuencia.
+Puedes empezar completamente gratis con las versiones básicas de ChatGPT, Claude o Gemini, que tienen límites de uso diario pero son suficientes para aprender. Si luego necesitas más capacidad o menos restricciones, ChatGPT Plus cuesta 20$ al mes (unos 23€ con IVA incluido en España), Claude Pro cuesta 20€/mes y Google AI Pro (el plan de pago de Gemini) ronda los 21,99€/mes.
 
 **¿Es seguro compartir información personal con la IA?**
 Debes tratar cualquier chat de IA con el mismo criterio que un formulario online: evita compartir contraseñas, datos bancarios completos o información médica muy sensible. Para uso cotidiano (correos, resúmenes, dudas generales) no hay mayor riesgo, pero siempre lee la política de privacidad de la herramienta que uses.
 
 **¿Puedo usar la IA desde el móvil sin instalar nada complicado?**
-Sí, todas las opciones mencionadas (ChatGPT, Claude, Gemini) tienen aplicaciones móviles gratuitas en iOS y Android, y también funcionan directamente desde el navegador sin instalar nada. De hecho, la mayoría de la gente que conozco que empezó de cero lo hizo primero desde el navegador del móvil, sin descargar ninguna app.
+Sí, todas las opciones mencionadas (ChatGPT, Claude, Gemini) tienen aplicaciones móviles gratuitas en iOS y Android, y también funcionan directamente desde el navegador sin instalar nada. De hecho, la forma más rápida de probarlas por primera vez es abrir directamente la web desde el navegador del móvil, sin descargar ninguna app.
 
 ## Conclusión
 
