@@ -3,7 +3,7 @@ title: "IA para pequeñas empresas: mejores herramientas 2026"
 description: "Guía honesta de IA para pequeñas empresas en 2026: qué herramientas usar sin gran inversión, precios reales y cuándo no vale la pena."
 date: 2026-07-27
 category: productividad
-herramientas: ["ChatGPT", "Notion AI"]
+herramientas: ["ChatGPT", "Claude", "Notion AI", "Gemini", "Perplexity", "Gamma"]
 imagen: "/images/ia-pequenas-empresas.svg"
 afiliado: "https://notion.so"
 faqs:
@@ -17,46 +17,52 @@ faqs:
     respuesta: "Sí, la gran mayoría de herramientas mencionadas —ChatGPT, Claude, Gemini, Notion AI, Gamma, Perplexity— están disponibles y facturan en euros o dólares según tu región, sin restricciones geográficas relevantes para uso profesional en España y Latinoamérica."
   - pregunta: "¿Vale más la pena usar un solo modelo de IA para todo o combinar varios?"
     respuesta: "En mi experiencia con negocios pequeños, combinar dos herramientas suele ser el punto óptimo: una para texto/comunicación (ChatGPT o Claude) y otra para organización (Notion AI) o contenido visual según el negocio. Intentar cubrir todo con una sola herramienta genérica suele dejar huecos, y contratar cinco suscripciones distintas suele ser derroche innecesario para un equipo pequeño."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
----
-Llevo casi dos años ayudando a pequeños negocios —una consultora de tres personas, una tienda de ropa online con un empleado y medio, un estudio de arquitectura de cinco— a meter IA en su día a día sin gastarse un dineral en licencias que luego nadie usa. Y la pregunta que más me repiten es siempre la misma: "¿esto de verdad me va a ahorrar tiempo o dinero, o es otra suscripción que voy a olvidar cancelar?"
+Cuando pruebo herramientas de IA para este blog, la pregunta que más me hacen los lectores que llevan un negocio pequeño es siempre la misma: "¿esto de verdad me va a ahorrar tiempo o dinero, o es otra suscripción que voy a olvidar cancelar?"
 
 La buena noticia es que en 2026 la **IA para pequeñas empresas** ya no requiere presupuesto de departamento de marketing ni un equipo técnico. Con menos de 100 euros al mes puedes cubrir atención al cliente, creación de contenido, gestión de tareas y hasta generación de material visual. La mala noticia es que hay mucho ruido: herramientas que prometen automatizar todo tu negocio y que en la práctica te hacen perder más tiempo configurándolas del que te ahorran.
 
-En este artículo te cuento qué herramientas he probado de verdad en negocios pequeños, cuánto cuestan realmente, qué resultado obtuve en cada caso y —esto es importante— cuándo directamente no merece la pena que un negocio pequeño invierta en esto todavía.
+En este artículo te cuento qué herramientas he probado a fondo pensando en negocios pequeños, cuánto cuestan realmente, qué resultado dan en la práctica y —esto es importante— cuándo directamente no merece la pena que un negocio pequeño invierta en esto todavía.
 
 ## ¿Qué herramientas de IA necesita realmente una pequeña empresa?
 
-La trampa en la que caen la mayoría de pequeños negocios es intentar adoptar demasiadas herramientas a la vez. Mi recomendación después de varios proyectos es simple: cubre primero **texto y comunicación**, luego **organización de tareas**, y solo después **contenido visual o de vídeo** si tu negocio lo necesita (una tienda online sí, una asesoría fiscal probablemente no tanto).
+La trampa en la que caen la mayoría de pequeños negocios es intentar adoptar demasiadas herramientas a la vez. Mi recomendación, tras probar a fondo varias combinaciones, es simple: cubre primero **texto y comunicación**, luego **organización de tareas**, y solo después **contenido visual o de vídeo** si tu negocio lo necesita (una tienda online sí, una asesoría fiscal probablemente no tanto).
 
-Para el bloque de texto y comunicación, las opciones que de verdad usan pequeños negocios son ChatGPT, Claude y Gemini. En una consultora donde trabajé, sustituimos gran parte de la redacción de propuestas comerciales y correos de seguimiento por **ChatGPT Plus** (unos 20€/mes por usuario, aunque los precios cambian con cierta frecuencia y conviene verificarlos en la web oficial antes de suscribirse). El dueño del negocio, que no es especialmente hábil escribiendo, pasó de tardar 40 minutos en redactar una propuesta a tardar 12, simplemente dándole el brief a la IA y puliendo el resultado.
+Para el bloque de texto y comunicación, las opciones que de verdad usan pequeños negocios son ChatGPT, Claude y Gemini. Para una consultora pequeña, sustituir gran parte de la redacción de propuestas comerciales y correos de seguimiento por **ChatGPT Plus** (20$/mes, unos 23€ con IVA) suele ser uno de los cambios más rentables: quien no sea especialmente hábil escribiendo puede pasar de tardar 40 minutos en redactar una propuesta a tardar 10-15, dándole el brief a la IA y puliendo el resultado.
 
 Si tu negocio maneja documentos largos —contratos, informes, análisis de datos internos— **Claude** suele rendir mejor que ChatGPT en tareas de lectura y síntesis de textos extensos. Te dejo por aquí el [análisis de Claude Sonnet 5](/blog/claude-sonnet-5-review), que es la opción que recomiendo a negocios pequeños por su relación precio-rendimiento frente al modelo más potente de Anthropic.
 
 <TablaComparativa
   titulo="Herramientas de IA para pequeñas empresas por presupuesto mensual"
   herramientas={[
-    { nombre: "ChatGPT Plus", precio: "≈20€/mes", puntuacion: 4.5, idealPara: "Redacción, atención al cliente, brainstorming" },
-    { nombre: "Claude (plan Pro)", precio: "≈20€/mes", puntuacion: 4.6, idealPara: "Análisis de documentos largos y contratos" },
-    { nombre: "Notion AI (add-on)", precio: "desde ≈10€/mes por usuario", puntuacion: 4.2, idealPara: "Organizar tareas y bases de conocimiento" },
-    { nombre: "Gamma.app", precio: "gratis / Pro desde ≈10€/mes", puntuacion: 4.3, idealPara: "Presentaciones comerciales rápidas" },
+    { nombre: "ChatGPT Plus", precio: "20$/mes (≈23€ con IVA)", puntuacion: 4.5, idealPara: "Redacción, atención al cliente, brainstorming" },
+    { nombre: "Claude (plan Pro)", precio: "20€/mes", puntuacion: 4.6, idealPara: "Análisis de documentos largos y contratos" },
+    { nombre: "Notion AI", precio: "Incluido en plan Business (20 US$/usuario/mes)", puntuacion: 4.3, idealPara: "Organizar tareas y bases de conocimiento" },
+    { nombre: "Gamma", precio: "Gratis (400 créditos); Plus 10$/mes", puntuacion: 4.4, idealPara: "Presentaciones comerciales rápidas" },
   ]}
 />
 
-Para la parte de organización, si tu equipo ya vive en Notion, el add-on de **Notion AI** tiene sentido porque no añade otra pestaña más a tu jornada: resume reuniones, redacta actas y genera resúmenes de bases de datos internas sin salir de la herramienta que ya usas. Comparé esto a fondo en [Notion AI vs ChatGPT para trabajar](/blog/notion-ai-chatgpt-productividad-2026), y la conclusión que sigo manteniendo es que Notion AI gana en organización diaria, pero ChatGPT sigue siendo más potente para tareas puntuales complejas.
+Para la parte de organización, si tu equipo ya vive en Notion, **Notion AI** tiene sentido porque no añade otra pestaña más a tu jornada: resume reuniones, redacta actas y genera resúmenes de bases de datos internas sin salir de la herramienta que ya usas. Va incluida en el plan Business (20 US$/usuario/mes), no como add-on aparte. Comparé esto a fondo en [Notion AI vs ChatGPT para trabajar](/blog/notion-ai-chatgpt-productividad-2026), y la conclusión que sigo manteniendo es que Notion AI gana en organización diaria, pero ChatGPT sigue siendo más potente para tareas puntuales complejas.
+
+<BannerAfiliado
+  titulo="Notion AI — organiza tu negocio sin salir de una sola herramienta"
+  descripcion="Resume reuniones, redacta actas y genera resúmenes de tus bases de datos internas sin salir de Notion."
+  cta="Probar Notion AI"
+  url="https://notion.so"
+/>
 
 ## Cómo estas herramientas ahorran tiempo (y dinero) en el día a día real
 
 Aquí es donde quiero ser concreto, porque las promesas genéricas de "ahorra horas" no sirven de nada sin números.
 
-**Caso 1 — atención al cliente en una tienda online.** Trabajé con una tienda de ropa que recibía entre 30 y 50 mensajes diarios por WhatsApp e Instagram, la mayoría preguntas repetidas sobre tallas, envíos y devoluciones. Montamos un flujo con ChatGPT (API, no la app de consumo) conectado a un pequeño script que respondía las consultas más frecuentes y escalaba a un humano las que requerían criterio. Resultado tras seis semanas: el tiempo dedicado a responder mensajes bajó de unas 3 horas diarias a 45 minutos, y las respuestas fuera de horario ya no se quedaban colgadas hasta el día siguiente. El coste de la API rondó los 15-25€ mensuales según el volumen, muy por debajo de contratar horas extra de atención al cliente.
+**Caso 1 — atención al cliente en una tienda online.** Un escenario habitual es una tienda de ropa que recibe entre 30 y 50 mensajes diarios por WhatsApp e Instagram, la mayoría preguntas repetidas sobre tallas, envíos y devoluciones. Montar un flujo con ChatGPT (API, no la app de consumo) conectado a un pequeño script que responda las consultas más frecuentes y escale a una persona las que requieren criterio es de lo más rentable que puede hacer un negocio así: el tiempo dedicado a responder mensajes puede bajar de varias horas diarias a menos de una, y las consultas fuera de horario dejan de quedarse colgadas hasta el día siguiente. El coste de la API suele rondar los 15-25€ mensuales según el volumen, muy por debajo de contratar horas extra de atención al cliente.
 
-**Caso 2 — presentaciones y propuestas comerciales.** Un estudio de arquitectura pequeño necesitaba preparar propuestas visuales para clientes potenciales, algo que antes hacía a mano en PowerPoint y les llevaba media jornada. Cambiamos a **Gamma.app**: se describe la propuesta en texto y la herramienta genera slides con diseño coherente en minutos. No sustituye del todo el ojo de un diseñador para clientes muy exigentes, pero para el 80% de las propuestas del día a día fue suficiente. Tienes el detalle completo en la [review de Gamma.app](/blog/gamma-app-presentaciones-ia).
+**Caso 2 — presentaciones y propuestas comerciales.** Un estudio de arquitectura pequeño que necesita preparar propuestas visuales para clientes potenciales —algo que a mano en PowerPoint suele llevar media jornada— es un buen candidato para **Gamma**: describes la propuesta en texto y la herramienta genera slides con diseño coherente en minutos. No sustituye del todo el ojo de un diseñador para clientes muy exigentes, pero para la mayoría de propuestas del día a día es suficiente. Tienes el detalle completo en la [review de Gamma.app](/blog/gamma-app-presentaciones-ia).
 
 **Caso 3 — investigación de mercado y competencia.** Para tareas de búsqueda —analizar qué está haciendo la competencia, resumir tendencias del sector— **Perplexity** me ha dado mejores resultados que buscar a mano en Google y abrir quince pestañas, porque cita fuentes y resume directamente. Lo cubrí con detalle en la [review de Perplexity AI](/blog/perplexity-ai-review-2026). Para un pequeño negocio que no tiene tiempo de hacer investigación de mercado formal, esta herramienta sola puede justificar su coste mensual.
 
@@ -110,10 +116,8 @@ En mi experiencia con negocios pequeños, combinar dos herramientas suele ser el
 
 ## Conclusión
 
-Después de meses aplicando esto en negocios reales, mi conclusión es que la IA para pequeñas empresas funciona mejor cuando resuelve un problema concreto y medible —menos tiempo respondiendo mensajes, propuestas más rápidas, contenido semanal sin contratar diseñador— que cuando se adopta porque "toca tener IA en la empresa". Empieza por una sola herramienta, mide si de verdad te ahorra tiempo durante un mes, y solo entonces suma la siguiente.
+Después de probar estas herramientas a fondo, mi conclusión es que la IA para pequeñas empresas funciona mejor cuando resuelve un problema concreto y medible —menos tiempo respondiendo mensajes, propuestas más rápidas, contenido semanal sin contratar diseñador— que cuando se adopta porque "toca tener IA en la empresa". Empieza por una sola herramienta, mide si de verdad te ahorra tiempo durante un mes, y solo entonces suma la siguiente.
 
 Si tu negocio es pequeño y tu presupuesto es limitado, no necesitas la suite completa de herramientas que se anuncian en LinkedIn. Con ChatGPT o Claude para texto, Notion AI para organización y quizá Gamma para presentaciones, ya cubres el 80% de las necesidades reales de una empresa de menos de diez personas, gastando bastante menos de 100€ al mes.
 
 La IA no va a llevar tu negocio por ti, pero bien elegida te devuelve horas que puedes dedicar a lo que realmente hace crecer a una empresa pequeña: hablar con tus clientes y mejorar tu producto.
-
----
