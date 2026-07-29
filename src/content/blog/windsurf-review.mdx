@@ -1,7 +1,8 @@
 ---
 title: "Windsurf review: el IDE con IA que compite con Cursor (2026)"
-description: "Análisis honesto de Windsurf, el editor de código con IA de Codeium. Comparativa con Cursor, precios, funciones reales y si vale la pena en 2026."
+description: "Análisis honesto de Windsurf, hoy renombrado Devin Desktop bajo Cognition. Comparativa con Cursor, precios reales y si vale la pena en 2026."
 date: 2026-06-24
+dateModified: 2026-07-29
 category: codigo
 herramientas: ["Windsurf", "Cursor", "GitHub Copilot", "Codeium"]
 imagen: "/images/windsurf-review.svg"
@@ -18,15 +19,15 @@ ratings:
     score: 8.3
 faqs:
   - pregunta: "¿Windsurf es gratuito o hay que pagar?"
-    respuesta: "Windsurf tiene un plan gratuito con créditos mensuales para usar el modo agente Cascade y autocompletado básico. Es suficiente para probarlo en serio, aunque con uso intensivo puedes agotarlo antes de fin de mes. El plan Pro amplía los créditos y da acceso a modelos más potentes; consulta los precios actuales en windsurf.com porque pueden haber variado."
+    respuesta: "Sí, con matices. Desde el rebrand a Devin Desktop en junio de 2026, los planes son: Free (0 $, créditos limitados), Pro (20 $/mes), Max (200 $/mes) y Teams (80 $/mes + 40 $/mes por asiento); Enterprise tiene precio a medida. Cognition, la empresa propietaria, confirma que los planes y precios heredados de Windsurf se mantienen igual tras el cambio de nombre."
   - pregunta: "¿En qué se diferencia Windsurf de Cursor exactamente?"
-    respuesta: "Ambos son forks de VS Code con IA integrada, pero el enfoque es distinto. Cursor apuesta por el chat con control granular y selección explícita de contexto. Windsurf prioriza el modo agente Cascade, que navega tu proyecto de forma autónoma sin que tengas que indicarle qué archivos considerar. Puedes ver una [comparativa honesta entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) para entender mejor las diferencias entre las opciones principales del mercado."
+    respuesta: "Ambos son forks de VS Code con IA integrada, pero el enfoque es distinto. Cursor apuesta por el chat con control granular y selección explícita de contexto. Windsurf (Devin Desktop) prioriza el modo agente Cascade —hoy uno más de varios agentes seleccionables, junto a Devin, Codex, Claude Agent y OpenCode—, que navega tu proyecto de forma autónoma sin que tengas que indicarle qué archivos considerar. Puedes ver una [comparativa honesta entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) para entender mejor las diferencias entre las opciones principales del mercado."
   - pregunta: "¿Funciona Windsurf en español, es decir, puedo darle instrucciones en español?"
     respuesta: "Sí. Cascade y el chat de Windsurf entienden instrucciones en español sin problema. El código que genera sigue siendo en inglés (nombres de variables, comentarios) por defecto, pero puedes pedirle que comente en español si lo necesitas. No hay diferencia de rendimiento notable con instrucciones en español respecto a inglés para tareas de código."
   - pregunta: "¿Windsurf funciona con proyectos grandes o solo con archivos sueltos?"
     respuesta: "Esta es precisamente una de sus fortalezas. Windsurf indexa el repositorio completo para dar contexto a Cascade. Funciona mejor cuanto más grande es el proyecto, porque el agente puede navegar dependencias reales en lugar de trabajar en el vacío. He trabajado sin problemas en proyectos con más de 200 archivos."
   - pregunta: "¿Es seguro usar Windsurf con código propietario o de empresa?"
-    respuesta: "Codeium, la empresa detrás de Windsurf, ofrece opciones de despliegue on-premise y controles de privacidad para empresas. En el plan estándar, el código se envía a sus servidores para procesamiento. Para uso personal o en startups esto suele ser aceptable; para entornos enterprise con requisitos de cumplimiento estrictos, hay que revisar las condiciones específicas y valorar el plan Enterprise. Verifica siempre la política de privacidad actualizada en su web oficial."
+    respuesta: "Windsurf nació del equipo de Codeium, pero desde 2025 la empresa propietaria es Cognition (la creadora del agente Devin), que renombró el producto a Devin Desktop en junio de 2026. Cognition ofrece opciones de despliegue on-premise y controles de privacidad para empresas. En el plan estándar, el código se envía a sus servidores para procesamiento. Para uso personal o en startups esto suele ser aceptable; para entornos enterprise con requisitos de cumplimiento estrictos, hay que revisar las condiciones específicas y valorar el plan Enterprise."
 draft: false
 ---
 
@@ -34,45 +35,49 @@ import TablaComparativa from '../../components/TablaComparativa.astro';
 
 Cuando salió Cursor y empezó a dominar las conversaciones sobre programación con IA, parecía que el mercado de IDEs inteligentes estaba cerrado. Entonces apareció **Windsurf**, el editor de Codeium, y bastantes desarrolladores empezaron a decir en voz alta que, para su flujo de trabajo, les gustaba más. Lo probé durante varias semanas y puedo decir que hay razones concretas para preferirlo, aunque también razones concretas para quedarse con Cursor.
 
+Aclaración necesaria antes de seguir, porque genera confusión constante: si buscas "Windsurf" hoy en su web oficial, acabas en **devin.ai/desktop**. En junio de 2026, **Cognition** —la empresa que compró Windsurf en 2025 tras la salida de su equipo fundador a Google DeepMind— renombró el producto a **Devin Desktop**, integrándolo como un gestor de "flotas de agentes" (Devin, Cascade, Codex, Claude Agent, OpenCode) en vez de un IDE con un único asistente propio. Los planes y precios que tenías con Windsurf se mantienen igual según la propia Cognition, así que casi todo lo que cuento aquí sobre precio y funciones sigue siendo válido; lo que cambia es el nombre, la empresa detrás y el hecho de que Cascade ya no es la única forma de trabajar con el editor, sino una opción más dentro de un menú de agentes.
+
 Windsurf no es un plugin ni una extensión. Es un **fork completo de VS Code** con IA integrada a nivel nativo, igual que Cursor. La diferencia está en cómo enfoca la interacción: donde Cursor apostó por el chat lateral y la generación de código por bloques, Windsurf introdujo el concepto de **Flows**, un modo agente donde el IDE "piensa" en voz alta, navega por tu proyecto, lee archivos relacionados y ejecuta cambios de forma más autónoma. En la práctica, eso cambia bastante cómo te relacionas con la herramienta.
 
-Mi veredicto adelantado: Windsurf es una alternativa legítima a Cursor, especialmente si trabajas en proyectos grandes con muchos archivos interdependientes o si te interesa el modo agente más que el autocompletado línea a línea. No es mejor en todo, pero tampoco es el "segundo mejor". Si quieres una comparación detallada entre ambas opciones, he preparado un análisis de [Cursor vs Windsurf donde profundizo en rendimiento, precios y casos de uso reales para cada IDE con IA](/blog/cursor-vs-windsurf). Dependiendo de lo que necesites, puede ser exactamente lo que buscas.
+Mi veredicto adelantado: lo que hoy se llama Devin Desktop (y que la mayoría sigue buscando como "Windsurf") es una alternativa legítima a Cursor, especialmente si trabajas en proyectos grandes con muchos archivos interdependientes o si te interesa el modo agente más que el autocompletado línea a línea. No es mejor en todo, pero tampoco es el "segundo mejor". Si quieres una comparación detallada entre ambas opciones, he preparado un análisis de [Cursor vs Windsurf donde profundizo en rendimiento, precios y casos de uso reales para cada IDE con IA](/blog/cursor-vs-windsurf). Dependiendo de lo que necesites, puede ser exactamente lo que buscas.
 
 ---
 
-## Qué es Windsurf y cuánto cuesta exactamente
+## Qué es Windsurf (hoy Devin Desktop) y cuánto cuesta exactamente
 
-Windsurf es el **IDE con IA desarrollado por Codeium**, la compañía que lleva años ofreciendo autocompletado de código como alternativa gratuita a GitHub Copilot. Mucha gente lo busca también como "editor Codeium", "IDE Codeium" o confunde el nombre con herramientas de surfing de datos. Para ser claro: **Windsurf es el IDE, Codeium es la empresa y también el nombre de su extensión para VS Code**. Son productos distintos del mismo equipo.
+Windsurf nació como el **IDE con IA de Codeium**, la compañía que llevaba años ofreciendo autocompletado de código como alternativa gratuita a GitHub Copilot. Ese capítulo ya se cerró: en 2025 Codeium se rebrandeó primero como Windsurf, luego Google pagó por licenciar su tecnología y se llevó a buena parte del equipo fundador a Google DeepMind, y **Cognition** —la empresa detrás del agente autónomo Devin— compró lo que quedó de Windsurf (producto, marca y clientela). En junio de 2026, Cognition terminó de fusionar el producto bajo su propia marca: **Devin Desktop**. Codeium, como nombre, ya no aparece en ningún sitio de la web oficial actual.
 
 El editor está disponible para macOS, Windows y Linux. La instalación es igual que cualquier VS Code: descargas el instalador, importas tu configuración y extensiones existentes, y en diez minutos estás trabajando como si siempre hubieras usado este editor.
 
-### Planes de Windsurf
+### Planes de Windsurf / Devin Desktop
 
-Windsurf maneja tres niveles. Los precios concretos pueden variar, así que conviene confirmar en [windsurf.com](https://windsurf.com) antes de suscribirte:
+Estos son los planes vigentes, confirmados en la web oficial (devin.ai/desktop) tras el rebrand:
 
-- **Plan gratuito**: incluye un número limitado de créditos mensuales para usar el modo Cascade (el agente principal), autocompletado básico, y acceso a modelos estándar. Suficiente para probarlo en serio.
-- **Plan Pro (de pago)**: aumenta significativamente los créditos para el modo agente, da acceso a modelos más potentes como Claude Sonnet 4.6 y GPT-4o para las tareas de razonamiento, y elimina las limitaciones de contexto.
-- **Plan Teams/Enterprise**: facturación por asiento, controles de administración, integración con sistemas internos.
+- **Free (0 $)**: créditos mensuales limitados para usar el modo agente (Cascade u otros) y autocompletado básico. Suficiente para probarlo en serio.
+- **Pro (20 $/mes)**: más créditos para el modo agente y acceso a modelos más potentes.
+- **Max (200 $/mes)**: pensado para uso intensivo diario, con muchos más créditos.
+- **Teams (80 $/mes + 40 $/mes por asiento adicional)**: facturación por equipo, controles de administración.
+- **Enterprise**: precio a medida, despliegue on-premise y controles de privacidad reforzados.
 
-La clave del modelo de créditos de Windsurf es que **los créditos se consumen por acción del agente**, no por token. Cada vez que Cascade lee un archivo, hace una búsqueda en tu proyecto o ejecuta un cambio, consume créditos. En la práctica, con uso intensivo puedes agotar el plan gratuito en pocos días de trabajo real.
+Cognition ha confirmado que estos precios son continuación directa de los que tenía Windsurf, no una subida encubierta con el rebrand. La clave del modelo sigue siendo que **los créditos se consumen por acción del agente**, no por token: cada vez que el agente lee un archivo, hace una búsqueda en tu proyecto o ejecuta un cambio, consume créditos, así que con uso intensivo el plan gratuito se agota con facilidad.
 
 ---
 
 <TablaComparativa
-  titulo="Windsurf vs otros IDEs con IA en 2026"
+  titulo="Windsurf (Devin Desktop) vs otros IDEs con IA en 2026"
   herramientas={[
-    { nombre: "Windsurf", precio: "Plan gratuito disponible / Pro de pago (verificar precios actuales)", puntuacion: 4.3, idealPara: "Proyectos grandes, modo agente, desarrolladores que vienen de VS Code" },
+    { nombre: "Windsurf", precio: "Free 0 $ / Pro 20 $ / Max 200 $ / Teams 80 $ + 40 $ por asiento", puntuacion: 4.3, idealPara: "Proyectos grandes, modo agente, desarrolladores que vienen de VS Code" },
     { nombre: "Cursor", precio: "Plan gratuito / ~$20/mes Pro (verificar precios actuales)", puntuacion: 4.5, idealPara: "Máximo control, chat avanzado, adopción más extendida en equipos" },
     { nombre: "GitHub Copilot", precio: "~$10-19/mes (verificar precios actuales)", puntuacion: 4.0, idealPara: "Integración con GitHub, entornos enterprise, usuarios de JetBrains" },
-    { nombre: "Codeium (extensión)", precio: "Gratuito con límites / Pro de pago", puntuacion: 3.8, idealPara: "Autocompletado ligero sin cambiar de editor" },
+    { nombre: "Codeium (extensión)", precio: "Ya no existe como producto independiente; fusionada en Windsurf/Devin Desktop", puntuacion: 3.8, idealPara: "Histórico — hoy no es una opción activa" },
   ]}
 />
 
 ---
 
-## Cascade: el modo agente que diferencia a Windsurf
+## Cascade: el modo agente que diferenciaba a Windsurf
 
-La funcionalidad estrella de Windsurf se llama **Cascade**, y es lo que hace que la experiencia sea cualitativamente distinta a otras herramientas. No es un chat donde le pides código y lo pegas. Es un agente que trabaja *dentro* de tu proyecto, con contexto real de tu base de código.
+La funcionalidad estrella de Windsurf se llama **Cascade**, y es lo que hizo que la experiencia fuera cualitativamente distinta a otras herramientas cuando salió. No es un chat donde le pides código y lo pegas. Es un agente que trabaja *dentro* de tu proyecto, con contexto real de tu base de código. Con el rebrand a Devin Desktop, Cascade sigue estando disponible y funcionando igual, pero ya no es el único protagonista: ahora convive como una opción más dentro de un selector de agentes (Devin, Cascade, Codex, Claude Agent, OpenCode), pensado para que elijas cuál usar según la tarea.
 
 ### Cómo funciona Cascade en la práctica
 
@@ -113,13 +118,13 @@ Ser honesto con esto es importante si estás decidiendo dónde invertir tu flujo
 
 ### El sistema de créditos puede ser frustrante
 
-El mayor punto de fricción de Windsurf es su **modelo de créditos para el modo agente**. Cascade consume créditos con cada acción, y cuando trabajas en proyectos complejos, esos créditos se van rápido. En el plan gratuito, puedes quedarte sin créditos a mitad de semana con uso intensivo. Esto no es hipotético: me pasó exactamente en la segunda semana de prueba, con un proyecto en el que estaba haciendo bastante refactorización.
+El mayor punto de fricción de Windsurf sigue siendo su **modelo de créditos para el modo agente**. Cascade y el resto de agentes consumen créditos con cada acción, y cuando trabajas en proyectos complejos, esos créditos se van rápido. En el plan Free, puedes quedarte sin créditos a mitad de semana con uso intensivo. Esto no es hipotético: me pasó exactamente en la segunda semana de prueba, con un proyecto en el que estaba haciendo bastante refactorización.
 
-[Cursor también tiene límites](/blog/github-copilot-vs-cursor-review), pero la experiencia de agotarlos se siente diferente: con Cursor Pro tienes un número generoso de mensajes premium y el uso "normal" es básicamente ilimitado. Windsurf Pro es más flexible que el gratuito, pero si haces mucho uso de Cascade, los créditos siguen siendo una variable que tienes que gestionar.
+[Cursor también tiene límites](/blog/github-copilot-vs-cursor-review), pero la experiencia de agotarlos se siente diferente: con Cursor Pro tienes un número generoso de mensajes premium y el uso "normal" es básicamente ilimitado. El plan Pro de Windsurf/Devin Desktop es más flexible que el Free, pero si haces mucho uso del modo agente, los créditos siguen siendo una variable que tienes que gestionar.
 
 ### Adopción en equipos y ecosistema
 
-Cursor lleva más tiempo en el mercado y tiene una comunidad más activa, más tutoriales, más integraciones documentadas y más presencia en conversaciones de equipos de desarrollo. Si trabajas en un equipo donde la persona de al lado usa Cursor, habrá más recursos compartibles y más experiencia colectiva.
+Cursor lleva más tiempo en el mercado y tiene una comunidad más activa, más tutoriales, más integraciones documentadas y más presencia en conversaciones de equipos de desarrollo. El rebrand a Devin Desktop añade además una capa extra de confusión: parte de la documentación, tutoriales y comparativas que circulan por internet todavía hablan de "Windsurf" sin explicar el cambio de nombre, así que toca filtrar más para encontrar información actualizada.
 
 ### Extensiones de VS Code: casi todas funcionan, no absolutamente todas
 
@@ -127,7 +132,7 @@ Al ser un fork de VS Code, la mayoría de extensiones funcionan sin problema. Pe
 
 ### El modelo de IA no siempre es predecible
 
-Windsurf permite usar diferentes modelos para Cascade, incluyendo Claude Sonnet 4.6 y opciones de la familia o3. Sin embargo, la selección del modelo no siempre es transparente en el plan gratuito: no siempre sabes qué modelo está usando exactamente para cada tarea, y eso dificulta entender por qué a veces el resultado es muy bueno y otras veces mediocre.
+Windsurf/Devin Desktop permite elegir entre varios agentes y modelos para tus tareas —Cascade, Devin, Codex, Claude Agent, OpenCode—, además de modelos como Claude Sonnet 5 o Claude Fable 5 y el modelo propio de Cognition, **SWE-1.6**. Sin embargo, la selección no siempre es transparente en el plan Free: no siempre sabes qué agente o modelo está usando exactamente para cada tarea, y eso dificulta entender por qué a veces el resultado es muy bueno y otras veces mediocre.
 
 ---
 
@@ -137,29 +142,29 @@ Windsurf permite usar diferentes modelos para Cascade, incluyendo Claude Sonnet 
 
 - Trabajas en proyectos con muchos archivos interdependientes donde el contexto del agente marca la diferencia real
 - Estás migrando desde VS Code y quieres la transición más suave posible sin sacrificar funcionalidades de IA
-- El modo agente autónomo (Cascade) encaja con tu forma de trabajar: tú describes el objetivo, el agente navega y ejecuta
+- El modo agente autónomo (Cascade u otro dentro del selector de Devin Desktop) encaja con tu forma de trabajar: tú describes el objetivo, el agente navega y ejecuta
 - Quieres una alternativa a Cursor con una propuesta diferenciada, no un clon
-- Ya usas Codeium como extensión y quieres dar el salto a un entorno más integrado
+- No te importa que la marca haya cambiado a Devin Desktop y prefieres tener acceso a varios agentes (no solo Cascade) desde el mismo editor
 
 **Probablemente no vale la pena si...**
 
 - Ya tienes un flujo de trabajo sólido con Cursor y estás satisfecho: el salto no justifica el coste de cambio
 - Dependes de extensiones muy específicas de VS Code que podrían no funcionar correctamente
 - Prefieres el control granular del chat sobre la autonomía del agente: Cursor te da más control explícito
-- Tu uso es principalmente autocompletado inline sin necesitar el modo agente: la extensión gratuita de Codeium puede ser suficiente
+- Tu uso es principalmente autocompletado inline sin necesitar el modo agente: Codeium ya no existe como extensión independiente para cubrir ese caso
 - Trabajas en un equipo donde el estándar ya es Cursor o GitHub Copilot: la fricción no vale lo que ganas
 
-Mi recomendación directa: **empieza con el plan gratuito durante al menos dos semanas de trabajo real**. Windsurf tiene una prueba gratuita suficientemente generosa como para tomar una decisión informada. Si Cascade te resulta tan natural como a mí en proyectos con arquitectura compleja, el salto al plan de pago tiene sentido. Si lo usas principalmente como editor con autocompletado y apenas tocas el modo agente, las diferencias con otras herramientas son menores de lo que parece en los demos.
+Mi recomendación directa: **empieza con el plan Free durante al menos dos semanas de trabajo real**. Windsurf (Devin Desktop) tiene una prueba gratuita suficientemente generosa como para tomar una decisión informada. Si Cascade te resulta tan natural como a mí en proyectos con arquitectura compleja, el salto al plan Pro tiene sentido. Si lo usas principalmente como editor con autocompletado y apenas tocas el modo agente, las diferencias con otras herramientas son menores de lo que parece en los demos.
 
 ---
 
 ## Preguntas frecuentes sobre Windsurf
 
 **¿Windsurf es gratuito o hay que pagar?**
-Windsurf tiene un plan gratuito con créditos mensuales para usar el modo agente Cascade y autocompletado básico. Es suficiente para probarlo en serio, aunque con uso intensivo puedes agotarlo antes de fin de mes. El plan Pro amplía los créditos y da acceso a modelos más potentes; consulta los precios actuales en windsurf.com porque pueden haber variado.
+Sí, con matices. Desde el rebrand a Devin Desktop en junio de 2026, los planes son: Free (0 $, créditos limitados), Pro (20 $/mes), Max (200 $/mes) y Teams (80 $/mes + 40 $/mes por asiento); Enterprise tiene precio a medida. Cognition, la empresa propietaria, confirma que los planes y precios heredados de Windsurf se mantienen igual tras el cambio de nombre.
 
 **¿En qué se diferencia Windsurf de Cursor exactamente?**
-Ambos son forks de VS Code con IA integrada, pero el enfoque es distinto. Cursor apuesta por el chat con control granular y selección explícita de contexto. Windsurf prioriza el modo agente Cascade, que navega tu proyecto de forma autónoma sin que tengas que indicarle qué archivos considerar. Puedes ver una [comparativa honesta entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) para entender mejor las diferencias entre las opciones principales del mercado.
+Ambos son forks de VS Code con IA integrada, pero el enfoque es distinto. Cursor apuesta por el chat con control granular y selección explícita de contexto. Windsurf (Devin Desktop) prioriza el modo agente Cascade —hoy uno más de varios agentes seleccionables, junto a Devin, Codex, Claude Agent y OpenCode—, que navega tu proyecto de forma autónoma sin que tengas que indicarle qué archivos considerar. Puedes ver una [comparativa honesta entre GitHub Copilot y Cursor](/blog/github-copilot-vs-cursor-review) para entender mejor las diferencias entre las opciones principales del mercado.
 
 **¿Funciona Windsurf en español, es decir, puedo darle instrucciones en español?**
 Sí. Cascade y el chat de Windsurf entienden instrucciones en español sin problema. El código que genera sigue siendo en inglés (nombres de variables, comentarios) por defecto, pero puedes pedirle que comente en español si lo necesitas. No hay diferencia de rendimiento notable con instrucciones en español respecto a inglés para tareas de código.
@@ -168,14 +173,14 @@ Sí. Cascade y el chat de Windsurf entienden instrucciones en español sin probl
 Esta es precisamente una de sus fortalezas. Windsurf indexa el repositorio completo para dar contexto a Cascade. Funciona mejor cuanto más grande es el proyecto, porque el agente puede navegar dependencias reales en lugar de trabajar en el vacío. He trabajado sin problemas en proyectos con más de 200 archivos.
 
 **¿Es seguro usar Windsurf con código propietario o de empresa?**
-Codeium, la empresa detrás de Windsurf, ofrece opciones de despliegue on-premise y controles de privacidad para empresas. En el plan estándar, el código se envía a sus servidores para procesamiento. Para uso personal o en startups esto suele ser aceptable; para entornos enterprise con requisitos de cumplimiento estrictos, hay que revisar las condiciones específicas y valorar el plan Enterprise. Verifica siempre la política de privacidad actualizada en su web oficial.
+Windsurf nació del equipo de Codeium, pero desde 2025 la empresa propietaria es Cognition (la creadora del agente Devin), que renombró el producto a Devin Desktop en junio de 2026. Cognition ofrece opciones de despliegue on-premise y controles de privacidad para empresas. En el plan estándar, el código se envía a sus servidores para procesamiento. Para uso personal o en startups esto suele ser aceptable; para entornos enterprise con requisitos de cumplimiento estrictos, hay que revisar las condiciones específicas y valorar el plan Enterprise.
 
 ---
 
 ## Conclusión
 
-Windsurf es una herramienta seria que merece estar en la conversación sobre IDEs con IA en 2026. No es un clon de Cursor con otro nombre: tiene una identidad propia basada en el modo agente Cascade, que para proyectos con cierta complejidad arquitectónica ofrece una experiencia genuinamente distinta y, en muchos casos, más fluida.
+Windsurf es una herramienta seria que merece estar en la conversación sobre IDEs con IA en 2026, aunque su historia reciente sea de las más movidas del sector: nació de Codeium, pasó por un intento de compra de OpenAI, Google se llevó a su equipo fundador a DeepMind, y acabó en manos de Cognition, que la fusionó en su plataforma como **Devin Desktop**. No es un clon de Cursor con otro nombre: tiene una identidad propia basada en el modo agente Cascade, que para proyectos con cierta complejidad arquitectónica ofrece una experiencia genuinamente distinta y, en muchos casos, más fluida — solo que ahora comparte protagonismo con otros agentes dentro del mismo editor.
 
 Sus puntos débiles son reales: el modelo de créditos puede resultar frustrante, el ecosistema de comunidad es menor que el de Cursor, y no todas las extensiones de VS Code funcionan perfectamente. Estos no son detalles menores si tu productividad depende de un entorno estable y predecible. Pero tampoco son bloqueantes para la mayoría de desarrolladores en proyectos estándar.
 
-Si estás buscando una alternativa a Cursor y no te convence la dinámica de chat con contexto manual, Windsurf vale mucho la pena probarlo. Si ya tienes un flujo establecido y funciona bien, el coste de cambio probablemente no se justifica solo por curiosidad. En cualquier caso, el plan gratuito es suficientemente generoso como para que la decisión se tome con datos reales y no con marketing.
+Si estás buscando una alternativa a Cursor y no te convence la dinámica de chat con contexto manual, vale mucho la pena probarlo, sepas que hoy se llama Devin Desktop o sigas pensando en él como Windsurf. Si ya tienes un flujo establecido y funciona bien, el coste de cambio probablemente no se justifica solo por curiosidad. En cualquier caso, el plan Free es suficientemente generoso como para que la decisión se tome con datos reales y no con marketing.
