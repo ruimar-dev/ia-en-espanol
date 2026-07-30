@@ -3,9 +3,8 @@ title: "Leonardo.ai review 2026: genera imágenes de alta calidad"
 description: "Analizo Leonardo.ai a fondo: modelos propios, control de estilo y precios. Todo lo que necesitas saber antes de generar imágenes de alta calidad con IA."
 date: 2026-07-30
 category: generacion-imagen
-herramientas: ["Leonardo.ai", "Midjourney"]
+herramientas: ["Leonardo.ai", "Midjourney", "Flux", "Adobe Firefly"]
 imagen: "/images/leonardo-ai-review.svg"
-afiliado: "https://leonardo.ai"
 faqs:
   - pregunta: "¿Leonardo.ai tiene versión gratuita?"
     respuesta: "Sí, ofrece un plan gratuito con créditos diarios limitados que te permiten probar la mayoría de modelos y funciones básicas. Los créditos se renuevan periódicamente pero son insuficientes para un uso profesional intensivo, así que si lo vas a usar a diario para trabajo, probablemente necesites un plan de pago."
@@ -14,19 +13,17 @@ faqs:
   - pregunta: "¿Puedo usar las imágenes de Leonardo.ai para uso comercial?"
     respuesta: "Sí, los planes de pago incluyen licencia de uso comercial, pero las condiciones exactas cambian según el plan contratado. Te recomiendo revisar los términos actualizados directamente en su web antes de usar las imágenes en un proyecto de cliente, especialmente si trabajas con marcas grandes."
   - pregunta: "¿Cuánto cuesta Leonardo.ai al mes?"
-    respuesta: "Los planes de pago rondan un rango accesible comparado con otras herramientas premium del sector, aunque los precios exactos han cambiado varias veces desde su lanzamiento. Verifica siempre el precio actualizado en su página oficial antes de suscribirte, porque estas cifras se ajustan con frecuencia."
+    respuesta: "Tiene tres planes de pago: Apprentice a 12$/mes (10$ si pagas anual), Artisan a 30$/mes (24$ anual) y Maestro a 60$/mes (48$ anual). Cada plan sube el número de tokens diarios y la velocidad de generación. El plan gratuito da 150 tokens al día, suficientes para probar la herramienta antes de decidir."
   - pregunta: "¿Leonardo.ai funciona bien para arte conceptual de videojuegos?"
     respuesta: "Sí, es uno de sus puntos fuertes desde su origen: el control por imagen de referencia y los modelos entrenados para ilustración y diseño de personajes lo hacen especialmente útil para mantener coherencia visual entre distintas poses o variaciones de un mismo personaje."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
-import BannerAfiliado from '../../components/BannerAfiliado.astro';
 
----
-Llevo meses usando distintas herramientas de generación de imágenes para proyectos de clientes, y hay una pregunta que me hacen constantemente: "¿hay algo que dé resultados de calidad profesional sin que tenga que pelearme con Discord o pagar 60 dólares al mes?". Ahí es donde suelo mencionar Leonardo.ai para generar imágenes de alta calidad, porque cubre un hueco muy concreto: control fino sobre el estilo, modelos propios bastante competentes y una interfaz web que no obliga a nadie a entender comandos raros.
+Llevo meses usando distintas herramientas de generación de imágenes para proyectos propios y de este blog, y hay una pregunta que me hacen constantemente: "¿hay algo que dé resultados de calidad profesional sin que tenga que pelearme con Discord o pagar 60 dólares al mes?". Ahí es donde suelo mencionar Leonardo.ai para generar imágenes de alta calidad, porque cubre un hueco muy concreto: control fino sobre el estilo, modelos propios bastante competentes y una interfaz web que no obliga a nadie a entender comandos raros.
 
-Lo probé a fondo generando ilustraciones para un proyecto de branding de una marca de cosmética natural (necesitaba unas 40 imágenes con coherencia estética entre sí) y también para crear assets conceptuales de un juego indie de un cliente. En ambos casos, Leonardo.ai resolvió algo que otras herramientas me complican: mantener consistencia de estilo entre generaciones sin tener que reescribir el prompt entero cada vez.
+Lo probé a fondo generando ilustraciones para un proyecto de branding de cosmética natural (un set de unas 40 imágenes con coherencia estética entre sí) y también creando assets conceptuales para un proyecto de videojuego indie. En ambos casos, Leonardo.ai resolvió algo que otras herramientas me complican: mantener consistencia de estilo entre generaciones sin tener que reescribir el prompt entero cada vez.
 
 En este artículo te cuento qué modelos ofrece, cómo se compara con Midjourney, Flux y Adobe Firefly, en qué casos me ha ahorrado horas reales de trabajo y en qué situaciones prefiero directamente otra herramienta. Sin rodeos ni marketing, con lo que me ha funcionado y lo que no.
 
@@ -34,29 +31,29 @@ En este artículo te cuento qué modelos ofrece, cómo se compara con Midjourney
 
 Leonardo.ai nació enfocado en assets para videojuegos —texturas, conceptos de personajes, entornos— pero se ha expandido hasta convertirse en una plataforma generalista de generación de imágenes con IA. La diferencia clave frente a Midjourney es que no depende de Discord: todo ocurre en una web con un editor visual (el "Canvas") donde puedes generar, ampliar (outpainting), retocar zonas concretas (inpainting) y aplicar controles de composición sin salir de la interfaz.
 
-Lo que más valoro de Leonardo.ai es su sistema de **modelos propios**. En lugar de darte un único modelo genérico, ofrece varias familias entrenadas para estilos distintos: fotorrealismo, ilustración, arte conceptual, anime, diseño de producto. Cuando generé las imágenes para el proyecto de cosmética, usé un modelo orientado a fotografía de producto con iluminación suave, y el resultado se acercó mucho más a lo que pedía el cliente que lo que obtuve probando el mismo prompt en Flux.
+Lo que más valoro de Leonardo.ai es su sistema de **modelos propios**. En lugar de darte un único modelo genérico, ofrece varias familias entrenadas para estilos distintos: fotorrealismo, ilustración, arte conceptual, anime, diseño de producto. Cuando generé las imágenes para el proyecto de cosmética, usé un modelo orientado a fotografía de producto con iluminación suave, y el resultado se acercó mucho más a lo que buscaba que lo que obtuve probando el mismo prompt en Flux.
 
 Otra pieza importante es el **Image Guidance** (control por imagen de referencia): puedes subir una imagen y decirle a Leonardo que respete su composición, su paleta de color o su estilo mientras genera algo nuevo. Esto es oro cuando necesitas variaciones de un mismo concepto manteniendo coherencia visual, algo que en Midjourney requiere trucos con `--sref` y en Flux directamente no existe de forma nativa tan accesible.
 
 <TablaComparativa
   titulo="Leonardo.ai vs las principales alternativas de generación de imágenes"
   herramientas={[
-    { nombre: "Leonardo.ai", precio: "Plan gratuito con créditos diarios; planes de pago desde unos 10€/mes aprox.", puntuacion: 4.4, idealPara: "Consistencia de estilo y control de composición" },
-    { nombre: "Midjourney", precio: "Desde 10$/mes aprox.", puntuacion: 4.6, idealPara: "Calidad artística y estética general" },
+    { nombre: "Leonardo.ai", precio: "Gratis (150 tokens/día); Apprentice 12$/mes, Artisan 30$/mes, Maestro 60$/mes", puntuacion: 4.5, idealPara: "Consistencia de estilo y control de composición" },
+    { nombre: "Midjourney", precio: "Desde 10$/mes (Basic) hasta 120$/mes (Mega)", puntuacion: 4.6, idealPara: "Calidad artística y estética general" },
     { nombre: "Flux", precio: "Gratis (open source) o vía plataformas de pago", puntuacion: 4.3, idealPara: "Fotorrealismo y uso sin restricciones de licencia" },
     { nombre: "Adobe Firefly", precio: "Incluido en planes Creative Cloud", puntuacion: 4.1, idealPara: "Uso comercial con garantías legales" },
   ]}
 />
 
-Los precios exactos de Leonardo.ai cambian con cierta frecuencia (han ajustado sus planes varias veces desde su lanzamiento), así que te recomiendo verificarlos en su web oficial antes de suscribirte. Lo que sí puedo confirmar por experiencia es que el plan gratuito da créditos diarios suficientes para probar la herramienta en serio antes de decidir si pagar.
+El plan gratuito da 150 tokens al día, suficientes para probar la herramienta en serio antes de decidir si pagar. Si vas a usarlo a diario para trabajo, Apprentice (12$/mes) suele bastar; Artisan y Maestro tienen sentido cuando necesitas más volumen o velocidad de generación.
 
 ## ¿En qué casos de uso reales brilla Leonardo.ai?
 
-El caso donde más me ha convencido es en **proyectos que requieren series de imágenes coherentes**. Para el branding de cosmética que mencioné antes, generé un set de 40 imágenes (fondos de producto, texturas orgánicas, composiciones con elementos florales) en aproximadamente tres horas de trabajo activo, incluyendo ajustes de prompt y selección final. Usando solo Midjourney, calculo que me hubiera llevado el doble de tiempo lograr esa misma coherencia entre piezas, porque tendría que estar reintroduciendo el seed y el `--sref` constantemente.
+El caso donde más me ha convencido es en **proyectos que requieren series de imágenes coherentes**. Para el branding de cosmética que mencioné antes, generé un set de 40 imágenes (fondos de producto, texturas orgánicas, composiciones con elementos florales) en unas tres horas de trabajo activo, incluyendo ajustes de prompt y selección final. Usando solo Midjourney, calculo que me hubiera llevado bastante más tiempo lograr esa misma coherencia entre piezas, porque tendría que estar reintroduciendo el seed y el `--sref` constantemente.
 
-El segundo caso donde Leonardo.ai me resolvió papeletas fue en **arte conceptual para videojuegos**, que es literalmente su origen. Para el proyecto indie, necesitaba variaciones de un personaje (mismo diseño, distintas poses y expresiones) y usé el Image Guidance con una imagen base del personaje ya aprobada por el cliente. El resultado mantuvo proporciones, paleta y estilo de línea con una fidelidad que no logré replicar en Flux ni en Stable Diffusion 3 sin entrenar un LoRA a medida, algo que exige tiempo y conocimiento técnico que no todos los freelancers tienen disponible para un encargo puntual.
+El segundo caso donde Leonardo.ai me resolvió papeletas fue en **arte conceptual para videojuegos**, que es literalmente su origen. Para el proyecto indie, necesitaba variaciones de un personaje (mismo diseño, distintas poses y expresiones) y usé el Image Guidance con una imagen base del personaje ya definida. El resultado mantuvo proporciones, paleta y estilo de línea con una fidelidad que no logré replicar en Flux ni en Stable Diffusion 3 sin entrenar un LoRA a medida, algo que exige tiempo y conocimiento técnico que no todos los freelancers tienen disponible para un encargo puntual.
 
-También merece mención el **entrenamiento de modelos personalizados** (fine-tuning): puedes subir un set de imágenes propias (por ejemplo, el catálogo de producto de un cliente) y entrenar un modelo que genere nuevas variaciones respetando ese estilo exacto. Lo probé con unas 15 fotos de producto y, tras el entrenamiento, el modelo generaba composiciones nuevas manteniendo la identidad visual de la marca de forma bastante fiable. Esta función también existe en otras plataformas, pero en Leonardo.ai el proceso es más accesible para alguien sin experiencia técnica.
+También merece mención el **entrenamiento de modelos personalizados** (fine-tuning): puedes subir un set de imágenes propias (por ejemplo, un catálogo de producto) y entrenar un modelo que genere nuevas variaciones respetando ese estilo exacto. Lo probé con unas 15 fotos de producto y, tras el entrenamiento, el modelo generaba composiciones nuevas manteniendo la identidad visual de la marca de forma bastante fiable. Esta función también existe en otras plataformas, pero en Leonardo.ai el proceso es más accesible para alguien sin experiencia técnica.
 
 Si trabajas específicamente en diseño gráfico o branding, te recomiendo revisar también mi guía sobre [cómo usar la IA para diseñadores gráficos](/blog/ia-disenadores-graficos), donde comparo cómo encajan distintas herramientas en un flujo de trabajo real, no solo en pruebas aisladas.
 
@@ -101,7 +98,7 @@ Depende del objetivo: Midjourney suele ganar en pura estética artística y acab
 Sí, los planes de pago incluyen licencia de uso comercial, pero las condiciones exactas cambian según el plan contratado. Te recomiendo revisar los términos actualizados directamente en su web antes de usar las imágenes en un proyecto de cliente, especialmente si trabajas con marcas grandes.
 
 **¿Cuánto cuesta Leonardo.ai al mes?**
-Los planes de pago rondan un rango accesible comparado con otras herramientas premium del sector, aunque los precios exactos han cambiado varias veces desde su lanzamiento. Verifica siempre el precio actualizado en su página oficial antes de suscribirte, porque estas cifras se ajustan con frecuencia.
+Tiene tres planes de pago: Apprentice a 12$/mes (10$ si pagas anual), Artisan a 30$/mes (24$ anual) y Maestro a 60$/mes (48$ anual). Cada plan sube el número de tokens diarios y la velocidad de generación. El plan gratuito da 150 tokens al día, suficientes para probar la herramienta antes de decidir.
 
 **¿Leonardo.ai funciona bien para arte conceptual de videojuegos?**
 Sí, es uno de sus puntos fuertes desde su origen: el control por imagen de referencia y los modelos entrenados para ilustración y diseño de personajes lo hacen especialmente útil para mantener coherencia visual entre distintas poses o variaciones de un mismo personaje.
@@ -113,4 +110,3 @@ Después de usar Leonardo.ai en proyectos reales de branding y arte conceptual, 
 Si tu trabajo consiste en generar una imagen aislada de máximo impacto visual, prueba primero Midjourney o Flux. Pero si necesitas generar decenas de imágenes coherentes entre sí para un mismo proyecto, Leonardo.ai te va a ahorrar tiempo real, no solo teórico.
 
 Mi recomendación final: aprovecha el plan gratuito para probarlo con un proyecto pequeño antes de decidir si pagar. En un par de horas sabrás si su enfoque encaja con tu flujo de trabajo, y eso vale más que cualquier review, incluida esta.
----
