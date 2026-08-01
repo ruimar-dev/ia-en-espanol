@@ -3,7 +3,7 @@ title: "IA para abogados en 2026: qué hace bien y dónde falla"
 description: "Guía honesta sobre IA para abogados en 2026: qué tareas automatiza bien, dónde falla, riesgos reales y qué herramientas usar sin arriesgar tu colegiación."
 date: 2026-08-01
 category: productividad
-herramientas: ["ChatGPT", "Claude Fable 5", "Perplexity AI"]
+herramientas: ["ChatGPT", "Claude Fable 5", "Perplexity AI", "NotebookLM"]
 imagen: "/images/ia-para-abogados-guia.svg"
 faqs:
   - pregunta: "¿Puede la IA sustituir a un abogado en la redacción de contratos?"
@@ -16,20 +16,20 @@ faqs:
     respuesta: "Sí, existen plataformas legales especializadas (algunas con presencia internacional como Harvey AI o CoCounsel) que integran bases de jurisprudencia real y reducen el riesgo de alucinaciones frente a un chatbot generalista, aunque su disponibilidad, idioma y precio en el mercado español conviene confirmarlos directamente con el proveedor porque cambian con frecuencia."
   - pregunta: "¿Puedo meterme en problemas disciplinarios por usar IA en mi trabajo como abogado?"
     respuesta: "Sí, si presentas documentos con información inventada por la IA sin verificarla, la responsabilidad deontológica es tuya como profesional colegiado, no de la herramienta. Ya ha habido casos mediáticos de sanciones por citar jurisprudencia falsa generada por chatbots, así que la verificación manual sigue siendo obligatoria."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
-Hace un año me llamó un socio de un despacho mediano en Madrid, preocupado porque uno de sus asociados junior había usado ChatGPT para redactar un escrito y había citado dos sentencias que no existían. El caso no llegó a más porque lo revisaron a tiempo, pero el susto fue real. Desde entonces he trabajado con varios despachos —desde bufetes de tres personas hasta departamentos jurídicos de empresas medianas— para entender exactamente qué puede hacer la **IA para abogados** sin poner en riesgo un caso, la reputación del despacho o la colegiación de nadie.
+Es un escenario cada vez más habitual: un asociado junior usa ChatGPT para redactar un escrito y cuela una cita de una sentencia que no existe. Si se revisa a tiempo, el susto se queda en eso; si no, el problema es serio. Casos así ya han llegado a despachos de todos los tamaños, desde bufetes de tres personas hasta departamentos jurídicos de empresas medianas, y son el motivo por el que merece la pena entender exactamente qué puede hacer la **IA para abogados** sin poner en riesgo un caso, la reputación del despacho o la colegiación de nadie.
 
 La respuesta corta es: mucho, pero no lo que la mayoría cree. La IA generativa no va a sustituir el criterio jurídico ni va a ganarte un pleito, pero sí puede ahorrarte horas en tareas que hoy pagas a precio de abogado y que en realidad son trabajo administrativo con forma jurídica. El problema es que la mayoría de despachos o la usan para todo (mal) o no la usan para nada (peor, porque la competencia sí lo hace).
 
-En este artículo voy a ser concreto: qué tareas delego yo mismo a la IA cuando trabajo con clientes del sector legal, dónde se rompe el sistema con las famosas "alucinaciones" de citas falsas, y qué herramientas tienen sentido según el tamaño de tu despacho y tu presupuesto.
+En este artículo voy a ser concreto: qué tareas de trabajo jurídico delega bien la IA hoy, dónde se rompe el sistema con las famosas "alucinaciones" de citas falsas, y qué herramientas tienen sentido según el tamaño de tu despacho y tu presupuesto.
 
 ## ¿Qué puede hacer realmente la IA en el trabajo jurídico diario?
 
-La inteligencia artificial generativa —modelos como **Claude Fable 5**, **GPT-4o** o la familia **o3** de OpenAI— es fundamentalmente un motor de lenguaje. Eso significa que es extraordinaria para tareas que implican leer, resumir, reformular o estructurar texto, y mediocre o directamente peligrosa para tareas que requieren verificación factual exacta, como citar jurisprudencia específica.
+La inteligencia artificial generativa —modelos como **Claude Fable 5**, **GPT-5.5** o **GPT-5.6/Thinking** de OpenAI— es fundamentalmente un motor de lenguaje. Eso significa que es extraordinaria para tareas que implican leer, resumir, reformular o estructurar texto, y mediocre o directamente peligrosa para tareas que requieren verificación factual exacta, como citar jurisprudencia específica.
 
 En la práctica, esto se traduce en tres categorías de uso que sí funcionan bien:
 
@@ -37,33 +37,31 @@ En la práctica, esto se traduce en tres categorías de uso que sí funcionan bi
 
 **Resumen de documentos largos.** Subir una sentencia de 40 páginas o un contrato extenso y pedir un resumen de los puntos clave, las obligaciones de cada parte o los plazos relevantes es uno de los usos donde la IA brilla de verdad. Con **NotebookLM** de Google, por ejemplo, puedes subir varios PDFs (contratos, anexos, correspondencia) y hacerle preguntas cruzadas sobre todos ellos a la vez, algo que manualmente te llevaría media tarde.
 
-**Análisis de riesgos y detección de cláusulas problemáticas.** Herramientas de razonamiento como **o3** o Claude Opus son buenas identificando cláusulas ambiguas, inconsistencias entre secciones de un contrato o vacíos legales evidentes, aunque siempre como primer filtro, nunca como veredicto final.
+**Análisis de riesgos y detección de cláusulas problemáticas.** Herramientas de razonamiento como **GPT-5.6/Thinking** o **Claude Opus** son buenas identificando cláusulas ambiguas, inconsistencias entre secciones de un contrato o vacíos legales evidentes, aunque siempre como primer filtro, nunca como veredicto final.
 
 Lo que NO funciona bien —y aquí está el matiz que muchos despachos ignoran— es pedirle a un modelo generalista que te cite jurisprudencia o artículos concretos de memoria. Los modelos de lenguaje no tienen una base de datos jurídica verificada; generan texto estadísticamente probable, y "sentencia del Tribunal Supremo de 2019 sobre X" suena perfectamente plausible aunque no exista. Esto se llama alucinación y es el motivo por el que ya ha habido sanciones a abogados en Estados Unidos y algún caso mediático en España por presentar escritos con citas inventadas.
 
 <TablaComparativa
   titulo="Herramientas de IA útiles para el trabajo jurídico"
   herramientas={[
-    { nombre: "ChatGPT Plus/Team", precio: "≈20€/mes (Plus)", puntuacion: 4.3, idealPara: "Redacción, resúmenes y borradores generales" },
-    { nombre: "Claude Fable 5", precio: "≈20€/mes (Pro)", puntuacion: 4.6, idealPara: "Análisis de documentos largos y contratos complejos" },
-    { nombre: "Perplexity AI", precio: "≈20€/mes (Pro)", puntuacion: 4.2, idealPara: "Búsqueda con fuentes verificables y actualidad normativa" },
+    { nombre: "ChatGPT Plus/Team", precio: "20$/mes (~23€ IVA)", puntuacion: 4.3, idealPara: "Redacción, resúmenes y borradores generales" },
+    { nombre: "Claude Fable 5", precio: "20€/mes (Pro)", puntuacion: 4.6, idealPara: "Análisis de documentos largos y contratos complejos" },
+    { nombre: "Perplexity AI", precio: "20$/mes (Pro)", puntuacion: 4.2, idealPara: "Búsqueda con fuentes verificables y actualidad normativa" },
     { nombre: "NotebookLM", precio: "Gratis / incluido en Google One", puntuacion: 4.4, idealPara: "Cruzar información entre varios documentos del caso" },
   ]}
 />
 
 Los precios exactos cambian con frecuencia y algunos proveedores ofrecen planes empresariales o legales especializados sin tarifa pública, así que verifica siempre en la web oficial antes de suscribirte o de comprometer el presupuesto del despacho.
 
-## Cómo uso la IA en mi flujo de trabajo jurídico (con ejemplos reales)
+## Dos escenarios que reflejan bien dónde la IA aporta y dónde no
 
-Te cuento dos casos concretos que reflejan bien dónde la IA aporta y dónde no.
+El primero: un dictamen sobre un contrato de distribución comercial extenso donde hay que determinar si se puede rescindir sin penalización. Subir el contrato completo a Claude Fable 5 y pedirle que identifique todas las cláusulas relacionadas con terminación anticipada, penalizaciones y preavisos, con el número de cláusula exacto, da en pocos minutos un listado estructurado que —contrastado contra el documento original— suele ser fiable en la localización de las cláusulas (la interpretación legal final sigue siendo del abogado). Frente a leer el contrato entero manualmente para llegar al mismo punto, el ahorro de tiempo es real y notable.
 
-El primero: preparar un dictamen sobre un contrato de distribución comercial de 28 páginas para un cliente que quería saber si podía rescindirlo sin penalización. Subí el contrato completo a Claude Fable 5 y le pedí que identificara todas las cláusulas relacionadas con terminación anticipada, penalizaciones y preavisos, con el número de cláusula exacto. En unos 4 minutos tenía un listado estructurado que, contrastado por mí contra el documento original, era correcto al 100% en la localización de las cláusulas (aunque la interpretación legal final la hice yo). Esa tarea, hecha manualmente leyendo las 28 páginas, me habría tomado entre 45 y 60 minutos. Ahorro real: unos 40 minutos en un solo documento.
+El segundo caso es justo el contrario, y sirve como advertencia. Pedirle a un modelo generalista jurisprudencia reciente del Tribunal Supremo español sobre un supuesto muy específico puede devolver referencias con números de sentencia y fechas concretas, redactadas con total seguridad, que al verificarlas en el buscador oficial del CENDOJ resultan no existir tal cual se describen: mezclas de elementos reales de sentencias distintas, o directamente inventadas. Esto no es un fallo puntual: es estructural en cómo funcionan estos modelos, y es la razón por la que **nunca** debes citar jurisprudencia generada por IA sin verificarla en una fuente oficial (CENDOJ, Westlaw, vLex o Aranzadi).
 
-El segundo caso es justo el contrario, y sirve como advertencia. Le pedí a un modelo generalista que me diera jurisprudencia reciente del Tribunal Supremo español sobre cláusulas suelo en un supuesto muy específico. Me devolvió tres referencias con números de sentencia y fechas concretas, redactadas con total seguridad. Al verificarlas en el buscador oficial del CENDOJ, ninguna de las tres existía tal cual se describía: dos eran una mezcla de elementos reales de sentencias distintas, y una directamente no existía. Esto no es un fallo puntual: es estructural en cómo funcionan estos modelos, y es la razón por la que **nunca** debes citar jurisprudencia generada por IA sin verificarla en una fuente oficial (CENDOJ, Westlaw, vLex o Aranzadi).
+Para investigación normativa con menos riesgo de invención, [Perplexity AI funciona mejor que un chatbot generalista](/blog/perplexity-ai-review-2026) porque cita las fuentes de las que extrae la información y puedes hacer clic para verificarlas directamente, algo que ni ChatGPT ni Claude hacen de forma nativa en sus versiones estándar. Aun así, la fuente primaria debe verificarse siempre antes de incluir cualquier cita en un documento que vaya a un juzgado.
 
-Para investigación normativa con menos riesgo de invención, [Perplexity AI funciona mejor que un chatbot generalista](/blog/perplexity-ai-review-2026) porque cita las fuentes de las que extrae la información y puedes hacer clic para verificarlas directamente, algo que ni ChatGPT ni Claude hacen de forma nativa en sus versiones estándar. Aun así, sigo verificando siempre la fuente primaria antes de incluir cualquier cita en un documento que vaya a un juzgado.
-
-Otro uso que me ha ahorrado tiempo real: la comunicación con clientes. Traducir un dictamen técnico a un lenguaje que un cliente sin formación jurídica entienda, manteniendo la precisión legal, es una tarea perfecta para estos modelos. Le pido a ChatGPT o Claude que "explique esto como si fuera para alguien sin conocimientos legales, sin perder ningún matiz importante" y el resultado suele necesitar solo ajustes menores.
+Otro uso donde el ahorro de tiempo es real: la comunicación con clientes. Traducir un dictamen técnico a un lenguaje que un cliente sin formación jurídica entienda, manteniendo la precisión legal, es una tarea perfecta para estos modelos. Un prompt del tipo "explica esto como si fuera para alguien sin conocimientos legales, sin perder ningún matiz importante" suele devolver un resultado que solo necesita ajustes menores.
 
 ## Dónde falla la IA en el ámbito legal (y por qué esto importa más que las ventajas)
 
@@ -81,7 +79,7 @@ Aquí está la parte que menos les gusta a los vendedores de software legal con 
 
 ## ¿Cuándo tiene sentido usar IA en tu despacho y cuándo no?
 
-Después de meses viendo esto en la práctica, mi criterio se resume así:
+El criterio se puede resumir así:
 
 **Sí tiene sentido si:**
 - Necesitas resumir, estructurar o reformular documentos largos (contratos, sentencias, informes periciales)
