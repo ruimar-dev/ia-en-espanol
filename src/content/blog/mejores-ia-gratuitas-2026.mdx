@@ -3,7 +3,7 @@ title: "Las mejores IA gratuitas de 2026: qué puedes hacer sin pagar"
 description: "Descubre las mejores IA gratuitas de 2026: ChatGPT, Claude, Gemini, Perplexity y más. Qué puedes hacer sin pagar y cuándo sí conviene una suscripción."
 date: 2026-07-31
 category: productividad
-herramientas: ["ChatGPT", "Claude", "Gemini", "Perplexity", "DeepSeek R1"]
+herramientas: ["ChatGPT", "Claude", "Gemini", "Perplexity", "DeepSeek R1", "NotebookLM", "Flux"]
 imagen: "/images/mejores-ia-gratuitas-2026.svg"
 faqs:
   - pregunta: "¿Cuál es la mejor IA gratuita en 2026 para uso general?"
@@ -16,7 +16,7 @@ faqs:
     respuesta: "Depende de cuánto dependas de la herramienta. Si los límites de mensajes te interrumpen el trabajo con frecuencia o necesitas los modelos de razonamiento más potentes de forma constante, el plan de pago se amortiza rápido en tiempo ahorrado. Tienes un análisis detallado de esta decisión en mi comparativa de [ChatGPT gratis vs de pago](/blog/chatgpt-gratis-vs-pago)."
   - pregunta: "¿Puedo generar imágenes de calidad profesional sin pagar nada en 2026?"
     respuesta: "Puedes conseguir imágenes bastante buenas gratis con herramientas como Flux, pero para uso comercial serio, mayor resolución o control fino sobre el estilo, las versiones de pago de Midjourney o Leonardo.ai suelen dar mejores resultados y más consistencia entre generaciones."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
@@ -29,9 +29,9 @@ En este artículo voy a repasar qué puedes hacer sin pagar un euro con las herr
 
 ## ¿Qué puedes hacer gratis con la IA en 2026 sin que te limiten demasiado?
 
-La primera sorpresa para quien no ha tocado estas herramientas en un tiempo es que el plan gratuito de **ChatGPT** ya no es un modelo residual. Da acceso limitado a modelos de la familia GPT-4o y, con cuotas más estrictas, a razonamiento tipo o3 para tareas puntuales. Para uso casual (redactar un email, resumir un artículo, generar ideas para una presentación) es más que suficiente. Yo lo uso así con clientes que me piden "algo rápido para probar": en menos de cinco minutos tienen un borrador de propuesta comercial decente sin pagar nada.
+La primera sorpresa para quien no ha tocado estas herramientas en un tiempo es que el plan gratuito de **ChatGPT** ya no es un modelo residual. Da acceso a **GPT-5.5** y, de forma limitada y esporádica, a **GPT-5.6** con su modo Thinking para tareas puntuales de razonamiento. Para uso casual (redactar un email, resumir un artículo, generar ideas para una presentación) es más que suficiente: en una prueba reciente le pedí un borrador de propuesta comercial desde cero y en menos de cinco minutos tenía algo decente sin pagar nada.
 
-**Claude**, de Anthropic, sigue un patrón parecido: el plan gratuito da acceso a un modelo capaz (normalmente una versión Sonnet o equivalente reducido), con un número limitado de mensajes cada pocas horas. Si escribes o programas de forma esporádica, no lo notas. Si lo usas ocho horas seguidas como yo hago cuando reviso código, el límite te frena en la segunda o tercera hora.
+**Claude**, de Anthropic, sigue un patrón parecido: el plan gratuito da acceso a **Claude Haiku 4.5**, con acceso muy limitado a **Sonnet 4.6** cuando la demanda lo permite, y un número reducido de mensajes cada pocas horas. Si escribes o programas de forma esporádica, no lo notas. Si lo usas varias horas seguidas revisando código, el límite te frena antes de lo que te gustaría.
 
 **Gemini**, de Google, tiene una ventaja estructural: si ya usas Gmail, Docs o Drive, el acceso gratuito viene integrado en el ecosistema, lo que en la práctica significa que millones de personas ya "usan IA gratis" sin saberlo, simplemente al aceptar las sugerencias de Gmail o el resumen automático de un documento largo.
 
@@ -48,7 +48,7 @@ Luego está **Perplexity**, que en su capa gratuita funciona como un buscador co
   ]}
 />
 
-Los precios y límites de uso cambian con frecuencia en todas estas plataformas, así que te recomiendo verificar las condiciones actuales en la web oficial de cada una antes de decidir tu flujo de trabajo alrededor de ellas.
+Los límites de uso exactos cambian con frecuencia y varían según la demanda del momento en todas estas plataformas —ni OpenAI ni Anthropic publican cifras oficiales—, así que tómalos como referencia orientativa, no como un número fijo.
 
 ## ¿Para qué tareas concretas te sirve la IA gratuita en tu día a día?
 
@@ -72,7 +72,7 @@ El límite más obvio es el **número de mensajes o generaciones por periodo de 
 
 El segundo límite, menos visible pero más importante, es la **memoria y el contexto**. Las versiones gratuitas suelen tener ventanas de contexto más pequeñas que sus equivalentes de pago, lo que significa que si le pasas un documento muy largo o mantienes una conversación extensa, el modelo "olvida" partes anteriores antes que en el plan premium.
 
-Tercero: **no tienes acceso a los modelos de razonamiento más potentes de forma sostenida**. La familia o3 de OpenAI o Claude Opus 4.8 de Anthropic están pensados para tareas complejas de análisis o programación avanzada, y en la capa gratuita solo los tocas de forma muy limitada, si es que tienes acceso. Para comparar en profundidad qué te da cada nivel de modelo, te recomiendo leer [ChatGPT o3 review](/blog/chatgpt-o3-review) y [Claude Fable 5 review](/blog/claude-fable-5-review).
+Tercero: **no tienes acceso a los modelos de razonamiento más potentes de forma sostenida**. GPT-5.6 con su modo Thinking, o Claude Opus 4.8 y Fable 5 de Anthropic, están pensados para tareas complejas de análisis o programación avanzada, y en la capa gratuita solo los tocas de forma muy limitada, si es que tienes acceso. Para comparar en profundidad qué te da cada nivel de modelo, te recomiendo leer [ChatGPT o3 review](/blog/chatgpt-o3-review) y [Claude Fable 5 review](/blog/claude-fable-5-review).
 
 Cuarto, y este es el que menos se cuenta: **tus conversaciones gratuitas suelen usarse para entrenar el modelo**, salvo que desactives esa opción explícitamente en configuración. Si trabajas con información sensible de clientes, esto es un motivo real (no solo teórico) para plantearte un [plan de pago con garantías contractuales de privacidad](/blog/chatgpt-gratis-vs-pago), algo que cubro con más detalle en mi comparativa específica.
 
@@ -96,7 +96,7 @@ Después de meses combinando planes gratuitos y de pago en distintos proyectos, 
 - Necesitas contexto largo (documentos extensos, código de proyectos grandes)
 - Manejas datos sensibles y necesitas garantías de privacidad más sólidas
 - Quieres los modelos de razonamiento más avanzados de forma constante, no ocasional
-- El tiempo que pierdes esperando a que se restablezca tu cuota vale más que los 15-20€ mensuales de un plan de pago
+- El tiempo que pierdes esperando a que se restablezca tu cuota vale más que los 20-24€ mensuales de un plan de pago (ChatGPT Plus, Claude Pro o Google AI Pro rondan esa franja)
 
 Mi regla personal es sencilla: si en una semana normal me topo con el límite gratuito más de dos veces, ya me está costando más en tiempo perdido de lo que costaría la suscripción. Si trabajas en marketing, freelance o educación y quieres ver qué combinación de herramientas gratuitas y de pago tiene sentido según tu sector, tengo guías específicas para [freelancers](/blog/ia-para-freelancers), [pequeñas empresas](/blog/ia-pequenas-empresas) y [profesores](/blog/ia-para-profesores).
 
