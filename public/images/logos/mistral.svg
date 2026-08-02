@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="mistral-g" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FA520F"/>
+      <stop offset="1" stop-color="#FFC300"/>
+    </linearGradient>
+  </defs>
+  <rect width="24" height="24" rx="5.5" fill="url(#mistral-g)"/>
+  <path fill="white" d="M6 6h3v3H6zM6 10.5h3v3H6zM6 15h3v3H6zM10.5 10.5h3v3h-3zM15 6h3v3h-3zM15 10.5h3v3h-3zM15 15h3v3h-3z" opacity="0.95"/>
+</svg>
