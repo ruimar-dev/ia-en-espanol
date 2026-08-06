@@ -1,0 +1,117 @@
+---
+title: "IA para recursos humanos 2026: selección, onboarding y formación"
+description: "Guía práctica de IA para recursos humanos: cómo usarla en selección, onboarding y formación sin perder el toque humano. Ejemplos reales."
+date: 2026-08-06
+category: productividad
+herramientas: ["ChatGPT", "Claude"]
+imagen: "/images/ia-recursos-humanos-guia.svg"
+faqs:
+  - pregunta: "¿Es legal usar IA para descartar candidatos automáticamente en España?"
+    respuesta: "La normativa europea de protección de datos y las leyes contra la discriminación laboral exigen que las decisiones que afectan significativamente a una persona no se tomen de forma totalmente automatizada sin posibilidad de revisión humana. En la práctica, esto significa que puedes usar IA para clasificar y priorizar, pero conviene que una persona revise y confirme cualquier descarte final antes de comunicarlo."
+  - pregunta: "¿Qué herramienta de IA es mejor para RRHH: ChatGPT o Claude?"
+    respuesta: "Para tareas de RRHH ambas funcionan bien, aunque en mi experiencia Claude tiende a ser más cuidadoso con matices sensibles (como gaps laborales o temas de discapacidad) cuando le pides análisis de candidatos, mientras que ChatGPT es más rápido para generar plantillas y comunicaciones masivas. Puedes ver la comparación completa en [ChatGPT vs Claude en 2026](/blog/chatgpt-vs-claude-2026) para decidir según tu caso de uso."
+  - pregunta: "¿Cuánto cuesta implementar IA en un departamento de RRHH pequeño?"
+    respuesta: "Con un plan de pago de ChatGPT o Claude para equipos (que suele rondar los 20-30€ por usuario al mes, aunque conviene verificar el precio actualizado en la web oficial) y sin contratar software especializado de HR tech, un departamento pequeño puede empezar a usar IA en selección y onboarding con una inversión mensual bastante razonable comparada con contratar personal adicional o consultoría externa."
+  - pregunta: "¿La IA va a sustituir a los reclutadores y responsables de RRHH?"
+    respuesta: "No en el sentido de eliminar el puesto, pero sí va a cambiar qué tareas hace cada persona: menos lectura mecánica de CVs y más entrevistas, negociación y gestión de personas. Este tema lo tratamos con más profundidad y datos en [¿La IA va a quitarme el trabajo?](/blog/ia-quitara-trabajo-2026), que aplica también al sector de recursos humanos."
+  - pregunta: "¿Puedo usar la IA gratuita de ChatGPT o necesito la versión de pago para RRHH?"
+    respuesta: "La versión gratuita sirve para pruebas puntuales, pero para uso profesional en RRHH conviene la versión de pago por dos motivos: mejores garantías sobre el tratamiento de datos de candidatos y empleados, y límites de uso mucho más altos para procesar volúmenes reales de currículums o documentos. Puedes revisar las diferencias exactas en [ChatGPT gratis vs de pago](/blog/chatgpt-gratis-vs-pago) antes de decidir qué plan contratar."
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+
+Llevo tres años metido en procesos de selección para empresas medianas, y el patrón se repite siempre: recibes 200 candidaturas para un puesto, tienes tres días para hacer una primera criba, y al final acabas leyendo currículums a las once de la noche con menos criterio del que te gustaría admitir. La **IA para recursos humanos** no ha eliminado ese problema de golpe, pero sí ha cambiado radicalmente cuánto tiempo le dedico a cada fase y, sobre todo, dónde meto mi energía como persona en lugar de como máquina de filtrar PDFs.
+
+Este artículo no es una lista de "10 herramientas de IA que van a revolucionar tu departamento de RRHH". Es lo que he aprendido usando modelos como Claude Fable 5 y ChatGPT en procesos reales de selección, diseño de onboarding y planes de formación, con los tiempos que realmente me ha tomado y los errores que cometí por confiar demasiado en el automatismo.
+
+Voy a cubrir tres bloques concretos: cómo la IA ayuda a filtrar y evaluar candidatos sin caer en discriminación algorítmica, cómo diseñar un onboarding que no dependa de que un compañero recuerde explicarlo todo, y cómo montar formación personalizada sin contratar a un equipo de e-learning. Y sí, también voy a decir dónde la IA se queda corta, porque en RRHH los errores no son solo ineficientes, son legalmente peligrosos.
+
+## ¿Qué puede hacer realmente la IA en selección de personal?
+
+La promesa de "la IA lee 500 CVs en un minuto" es cierta, pero incompleta. Lo que hace bien un modelo de lenguaje como Claude o GPT-4o es **resumir, comparar y estructurar información no estructurada**. Le paso 40 currículums en PDF, le doy el perfil del puesto (no solo el título, sino las competencias reales que necesito) y en menos de 10 minutos tengo una tabla con nombre, años de experiencia relevante, señales de alarma (huecos sin explicar, cambios de sector frecuentes) y una puntuación orientativa del 1 al 10.
+
+Lo que NO hace bien —y aquí me quemé una vez— es tomar la decisión final de descartar a alguien sin supervisión humana. Tuve un caso donde el modelo penalizó sistemáticamente currículums con gaps laborales de más de un año, sin distinguir entre "abandonó el trabajo sin razón" y "estuvo de baja por maternidad" o "cuidó a un familiar enfermo". Si automatizas esa criba sin revisión, además del problema ético, en España te puedes meter en un lío serio con la normativa de protección de datos y no discriminación en procesos de selección.
+
+Mi flujo actual es: la IA hace la primera clasificación y resumen, yo reviso el 100% de los descartes antes de comunicarlos, y solo confío ciegamente en la IA para tareas administrativas puras, como generar la primera plantilla de respuesta de rechazo o programar entrevistas.
+
+Para entrevistas, herramientas como ChatGPT o Claude también sirven para preparar guiones de preguntas por competencias, adaptadas al puesto exacto. Si te interesa el lado del candidato, tengo un artículo específico sobre [cómo preparar una entrevista de trabajo con IA](/blog/entrevista-trabajo-con-ia) que explica el mismo proceso desde el otro lado de la mesa, y es útil leerlo para entender qué trucos ya conocen los candidatos que aplican con IA a tu proceso.
+
+<TablaComparativa
+  titulo="Herramientas de IA generalistas útiles en procesos de RRHH"
+  herramientas={[
+    { nombre: "ChatGPT (Team/Enterprise)", precio: "Desde ~25€/usuario/mes", puntuacion: 4.5, idealPara: "Cribado de CVs, redacción de ofertas y comunicaciones masivas" },
+    { nombre: "Claude (Team)", precio: "Desde ~25€/usuario/mes", puntuacion: 4.6, idealPara: "Análisis de documentos largos y políticas internas de RRHH" },
+    { nombre: "Gemini (Workspace)", precio: "Incluido en planes Business de Google Workspace", puntuacion: 4.2, idealPara: "Equipos ya integrados en Gmail/Docs/Sheets" },
+    { nombre: "Notion AI", precio: "Desde ~10€/usuario/mes", puntuacion: 4.0, idealPara: "Bases de conocimiento de onboarding y wikis internas" },
+  ]}
+/>
+
+Los precios exactos cambian con frecuencia y varían según el número de usuarios y el plan negociado, así que verifica siempre en la página oficial de cada herramienta antes de presupuestar un contrato anual.
+
+## Cómo he usado la IA para diseñar onboarding que de verdad funciona
+
+El onboarding es, para mí, donde la IA aporta más valor con menos riesgo, porque no hay decisiones sobre personas de por medio: es pura estructuración de contenido. Cuando diseñé el plan de onboarding para una empresa de 35 personas que no tenía nada documentado más allá de un PDF de bienvenida de 2019, usé Claude para transformar entrevistas grabadas con los responsables de cada departamento en un manual de onboarding de 30 días, dividido en semanas, con checklist de tareas y contactos clave.
+
+El proceso concreto: grabé 45 minutos de conversación con cada jefe de equipo explicando "qué necesita saber alguien nuevo en su primera semana", pasé la transcripción por Claude pidiéndole que estructurara la información en un documento de onboarding con formato de checklist, y en menos de una hora tenía un primer borrador que antes me habría llevado dos o tres días de trabajo manual redactando desde cero. Lo revisé, corregí un par de imprecisiones y lo pasé a Notion para que quedara como wiki viva.
+
+Un detalle que marca la diferencia: pedí específicamente que el documento incluyera "preguntas que probablemente tenga la persona nueva y no se atreva a hacer en voz alta la primera semana" (cómo pedir vacaciones, qué hacer si se atasca con un acceso, a quién avisar si llega tarde). Ese tipo de contenido "invisible" es justo el que un modelo genera bien cuando se lo pides explícitamente, porque nadie lo documenta espontáneamente.
+
+También uso IA para generar los correos de seguimiento automatizados del primer mes (día 1, día 7, día 30) con checkpoints personalizados según el puesto. Si buscas automatizar esta parte sin depender de un desarrollador, la guía sobre [automatizar tareas repetitivas con IA sin programar](/blog/automatizar-tareas-ia-sin-programar) explica cómo conectar estos flujos con herramientas de automatización tipo Zapier o Make, algo que en RRHH ahorra horas reales cada mes cuando hay contrataciones frecuentes.
+
+Lo que sí evito es dejar que la IA redacte el contenido legal y contractual del onboarding (políticas de confidencialidad, cláusulas específicas del convenio). Ahí uso la IA como corrector de claridad —"reescribe esto para que se entienda sin perder precisión legal"— pero el contenido lo revisa siempre alguien con formación jurídica o laboral.
+
+## Formación personalizada con IA: dónde brilla y dónde decepciona
+
+Aquí es donde más expectativas infladas he visto en departamentos de RRHH: la idea de que la IA va a generar automáticamente cursos completos, personalizados por empleado, sin esfuerzo humano. La realidad es más modesta pero igual de útil bien aplicada.
+
+Lo que funciona de verdad: usar Claude o GPT-4o para transformar material existente (manuales técnicos aburridos, documentación de producto, políticas internas) en formatos más digeribles: resúmenes ejecutivos, preguntas de autoevaluación tipo quiz, guiones para vídeos cortos de formación. En un proyecto para el área comercial de una empresa de software, convertí un manual de producto de 60 páginas en 12 microlecciones de 5 minutos con preguntas al final de cada una. Me llevó dos tardes con Claude en lugar de las dos semanas que habría necesitado un diseñador instruccional externo, y el coste fue básicamente cero comparado con contratar ese servicio.
+
+Lo que decepciona: pedirle a la IA que "diseñe un plan de formación de liderazgo de 6 meses" desde cero, sin material propio de la empresa. El resultado es genérico, suena a curso de LinkedIn Learning de hace diez años, y le falta el contexto real de tu cultura, tus problemas concretos de gestión y tu gente. La IA formatea y estructura muy bien, pero no sustituye el diagnóstico humano de qué necesita aprender realmente tu equipo.
+
+Para formación con vídeo o audio, herramientas como [HeyGen](/blog/heygen-review) permiten crear vídeos con avatar sin necesidad de grabar cámara, útil para módulos de formación que se actualizan con frecuencia (normativa, procedimientos internos) sin montar un estudio cada vez. Y si tienes documentación extensa que la gente no lee, convertirla en un formato tipo podcast con [NotebookLM](/blog/notebooklm-review) es una manera curiosa de aumentar el consumo real de contenido de formación que de otra forma se queda en un PDF sin abrir.
+
+Un error que cometí: automatizar completamente la evaluación de conocimientos post-formación con un chatbot sin revisión, y descubrir un mes después que varias personas habían "hackeado" el test simplemente pegando las preguntas en ChatGPT para sacar las respuestas. La formación con IA necesita también preguntas de aplicación práctica, no solo memorización, porque lo memorístico lo resuelve cualquier modelo en segundos.
+
+## ¿Cuándo tiene sentido usar IA en RRHH y cuándo no?
+
+**Sí tiene sentido si:**
+
+- Recibes un volumen alto de candidaturas y necesitas una primera clasificación estructurada, siempre con revisión humana antes de descartar a nadie.
+- Tienes procesos de onboarding que dependen de la memoria de una sola persona y quieres documentarlos de forma escalable.
+- Necesitas transformar material formativo existente en formatos más accesibles (resúmenes, quizzes, microlecciones) sin contratar un equipo de e-learning completo.
+- Tu equipo de RRHH es pequeño (1-3 personas) y necesita multiplicar su capacidad sin contratar más gente, algo parecido a lo que ya cubrimos en [IA para pequeñas empresas](/blog/ia-pequenas-empresas).
+
+**Probablemente no si:**
+
+- Buscas automatizar decisiones finales de contratación o despido sin supervisión humana: el riesgo legal y ético es real, no teórico.
+- Esperas que la IA diagnostique problemas de cultura organizacional o clima laboral sin que nadie hable con las personas.
+- Tu empresa maneja datos muy sensibles de candidatos o empleados y no tienes claro cómo se procesan esos datos en la herramienta que usas (revisa siempre la política de privacidad y dónde se almacena la información).
+- Necesitas contenido de formación con precisión legal o normativa estricta sin revisión de un experto en la materia.
+
+Mi recomendación honesta: empieza por onboarding y formación, que son los usos de menor riesgo y mayor retorno de tiempo, y avanza a selección solo cuando tengas un proceso claro de revisión humana en cada descarte automatizado.
+
+## Preguntas frecuentes sobre IA para recursos humanos
+
+**¿Es legal usar IA para descartar candidatos automáticamente en España?**
+La normativa europea de protección de datos y las leyes contra la discriminación laboral exigen que las decisiones que afectan significativamente a una persona no se tomen de forma totalmente automatizada sin posibilidad de revisión humana. En la práctica, esto significa que puedes usar IA para clasificar y priorizar, pero conviene que una persona revise y confirme cualquier descarte final antes de comunicarlo.
+
+**¿Qué herramienta de IA es mejor para RRHH: ChatGPT o Claude?**
+Para tareas de RRHH ambas funcionan bien, aunque en mi experiencia Claude tiende a ser más cuidadoso con matices sensibles (como gaps laborales o temas de discapacidad) cuando le pides análisis de candidatos, mientras que ChatGPT es más rápido para generar plantillas y comunicaciones masivas. Puedes ver la comparación completa en [ChatGPT vs Claude en 2026](/blog/chatgpt-vs-claude-2026) para decidir según tu caso de uso.
+
+**¿Cuánto cuesta implementar IA en un departamento de RRHH pequeño?**
+Con un plan de pago de ChatGPT o Claude para equipos (que suele rondar los 20-30€ por usuario al mes, aunque conviene verificar el precio actualizado en la web oficial) y sin contratar software especializado de HR tech, un departamento pequeño puede empezar a usar IA en selección y onboarding con una inversión mensual bastante razonable comparada con contratar personal adicional o consultoría externa.
+
+**¿La IA va a sustituir a los reclutadores y responsables de RRHH?**
+No en el sentido de eliminar el puesto, pero sí va a cambiar qué tareas hace cada persona: menos lectura mecánica de CVs y más entrevistas, negociación y gestión de personas. Este tema lo tratamos con más profundidad y datos en [¿La IA va a quitarme el trabajo?](/blog/ia-quitara-trabajo-2026), que aplica también al sector de recursos humanos.
+
+**¿Puedo usar la IA gratuita de ChatGPT o necesito la versión de pago para RRHH?**
+La versión gratuita sirve para pruebas puntuales, pero para uso profesional en RRHH conviene la versión de pago por dos motivos: mejores garantías sobre el tratamiento de datos de candidatos y empleados, y límites de uso mucho más altos para procesar volúmenes reales de currículums o documentos. Puedes revisar las diferencias exactas en [ChatGPT gratis vs de pago](/blog/chatgpt-gratis-vs-pago) antes de decidir qué plan contratar.
+
+## Conclusión
+
+Después de aplicar IA en selección, onboarding y formación durante varios procesos reales, mi conclusión es poco espectacular pero honesta: la IA para recursos humanos no reemplaza el criterio humano en las decisiones que importan, pero sí elimina una cantidad enorme de trabajo mecánico que antes te robaba tiempo y energía para hacer bien esas decisiones importantes.
+
+Si tienes un departamento de RRHH pequeño o eres la única persona encargada de estos procesos en tu empresa, empieza por documentar onboarding y transformar material de formación existente: es donde vas a notar el ahorro de tiempo más rápido y con menor riesgo. Deja la selección para cuando tengas un flujo de revisión humana claro, y nunca automatices comunicaciones de rechazo o decisiones finales sin que alguien las revise antes de pulsar enviar.
+
+La IA no va a hacer tu trabajo de RRHH por ti, pero sí puede hacer que dediques tu tiempo a las conversaciones y decisiones que realmente requieren a una persona, en lugar de perderlo filtrando PDFs a las once de la noche.
