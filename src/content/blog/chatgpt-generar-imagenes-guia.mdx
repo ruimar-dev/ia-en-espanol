@@ -1,9 +1,9 @@
 ---
 title: "Generar imágenes con ChatGPT en 2026: guía de prompts"
 description: "Guía práctica para generar imágenes con ChatGPT en 2026: cómo funciona, prompts que funcionan de verdad y cuándo conviene usar otra herramienta."
-date: 2026-08-05
+date: 2026-08-06
 category: generacion-imagen
-herramientas: ["ChatGPT", "GPT-4o"]
+herramientas: ["ChatGPT", "DALL-E 3", "Midjourney", "Flux", "Leonardo.ai", "Gemini"]
 imagen: "/images/chatgpt-generar-imagenes-guia.svg"
 faqs:
   - pregunta: "¿Necesito pagar ChatGPT Plus para generar imágenes?"
@@ -16,15 +16,14 @@ faqs:
     respuesta: "Suele pasar cuando el prompt de corrección es ambiguo o cuando pides varios cambios a la vez dentro de una imagen compleja. Ayuda pedir un cambio a la vez y ser explícito sobre qué elementos deben quedarse exactamente igual."
   - pregunta: "¿Qué diferencia hay entre generar imágenes en ChatGPT y en Gemini?"
     respuesta: "Gemini, con sus herramientas de imagen integradas, tiende a manejar mejor ciertos casos de edición sobre fotos reales que subes tú, mientras que ChatGPT destaca más en generación desde cero con texto integrado. Si usas ambos asistentes para tareas de texto, te puede interesar la comparativa de [ChatGPT vs Gemini 2.5 Pro](/blog/chatgpt-vs-gemini-2026) para ver también cómo se comportan fuera del terreno de imágenes."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
 
----
 La primera vez que le pedí a ChatGPT que generara una imagen para un post de LinkedIn, esperaba el resultado típico de hace un par de años: una escena genérica, con texto ilegible y manos imposibles. No fue lo que obtuve. En menos de 20 segundos tenía una ilustración con el texto correcto dentro de la imagen, colores coherentes con mi marca y una composición que no necesitaba retoque. Ese salto es el motivo por el que **generar imágenes con ChatGPT** se ha vuelto una opción real de trabajo, no solo un juguete para probar prompts curiosos.
 
-Esto ha cambiado bastante desde la época de DALL-E 3 integrado en ChatGPT. Ahora la generación de imágenes corre sobre el motor multimodal de **GPT-4o**, lo que significa que el modelo "entiende" la imagen como parte de la misma conversación en la que escribes texto, y eso se nota en la precisión con la que sigue instrucciones complejas. En esta guía te cuento cómo funciona en la práctica, qué tipo de prompts dan mejores resultados, dónde se queda corto frente a herramientas especializadas como Midjourney o Flux, y cuándo tiene sentido quedarte dentro de ChatGPT en vez de abrir otra pestaña.
+Esto ha cambiado bastante desde los primeros generadores de imagen dentro de ChatGPT. **DALL-E 3**, integrado directamente en la conversación, entiende la imagen como parte del mismo hilo en el que escribes texto, y eso se nota en la precisión con la que sigue instrucciones complejas. En esta guía te cuento cómo funciona en la práctica, qué tipo de prompts dan mejores resultados, dónde se queda corto frente a herramientas especializadas como Midjourney o Flux, y cuándo tiene sentido quedarte dentro de ChatGPT en vez de abrir otra pestaña.
 
 Voy a ir con ejemplos reales de cosas que he generado —desde miniaturas para artículos hasta mockups de producto— para que no te quedes solo con la teoría. Si nunca has usado ChatGPT para nada más que texto, te recomiendo antes echar un vistazo a [qué es ChatGPT y para qué sirve](/blog/chatgpt-que-es-guia) para tener el contexto completo.
 
@@ -32,17 +31,17 @@ Voy a ir con ejemplos reales de cosas que he generado —desde miniaturas para a
 
 A diferencia de las herramientas de imagen "puras", ChatGPT no genera la imagen y ya está: la conversación previa importa. Si le has estado hablando de tu marca, tu público objetivo o el tono de tu proyecto, el modelo arrastra ese contexto al momento de crear la imagen. Esto es distinto de cómo trabajan Midjourney o Leonardo.ai, donde cada prompt parte prácticamente de cero salvo que uses parámetros de referencia explícitos.
 
-La otra diferencia grande es el **renderizado de texto dentro de la imagen**. Durante años, pedirle a una IA que pusiera un rótulo, un logo con texto o una portada con un titular era jugar a la lotería. Con el motor de GPT-4o, escribir "una taza de café con la palabra ANTES escrita en la cerámica en letras rojas" funciona la mayoría de las veces. No es perfecto —a veces cambia una letra o desalinea el texto en frases largas—, pero es un salto real frente a lo que teníamos hace dos años.
+La otra diferencia grande es el **renderizado de texto dentro de la imagen**. Durante años, pedirle a una IA que pusiera un rótulo, un logo con texto o una portada con un titular era jugar a la lotería. Con DALL-E 3, escribir "una taza de café con la palabra ANTES escrita en la cerámica en letras rojas" funciona la mayoría de las veces. No es perfecto —a veces cambia una letra o desalinea el texto en frases largas—, pero es un salto real frente a lo que teníamos hace dos años.
 
-En cuanto a acceso: con la cuenta gratuita de ChatGPT puedes generar imágenes, pero con límites de uso que varían y se ajustan con frecuencia, así que no me fío de dar una cifra exacta aquí —revisa el límite actual dentro de tu cuenta antes de planificar un flujo de trabajo con volumen. Con **ChatGPT Plus** los límites son más generosos y las colas de espera en horas punta son mucho menores. Si generas imágenes de forma ocasional, la versión gratuita puede bastarte; si las necesitas para trabajo constante, Plus tiene más sentido. Puedes comparar a fondo las dos opciones en [ChatGPT gratis vs de pago](/blog/chatgpt-gratis-vs-pago).
+En cuanto a acceso: con la cuenta gratuita de ChatGPT puedes generar imágenes, pero con límites de uso que varían y se ajustan con frecuencia, así que no me fío de dar una cifra exacta aquí —revisa el límite actual dentro de tu cuenta antes de planificar un flujo de trabajo con volumen. Con **ChatGPT Plus (20$/mes, ~23€ con IVA)** los límites son más generosos y las colas de espera en horas punta son mucho menores. Si generas imágenes de forma ocasional, la versión gratuita puede bastarte; si las necesitas para trabajo constante, Plus tiene más sentido. Puedes comparar a fondo las dos opciones en [ChatGPT gratis vs de pago](/blog/chatgpt-gratis-vs-pago).
 
 <TablaComparativa
   titulo="ChatGPT vs otras herramientas de generación de imágenes"
   herramientas={[
-    { nombre: "ChatGPT (GPT-4o)", precio: "Gratis con límites / Plus según plan vigente", puntuacion: 4.3, idealPara: "Imágenes con texto integrado y flujo conversacional" },
-    { nombre: "Midjourney v8.1", precio: "Desde 10$/mes aprox.", puntuacion: 4.7, idealPara: "Estética artística y composición avanzada" },
-    { nombre: "Flux", precio: "Gratis (open) / de pago en plataformas", puntuacion: 4.4, idealPara: "Fotorrealismo y control técnico" },
-    { nombre: "Leonardo.ai", precio: "Plan gratuito limitado / planes de pago", puntuacion: 4.2, idealPara: "Diseño con plantillas y consistencia de personajes" },
+    { nombre: "ChatGPT (DALL-E 3)", precio: "Gratis con límites / Plus 20$/mes (~23€ IVA)", puntuacion: 4.3, idealPara: "Imágenes con texto integrado y flujo conversacional" },
+    { nombre: "Midjourney v8.1", precio: "Desde ~10$/mes (verificar en web)", puntuacion: 4.7, idealPara: "Estética artística y composición avanzada" },
+    { nombre: "Flux", precio: "Gratis (open) / pago por créditos", puntuacion: 4.4, idealPara: "Fotorrealismo y control técnico" },
+    { nombre: "Leonardo.ai", precio: "Free 150 tokens/día / desde 12$/mes", puntuacion: 4.2, idealPara: "Diseño con plantillas y consistencia de personajes" },
   ]}
 />
 
@@ -61,7 +60,7 @@ Algunas cosas que me han funcionado de forma consistente:
 
 Si quieres profundizar en la estructura general de un buen prompt (aplicable tanto a texto como a imagen), la guía de [prompts perfectos para ChatGPT](/blog/prompts-perfectos-chatgpt-guia) tiene ejemplos que se pueden adaptar directamente a generación visual.
 
-Un segundo caso que uso bastante: mockups de producto para clientes que no tienen presupuesto de fotografía. Le pido a ChatGPT una "foto de producto estilo catálogo, fondo blanco, iluminación de estudio, botella de cristal con etiqueta que diga NATURA en tipografía serif verde". En unos 15 minutos, con tres o cuatro iteraciones dentro de la misma conversación, tengo algo presentable para una propuesta inicial. No es una foto real ni sustituye una sesión profesional, pero para mockups conceptuales me ahorra horas.
+Un segundo caso que uso bastante: mockups de producto rápidos cuando no hay presupuesto ni tiempo para una sesión de fotografía. Le pido a ChatGPT una "foto de producto estilo catálogo, fondo blanco, iluminación de estudio, botella de cristal con etiqueta que diga NATURA en tipografía serif verde". En unos 15 minutos, con tres o cuatro iteraciones dentro de la misma conversación, tengo algo presentable para una idea inicial. No es una foto real ni sustituye una sesión profesional, pero para mockups conceptuales me ahorra horas.
 
 ## Dónde se queda corto ChatGPT frente a herramientas especializadas
 
@@ -119,4 +118,3 @@ Generar imágenes con ChatGPT en 2026 ya no es una función secundaria ni un exp
 Dicho esto, no es la herramienta correcta para todo. Si tu trabajo depende de una estética artística sostenida, fotorrealismo de nivel comercial o consistencia de personajes en series largas, herramientas especializadas como Midjourney, Flux o Leonardo.ai te van a dar mejores resultados con menos frustración. La decisión inteligente no es elegir una sola herramienta para siempre, sino saber cuál abrir según lo que tienes delante: si necesitas rapidez y texto correcto, ChatGPT; si necesitas control artístico fino, otra cosa.
 
 Mi consejo práctico: prueba primero dentro de ChatGPT, porque probablemente ya lo tienes abierto para otras tareas. Si el resultado no llega al nivel que necesitas, ese es exactamente el momento de abrir una herramienta especializada, no antes.
----
