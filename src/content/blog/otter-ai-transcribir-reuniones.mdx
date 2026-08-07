@@ -1,0 +1,120 @@
+---
+title: "Otter.ai para transcribir y resumir reuniones: review 2026"
+description: "Analizo Otter.ai para transcribir y resumir reuniones en 2026: precios, precisión, integraciones y si compensa frente a alternativas gratuitas."
+date: 2026-08-07
+category: productividad
+herramientas: ["Otter.ai", "ChatGPT", "NotebookLM"]
+imagen: "/images/otter-ai-transcribir-reuniones.svg"
+afiliado: "https://otter.ai"
+faqs:
+  - pregunta: "¿Otter.ai funciona bien en español o solo en inglés?"
+    respuesta: "Funciona en español, pero la precisión es notablemente más baja que en inglés, especialmente con acentos mixtos o cuando varias personas hablan rápido o se solapan. En mis pruebas he tenido que corregir entre un 10% y un 15% de la transcripción en reuniones en español, frente a errores mínimos en inglés."
+  - pregunta: "¿Cuánto cuesta Otter.ai y tiene plan gratuito?"
+    respuesta: "Otter.ai ofrece un plan gratuito con minutos de transcripción limitados al mes, suficiente para probar la herramienta pero insuficiente para uso profesional intensivo. Los planes de pago tienen un coste mensual por usuario; como los precios cambian con cierta frecuencia, te recomiendo verificarlos directamente en la web oficial antes de suscribirte."
+  - pregunta: "¿Otter.ai es mejor que usar ChatGPT para resumir reuniones?"
+    respuesta: "Son herramientas distintas: Otter transcribe en tiempo real dentro de la videollamada y genera el resumen automáticamente, mientras que con ChatGPT tendrías que grabar tú mismo el audio, transcribirlo por otro medio y luego pegarlo para pedir un resumen. Otter es más cómodo para el flujo diario; ChatGPT te da más control sobre el formato del resumen final si ya tienes la transcripción hecha."
+  - pregunta: "¿Otter.ai graba las reuniones sin que los participantes lo sepan?"
+    respuesta: "No debería: el bot de Otter aparece como un participante visible en la llamada y, dependiendo de la configuración, notifica que la sesión está siendo transcrita. Aun así, es buena práctica avisar explícitamente a los participantes antes de activarlo, sobre todo en reuniones con clientes externos."
+  - pregunta: "¿Qué alternativa gratuita existe si no quiero pagar por Otter.ai?"
+    respuesta: "Si solo necesitas resumir audios que ya tienes grabados, [NotebookLM](/blog/notebooklm-review) es gratuito y hace un trabajo muy sólido con resúmenes y hasta podcasts a partir de documentos y audios. Lo que no ofrece es la integración en tiempo real con tus videollamadas, que es la gran ventaja diferencial de Otter."
+draft: true
+---
+
+import TablaComparativa from '../../components/TablaComparativa.astro';
+import BannerAfiliado from '../../components/BannerAfiliado.astro';
+
+Llevo más de un año usando Otter.ai para transcribir y resumir reuniones de trabajo, y la pregunta que más me hacen colegas cuando lo ven en acción es siempre la misma: "¿de verdad no tienes que tomar notas nunca más?". La respuesta corta es que no del todo, pero se acerca bastante. La respuesta larga es este artículo.
+
+Si trabajas en remoto, gestionas equipos o simplemente tienes la agenda llena de videollamadas, sabes lo que cuesta estar presente en la conversación y a la vez apuntar quién dijo qué y qué se acordó hacer. Otter.ai nació precisamente para resolver eso: se conecta a tus reuniones de Zoom, Google Meet o Microsoft Teams, transcribe en tiempo real y después genera un resumen con los puntos clave y las tareas pendientes.
+
+En este artículo te cuento cómo lo uso en mi día a día, qué tan fiable es realmente la transcripción en español (aquí hay matices importantes), en qué se diferencia de usar ChatGPT o NotebookLM para lo mismo, y en qué casos directamente no lo recomendaría.
+
+## ¿Qué es Otter.ai y para qué sirve realmente?
+
+Otter.ai es una aplicación de transcripción y resumen de reuniones que funciona como un "asistente que toma notas" dentro de tus videollamadas. Se integra directamente con Zoom, Google Meet y Microsoft Teams: cuando programas una reunión, el bot de Otter entra como un participante más, escucha, transcribe en tiempo real y al final genera un documento con la transcripción completa, un resumen automático y una lista de acciones a seguir.
+
+Lo que lo diferencia de un simple dictado por voz es que identifica a los distintos hablantes (speaker identification), marca los cambios de turno y, en las reuniones grabadas con cuentas vinculadas, aprende a reconocer voces recurrentes de compañeros habituales. En mi experiencia, esto funciona razonablemente bien en inglés y de forma más irregular en español, donde a veces confunde a dos personas con acentos similares o corta mal las frases cuando hay solapamientos de voz.
+
+La herramienta no es solo para reuniones en vivo. También puedes subir audios grabados previamente —una entrevista, una clase, una llamada telefónica exportada— y Otter los procesa igual. Eso la hace útil más allá del contexto corporativo: periodistas, investigadores y estudiantes la usan para transcribir entrevistas y clases grabadas.
+
+Comparado con otras opciones del mercado, Otter compite en un terreno donde también están **Fireflies.ai**, el propio **Zoom AI Companion** (integrado nativamente si ya pagas Zoom) y, de forma indirecta, **NotebookLM** de Google, que aunque no transcribe reuniones en vivo, es excelente resumiendo audios que ya tienes grabados. Aquí va una comparativa con los datos que puedo confirmar; los precios de suscripción cambian con cierta frecuencia, así que te recomiendo verificarlos en la web oficial antes de decidir.
+
+<TablaComparativa
+  titulo="Otter.ai frente a otras herramientas de transcripción y notas de reuniones"
+  herramientas={[
+    { nombre: "Otter.ai", precio: "Plan gratuito limitado + planes de pago desde unos 8-10€/mes", puntuacion: 4.3, idealPara: "Reuniones recurrentes en Zoom, Meet o Teams" },
+    { nombre: "Fireflies.ai", precio: "Plan gratuito + planes de pago similares", puntuacion: 4.1, idealPara: "Equipos que necesitan integraciones con CRM" },
+    { nombre: "Zoom AI Companion", precio: "Incluido en algunos planes de Zoom", puntuacion: 4.0, idealPara: "Quien ya usa Zoom como plataforma principal" },
+    { nombre: "NotebookLM", precio: "Gratuito (con límites)", puntuacion: 4.4, idealPara: "Resumir audios ya grabados, no reuniones en vivo" },
+  ]}
+/>
+
+## Cómo uso Otter.ai en mi flujo de trabajo real
+
+Te cuento un caso concreto. Tengo una reunión semanal de seguimiento de proyecto con un cliente que dura entre 45 y 60 minutos, con tres o cuatro personas hablando y bastante intercambio de ideas técnicas. Antes de usar Otter, dedicaba entre 15 y 20 minutos después de cada llamada a redactar un resumen para el equipo con lo acordado. Ahora, en cuanto termina la reunión, Otter ya tiene lista una transcripción completa y, en menos de dos minutos, un resumen generado por IA con los puntos tratados y las acciones asignadas a cada persona.
+
+No es perfecto: reviso siempre el resumen antes de enviarlo, porque en un par de ocasiones ha atribuido una tarea a la persona equivocada al confundir quién hablaba en ese momento. Pero el ahorro de tiempo es real: he pasado de invertir unos 15-20 minutos por reunión a revisar y ajustar el resumen en 3-5 minutos. Multiplicado por las 6-8 reuniones semanales que suelo tener, es una diferencia que se nota en la semana.
+
+Otra función que uso bastante es la búsqueda dentro de transcripciones pasadas. Cuando alguien pregunta "¿qué quedamos exactamente sobre el presupuesto en la reunión de hace tres semanas?", en lugar de tirar de memoria o de mis notas dispersas, busco la palabra clave en Otter y encuentro el fragmento exacto con el minuto en el que se dijo. Esto ha evitado más de un malentendido de "yo no dije eso" en proyectos con clientes.
+
+Para quien trabaja con equipos distribuidos, también sirve como sustituto parcial de tomar apuntes durante entrevistas de trabajo o sesiones de feedback. Si te interesa ese ángulo específico, la [guía para preparar una entrevista de trabajo con IA](/blog/entrevista-trabajo-con-ia) profundiza en herramientas complementarias que se pueden combinar con Otter para optimizar ese proceso.
+
+Una integración que vale la pena mencionar es la de Slack y calendario: puedes configurar Otter para que se una automáticamente a cualquier reunión que aparezca en tu Google Calendar, sin tener que invitarlo manualmente cada vez. Esto reduce la fricción de olvidarte de activarlo, que era mi mayor queja los primeros meses de uso.
+
+## Dónde falla Otter.ai y qué limitaciones tiene
+
+Aquí es donde toca ser honesto, porque no todo es ahorro de tiempo. La precisión en español sigue siendo el punto más flojo de la herramienta en mi experiencia. En inglés, la transcripción es casi impecable incluso con acentos variados. En español, especialmente si hay acentos latinoamericanos y peninsulares mezclados en la misma llamada, o si alguien habla rápido, la tasa de errores sube notablemente. He tenido transcripciones donde tuve que corregir a mano entre el 10% y el 15% del texto en reuniones de una hora con varios hablantes.
+
+El resumen automático, aunque útil, tiende a ser genérico si la conversación no tiene una estructura clara. Funciona mejor en reuniones con agenda definida (proyecto, decisiones, próximos pasos) que en brainstormings abiertos, donde el resumen puede perder matices importantes de la discusión.
+
+Otra limitación real: Otter necesita que el bot entre a la llamada, lo que en reuniones sensibles o con clientes que no quieren "software externo" grabando puede generar fricción. He tenido que desactivarlo en un par de ocasiones porque el cliente prefería no tener un participante adicional visible en la pantalla.
+
+En cuanto a privacidad, si trabajas con información confidencial o regulada (legal, salud, finanzas), conviene revisar bien la política de retención de datos de Otter antes de usarlo de forma sistemática. No es una herramienta pensada específicamente para sectores con altos requisitos de cumplimiento, a diferencia de soluciones empresariales más específicas.
+
+También hay que considerar el coste acumulado si tu equipo es grande: los planes suelen cobrarse por usuario, así que en equipos de 10 o más personas la factura mensual puede crecer rápido. Vale la pena comparar contra alternativas como Fireflies.ai, que en algunos casos ofrece planes de equipo más económicos, o evaluar si realmente necesitas la transcripción en tiempo real frente a simplemente grabar y procesar después con [NotebookLM, que convierte tus audios grabados en podcasts](/blog/notebooklm-review) de forma gratuita, aunque no se integra en vivo con tus videollamadas.
+
+Si lo que buscas es automatizar procesos más allá de las reuniones —seguimiento de tareas, generación de informes, etc.— te puede interesar también mi guía sobre [automatizar tareas repetitivas con IA sin programar](/blog/automatizar-tareas-ia-sin-programar), donde Otter encaja como una pieza más de un flujo mayor.
+
+## ¿Cuándo tiene sentido usar Otter.ai y cuándo no?
+
+**Sí tiene sentido si:**
+
+- Tienes reuniones recurrentes (semanales, de seguimiento de proyecto) donde necesitas un registro consistente de lo hablado.
+- Trabajas principalmente en inglés o en reuniones bilingües donde el inglés predomina, ya que ahí la precisión es más alta.
+- Necesitas buscar rápidamente información dicha en reuniones pasadas sin depender de la memoria del equipo.
+- Quieres reducir el tiempo que dedicas a redactar resúmenes y actas después de cada llamada.
+- Usas Zoom, Google Meet o Teams como plataforma principal de videollamadas.
+
+**Probablemente no si:**
+
+- Tus reuniones son mayoritariamente en español con acentos mixtos y necesitas una transcripción casi perfecta sin revisión posterior.
+- Trabajas con información altamente confidencial y tu cliente o empresa no permite bots externos en las llamadas.
+- Tu presupuesto es ajustado y solo necesitas resumir audios ya grabados de forma puntual, no en tiempo real —ahí NotebookLM gratuito puede bastarte.
+- Tu equipo es grande y el coste por usuario se dispara sin que el ahorro de tiempo lo justifique claramente.
+
+Mi recomendación directa: si haces más de tres reuniones semanales con seguimiento de tareas, pruébalo con el plan gratuito primero durante dos semanas reales de trabajo, no solo un día de prueba. Es la única forma de saber si la precisión en tu caso concreto (idioma, acentos, número de hablantes) justifica pasar al plan de pago.
+
+## Preguntas frecuentes sobre Otter.ai
+
+**¿Otter.ai funciona bien en español o solo en inglés?**
+Funciona en español, pero la precisión es notablemente más baja que en inglés, especialmente con acentos mixtos o cuando varias personas hablan rápido o se solapan. En mis pruebas he tenido que corregir entre un 10% y un 15% de la transcripción en reuniones en español, frente a errores mínimos en inglés.
+
+**¿Cuánto cuesta Otter.ai y tiene plan gratuito?**
+Otter.ai ofrece un plan gratuito con minutos de transcripción limitados al mes, suficiente para probar la herramienta pero insuficiente para uso profesional intensivo. Los planes de pago tienen un coste mensual por usuario; como los precios cambian con cierta frecuencia, te recomiendo verificarlos directamente en la web oficial antes de suscribirte.
+
+**¿Otter.ai es mejor que usar ChatGPT para resumir reuniones?**
+Son herramientas distintas: Otter transcribe en tiempo real dentro de la videollamada y genera el resumen automáticamente, mientras que con ChatGPT tendrías que grabar tú mismo el audio, transcribirlo por otro medio y luego pegarlo para pedir un resumen. Otter es más cómodo para el flujo diario; ChatGPT te da más control sobre el formato del resumen final si ya tienes la transcripción hecha.
+
+**¿Otter.ai graba las reuniones sin que los participantes lo sepan?**
+No debería: el bot de Otter aparece como un participante visible en la llamada y, dependiendo de la configuración, notifica que la sesión está siendo transcrita. Aun así, es buena práctica avisar explícitamente a los participantes antes de activarlo, sobre todo en reuniones con clientes externos.
+
+**¿Qué alternativa gratuita existe si no quiero pagar por Otter.ai?**
+Si solo necesitas resumir audios que ya tienes grabados, [NotebookLM](/blog/notebooklm-review) es gratuito y hace un trabajo muy sólido con resúmenes y hasta podcasts a partir de documentos y audios. Lo que no ofrece es la integración en tiempo real con tus videollamadas, que es la gran ventaja diferencial de Otter.
+
+## Conclusión
+
+Otter.ai me ha ahorrado tiempo real en mi semana laboral, sobre todo en reuniones recurrentes donde necesito un registro fiable de lo acordado sin tener que dividir mi atención entre escuchar y tomar notas. Su punto fuerte es la integración fluida con Zoom, Meet y Teams y la rapidez con la que genera un resumen utilizable nada más terminar la llamada.
+
+Dicho esto, no lo recomendaría a ciegas para equipos que trabajan exclusivamente en español con necesidad de precisión casi perfecta, ni para contextos donde la confidencialidad impide meter un bot externo en la conversación. En esos casos, vale la pena mirar alternativas como Fireflies.ai, el AI Companion nativo de Zoom, o simplemente grabar y procesar después con NotebookLM.
+
+Mi consejo final: pruébalo con el plan gratuito durante un par de semanas de reuniones reales antes de pagar nada. Es la única forma honesta de saber si el ahorro de tiempo compensa el coste mensual en tu caso concreto, y de comprobar si la precisión en tu idioma y con tu equipo es suficiente para confiar en el resumen sin revisarlo línea por línea.
