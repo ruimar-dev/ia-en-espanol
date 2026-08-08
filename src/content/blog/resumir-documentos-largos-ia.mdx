@@ -16,7 +16,7 @@ faqs:
     respuesta: "En mi experiencia, Claude Fable 5 tiende a mantener mejor la coherencia en documentos largos y complejos como contratos, pero ninguno de los dos sustituye la revisión de un abogado en cláusulas críticas. Para profundizar en este tema específico, te recomiendo nuestra [guía de IA para abogados](/blog/ia-para-abogados-guia)."
   - pregunta: "¿Se puede automatizar el resumen de documentos que recibo cada semana?"
     respuesta: "Sí, existen flujos de automatización que conectan tu correo o carpeta de documentos con una IA para generar resúmenes sin intervención manual cada vez. Si te interesa este enfoque, tenemos una guía completa sobre [cómo automatizar tareas repetitivas con IA sin programar](/blog/automatizar-tareas-ia-sin-programar)."
-draft: true
+draft: false
 ---
 
 import TablaComparativa from '../../components/TablaComparativa.astro';
@@ -33,7 +33,7 @@ Cuando hablamos de resumir documentos con inteligencia artificial, lo que ocurre
 
 **Claude Fable 5**, el modelo más potente de Anthropic en este momento, tiene una de las ventanas de contexto más generosas del mercado, lo que lo hace especialmente bueno para documentos largos de una sola pieza: contratos completos, informes técnicos, tesis. Lo probé con un informe de auditoría de 65 páginas y mantuvo la coherencia entre el resumen ejecutivo y el detalle de hallazgos sin mezclar cifras de secciones distintas, algo que con otros modelos me ha pasado.
 
-**ChatGPT** (con GPT-4o o la familia o3, según qué necesites) funciona muy bien para resúmenes rápidos y conversacionales, y tiene la ventaja de que puedes iterar sobre el resumen en la misma conversación ("ahora hazlo en formato bullet", "ahora solo los riesgos"). Es mi opción por defecto cuando el documento no supera unas 30-40 páginas.
+**ChatGPT** (con GPT-5.5 o el modo de razonamiento GPT-5.6 Thinking, según qué necesites) funciona muy bien para resúmenes rápidos y conversacionales, y tiene la ventaja de que puedes iterar sobre el resumen en la misma conversación ("ahora hazlo en formato bullet", "ahora solo los riesgos"). Es mi opción por defecto cuando el documento no supera unas 30-40 páginas.
 
 **NotebookLM**, de Google, tiene un enfoque distinto: no es un chat genérico, sino una herramienta pensada específicamente para trabajar sobre tus propias fuentes (PDFs, documentos, webs). Subes el documento, y todo lo que te responde está anclado a citas concretas del texto original, lo que reduce muchísimo el riesgo de que se invente algo. Para investigación académica es, para mí, la mejor opción.
 
@@ -42,14 +42,14 @@ Cuando hablamos de resumir documentos con inteligencia artificial, lo que ocurre
 <TablaComparativa
   titulo="Comparativa de IA para resumir documentos largos"
   herramientas={[
-    { nombre: "Claude Fable 5", precio: "Desde ~20€/mes (Pro)", puntuacion: 4.7, idealPara: "Documentos muy largos y complejos (contratos, informes técnicos)" },
-    { nombre: "ChatGPT (GPT-4o / o3)", precio: "Gratis limitado / 20$ Plus", puntuacion: 4.5, idealPara: "Resúmenes rápidos e iterativos, uso general" },
-    { nombre: "NotebookLM", precio: "Gratis (con límites de Google)", puntuacion: 4.6, idealPara: "Investigación académica con citas verificables" },
-    { nombre: "Perplexity AI", precio: "Gratis / 20$ Pro aprox.", puntuacion: 4.3, idealPara: "Resumir información dispersa en la web, no solo un PDF" },
+    { nombre: "Claude Fable 5", precio: "20€/mes (Pro)", puntuacion: 4.7, idealPara: "Documentos muy largos y complejos (contratos, informes técnicos)" },
+    { nombre: "ChatGPT (GPT-5.5 / GPT-5.6)", precio: "Gratis con límites, Plus 20$/mes (~23€ con IVA)", puntuacion: 4.5, idealPara: "Resúmenes rápidos e iterativos, uso general" },
+    { nombre: "NotebookLM", precio: "Gratis / Plus incluido en Google AI Pro (21,99€/mes)", puntuacion: 4.6, idealPara: "Investigación académica con citas verificables" },
+    { nombre: "Perplexity AI", precio: "Gratis / 20$/mes (Pro)", puntuacion: 4.3, idealPara: "Resumir información dispersa en la web, no solo un PDF" },
   ]}
 />
 
-Los precios pueden haber cambiado desde que escribo esto, así que antes de suscribirte a cualquiera revisa la página oficial: tanto OpenAI como Anthropic y Google ajustan planes y límites de uso con cierta frecuencia.
+Si ya usas ChatGPT o Claude a diario, no necesitas contratar nada nuevo solo para resumir documentos: la función viene incluida en los planes que ya conoces. La única incorporación que suele merecer la pena para este uso concreto es NotebookLM, que es gratis y está diseñado específicamente para trabajar con tus propias fuentes.
 
 ## Cómo resumir un contrato o informe largo paso a paso (mi flujo real)
 
@@ -64,7 +64,7 @@ Con ese flujo, lo que antes me llevaba una hora y media de lectura atenta lo res
 
 Si trabajas específicamente en el sector legal, te recomiendo leer también [nuestra guía sobre IA para abogados](/blog/ia-para-abogados-guia), donde hablo con más detalle de dónde falla la IA en contextos jurídicos y por qué nunca debería sustituir la revisión humana en cláusulas críticas.
 
-Otro caso real: para una revisión bibliográfica de ocho papers académicos en inglés para un cliente, usé NotebookLM subiendo los ocho PDFs a la vez. Le pedí que identificara puntos de consenso y de discrepancia entre los estudios, y generó un resumen con referencias a cada fuente. Tardé cerca de 40 minutos en total (incluyendo lectura de las citas señaladas) en lugar de las 4-5 horas que me habría llevado leer los ocho papers entero. Si además necesitas convertir ese material en algo más digerible en formato audio, tenemos una review específica de [NotebookLM y su función de podcasts](/blog/notebooklm-review) que vale la pena mirar.
+Otro caso real: para una revisión bibliográfica de ocho papers académicos en inglés, usé NotebookLM subiendo los ocho PDFs a la vez. Le pedí que identificara puntos de consenso y de discrepancia entre los estudios, y generó un resumen con referencias a cada fuente. Tardé cerca de 40 minutos en total (incluyendo lectura de las citas señaladas) en lugar de las 4-5 horas que me habría llevado leer los ocho papers entero. Si además necesitas convertir ese material en algo más digerible en formato audio, tenemos una review específica de [NotebookLM y su función de podcasts](/blog/notebooklm-review) que vale la pena mirar.
 
 ## Dónde falla la IA al resumir documentos largos (y por qué no debes confiar ciegamente)
 
@@ -78,7 +78,7 @@ Aquí viene la parte incómoda que muchos artículos se saltan. La IA para resum
 
 **La jerga muy especializada se puede simplificar de más.** En documentos médicos o técnicos muy específicos, he visto resúmenes que "aplanan" matices importantes para sonar más claros. Si el documento es de alto riesgo (legal, médico, financiero), el resumen de la IA es un punto de partida, no la versión final.
 
-Comparado con [Google Gemini 2.5 Pro, que también permite subir documentos largos](/blog/chatgpt-vs-gemini-2026) dentro del ecosistema de Google, mi experiencia es que NotebookLM (que usa tecnología de Google por debajo) es mejor específicamente para esta tarea porque está diseñado desde cero para anclar respuestas a fuentes, mientras que Gemini en su chat general tiende a mezclar más su conocimiento previo con el contenido del documento.
+Comparado con [Google Gemini 3.1 Pro, que también permite subir documentos largos](/blog/chatgpt-vs-gemini-2026) dentro del ecosistema de Google, mi experiencia es que NotebookLM (que usa tecnología de Google por debajo) es mejor específicamente para esta tarea porque está diseñado desde cero para anclar respuestas a fuentes, mientras que Gemini en su chat general tiende a mezclar más su conocimiento previo con el contenido del documento.
 
 ## ¿Cuándo tiene sentido usar IA para resumir documentos largos y cuándo no?
 
